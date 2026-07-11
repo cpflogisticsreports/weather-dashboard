@@ -2,7 +2,7 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "Tropical Cyclone Bulletin No. 16F",
-    "issued_at": "2026-07-11T22:38:02+08:00",
+    "issued_at": "2026-07-12T02:09:20+08:00",
     "valid_until": "",
     "next_update": "",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
@@ -153,8 +153,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-11T22:38:02+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-07-11T22:38:02+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-07-12T02:09:20+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-07-12T02:09:20+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
