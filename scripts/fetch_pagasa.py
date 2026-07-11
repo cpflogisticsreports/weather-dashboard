@@ -17,7 +17,7 @@ PAGASA has no public API, so this SCRAPES their public pages. That means:
 PAGASA data is public domain. This tool is not affiliated with PAGASA.
 """
 
-import json, re, sys, os, datetime, html, urllib.request, urllib.error
+import json, re, sys, os, datetime, html, math, urllib.request, urllib.error
 
 # --------------------------------------------------------------------------- #
 # Config
@@ -44,12 +44,12 @@ HUBS = [
     {"name":"Gerona Feedmill","region":"Central Luzon (Tarlac)","type":"Feedmill","lat":15.61,"lon":120.60,"keys":["tarlac"]},
     {"name":"Isabela Hub","region":"Cagayan Valley (Isabela)","type":"Distribution","lat":16.93,"lon":121.77,"keys":["isabela"]},
     {"name":"Samal Hub","region":"Central Luzon (Bataan)","type":"Distribution","lat":14.77,"lon":120.54,"keys":["bataan"]},
-    {"name":"Manila Distribution","region":"NCR","type":"Distribution","lat":14.60,"lon":120.98,"keys":["metro manila","ncr","manila","rizal"]},
+    {"name":"Manila Distribution","region":"NCR","type":"Distribution","lat":14.60,"lon":120.98,"keys":["metro manila"]},
     {"name":"Batangas Port Hub","region":"CALABARZON","type":"Port / RORO","lat":13.76,"lon":121.06,"keys":["batangas"]},
     {"name":"Cebu Hub","region":"Central Visayas","type":"Distribution","lat":10.32,"lon":123.90,"keys":["cebu"]},
-    {"name":"CDO Hub","region":"Northern Mindanao (Cagayan de Oro)","type":"Distribution","lat":8.48,"lon":124.65,"keys":["misamis oriental","cagayan de oro"]},
-    {"name":"Davao Hub","region":"Davao Region","type":"Distribution","lat":7.19,"lon":125.46,"keys":["davao del sur","davao city","davao occidental","davao de oro","davao"]},
-    {"name":"GenSan Hub","region":"SOCCSKSARGEN (General Santos)","type":"Distribution","lat":6.11,"lon":125.17,"keys":["south cotabato","general santos","sarangani","cotabato"]},
+    {"name":"CDO Hub","region":"Northern Mindanao (Cagayan de Oro)","type":"Distribution","lat":8.48,"lon":124.65,"keys":["misamis oriental"]},
+    {"name":"Davao Hub","region":"Davao Region","type":"Distribution","lat":7.19,"lon":125.46,"keys":["davao del sur","davao del norte"]},
+    {"name":"GenSan Hub","region":"SOCCSKSARGEN (General Santos)","type":"Distribution","lat":6.11,"lon":125.17,"keys":["south cotabato","sarangani"]},
 ]
 
 # Province vocabulary used to pull area names out of signal blocks.
@@ -135,10 +135,102 @@ def find_provinces(text):
 
 
 # --------------------------------------------------------------------------- #
+# Geocoding for PAGASA forecast positions
+# PAGASA writes forecast positions as "<km> km <direction> of <place>" (no
+# lat/lon), so we project from a small gazetteer of the reference points they use.
+# --------------------------------------------------------------------------- #
+GAZETTEER = {
+    "basco":[20.45,121.97],"itbayat":[20.78,121.85],"calayan":[19.26,121.47],
+    "aparri":[18.36,121.64],"tuguegarao":[17.61,121.73],"santa ana":[18.47,122.14],
+    "laoag":[18.20,120.59],"vigan":[17.57,120.39],"dagupan":[16.04,120.34],
+    "san fernando, la union":[16.62,120.32],"iba":[15.33,119.98],"baler":[15.76,121.56],
+    "casiguran":[16.28,122.12],"infanta":[14.75,121.65],"daet":[14.11,122.95],
+    "virac":[13.58,124.23],"legazpi":[13.14,123.73],"juban":[12.85,123.99],
+    "catbalogan":[11.78,124.88],"borongan":[11.61,125.43],"guiuan":[11.03,125.72],
+    "surigao":[9.79,125.49],"catarman":[12.50,124.63],
+    "extreme northern luzon":[18.60,121.50],"northern luzon":[17.50,121.20],
+    "batanes":[20.45,121.97],"babuyan islands":[19.50,121.90],"mainland cagayan":[18.00,121.70],
+    "cagayan":[18.00,121.70],"catanduanes":[13.70,124.24],"isabela":[16.90,121.80],
+    "aurora":[15.75,121.55],"quezon":[14.00,122.10],"palanan":[17.06,122.43],
+}
+
+DIR16 = {"n":0,"nne":22.5,"ne":45,"ene":67.5,"e":90,"ese":112.5,"se":135,"sse":157.5,
+         "s":180,"ssw":202.5,"sw":225,"wsw":247.5,"w":270,"wnw":292.5,"nw":315,"nnw":337.5}
+_WMAP = {"north":"n","south":"s","east":"e","west":"w",
+         "northeast":"ne","northwest":"nw","southeast":"se","southwest":"sw"}
+
+def dir_to_bearing(phrase):
+    code = "".join(_WMAP.get(w, "") for w in phrase.lower().split())
+    return DIR16.get(code)
+
+def project(lat, lon, bearing_deg, dist_km, R=6371.0):
+    br = math.radians(bearing_deg); d = dist_km / R
+    la, lo = math.radians(lat), math.radians(lon)
+    la2 = math.asin(math.sin(la)*math.cos(d) + math.cos(la)*math.sin(d)*math.cos(br))
+    lo2 = lo + math.atan2(math.sin(br)*math.sin(d)*math.cos(la),
+                          math.cos(d) - math.sin(la)*math.sin(la2))
+    return round(math.degrees(la2), 2), round(math.degrees(lo2), 2)
+
+def geocode_place(place):
+    p = place.lower().strip()
+    for k in sorted(GAZETTEER, key=len, reverse=True):
+        if k in p:
+            return GAZETTEER[k]
+    return None
+
+def short_when(s):
+    m = re.search(r"([A-Z][a-z]{2})\s+(\d{1,2}),.*?(\d{1,2}):(\d{2})\s*([AP]M)", s)
+    if not m: return s.strip()[:14]
+    hr = m.group(3).lstrip("0") or "0"
+    return f"{m.group(1)} {m.group(2)} {hr}{m.group(5)}"
+
+def parse_forecast_positions(text):
+    """Extract PAGASA 'Forecast Position' lines and geocode them to lat/lon."""
+    pts = []
+    m = re.search(r"Forecast Position(.*?)(Wind Signal|Considering these|Tropical Cyclone Bulletin Archive|We always find|$)",
+                  text, re.I | re.S)
+    if not m: return pts
+    block = m.group(1)
+    line_re = re.compile(
+        r"([A-Z][a-z]{2}\s+\d{1,2},\s*\d{4}\s+\d{1,2}:\d{2}\s*[AP]M)\s*[-–]\s*"
+        r"([\d]+)\s*km\s+([A-Za-z ]+?)\s+of\s+([A-Za-z .]+?)\s*(?:,|\(|$)", re.I)
+    for lm in line_re.finditer(block):
+        when, km, direction, place = lm.group(1), int(lm.group(2)), lm.group(3), lm.group(4)
+        base = geocode_place(place)
+        br = dir_to_bearing(direction)
+        if base and br is not None:
+            lat, lon = project(base[0], base[1], br, km)
+            if _valid_ph(lat, lon):
+                pts.append({"label": short_when(when), "lat": lat, "lon": lon})
+    return pts
+
+def parse_signals(raw):
+    """Read TCWS levels from the tcwsN.png image markers in the raw HTML, then
+    pull each signal's affected-area list and match known provinces."""
+    marks = [(m.start(), int(m.group(1))) for m in re.finditer(r"tcws([1-5])\.png", raw, re.I)]
+    sigs = []
+    for i, (pos, lvl) in enumerate(marks):
+        end = marks[i+1][0] if i+1 < len(marks) else pos + 6000
+        chunk = strip_tags(raw[pos:end])
+        am = re.search(r"Affected Areas(.*?)(Meteorological Condition|Impact of the Wind|$)", chunk, re.I | re.S)
+        seg = am.group(1) if am else chunk
+        areas = find_provinces(seg)
+        if areas:
+            sigs.append({"signal": lvl, "areas": areas})
+    best = {}
+    for s in sigs:
+        if s["signal"] not in best or len(s["areas"]) > len(best[s["signal"]]["areas"]):
+            best[s["signal"]] = s
+    return [best[k] for k in sorted(best.keys(), reverse=True)]
+
+
+# --------------------------------------------------------------------------- #
 # Bulletin parsing (active tropical cyclone)
 # --------------------------------------------------------------------------- #
-def parse_bulletin(text):
-    """Return a dict of PAGASA facts, or None if no active cyclone is detected."""
+def parse_bulletin(raw):
+    """Return a dict of PAGASA facts, or None if no active cyclone is detected.
+    `raw` is the raw HTML (needed to read signal levels from image filenames)."""
+    text = strip_tags(raw)
     # Storm category + local name, e.g. "Typhoon INDAY", "Tropical Depression AghON"
     cat, name = None, None
     for c in CATEGORY_WORDS:  # ordered so 'Typhoon' doesn't shadow 'Super Typhoon'
@@ -176,28 +268,8 @@ def parse_bulletin(text):
     m = re.search(r"(?:Bulletin|SWB)\s*(?:No\.|#)\s*([0-9]+[A-Z]?)", text, re.I)
     if m: facts["bulletin_no"] = m.group(1)
 
-    # Wind signals: split the text at each "Signal No. X" / "TCWS No. X" marker.
-    facts["signals"] = []
-    markers = list(re.finditer(r"(?:Wind Signal|TCWS|Tropical Cyclone Wind Signal)\s*(?:No\.?|Number|#)?\s*([1-5])", text, re.I))
-    # sections that mark the END of the wind-signal area lists
-    STOP = re.compile(r"(heavy rainfall|rainfall outlook|rainfall warning|track and intensity|"
-                      r"forecast position|hoisting|impacts of the wind|gale warning|"
-                      r"southwest monsoon|the wind signals warn)", re.I)
-    for i, mk in enumerate(markers):
-        lvl = int(mk.group(1))
-        end = markers[i+1].start() if i+1 < len(markers) else len(text)
-        seg = text[mk.end(): min(end, mk.end()+900)]
-        stop = STOP.search(seg)
-        if stop: seg = seg[:stop.start()]
-        areas = find_provinces(seg)
-        if areas:
-            facts["signals"].append({"signal": lvl, "areas": areas})
-    # keep the highest entry per signal level
-    best = {}
-    for s in facts["signals"]:
-        if s["signal"] not in best or len(s["areas"]) > len(best[s["signal"]]["areas"]):
-            best[s["signal"]] = s
-    facts["signals"] = [best[k] for k in sorted(best.keys(), reverse=True)]
+    # Wind signals: levels come from tcwsN.png image markers in the raw HTML.
+    facts["signals"] = parse_signals(raw)
 
     # Heavy rainfall outlook (best-effort)
     m = re.search(r"(heavy rainfall.{0,600}?)(?:\n\n|The wind signals|Hoisting|Track|$)", text, re.I|re.S)
@@ -207,66 +279,33 @@ def parse_bulletin(text):
     m = re.search(r"extend(?:ing|s)?\s+outward\s+up\s+to\s+([\d]+)\s*km", text, re.I)
     if m: facts["wind_extent"] = int(m.group(1))
 
-    # Forecast track: current center + PAGASA's forecast positions
-    facts["track"] = parse_track(text, facts.get("lat"), facts.get("lon"))
+    # Forecast track: current center (has lat/lon) + geocoded forecast positions
+    track = []
+    if facts.get("lat") is not None and facts.get("lon") is not None and _valid_ph(facts["lat"], facts["lon"]):
+        track.append({"label": "Now", "lat": facts["lat"], "lon": facts["lon"]})
+    for p in parse_forecast_positions(text):
+        if track and abs(track[-1]["lat"]-p["lat"]) < 0.05 and abs(track[-1]["lon"]-p["lon"]) < 0.05:
+            continue
+        track.append(p)
+    facts["track"] = track[:9]
 
     return facts
-
-
-def parse_track(text, cur_lat, cur_lon):
-    """Build an ordered list of {label, lat, lon} points for the storm track.
-    Uses the current center first, then forecast positions from the track table."""
-    points = []
-    if cur_lat is not None and cur_lon is not None and _valid_ph(cur_lat, cur_lon):
-        points.append({"label": "Now", "lat": cur_lat, "lon": cur_lon})
-
-    # Prefer the section after a 'Track'/'Forecast Positions' heading, if present.
-    start = 0
-    m = re.search(r"(track and intensity|track of the tropical cyclone|forecast position|forecast track)", text, re.I)
-    if m: start = m.start()
-    section = text[start:]
-
-    HOUR = re.compile(r"(?:(\d{1,3})\s*[- ]?Hour|(\bNow\b|Observed|Initial))", re.I)
-    for cm in COORD_RE.finditer(section):
-        lat, lon = float(cm.group(1)), float(cm.group(2))
-        if not _valid_ph(lat, lon):
-            continue
-        # skip duplicate of the current center
-        if points and abs(points[0]["lat"] - lat) < 0.05 and abs(points[0]["lon"] - lon) < 0.05:
-            continue
-        # look back a short window for an hour label
-        back = section[max(0, cm.start()-70): cm.start()]
-        hm = None
-        for h in HOUR.finditer(back):
-            hm = h
-        if hm and hm.group(1):
-            label = f"+{hm.group(1)}h"
-        elif hm and hm.group(2):
-            label = "Now"
-        else:
-            label = "+" + str(12 * len(points)) + "h" if points else "Now"
-        # avoid consecutive duplicates
-        if points and abs(points[-1]["lat"] - lat) < 0.05 and abs(points[-1]["lon"] - lon) < 0.05:
-            continue
-        points.append({"label": label, "lat": lat, "lon": lon})
-        if len(points) >= 9:
-            break
-    return points
 
 
 # --------------------------------------------------------------------------- #
 # CPF derivation (deterministic — maps PAGASA facts to hub/route/risk output)
 # --------------------------------------------------------------------------- #
 def affected_level(hub, signals, rain_provs):
-    """Return a hub status string based on PAGASA affected areas."""
-    hub_keys = [k.lower() for k in hub["keys"]]
+    """Return a hub status string based on PAGASA affected areas.
+    Matches on exact province equality (areas come from the province vocabulary)
+    so e.g. 'Cagayan' province never falsely matches 'Cagayan de Oro'."""
+    hub_keys = set(k.lower() for k in hub["keys"])
     max_sig = 0
     for s in signals:
         for a in s["areas"]:
-            al = a.lower()
-            if any(k in al or al in k for k in hub_keys):
+            if a.lower() in hub_keys:
                 max_sig = max(max_sig, s["signal"])
-    in_rain = any(any(k in p.lower() for k in hub_keys) for p in rain_provs)
+    in_rain = any(p.lower() in hub_keys for p in rain_provs)
     if max_sig >= 2: return "Dispatch Hold"
     if max_sig == 1: return "Route Validation"
     if in_rain:      return "Heightened"
@@ -432,21 +471,21 @@ def merge_overlay(data):
 # Main
 # --------------------------------------------------------------------------- #
 def main():
-    bulletin_text, bulletin_src = None, None
+    bulletin_raw, bulletin_src = None, None
     for url in BULLETIN_URLS:
         try:
-            bulletin_text = strip_tags(fetch(url)); bulletin_src = url
+            bulletin_raw = fetch(url); bulletin_src = url
             print(f"[ok] fetched bulletin page: {url}")
             break
         except Exception as e:
             print(f"[warn] bulletin fetch failed ({url}): {e}", file=sys.stderr)
 
-    if bulletin_text is None:
+    if bulletin_raw is None:
         # Could not reach PAGASA at all -> FAIL SAFE, keep last known JSON.
         print("[fail-safe] Could not reach PAGASA. Keeping existing JSON untouched.", file=sys.stderr)
         return 0
 
-    facts = parse_bulletin(bulletin_text)
+    facts = parse_bulletin(bulletin_raw)
 
     if facts and facts.get("signals") is not None:
         print(f"[ok] active cyclone: {facts['category']} {facts.get('name')} "
