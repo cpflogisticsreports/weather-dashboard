@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 15",
-    "issued_at": "2026-07-11T15:42:33+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 16F",
+    "issued_at": "2026-07-11T18:43:35+08:00",
     "valid_until": "",
     "next_update": "",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
@@ -18,43 +18,34 @@
     "headline_override": ""
   },
   "cyclone": {
-    "center_text": "590 km North Northeast of Itbayat, Batanes (OUTSIDE PAR)",
-    "lat": 25.6,
-    "lon": 124.2,
+    "center_text": "",
+    "lat": 27.0,
+    "lon": 122.7,
     "max_sustained_winds_kph": 140,
     "gustiness_kph": 170,
     "central_pressure_hpa": "",
-    "movement": "North Northwestward at 20 km/h",
+    "movement": "Westward at 40 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 25.6,
-        "lon": 124.2,
+        "lat": 27.0,
+        "lon": 122.7,
         "category": "Typhoon",
         "winds_kph": 140
       },
       {
-        "label": "Jul 11 8PM",
-        "lat": 27.39,
-        "lon": 121.85,
+        "label": "Jul 12 2AM",
+        "lat": 26.51,
+        "lon": 121.5,
         "category": "Typhoon",
         "winds_kph": 140
       }
     ]
   },
-  "tcws": [
-    {
-      "signal": 1,
-      "wind_range": "",
-      "lead_time": "",
-      "areas": [
-        "Batanes"
-      ]
-    }
-  ],
+  "tcws": [],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 20 issued at 11:00 AM today for the heavy rainfall outlook due to the Southwest Monsoon. Severe Winds",
+    "outlook": "heavy rainfall and severe winds may still be experienced in localities outside the forecast confidence cone. Refer to “Other Hazards affecting Land Areas” for more details. Furthermore, the",
     "warning_level": "Heavy",
     "habagat_affected": [],
     "areas": []
@@ -81,7 +72,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Typhoon “INDAY” is being tracked by PAGASA. Center: 590 km North Northeast of Itbayat, Batanes (OUTSIDE PAR). No CPF hub currently under a wind signal; continue monitoring.",
+    "executive_summary": "Typhoon “INDAY” is being tracked by PAGASA. No CPF hub currently under a wind signal; continue monitoring.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
@@ -162,8 +153,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-11T15:42:33+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-07-11T15:42:33+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-07-11T18:43:35+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-07-11T18:43:35+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
