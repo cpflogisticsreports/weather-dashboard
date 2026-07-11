@@ -92,6 +92,12 @@ CENTROIDS = {
 
 CATEGORY_WORDS = ["Super Typhoon","Severe Tropical Storm","Tropical Storm","Tropical Depression","Typhoon"]
 
+# Matches "24.0 °N, 125.2 °E", "(13.6°N,128.6°E)", "14.5 N 121.0 E", etc.
+COORD_RE = re.compile(r"([\d]{1,2}(?:\.\d+)?)\s*°?\s*N\s*[, ]\s*([\d]{2,3}(?:\.\d+)?)\s*°?\s*E", re.I)
+
+def _valid_ph(lat, lon):
+    return 3.0 <= lat <= 45.0 and 105.0 <= lon <= 175.0
+
 
 # --------------------------------------------------------------------------- #
 # Small helpers
@@ -197,7 +203,55 @@ def parse_bulletin(text):
     m = re.search(r"(heavy rainfall.{0,600}?)(?:\n\n|The wind signals|Hoisting|Track|$)", text, re.I|re.S)
     if m: facts["rain_text"] = re.sub(r"\s+", " ", m.group(1)).strip()[:600]
 
+    # Wind extent (radius of strong/gale winds), if stated
+    m = re.search(r"extend(?:ing|s)?\s+outward\s+up\s+to\s+([\d]+)\s*km", text, re.I)
+    if m: facts["wind_extent"] = int(m.group(1))
+
+    # Forecast track: current center + PAGASA's forecast positions
+    facts["track"] = parse_track(text, facts.get("lat"), facts.get("lon"))
+
     return facts
+
+
+def parse_track(text, cur_lat, cur_lon):
+    """Build an ordered list of {label, lat, lon} points for the storm track.
+    Uses the current center first, then forecast positions from the track table."""
+    points = []
+    if cur_lat is not None and cur_lon is not None and _valid_ph(cur_lat, cur_lon):
+        points.append({"label": "Now", "lat": cur_lat, "lon": cur_lon})
+
+    # Prefer the section after a 'Track'/'Forecast Positions' heading, if present.
+    start = 0
+    m = re.search(r"(track and intensity|track of the tropical cyclone|forecast position|forecast track)", text, re.I)
+    if m: start = m.start()
+    section = text[start:]
+
+    HOUR = re.compile(r"(?:(\d{1,3})\s*[- ]?Hour|(\bNow\b|Observed|Initial))", re.I)
+    for cm in COORD_RE.finditer(section):
+        lat, lon = float(cm.group(1)), float(cm.group(2))
+        if not _valid_ph(lat, lon):
+            continue
+        # skip duplicate of the current center
+        if points and abs(points[0]["lat"] - lat) < 0.05 and abs(points[0]["lon"] - lon) < 0.05:
+            continue
+        # look back a short window for an hour label
+        back = section[max(0, cm.start()-70): cm.start()]
+        hm = None
+        for h in HOUR.finditer(back):
+            hm = h
+        if hm and hm.group(1):
+            label = f"+{hm.group(1)}h"
+        elif hm and hm.group(2):
+            label = "Now"
+        else:
+            label = "+" + str(12 * len(points)) + "h" if points else "Now"
+        # avoid consecutive duplicates
+        if points and abs(points[-1]["lat"] - lat) < 0.05 and abs(points[-1]["lon"] - lon) < 0.05:
+            continue
+        points.append({"label": label, "lat": lat, "lon": lon})
+        if len(points) >= 9:
+            break
+    return points
 
 
 # --------------------------------------------------------------------------- #
@@ -274,7 +328,12 @@ def assemble(facts, source_url):
             "gustiness_kph": facts.get("gust",""),
             "central_pressure_hpa": facts.get("pressure",""),
             "movement": facts.get("movement",""),
-            "wind_extent_km": "", "forecast_track": [],
+            "wind_extent_km": facts.get("wind_extent",""),
+            "forecast_track": [
+                {"label": p["label"], "lat": p["lat"], "lon": p["lon"],
+                 "category": facts["category"], "winds_kph": facts.get("winds","")}
+                for p in facts.get("track", [])
+            ],
         },
         "tcws": [{"signal": s["signal"], "wind_range": "", "lead_time": "", "areas": s["areas"]} for s in signals],
         "rainfall": {
