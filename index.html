@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CPF Logistics Weather Monitoring Dashboard</title>
+<meta name="description" content="CPF Logistics live weather &amp; typhoon monitoring — PAGASA source of truth." />
+
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+:root{
+  --cpf-green:#0A7B3E; --cpf-green-dark:#075C2E; --cpf-green-soft:#E7F3EC;
+  --gold:#E8A800; --gold-soft:#FBF2D8;
+  --orange:#EA6D0A; --orange-soft:#FCE9D8;
+  --red:#D32F2F; --red-soft:#FBE3E3;
+  --navy:#17233D; --navy-2:#2A3A5C; --navy-soft:#5A6A8A;
+  --bg:#F3F6FB; --card:#FFFFFF; --border:#E3E9F2; --line:#EEF2F8;
+  --shadow:0 1px 3px rgba(23,35,61,.06),0 6px 20px rgba(23,35,61,.06);
+  --radius:12px;
+  --panel-w:430px;
+  --sans:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  --display:'Exo 2',var(--sans);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--sans); color:var(--navy); background:var(--bg);
+  font-size:14px; line-height:1.5; -webkit-font-smoothing:antialiased;
+  display:flex; flex-direction:column; height:100vh; overflow:hidden;
+}
+a{color:var(--cpf-green);text-decoration:none}
+.mono{font-variant-numeric:tabular-nums}
+
+/* ---------- Header ---------- */
+header.appbar{
+  display:flex;align-items:center;gap:14px;
+  padding:10px 18px; color:#fff; flex:none;
+  background:linear-gradient(100deg,var(--cpf-green-dark),var(--cpf-green));
+  box-shadow:0 2px 10px rgba(7,92,46,.25); position:relative; z-index:1200;
+}
+.brand-badge{
+  flex:none;height:58px;width:58px;display:flex;align-items:center;justify-content:center;
+}
+.brand-badge img{height:58px;width:58px;display:block;object-fit:contain;
+  filter:drop-shadow(0 2px 5px rgba(0,0,0,.25));}
+.brand-txt{display:flex;flex-direction:column;min-width:0}
+#appTitle{font-family:var(--display);font-weight:800;font-size:18px;line-height:1.15;letter-spacing:.2px}
+.brand-sub{font-size:11.5px;opacity:.85;font-weight:500;letter-spacing:.3px}
+.appbar-right{margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;
+  padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;
+  white-space:nowrap;
+}
+.chip .dot{width:8px;height:8px;border-radius:50%;background:#8AF0A9;box-shadow:0 0 0 3px rgba(138,240,169,.25)}
+.chip.live .dot{background:#8AF0A9}
+.chip.fallback{background:rgba(211,47,47,.9)}
+.chip.fallback .dot{background:#FFD6D6;box-shadow:0 0 0 3px rgba(255,214,214,.25)}
+.btn{
+  font-family:var(--sans);font-size:12px;font-weight:600;cursor:pointer;
+  border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#fff;
+  padding:6px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:6px;
+  transition:background .15s;
+}
+.btn:hover{background:rgba(255,255,255,.22)}
+.btn.solid{background:#fff;color:var(--cpf-green-dark);border-color:#fff}
+.btn.solid:hover{background:#eafaf0}
+
+/* ---------- Fallback strip ---------- */
+#fallbackStrip{
+  display:none;background:var(--red-soft);color:#7a1b1b;border-bottom:1px solid #f3c9c9;
+  padding:8px 18px;font-size:12.5px;font-weight:600;text-align:center;
+}
+#fallbackStrip.show{display:block}
+
+/* ---------- Headline Banner ---------- */
+.banner{
+  display:flex;align-items:center;gap:16px;padding:14px 20px;color:#fff;position:relative;
+}
+.banner .bicon{font-size:30px;line-height:1;filter:drop-shadow(0 1px 2px rgba(0,0,0,.2))}
+.banner .btext{display:flex;flex-direction:column;min-width:0}
+.banner .bmsg{font-family:var(--display);font-weight:700;font-size:16.5px;line-height:1.2}
+.banner .bsub{font-size:11.5px;opacity:.9;margin-top:3px;font-weight:500}
+.banner .blevel{
+  margin-left:auto;font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;
+  background:rgba(255,255,255,.22);padding:6px 12px;border-radius:999px;white-space:nowrap;
+}
+.lv-normal  {background:linear-gradient(100deg,#0A7B3E,#129E52)}
+.lv-caution {background:linear-gradient(100deg,#C89000,#E8A800);color:#3a2c00}
+.lv-caution .bsub{opacity:.75}
+.lv-caution .blevel{background:rgba(0,0,0,.12)}
+.lv-high    {background:linear-gradient(100deg,#D0600A,#EA6D0A)}
+.lv-critical{background:linear-gradient(100deg,#B71C1C,#E53935)}
+
+/* ---------- Layout ---------- */
+.layout{display:flex;flex:1 1 auto;min-height:0}
+.mapwrap{position:relative;flex:1 1 auto;min-width:0}
+#map{position:absolute;inset:0;background:#dbe6f0}
+.panel{
+  width:var(--panel-w);flex:none;background:var(--bg);border-left:1px solid var(--border);
+  overflow-y:auto;padding:14px 14px 40px;
+}
+.panel::-webkit-scrollbar{width:9px}
+.panel::-webkit-scrollbar-thumb{background:#cdd7e6;border-radius:6px}
+
+/* ---------- Panel controls ---------- */
+.panel-tools{display:flex;gap:8px;margin-bottom:12px}
+.ptbtn{
+  flex:1;font-size:11.5px;font-weight:600;color:var(--navy-2);cursor:pointer;
+  background:var(--card);border:1px solid var(--border);border-radius:8px;padding:7px 8px;text-align:center;
+}
+.ptbtn:hover{border-color:var(--cpf-green);color:var(--cpf-green-dark)}
+
+/* ---------- Cards / sections ---------- */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden}
+.card-head{
+  display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;user-select:none;
+  border-left:4px solid var(--cpf-green);
+}
+.card-head .cnum{
+  font-family:var(--display);font-weight:800;font-size:11px;color:#fff;background:var(--navy);
+  min-width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex:none;
+}
+.card-head h3{margin:0;font-family:var(--display);font-size:13.5px;font-weight:700;letter-spacing:.2px;flex:1}
+.card-head .chev{transition:transform .2s;color:var(--navy-soft);font-size:12px}
+.card.collapsed .chev{transform:rotate(-90deg)}
+.card.collapsed .card-body{display:none}
+.card-body{padding:0 14px 14px}
+.card-body.pad-top{padding-top:2px}
+
+/* status accents on card header */
+.acc-green  .card-head{border-left-color:var(--cpf-green)}
+.acc-gold   .card-head{border-left-color:var(--gold)}
+.acc-orange .card-head{border-left-color:var(--orange)}
+.acc-red    .card-head{border-left-color:var(--red)}
+
+/* ---------- Status block ---------- */
+.statusbox{border-radius:10px;padding:12px 14px;font-weight:700}
+.statusbox .slabel{font-size:10.5px;letter-spacing:.6px;text-transform:uppercase;opacity:.75;font-weight:700}
+.statusbox .sval{font-family:var(--display);font-size:17px;margin-top:2px}
+.statusbox .saction{font-size:12.5px;font-weight:600;margin-top:8px;padding-top:8px;border-top:1px dashed currentColor;opacity:.9}
+.sb-green {background:var(--cpf-green-soft);color:var(--cpf-green-dark)}
+.sb-gold  {background:var(--gold-soft);color:#8a6a00}
+.sb-orange{background:var(--orange-soft);color:#a34a00}
+.sb-red   {background:var(--red-soft);color:#a31515}
+
+/* ---------- Generic content ---------- */
+.kv{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px}
+.kv:last-child{border-bottom:0}
+.kv .k{color:var(--navy-soft);font-weight:500}
+.kv .v{font-weight:600;text-align:right}
+.muted{color:var(--navy-soft);font-style:italic}
+.para{font-size:13px;line-height:1.55;color:var(--navy-2)}
+ul.clean{margin:6px 0 0;padding-left:0;list-style:none}
+ul.clean li{padding:6px 0 6px 18px;position:relative;font-size:12.8px;border-bottom:1px solid var(--line)}
+ul.clean li:last-child{border-bottom:0}
+ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;height:6px;border-radius:50%;background:var(--cpf-green)}
+
+.tag{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;letter-spacing:.3px}
+.t-normal{background:var(--cpf-green-soft);color:var(--cpf-green-dark)}
+.t-caution,.t-moderate{background:var(--gold-soft);color:#8a6a00}
+.t-high,.t-heavy{background:var(--orange-soft);color:#a34a00}
+.t-critical,.t-intense{background:var(--red-soft);color:#a31515}
+
+/* route / matrix rows */
+.rowitem{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line)}
+.rowitem:last-child{border-bottom:0}
+.rowitem .rmain{flex:1;min-width:0}
+.rowitem .rtitle{font-weight:600;font-size:13px}
+.rowitem .rnote{font-size:11.8px;color:var(--navy-soft);margin-top:2px}
+
+/* matrix table */
+.matrix{width:100%;border-collapse:collapse;font-size:11.6px}
+.matrix th{background:var(--navy);color:#fff;font-weight:600;padding:6px 7px;text-align:left;font-size:10.5px;letter-spacing:.3px}
+.matrix td{padding:6px 7px;border-bottom:1px solid var(--line);vertical-align:top}
+.matrix tr:last-child td{border-bottom:0}
+
+/* signal chips */
+.sig{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:12px;margin-bottom:6px}
+.sig .sbadge{color:#fff;min-width:20px;height:20px;border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:11px}
+.sig-1 .sbadge{background:var(--gold)} .sig-2 .sbadge{background:var(--orange)}
+.sig-3 .sbadge{background:var(--red)} .sig-4 .sbadge{background:#8B0000} .sig-5 .sbadge{background:#4A0000}
+
+/* secondary reference buttons */
+.refnote{font-size:11px;color:var(--navy-soft);margin:0 0 10px;font-weight:600}
+.refgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.refbtn{
+  display:flex;flex-direction:column;gap:1px;padding:9px 10px;border:1px solid var(--border);
+  border-radius:9px;background:#fff;color:var(--navy);transition:.15s;
+}
+.refbtn:hover{border-color:var(--cpf-green);box-shadow:0 2px 8px rgba(10,123,62,.12);transform:translateY(-1px)}
+.refbtn b{font-size:12.5px}
+.refbtn span{font-size:10.5px;color:var(--navy-soft)}
+.refbtn::after{content:"↗";position:absolute}
+.refbtn{position:relative}
+.refbtn::after{top:8px;right:9px;font-size:11px;color:var(--navy-soft)}
+
+/* change log */
+.log{list-style:none;margin:0;padding:0}
+.log li{padding:8px 0 8px 16px;border-left:2px solid var(--border);margin-left:3px;position:relative;font-size:12px}
+.log li::before{content:"";position:absolute;left:-5px;top:12px;width:8px;height:8px;border-radius:50%;background:var(--cpf-green);border:2px solid #fff}
+.log .lt{font-weight:700;font-size:11px;color:var(--navy-soft);display:block}
+
+/* ---------- Map controls / legend ---------- */
+.leaflet-control.legend,.leaflet-control.sourcebox{
+  background:#fff;border-radius:10px;box-shadow:var(--shadow);border:1px solid var(--border);
+  padding:10px 12px;font-size:11.5px;color:var(--navy);max-width:210px;
+}
+.legend h4,.sourcebox h4{margin:0 0 7px;font-family:var(--display);font-size:12px;font-weight:700}
+.legend .lg{display:flex;align-items:center;gap:8px;margin:4px 0}
+.legend .sw{width:14px;height:14px;border-radius:4px;flex:none;border:1px solid rgba(0,0,0,.1)}
+.legend .swline{width:16px;height:0;border-top:3px dashed var(--navy);flex:none}
+.legend .swcirc{width:14px;height:14px;border-radius:50%;flex:none;border:2px solid var(--red);background:rgba(211,47,47,.12)}
+.sourcebox .sofchip{display:inline-flex;align-items:center;gap:6px;background:var(--cpf-green-soft);color:var(--cpf-green-dark);font-weight:700;padding:3px 9px;border-radius:999px;font-size:11px}
+.maptitle{
+  position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:900;
+  background:rgba(23,35,61,.86);color:#fff;padding:6px 14px;border-radius:999px;
+  font-family:var(--display);font-weight:700;font-size:12.5px;box-shadow:0 2px 8px rgba(0,0,0,.2);
+  max-width:80%;text-align:center;pointer-events:none;
+}
+
+/* leaflet popups */
+.leaflet-popup-content{font-family:var(--sans);font-size:12.5px;margin:10px 12px}
+.leaflet-popup-content b{font-family:var(--display)}
+.pp-hub{font-weight:700;font-size:13px}
+.pp-sub{color:var(--navy-soft);font-size:11.5px}
+
+/* footer note inside panel */
+.footnote{font-size:10.8px;color:var(--navy-soft);text-align:center;margin-top:6px;line-height:1.5}
+
+/* mobile toggle for map/panel */
+.mobtoggle{display:none}
+
+/* ---------- Responsive ---------- */
+@media (max-width:900px){
+  body{height:auto;overflow:visible}
+  .layout{flex-direction:column;flex:none}
+  .mapwrap{height:56vh;min-height:340px}
+  .panel{width:100%;border-left:0;border-top:1px solid var(--border);max-height:none}
+  #appTitle{font-size:15px}
+  .appbar-right .lbl{display:none}
+  .mobtoggle{display:flex;gap:8px;padding:10px 14px;background:#fff;border-bottom:1px solid var(--border)}
+  .mobtoggle .ptbtn{flex:1}
+  body.show-panel .mapwrap{display:none}
+  body.show-map .panel{display:none}
+}
+
+/* ---------- Print / management view ---------- */
+@media print{
+  @page{margin:12mm}
+  header.appbar{background:#075C2E !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .appbar-right,.panel-tools,.mobtoggle,.card-head .chev,.refgrid,.refnote,#refbtnrow{display:none !important}
+  .layout{display:block;height:auto}
+  .mapwrap{display:none}
+  .panel{width:100%;border:0;overflow:visible;max-height:none;padding:0}
+  .card{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
+  .card.collapsed .card-body{display:block !important}
+  .banner,.statusbox,.chip,.tag,.sig .sbadge,.matrix th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff}
+  #printHeader{display:block !important}
+}
+#printHeader{display:none;padding:0 0 10px;border-bottom:2px solid var(--cpf-green);margin-bottom:12px}
+#printHeader h1{font-family:var(--display);font-size:20px;margin:0 0 4px;color:var(--cpf-green-dark)}
+#printHeader .ph-sub{font-size:12px;color:var(--navy-soft)}
+</style>
+</head>
+<body class="show-map">
+
+<header class="appbar">
+  <div class="brand-badge"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALAAAACwCAYAAACvt+ReAABYdUlEQVR42u2dd3xcV5n+v+fcMkW9F1tyl3tLnO40CE4FEkJCqEtZFtilLAss8NtlnSxlCwtLTehlIaQ4Ib03O4kdt7j3bsmy1ftoZm455/fHnRlLtlXs2I6d6Hxy7ciS5rbnvOd5n7ccGBkjY2SMjJExMkbGyBgZI2NkjIyRMTJGxsgYGSNjZIyMkTEyRsbIGBkjY2SMjJExMkbGyBgZI2NknBFDnIoPXbhwobwCJCzmijuW+AL0yKN+ew69ELn4ioWyuXmLvuWWRUqIMxgLeuFCef/9txhHzxHZ5++R4+11HIGR+28x9Ek0nObJsuT333+LFLfe4QOsff6uUfHOunf29rSeq7WYrTUFoOSIPXo7mV4QhulopfZIaWy0I7lLLr3le8uEEC6A1gulEHeoN51CaK2FEEIDLH/sP2b3dtZ91UsmbrBMnS+FxnV9lB5hEG9XfmoYEsMwcD1AWpsi0by7SuZ8+rc1NTXJ+++/xbj11kX+mwbghQsXyjvuuENpreWSe/7xdi/Z81VDepHeuItS2kcILRFCowVCjLzRt50V1qDROvgfGbJMGQrbKKy1RqT0C5e9/9tL9f23GOINgFi8UfDuXn1/3r6tS+61iV/T2RNHIzwBhhBSACjlo7U/4sa9HS2wEAhpIKREaw1aKaVREdswhWm7vpn/d1d/5Id/eGnh5eaVdyzxThuAtdbi9tuF+OxNz0S2bHj4aZP4/K6ehIuQphRCaA2e0wsC7HAuViiKECMU+O02fN/FiXfhOXEMM4Rh2mitQOMLoWU0GhFaFnz8HR/9wR9PlE6cEICDkz3gP/uHz/45bCQ+3NmVcIUUlhAS33MATdm4eYyumU9eyXhC0QKkNEbe6NvMi/PcJL1djTTXbaBu60t0tdVhh7IIXCKthNCE7KjOKqy+5KIbF644ERCLEwPvIn/xff98q3Ba7+vq7vWEEKYQEs9NEM0tZdbln6J0zDkj73BkZIabjLFj1QPsXvsYhhVKU2Q/bEtDicjmBZd+7VwmTXJE4CsNm3Ae77oubrl1kdq796Vwsqftu4lEUiOEDMCbJLugkotvup3SMeegtUodmlNOgE/HOd5y/pVOvZtTa4W1VmjlY4WymD7/b5h5+afwvSQCgRAYccf3wrY/ffHrv/ikEEK/tPDy41qqjwvACxdebgjQ+1c+/p6QqSY6jq8EQirlY9phzrv2K0RzSlDKRwiZOgSnKOCXeRGc4nO8ZR0sIU7xxBcBBqQBWqOVz7hZ1zJhzg04yRhCSKQQMpl0dCLW9UW9WltX3LHEP55Ax3EB+Pbbr1AgcOKxDyrl6cDLFHhOLxPm3EBOYTVa+aeN72qtEEKglDdigY/TKh7Y/gq+lwTEabDEBEZGBGrE5PM/QE5BJb7vIISQyaSPKb0pS/Z8c54Avej+W+RJB7AGIcQdau9LL4Z9N3me4/pCC6TyfULRfKqnvQO0Ts3q0/AalEIISXvjLnavfeywNR4ZQzw3jRCSeE8Lrz3yHTwviRAiUAdOg9UHjWlHGD3lcnw3GQBbCt8yBb7rXAVQsnnaKbDAeqEAaIivqgFV5vkKKYTwvST5JeOIZBenrvLUy2Va+wgpaT20jWV//TfscE5AIU7DSzgRi3emUQeA0ZMvpe3gVl57+A7isXaEkGilTtszKamaHchqSmf8GDfZVRN8sfjkc+BFi7YEgYl4rDhkW6bWWpG66az8ivTidJosr0H9zmWsfPjfQUhKx8xNvRx5BoJXnFkgTlnBSHYxpWPm0rx/Hasf/jbdnQ2pgMOpBbEg8FciOUVY4ezAGCGE7yu0ogwEi+9Yok46gA/LIXFDoBGI1FtRGVnk1IsNCiEl+zc9y5pnfkSrH6e4fBKR7MI0yTnjwOsme884BzNtacuqZpEMhdncVcf6h+6go602sMSnYSWTho1hWAHtBJRSSNPIQUjugFMH4GPnr4lTvlxqHSgbezc+zfYXfsm9eZJWoaismhM4IurMoQ8BAARNdRtYsujrJOOdZxZHT030ojFzKDTC3JsreMZpZNtD36W99fSB+KjL0sc/08+K+K5WPkIY7N/yIntf/DU/KzRYbbrMkNnkjTun30t588EbOLKJ3g42L/4VvY172LD41wG9OmV6tT5O/EpAk104msrSScyKJflekWSJ28KWR75LZ0f9mwbitxyAA9pgUL97Obte+AW/yZc8luVxfZdPSVkN2YWjAX1C/Dd4QfrkAklrFLDjxV+ysauOn1bmcWjHK+xd93jAMU/JSiFOaKJJBHk1F3NJQpDva+4ohuXJZrY+9l/EYm0pEOsRAL8h8ApJS8N2dj37U36fo7gn26XEE5yfhMIp85FvQMcMQH/yLLdWAUffveqv7N21jF8W2jxvxViUH6Ju6V9obtiOkMbJs2yp+1a+e9yWWKTuu2TihVRllXJVL8Tx+F6RZE1XLVuf+iGu7wQ/dQaDWJ7B6EUISU93Ezue/AF/suPcna1Aw5UxzZjcSoonXNhPGjqez9bKZ8vye/HcxEmxwumVoqF2HXXL7+M3RSG2mC6WEvwly+Nl02H383eSSPYE4HmDoNBagRDUbn2J1x77bp+w/fB5sNaKSCSP4imXsqDbJVtbtAmX7xVbbD+4ke2Lf4sW4rSoS285AGvAUz67nruTB5wGfpsnkEqRqwyu7fYpnXYl4VBWxmE6Lg9cCHavf4Ldi3/DtuX3BE7gG7GK6cnW08qe5+/iyYjP4xEXqcFPedg/LRDsbN/Hjpd/H4DiDQBYp84X62pkx7K7aduzim3L7zlu3pqeSKNmX8vkcDE3xALlpF66/KAkxL6Nz1C7+fkzmg/LM9P4BiHihg3PsKz+dX5RZCGVj5JwSw/UZJdTMeNdxx35S8tw7U172LX8Xl4vLWHH2seo3/5ySsj3T3CyaXyt2Pn8nayLN3JXHggV2C2VesjNwuVnRSHqN7/A/s3Ppfiwf8LT21M+u56/i6VuC78uy+XAqr9Sv2fF8YFNCBCCrOxiyufewM2dLmOUhdCw1nS5P8+kbund9HQ3p6J1+ij6MgLgPs7PYWsmSCa62Lv2Ef6UbxDHRwmY7tm8t8uj4rz3EY3mH2cST/D5ru+y+6Vfs0bEuSMvydM5Bnte+g3trftPiJ+mefquFfexd99q/rfIohevX/hCAYYWrLQc7su3qH35j7S37HtD59uzchHb6tbymwKTx8JxnswS7H3+l3R1NhyX8+UmYyjlMX7e+xhTPo1/aPMwpERqzQPZmi3JVg68/ghHBWTEmRGgOUMALDIyWODDC1q2LmFF7CCrIkEmUw4mX2xOMHriRYybeTXNdes5uOu1Yeur6WV376oH2dOwhTsLDITv83/ZPst1Dzuf+zmOm+B4ImdpMB3at5q6lQ/yq2KbXYaLocVRSrwCpIa7s3yWiV52PXcnjps4Licpfb7G2nXUrnqQXxbZHJAehg+/zNWsc9vYvfg3KIaW69LPLBFrY/mj36G7ZR9Tr/8q5+soH+mWKCmI4/NErkXLztcyqkTgNHo48S7OhACNfNMtL+Akuol1NmSUAV95NGx/lZejEkWQ3fbFNp9Z+eOYeOWn2b7iXpb+dWEf66WH9eJbm3ZR//rD/L7Qpt7wMBAktc+PCyV7GrezY+mfjl4qh/jM7u5m9jz/Cx7LgmfCHkaK9w6k1Hra5yeFkp3N29m59E+pDC01zAkoiPW2s+eFX/BIVPFS6nyaQEG4s8jiwN7V7Fv/5JBUIk29svMr6e1q5tV7vkrbvjWMu+qzfKgb3pEwQGheCwtq46207V2T+d1ErJWVT34fz4n3Xz3fXgBOJVRrzaqnf8ie9U9mrHF3814OtO1jfdRAC/hkl+BaWUDJvPey45mfsnnZn7GjeRSWTx6GDho8XE957FvyB141kjwd8ZEKPMBIOS13Foc4uP4p6na8OozElvRn+ux47ue87rTy61yNVHrQGKhKne+QcPl5UYgD65+ibscrAZUYkg9rFIJdL/2KNb2H+F0umfOlKcpWw+X+fIsDr91LR1vdkCBOKyclFVNowWPFCz+np34r5XNv4EttinMci2bLZ4el6KrdkPm9zuZ9NO5ewbYV9wYOMG9DAKeX9K3L76F152t0NO7K6JlddRvZr+LUWoL39Rh8xIkSmjCP9lUPc1/TGpbnRijJrcDOKiAIYoghz1O74Sn2HdzIbwqMfllrfurlv2I7PJJjsH/xb+nsOHi4knYgvVdIdi2/h711a/nfIpM43rCU2PT5loUcHsiV7HvpN3S0H0jx4cHPt2/tY+zd9Ro/LrLpPeJ8aYpyX7bPGtXNnpf/gBrKsqd+ubCwmlap+G55hNUbH8ftOETlxIv5VqtmvGuwLCKJt9bieEkAGvesxIlksXvjM3Q07nxTVQr55oA3eCEdjTvZvuZhlhbn09m6n1j7QQB6Du1ksw1XJiRfiIUwR08juXcdf0zW8T8lIQoTCfLLJmIM8tL7OoTdXU3Ur3yQ+/Msag0Pqftni6Rf/u9yfNZ6Hex84Rd4mSR5fUyrVb9nJXWrH+auYpt90jkm7x3MEksFf8xRrFBd7Hru57iec0w6pLVGSElL4w5ql/2F3xdY7DwGz07/lqt9fl1gcXD/69RtfWlwcKXmfbh0HJN0iDpc/rXcZtO+lWinl+rx53N7k0elCNEYa8bpacXzXXoPbObPeQbrZIL61x9NnVu8nSxwcLOH1j7OGpng5zmKTqeHjkPbAWjpPMhUZfP5TknOhPOQLQe4X7Xws0KochXTlE1O9axhyVsg2P/avax323kkWyPV0VYy/XUCn58UmtTVrWfXykUpKqGPsubdnQ3se+GX/DUbXgwFYDoeQSw9LVzt8+NCk92HtrBz2Z8D/q36S1UCSDoxdj93J89ZSR6N+gPy7GAiCrZYLk/mGBxcfj/xeGcq6qaPrQMDOaXjKcoq5rK4ps7wuL3EYFfdGoxQNrOnX837OhwcN0Ei1k5vez2tPS28FlI8kWPStO91Olr2nbak+DcfwGlnpLuZxtr1vJBtEhMee0xFb+MuHCdOLNHNxITLpNnXI2OdPBev5+cFwe+em9QUZxWTVzm130sYyMo31W3g4I5X+L8Cm6QeeJlP88hdhsPvikIcXPUQDbXrj8iR1XjKY8fzd7LCbeN3OcGEOJHXplNgOyAd7iwOcWDt4xzYubTf+dL1fjtf/gNb2vdyV75EKMVQ7FwouCdbsLOngX2r/pqKuulj6sBaK8KhbIqqZ3N+r4ehJXsNj/8pMjmw+Xlyy2uYcO6NOD2tJHo7iLfUUqcTdEvBWluzRfXQvHXx24cDpwl/x/517E62syEsEFqx05bEOw7R2bqfeFcTU9/xWbIjeWyse52fFBn4SiG15KKYT37VDCLhnEw4dSAr72ufuuX3sdj2WGX7yCGW+TQ/fTzs8kLYZ++Lv6S3tyNVdxekc+5adje7Dqznf4tMHO0NKlgNpVKnJ83LIYcHcwI+3NlxECEkSnlB7vPWl6jd/Dw/K7ZpF96QIl86hb5DeCzKt2na9Dwdw0iRLJx8CbNViBpXIjWssX3uzZXUvfpnxp17I+NmXUfroe0k2w9ywNB4QuMJn2VRg459a3G9ZCbL7W3hxHXVbWKTrekRCq1hly2JdbfQcmAjc6/6B0bVzGf/ygf4Y4FNq/QRwARPMtW3KKqZP6xI3qHtr1J3aAv35BvDLjdSgNCau/Jge/dBdiz5bbA0S4MDu5ZRu+ZRfl5sc0A6QSLRUFRBDA1iqeD3uYoVXgc7n/85rpdESpOOtlpql/yee/JM1pguhh6etQ/uAZ6J+GzQMWpXLhpQrUmDrnDUdMrLarih20dJgVSaRTmwMdnC/uX3cd71/0xh5VQ6G3fRYBsp+Qxej0hauhroat47bE3+LAZwwCEdL0FXyz62hA7P2CZL0tbbSm5eBeNmXcu+V//MSr+DxVGNoUBLwbtiPmVFYygcPYOBUyg1AoHjxjm4+iGejQr2Gf5RjttQFqxdePy8yObg9pep3fIiPT0t7Hvhl9yfI3gl5A7qtInUH5VK8tnecEAXBhcCcJXPj4pMdtdvZPfye3F9h53P3cmrupt7s4Z//X2vwUVxf75F8+6VtBzaNiBP1VpjCEnZ7GuZH4eJnokWkNQ+D+SHaNi2hO6Og1RNvIh4rJ1mM5gIQsN+Ew6qBLGGXRmK+JYFcPrekt2ttMVa2GfLjEfTakCHl8AAEokuDu1cyqO5NkoHnK/CN7gipiiZcRWWYQ0sOaV446GtS9jbtpcHc2QmL2G4I720r7YcFuUGuuqGR7/HMt3DH7PVkLw3/VA/HrP4eIfPAsdCCY0xhD58QDr8vNDi4OYXWPXId9jbuoefFko87Q9LojtW5O+1kM8amaB+9cMDqgVCSNCasokXMqpiCh/s9NBCIDW8GtZs9rpo3roEV3k4iS5azcDwGEBCaOpMTby1NsOr39IWGMDpbKLDT9JkHH4r3QK6hI8b76Zl53K2uB2sCgcvQUvBB7sU1UXjqJx6xcDabzqPwo3TuO5JnssyaDK8EyqrzIR+c3zW+V00tx/ghwUaL+1gDfB7BuALeFev5BqVjR4/l892QrVv4aMHfOAZPTric7+dQB7Yxk/zNIekh0Rwov69rxUP5Vk0719La8P2ga0wGlOajLrwA1ySNLgwaaIEuMJnSZZB+57VdLfXE/eSdKQWznTwv8kQON0tqdXrrQzg1Ft34x10K5ceeXi589HEDIN4dxNtu1fwWkTiCIUScIFj8a5eGH3RbdhWJGV9xYCyWeO2V9jTsZ9HsyWoE3MrMks7ip9ke3wvX9EofSQDW1+ZAmKltvhUh0f5rKuZd8PXGVU0ji+0KyxhDKqYqpSC8Oeoy3cK4FXLRQxDXxZDcOGVIcUGkeDQ2icG/oxUAlB59Rwqp1zOp9occjERWrMqIjnU3UDbvrV4pkniiCfaY4DnxIMcjLeDBVa+h4umfw2fxrdsuhp309RWy7pI4HgVa5O/b01SOeUyRk24MCOPDfQSPN+ledNzLI5Kmo0AcPoEb14ReGE7TZ+VtjcomNJ3IqXgc20eEyqmM/bc92IKg4lXfY7zifLBmIGSg/NhDcSE5olwclgrx1A/I1NW+Ilci9Z9r9M5ZIhZM2H+R5mWXclnOjRaSA4aiv3CpX33Slw0jug/yR1Eqg/0W14HDu7csCJEhYF1xPJvSpN4y34avB5qLY0Uki+1KSbmVjHpsk+khP2BdV+A5n1rqGvZzdPZBqjBX78SethXLfXgQBEEu4Dc0GtyqYow/spPY5khlO9RWDyO0fM/wq0dLrNdG1/oQR+8SGnEwwVvSIshJiEsC2t2ej00bnlxECsc6MXRaD7jr/osVycMbouZuFKzwxYkWmpxPAf/CAMS0hopjTelL4d8E/CLGckmKkyyjwCYgUD6HgcldBuaz3VZXCFymbTg80QieQFFGET31UDL5hdZafnsN9Wgy70Ark/YGJlWG4OvG2oo8ArNGN/iY+0Ooy64hcKS8WitkIaJ1j7jZl7DqJr5fL41WJr1IOcc6nzpF6eFZrpv8l89ESx9bDqhU7w8IXwWZxu07lwelDUNoNmmE/vLq2Yz7vJP8LddcFHSZrntoUXQVcE+4ndKfI2dlY9xuvqsvdkW2M4uJk/aFPn9n7itwUSwyfJ5byLMTV0ukUnnU1IxJZPQMpDyIISgq7WOpvpNvJBjDqj7ypT+c65r8q1Okw/GLfQQFnE4d2UKg8+1u4wbPZtxc9/Tj+oIJAKoueJTTM8q59OdAi3FCZ8zbXlztcGXuiTnx3yudqwBGyvo1B9LogGXbd23ZnDNNmUk7EgOvVrxzZ4wM12DVqnJUpClgysIqk0EVS5ECqv62vy3JoDTxtPOLiQvkscoV2UAbGvI1YIeAee5Jp+Kmbh2mLb964jH2hBSDqwxpv69ddcydnjdrLODF6YGeJmGFnwoJnFyCvlY3OaSpIk/iMw12DAAJeCmmMFF5DD+yr/FOLI7Z8rzj0YLGHvlp7mmF65KWPjiBBo0p+e8FPxju2ZO3jgiUy/hvV0eUW0c07Knnbl6Q7He1rRuXzpoAk660/6uVQ9iSokFvD9uIhFYCIqVyHxuqS8YpU2ipeOHcCnPcgCnlQOtNbYdJTu/kklJlVn6o1oQ1gJHaCYkfWwtaLNMGrobOLjlpT4qwzEeuJR4vkf7ntUsjwbqhTHgsgvnuiYzXcn0679G1YwFfLHFYZwampse00ESmgm+xYfaHUZfeBv5hdWZLkJHe/mKirHnMuqc9/Dp1iSjlIk6znY0MjVhPtJjcaUbYsI7P8OUyz5BjZHDlQmJHsBJlABa8VrUoLNhB7HulmMm76d9idba9dS37eP+3FTZkxVCpypIKnyRwWqNA6WhPLLLJqT+SZyepuanG8CH9cfghWWXT2SKAyYSBORrQURpfOWTM2oqISTfz4qzOMugc+dreMo7JoVIP/Cu5j00tdWyIppqpjzQUiok13a5lFXPpbB4LBMv+iDjq+bytRaPHMyjtJGhNBVTGHyuzWHM2HmMmX1tpvngYE7SxItuY3z5VP6h3Uceh91PT5hLXJsPdbpUX/EJCkvGEw7lUFpzCQu6XEwtj7nypJ25tSGoT7TTXrsudRPHXvI79q1hv/D5Q7bLKhGnomgcVTMWoDyHSmVkVpa5cZ/84jFk5RSnnrvu09Rcn+0ATgUu4p30tNf3q3TIGT2dCYQY4wbrW6kyCLsOky7+MGU55byqOlgX8tkQNmjrqKc7Fek5SqpJPaPO/evYrePssY5NH9LWt8oTzPZMSme8M1A+DIvJC77I7EgpX+gQaCmH9VDSn/fRbsmFdgkT3/kZjExH+sHZq2XYTHjXPzCfHD4YC6pO5LAsr6ZK2XyhJcmoGQsYP+PqVHNvKJ3xTqaICDNdeczPS1OLFkOz3dJ0pyssjrheIYIJ0Ntax86QBO1zT46gvn4jY6ZcQdWc6ynvjYEwiGrJrKQmt3oWgqDRuBCS7vYDbF+5KL2Zy9kL4PTq5CR6WPbwHTTsX5PyyhW5ZRMpzSnn/LgGKalwPHLyKykaNY363a/xaK6B0IpaS9PixeltrRuQPig0XfVb2GQLXI5NH9L5CRfFFaPyR1NQNTPgpsonJ6eYCVd/kXc5Jh+OmfiCYdtFVwSTyneTg9KcI0e8s4Gkcmkaxma/aYiFMfhKm8+4silMvvyTqchjsOLkl4yntKyGS2LegEpNqiSTTWGDrqbdJJ3eTBi5rzXwvCSJ3nYOmcE27dtsxTIZp2ndE2RXTmGUH2SszXRgrJlNwbh5Qasqw6KtcRdLF/0LLfWbgsmsz2oL3OdFJ7pZ/9h/BjVgQmJbEfLHzGJ+rw8YjHI8cgpH07V/PVsTbawPSbQSdAlolxq3u6X/rKBvZW07nW11bE5VMA8YlUIyt9cjf/QMbDOUqa7QWlE2ajrVl32cj7S7XOLYQzp1OuUY3Z3t85Lfxo5nfpKqambAa8gkxHc3s/f5X/CIneS5sDdkok6a9362y+AcmcfkBV8Mrj+1XGutkEJSMH4esxOKcIpGiAHUiC1hQUdPC7G2+v6TLvWX78RxfYfetNKmNS/l2DTXbcTxkpSHCxjtwcUxn+KyGnILRyNE0I1zzcPfpqu3HdMInRaf7rRQCO17OFLyeliw9dmfUrdzKQBFNZcwiTCXJgwqPIgUjqK3YSdrQuCIQMd1hCaBxncSA35+b2sdLYlO9lrimEJOmo0V+4LxyiTviGqOtPY5fuY1jJ59LV9sSTJGWYM6dZnW1Urz80KTXc072Ln0T0NGuZTW7HrxV2xwWvldXpC2OGQkTcANCZsbYopxV32GvIJR/WXFlMXNq5pJlZnNeDdIVBgIwPUGNKskvS17+/OwPhNNa1DicMhtU0hQm2zHj3eRVVDJe2MwNykomjwfKSRN9ZvY8fh/c7/dy4osg6z0tZ3dFjiVdmeYRJD8PNvjoSzNnmd/RkPdeoorp5FTOYW/bfeYIrOQuSV0tdezNXJYZBeppBEh5YAcJd5aS6N2aDycpnpM+lDtaopDuUSLxxwl+aQrISZf9gnGjZrJ11p9soYIOKiUjNYoXO4qClG//ikO7Hg1VWWsjnI2hZDsWfsIdXtX8tNUA5TB3nGa907z7UC1OO99jE6H0/s8jzSQswpHU5BTxqSkPzCAgU6pOSR9elvqjil9SWkghcTWwcM3gW6p2S0c6GknUjqeK7uSVOZVUl4zn86Og+x48oc8Zsb5dZ4i6vlY4ZzjolRnNIWQVpiwGaLA8/lFrs9ztsf2J35AR/sBJl/yUfJdn8LsEkKRXNp6WjhgGRlHzEIQQWCEokc/7JSFSHQ00JCqEhCD8N8qR5GTVUQ4p/gY/kvgOVuGzZSrv8SccAlf7AgCDoOtgukssldthwdyJPsW/5auzkNHlQYFXTZ3cOC1+/hzgc1WY+icYgUUaJOvtDiMGnceky784IC5IFprLMMiO7+cKmfgaSdTsGo0JU5Xc/9nKtLvK4QlLbJSFydSpvuQAV68m/zSCbhuggnn3Ig2DLY9+QOWeu38KD8o9S/wNWYkZ1A6dVYAOA0QK5JD2I5S5gWyzQ/zFavpYcvj/01u6XjKJ12MnV1EyIrQ4fXSZRwm/1ENeUpgZRUew1gEXzg9rTSZAVGQg6wGxb4mHM3HlGYfEnC01JeTU8LEBV9gQdLggzELJQd36tKpl3/MVazwO9j53J14qRYBWqugMNONs/uFu3jFTPJA1M80/hsIvBKQQvClDsGUrAqmXPX3GIO2gw0eWCinlGI/uDc1iEPYZAqcWCtev/5yqVwVw8IKZ1Hg939GSSlQXpKsggoKK6Ywdsa72L74N2xr2cn/FBk4eGQpQb42COWWvRV04NS2SoZNdnYJFZ5CIIhrj+8XGuxp28e2l35FzQW3MnrypfhOgjgKt8+vl/iQK21CKat5JOAU4Ma76JRiCCYuyFIaK5ofXNUAliHNh8tGz6Tqsr/hY+0OFw3h1KVle0f7/KjQYHf9Bna+9pfDDQOFYOcr/8fu1j38rECi8YfmvRI+1GtxuWMyYcHnycoqzJRKDXKTGKGslOUcLBlI02kIXCeO7yX6+ytaYQhJOLeUCje1goh01FHgK4+s3HLOvfrLHNy1nH0bnuInJSFaRJCtV6igWJiEC0cdU6Y76yiETpWGR4urmeAEYQITQaNw+HlJmLoNT9PRuIux096Jm+gKXnofAFe5irxoATmZUOXR7833XZLDuBNDa6QxtG6V5rATZl3HqFlX86WWJNWpSN1g9i+oMvaCKuM1j1K381WkYVG742UObnyGu4pCNAl30EyzdLDiQsfmQ+0OVfM/Stmo6altFk7e60qKoFuR8tzMDaSpTk9nA82NOxkvIpgqvVKIVA6EIBrNJ5RTwt6Xfs1fcy3WWB6WAi1hvKMpCOcRLajMRObeEjJadkUNk5RJrhJ4gKkFy22Hx3NMDiz9C/FEN1YkF1tzOM1Sw1Tfxk/2sn/Li8Gif0QWVbqxsz+Mel1XgMo0EBFDRg7RmimXf4oJFTP451aPrNQON2IIKrEk5LAoCw68/Cf271lJ/dK/8Ei24NWQMzTvFZpKbfHFFofKae9g/JzrU53fjWGJxV6im5gUmYjnYD8e7FcsMs6WADw3wevP/IiO7iaqsBnti4wFzvd1xhfZ/fLvWJ9s4S85qZZaKUdjesInt7CKSNbp2TnqlAM4PQOzK6ZQHS5kelJl9kKUCv6Uq9meaGbfykVYOcXkaEl2SsS0FMzwDOLaZ9uLv2DtUz/IcMs0WKWQSCmx9MCOS/pfOwyB29uZmghDE3gNWIbN5Ku/yJxQMV8YRhaZTt3XH3IUS1UH9U/+L2vdDn6XM3gtXTr4amPwlTbF+OIJTLni04hh9kAWKcoQbz9A45D+AIQUGIaJNKyMs6WFYONLv6Tr4DaMSA7ZWnCeE0g7hhbk+ZqswtG0teylfvsr/K7QIpEyHT4Q0ZLZScitmjUoTTu7LHA6EyurgOLKacyPBZVh6UzKLuHzl4IQjZtfpL21lsKcEspdHyE0UzyDMcrAsiPszs3m9R0vse2FX6DT22ql6IlphogM+aw0By2D7q5GHCe1d9sQDzjj1OWWMWHBF1iQMPhAzMIfxKnrW4r0gxyXvbbgpzkuCaGGlswkfLrbYB7Z1Fz9RUJ2ZIgc6P4BnVhPK+3N+9gWMYe8txylMc0Q0rQzAZ09qx5k+9YX+UthCC0lkcLRXJYIAkBZGkowISuPA8vuZUnI43U7cEbTM/CcJIw3symcMG9Yq9zZQyFSN1k89QoudE0qfdnPWi0J+6wiRuv2V8iOFjLJ0WgpeWevIj+3nILccl6ghx+VZ1G35Xl2r30UIQ2UDma/nV2Y8rwH7rqDhq1hSUN3Ix31W4atUaYDE+VVs6ie/zH+pt3hQmfwzDWVenkNUvH3eXG2Gf6g5UhGivcuSNjc2O0z9h2fpqBozKDlU/2fb9DgpXHbEuoSbawNM2g6KQhKPI2dXZjK35A0HdxC7fL7+GOhzQNhB8eJkz16GjPNfKYlIez7VEYKaG/YSW39Bu7NOzxJ0klS13R7FI+aQW5hdSZH+y0B4HQub1H1bMaWTubGLg/dRzXwUSzKkXQ07iIea2eCDpHnSS6Ka/InnI8wLVyt2GI5/KkgtePPoW1IGXBSO7ecSlcjkAO+NKnhoKFYaSsOvv4IfjpapocP4glzrmf0zAX8Y8qpU8MoDepKOX5DOW2TfJvPtCSpPPc9VNdcOmynTSsfIQ26uppoXPsEz+VYdIiBawFVim6M9jShvDKE1jhunP2Lf8+LIY+nIx6mkLQ7PWTnllFRPYdru12m+yY2Bp27V/OC7bLPVBnrqwScnzQ437Mom3Pdad3Z6PTlA6MxDJPK825iQVwywTNSxB+EFqwO+aw1HHSim7Ha4lNdUJlbScXUy0n2dtBtSoSvuS/qsdRy2PPir0g6vaA10dKxVGkrqPAYbOFSmnvyDfYc3HRY5oJhFSOm81wnX/4pxpdP56utHtFhlAYNBt7097Ix+UqrR3X1XGou/shRkbahwBtP9rDjqf9lndfOA6m+FXoQX6BYCUb7Blkl40EI9q18kO0tO/hFftBDwxNBYSlugtLZ13C+Z3FbIkTc7aUj2clD0f7764Ux+FiHS+m48yitnp3pqPmWAnDaipWOP5/x4y/gk20uMmVhZArgi8IujhRUaMnlPR7ls68hK6cE1+nFlYGTorTirgLJ/pbd7Fm5CIQgu2wiFeE8pjtB6FMOpBAAtdLlJ0Um+1c/xPZld6OEyFzboEBO7QlhmyEmX/MlzrGL+Hzn0JG6oQpBtRR8vlMwI1LClHd9PhVkGaRKT+tMmFpIg86Og2x6+Ntsbd7OfxZKYimNWQ/0sgVMT0KZlU1B9Sw6W2upW/cYvym0Ai0X8NB40sCNd5FfOoFRo2ZS3psgJEyWhzT7jaDPXLqQ9ZaYZJaRw7iLP5zpFXG6xmkvI5XAmPkfZb7M54aYQMk+Vtj22WwqLNchVDiKsdPfhef0Hi67FIHEdlB4/LnApmH907Q27iQ7p4SCshrmx/yMejCwzCV42Xb5XpFk0+oH2PTId2hr2YtIccHD0tzRu3imgZ6bW8aEBZ/nmrjk1t6hI3UD8V4l4OZeK1iR3vUPZOcUHxGs0KnEmj7XIwRCShzfZe+Gp9i86Fu81raT/1ciqZODa8w6NRHnx3wKymuIZhex95U/8rJMsCSsMr3XBKIfBRk/9z0oKfBQPBZyM0bCFzDRs7i506XyglvJKxw9fN5+NgI4A4D8Sqov+RB/0+Ex3gtqw0yCKtvHIx7Cc5gw+3pMO4JWPtIwCad3pUzx2SejPq+LOPuX/jnINJv+Ds5zDManqIkcQqt92Xb4WqnBEwdXs/6Bf2P7i7+krXFnoI5kwCz6ATpQPoKdMcur5zD6kg/zN60JLkhax1VTl3baZrkmH2uNM+qiD1BeNTvTof6w/BTotOnr0Qi6uxrZt/YxNtz3TdYt/hW/Nzv5RjEcSIF3sKYrSsAEz2ReQlE6+2paD21l//7XubvAAq0ygJVASINhRwAoHXcuo0prWEsvG22VOU9IGHy+1aWq+hzGzrnhtIMXBth7/pSDWCnGzLyanvotfHnXS3yj3KZXe0gteNX2eb+hGRtrD162GcK0IuQmdYZsQNCs408FFtPqNnJozwoqJpxPZelEPtC5k/8oEohBnIi0Jd5ruPxLicHliV6u2/YEs7YtpqJ0InnVs8kdNY1ocTV2KDtDdQ7nvARfTzrnvTjdzXx541N8pcSkXgbh1KFogy80edrgH9s142dfT828mwPgGFYfx1bjOXGceCfx9oPEGvfQfWg77U27qE12sDwieLzMoNbwQAVWc6jSf4Tgti6f8tJJFI8/ny0P3cErYc1u0+/Hm6MKsrXADOcG8lxnE8muJp6NBkbGVOAags92Cs61i5j0zs9gCPGm7PVy2gGc2ZxQayZc8Slizfv4Smsd3ykKmjfHhc+SLMmMba8w+pz3EA7nEgrnUBbTR1nRDZbHsjCUrnqI8nHnU33xh7ji4W+zNGnwsu0M2Mk8443rQOddEoIlpSZTHYcLOzYyu2E91SJMabSQ7NxyovllhHJKsbILMcNZSCuCkAZSGhSPm8eoPav5l442/rlAEWNg1SFNDCJa8K2uEFORmEKyd+ndKN9B+16QTO704ia6ScbaiSV76HBiNAiXHbZgfcRkfb5Bh1SgvQzw9DAs/hVJm0t7HcZd93FizXs5ULeBx0ssSDX+FgR5D0U+5Bk2dk6QQNW4bQm7ehtZkRtCKIVrwIdjFu+OKca/53Pk5Jb18R/EWxzAKfAq7RMJ5zL5uq/gPng7XR2d/Dg/qMFaEpXc1NDIqJ3LGTPzXYRzSxnVGDwcRf8W/I/kmlzStIum2nWUj5lL5cyr+eyGx9lbEaJOOIO2/88smTpwDrdasDVfILVFhe8x1mmkuv0go5o0RUqQpyALSURaGEIG3R4EKMNinLL4YC/8JstB6IEBrIRmZtLE1vBSWKG3PYlWPloIkkBSaOJS0GEKWkxJc5bgYJ6gxbBwhQLtgyYDXDVMujJW2Xy2JUHFzGsoHT2Trc/9jPWmyw7LRKjDuc0A1S7kW1lkF4/F811at7/KiqhFtwyA/pHeEB9tTzLmyr+lcuw8lO/2Wz3esgD2PYdkbwfR3FKkCE6dX1TNpOv+iZse/2+s9h5+UmBSb3qsDwvGb1tC9cwFZFXUMH7r02QpQYzDubJCwxZLscnwqd72MuVj5lIz/2PEW+v414aNfKvUokkMvYeF6gNkoTU+PvUG1EdhadRITbqghZOlwdY+pvYDRwyNIkkilUCuB2lBle61tsr2WRmKk4lpC+sIaaJPjZo+XO4j+1T+DKd9SBq8o7TNt5pcxlbOYOrlnyKR6KK9biOvZZnoVA2h38fJm5HwycmvIJJVyMHdy2ltP8AzZRIDzee7Q1zfkWD0xbcxcfYNGerjew71O5eCVlRPfUeq3OnU8+HT2hdCCMnmV//Isodup27ri/TG2gAoGz2DqTf+C++hgO80eVQok7/mGrQ07qSzdT+F486h2splpqMRfRy0oHWUYkXUoPvQNhLJHmwrzPTrvsKsool8u8kL+j3IIOAw1OKmOEw5hAZDgaE00legFEnt04NPm1Q0GYpDhqLR0DQbmm6h6Rpmr7V0PZ0gmDBCKYRSSKWQvsJQOnWkJ9XhSauGIVKl79WXMM0P8Z0Gh2klNcy87mtYZoiOg1s5FGtmTVj0i9gpIKQlsxKK3KqZCKB184usthUxQ/K9NpN3dzmMufwTTL3gNgB6OhvYt+oBXrnvn1nz7I/JLhh1WjtUnj4LnEplHDfrWl5Z9A0aDmygJFpEcdVMCiZdTOm4eZz7sR+R9eQPqdi/iscLItQJl6qNzzH1ir+lpGIKFzesYHn48NZa6RqvzSFBe2srsbY6whVTiEbzmXXjtzCf+gHfq1vHr4pDvBTyQKtMNpgeBsj8ATjsYL88XD9Gv4HfHcoaKaFBGNwUN/lwa4Kx485n2oIvEonkAprYoZ3sky6HDCvTfjbd13i2IxgvIpROuYze7hYaD20lZIX57qEY07IqGP++z1NeNYvmug20bF1M4941bPU6yHd9Jk+5ksKKKRlj9ZYCcHrjwOLRMxg/6VKer1vBr+x23rnrBaZtf5nSorGUzXwXk675EoU7X6Nq1V9pTB6kbu8KJl/2cUpnXMUF+1dT5hs09d3sREODAS3aId5WDxVTUb5HNJLH7Pf+K5FX/49vrH+aeRHBX3It6g3vqOX4jYDuzR7p6g0/A1zJLNfitk6XCzzBqAtvY+IFt2EIidY+CIN4Sy17LIlOZaxlJrSQLOj2KK6YRm7BaHateYS2joPMzS2jas5NVMy5DqetnnUPLqT+0FbWygRP5ZooI8S32jRjZl17RAzyLefEBTc2+twbmb5/Db82ff65TDLdgXfEdnPRizsYu+ohyuZcy7R3f52S3SvZseoBare8QPX0dzG2oJoFPbX8KU9g9NnWtUdAFwq3py0TCAhqxGymX/63FFbPJn/ZPZzTsJvncgyezpYclH6GsEqOH8xvFlj7/q1SqkGgo0tmOZJruz0uTCoqR8+h6qIPUFIxNaNlg8RTHslYKw3m4ZzhtEY8xTW4wIGyOdehfI+m/WuYdM57GT3jKlQixt5nfsaeg5t4LQJPFxlstkwQ8O9NSUaPmkdB5dTTan1PO4DTgYyiislUTbiQz+xezD+XmWw2PTbnC+7Ptbkm1sQ7X/kNk/KqKJ97AxfcdDvJ7iakkFTMvYFrX/wZT+dYtHDYCnsCHBQyExb2M1EsgIpx51FUNYuSjc8ybuOzLGioY0UYXs0y2GRDXKRsUArBffnykaDWpxicfb8WR5wzVSmUcbYkknGe4Ny44qJej6lEKCmfRvmc6yifcGGgmit1uEJZCKQwcNxkpjt+X3Xoti6PivJplI2bh5QmcxZ8kd7ORuqXL2J37RoWRwSPlZvsM/yMGjI/aXGhZ1Bx/vsyKQGnU0oz3yxrMvqCWzh33xqu7o3zRBQspWkUHn/MgcezQtzQ08A1L93FxLIplM+7CQ2MmnEVkzY+y20dO/lpYdBTgZQjZJkh2hp2ktu4i/zS8f3Cwkp52GaIcXPfTeX0d1C5awVTtr3MdY072eN1szEk2BA22BESNMl042tNvxp9fWxwHWuNGY6TdeTP6yOQrA9HHzLfCGtBkQ8TXM2UhGJq0mWctinPrSR/2iyKJs+nsHJapvJYKT+TsQfQ2byXplQqaXr3Tgm4QjM/aXNR0mfUhbdgSJOOtjrqVz7Ivh0vszjk82CZxV7TB+1hpJa+sDD4aLtDxeSrKKmcdtqt75sXidOKvILRVJ7zHj702p9YHbZpxMNIqUatePwxF57PCvGBzl1c9eT3aR5/PpOu+BQTr/p7rrvnqyxLwut2YAVCShOVNkjJske/Q2F+BaMmXETBhPPJySvP7P+gtU/IzqJq2jsYPe0ddLbuZ+LeNVxQu4HOtlqauzo4gEu9oam1DQ5agmZT0G4IYgIcETRaSe//djRy/WN84xhqR4qr0qf1UiDPga0gV2ny/aCEp8BXlHuaMk9TriRl2qQwnE9uXgU5o6aQO3oGeRWTCdnRzIUoPwi/S2niaUXbvrU0bnmRPXteo2ziRUSieWR31UKqsCAPi0+0xBk14zrKquewe80j1K98kNV+B38usVlradAuUh2OMvoS/qYTpkfKGHfJhwH9puyW/KZY4HSlQ/U576Fjz2o+276DO4okKJVZgISCeunyw0LJMsfkE/tX0HPvTiZe8yUmX/wRPr/s93y1zKRV+uRrg2zXoWLK5SSTvaw98DobG7cydfVfKRwzl7KZCyiqnIoUZiavQUqD/KIx5BeNQc+7iXhPK7HWWmKNu0m01RPvPERPTyux3ji9XoIu7RIT0Cs0CaFxU9TFTzlQhhDkmBF+F3XZa/lHhZTTdCeiBX8fCxNxEijlEdaCsA7ay0aFQY6wiBo2YcMmbIUJR7Oxo/mEsosIFVQQKRxNtHA0kZyS/pY8c18m0jBxfIem7a/StOFZ9rXsZIOlmaI8KsedR+/+DYxuXY8g2LPjb9t8ZhRNoHzuDWx4/L/Zs+tV7iuw+WuWiZsBrsgEO3wBVyZt3hvzGXvDJ/tUTMu3B4DTr9M2Q4x/599xxaJvsTPm8pcshanAy2ilQU7Dcsthc5nJZzq7uPqhb1M2773Mrj6Przes4xvFklxfky9sssomUjF6Ji81rOV75RYXxbp55+4XmbtzGWXVs6g4972UjprRp/1TYPKFlESzi4hmF1EyZm4q10LjJLpxeztwejvwejvwEjH8RA/KTaB9F9930akEHMdNEtu/ngeV2w+wRz9wwYVxxTmTFhAtGQtCIq0wRiiCsEKp/8/CDGVjhKJIw8IcqDO9Uv24jJQmrnJp2LqEhnVPsbdtD0vCmsdLDIp9g/kqQsmYuTTFOpiyXaCF4PoewXt0NtGai9jz9I9Z2bqdn1eE2Wq4oOi3xVc6MDLND/H55gRV593CqPEXvmngfVM5cBpEhSUTGHflp/nosz+m2bB5Luz0A3G6XL0bn//JF+y2TT695lHChaO5gCz+qTvJXuESjeQTySogb/w85q5+gHLH47moz/NRg3MdnxvrV3Fe7QYqJl7ImAs/QG5+ZWrBTdn8VG9bUhslGkISieQG2mlR9ZD3E0/GWPanz+OJIZwYIejWLrmTL6a4es6wNfRMhlqKF4tUWmVf8Bzas5L6lQ+wp2kHz2YJniyTHJIKhOKj7R5llXOIRPLIrZhMuRHhIz2Cm3oFurCMrk0v8ZTTwI/LbbpxMFQQvVTHCEl/synB+JrLqLn4w4P3qngrAzgDYqUYM/VKkt0tfGnZn1ElIV4IOf2SVFSGVmgeirrUmyZf7zhIljS5yrGJJ12MMaMwpUlu8Rgqyqdwdes6dhdKpFKstnxWlxhckvS5bfdiZu9fR8W8mxh3zntS+mgAAnFkQ7FMo2w9oAQROC7gJ3sCbXkYxaUCgUr2olUQiD7aeok+/psIcoCPBEmmmbQMUixf/RO1u17juYjigTIz0LuVj6GgSpnMcwVF098BQF7ZRPKLqvhwSy2+FUa3HeTPoQS/KBZoFWys6B8jJD1O2dze5DCl6lymvevzwbM7zarDmxZKHjTAoRQ159/CpIs+xD81O9zca6FSFRh9NVpFEN5dabl8o8CjVQY5uFpA1ZTLg2ifkJTMfBdXJCTlvoEi6EEhlGKp7fLVUoO7QjE2vvp71j3073S0Hxi4o6Ton48r5EBHny2mhvMuUxKDkPLwZ/c7RCocO8iWYqnr2r/5edbf902e2/sK3ywR/LgA6kWQpWYAvhRc1+Mzumg8JePmZXZOqphwMTHlkoXg91GHu3I9ULpfWqZIg1fCdD/Evzc4TK86l5k3/DO2FU41rRFvKn7edAAfjtIpai74AJOv+Fv+vlPw5U4DWxhH7TGcbqa30/T4em6Cg8In14qSUzYx07C6dOKFjC+bws2p4tG+VCSpFfdke3yj3OblhvVsWvRvHNi1rE+j51MdykgX3ZzYbj7p1SLpxNn47E/Y+PzPucvs5OtlBhtNF6kOqwE+UOUZXBWDsrnXBXtMq6ChgRmKkKcNfhtJ8n9ZwYrXd5FJZ177Eq5K2vx7Y5IZky5l5vVfJ2RFDqfFvsnjjABwX048Yc4NTHn317lZ5/MfzYpqbePLwyHTviA+YPh8MzdJvUqy/YW7giJPIYI9fy/6ANcmTGa4ZmY3oDQVMRTskA7fLBHcZ3ax9ckfsH3FfeiU1XtDDTn0cL6tT6hqN715TGdHPRv+upBV257nW6Umf8nx8dThSonMoi4FH+v0qSqfTMXky1LVLRYNdes58Ord3JMn+XMkiaEOh5Mlh9u6RoXBP3SafLXFY+q8m5l13VexrVBmQ/UzYZwxAD7MiX0qx57LjPf/O5eVTOO/DjlcG7fQUmbK2GUfEB80PG4v0uw5sIHNz/0s0/SkrHoOY6dcwd+1JokIs58y4Pexxj/L9flxgcGO1/7CphfuxFP+MXfvOeGQ2oBg1CcAXoPmQ9vZ9ODtvNi+k2+U26wznUxgob/DBVckTa5wTKrnfwRTmpki0F1P/4jH7AS/yz7cHb4vcJUUXODa/E+jxwd1PtOu/QpTL/kYUuszxvKekQAO6ETQ8j8vv5I5N9/O3PNu4atdJt9uVkzzbZQUKHEYjKYW7JUu/10aon7nq2x/7e4MJRk3/2Ocn1PNpzoUyujfEiptjaXSPBF2+E5ZiK2bnmHjE9/H8RInDGI97J8Z/mendz5qqF3H1ke+w+OqjX8rkTQfI9c5mNyaUdri71odKmdfS+moGWitcN0EO575MSu8Dn6WF6RspqmCEqCkoMa3+X+tsLBFM3/iFcz6wPeoqrkkw7s5g8B7RgL4MJ3QmNJi8sUfYdbNt3ND+Tn8Z5PP11s10z0zsMgykNssLVhrJvldUYRDqx6ifs8KREoGG3/VZ7kxYXF9r3lUS6iMY6hhpZlkYZnN1r3L2fDYf6U2QDmFW6cO83PTPSIO7V/Djse/zwNWnP8s0DgqKG33jxEsCUmTf2r1mFg2lYkZqUuya9lf2N2wjR8Vmjha4QOeBKRkpmfytTb47yaf9+VPYc67v8HMa75MTk7pm6rzntEy2lDRuvQLLC6fTOFN/0bZ7hVUr3+KS+s3s97wWJxtsiYsaJUBFB+OJhnnmNgv/Yb8solEo4WUjJrBhMs/yede/AWdxTavhg7rzEc6htsMh2+V2dxetxYe+y9mvvvrhOzoKWmTNJxmKkFXSklD3QZ2PPE/3B92uDPXRyjdjzL0ZS5CSr7SLjjPLKDm6i9gm8FmK43711G3/gl+XBLigJkEbVDiC87rhUt7PGb5kvKyaZTOvprySZdgSiPTGvdMBe8ZDeAjnTspBBUTLqBswgVU1G1g/NYlXFq7ngOdrWwxfbaEDXaHBA/lGMxsbiX7lT8y55p/QiufsTOvxunt4Kuv/QVdYrM05PZzXPqCeI90WFhm8+/169BPfJ857/4GlmmfZBD3CUwMIKOmLW9L4052PPF9HgoF4E1vCqOPWEYVGlMa/FOHwQLXZvJ7v0Je/ii08vG1z76lf+aViKTRUNzYbTAz7jPVFVRFiigYP4PiqVdQPGYORp9WAmcycM8aANPHAqS3kyqtmkVp1SxiPS2Mr9vI7H3r6GraTWd7K61+DIlk1/qnyCmbyIS570H5HjUXfACtfL6x4n7uLLJ5KuIgVP+QbxrEe6XDHaU236lbg/ncT5l1zT8FQQoxtJemh2+CB3XwhJB0dTWw/Ynv86zRy0/z9DHBmw4yZGPylTbBlX6Imhu+Sumo6Zliy10rH6C2bh010Wx+lDApjpaQWz2R3DGzKaieQ05u6VEy3dkA3rMGwH0XykDHDJbKrOxisqZeyaipVwa7S3Y2kuw8RDzWTm+sHd9zUL6LkGYA4os+hLTC/OOyuxnlmfw+R+ErP2idfwSIdxkO/1ES4o7tLxPKLWPaJR8dVthU9jk4Bj/NbL02SP8cAThunO1P/YgViWZ+UHp4h9M+3UwzjQHHKZuvtHrMtouYdP2XKRs1Hd9zMUyLZG8HHQ27qDn//RSX1ZBdOp6s4jGYA05Ecdo6S77tABxEqAI3zFMeyd5O3HgXfmoTaiENzGgBebklFNlRDCuCLwSmEJmtBSbNex/RggrCz95JVaKLO4ssGvu0/dd9QLzedLirOMxXVj9ETsk4qmrmD7q0CiFJSImSCjVAWmUvEoQesPGKVkFy0Y4lv2Nb4xb+u9wmodx+STVpTduXQVbY3zUnGF8xnanXfpmc1OYqhmkFRaDSYPqln0BKief0opIx2vesxvcchDQxQ1HMcBahaD6hSP5pa8r3tgJw2iK0HdrGwd3LSXa3QNtBeuNdxL0Eru/iKy+Tl2AIA9uwCZshwuE8QrlFQQpiyViySycwasJF5H2shpxnfsK4urX8tsBkSTRomJ0u+vRT6sQzYYeJORbhl35DbukE8vIrjglioTW9TowPOw6dUiCPYWE1YAlFKN5LMrPVgT6K9+7f8gL7Nz3Hj8rCNIpkRio7LHlpcrTBxzs0N/RqqufdwsT5H0P7Lm2HthJr2ku8pZZ4x8FgNXJixJ0YvV4SB42f6h9nI7CFJGqEsK0IRk4RoXAOVVMuZ/TkyzKJTSMAPlman2lTu/4pWr1eHs2zaLE1nRFBtxR4AhQCAwhpRZYfJ1/FKXbbqWzYw+i6lVRqgzIrm7zCKoprLqHq0o8R2VVD1aYXeN7p4k/ZilojCLWmiz6lgt/mKKY2dZK1+DfMee+/9Ft80+/XtMJUTrmcD3hexhEawEzT5cXJOmIXn/Sk6Oo8RO0r/8e9+SZrLAczlUSebooCgsuSFh/vkUzNrqT0kveQk1PC7hfuov3AJlp6WqjXCQ5IRa0tOWQKmsOCzixBjzQyOcxp/hzSYKo4czyPTxxsIqewirzSCZzZ1YFnnRMX8LL8kvHMe/c3Wf34fyFwWZztg+8f27Ey+/5zUOVW4gsmu72c27GF2S9vZIyVS2nVHHLHzuWag9s4p6OdZ8Mej4RdGlLhLaEFSTzuKgoxZv/rFGx8hnGzru1jhYOT2JFc5rzjcyfsoKZlsX0v/4HVfieLsozDcl8KuHMdk1sTFuc6BpH8CiJF1XRseI4NTdvZaHisihpsLpQcNE0S/cqi+rh+R+LS0BRLiyvbHUrLa5j33m8RjuafNTz4rLHAQgQh4tLqOZx73VfIe+rHjHVj/KzAJK49rGN03xGZd6ZRaJoFNIfg1bAgV9vMTCa46MArXKizKLGyyNOSD8RtrkqarLB9ng+5bDE1jhBsthz+nGfy96/dR3H1HHLyK456ycPRdvvr3P2tb/22xezau5IflVkkpQtaUODBua7Ju5ImszwDWwNC4vS08Ur7Hl4JeawosdhvmsEUSLee0kcXhR6ZqKMkzPZCfKUpydTSKUx/9zdS4FUjKsQpAbEMKo7Lxs7DuOlb3PTUjyhrrOfOYos9qS6NBgN3rxFpUGtNFz5LQ7A0bFDqJZmfdLhK20z0JMVKcl1C8M6kRS0O62SCnWGDjRGDbbEucpfdzZzrvjqoNT0eTVgIieP0sn/FIpZlmeQoxc2dmqlJxQyRRQlG0MEHQZfQrLQdnrVjrM0HTwT95ITqq3Acu/VUJhlKaIQwuDVm8MH2JGMmXcLUq/6ecCj7rALvWSijgRDBJoTF5TWEb/k20Rd/xdi9K3gwV/JYtqBH+AM2LtFHyFBpMDcZmr9mwaOROBc4JtclTc5xDGxpMKt4KhcaNl0t+2nrbMEBdm95nqIJ5zG65rJMm/8THSq16/zuNY9wsHEHF0ZzWZC0KcwfR6i8gp7edhIttbQJjyVhj8dDLnvNdDmUyDSlPlYnocx9cjjfASGY5ll8uN3lYhWm8pJbmXje+5EZ+WxEhThNlliRnV3EzPd8k/xNz1Kx6iHe2XCQp7Mlr0QljYYOdu/p0+dBH+NIUw2pA765NOSyNORxrmtwW8zivLYD5Ey6mJoLb8GWFm5vJ57vEMkq6CfrZfovCDF4sCNdupSy2DIF/rIx51B4aw22nYWZlU93VyNNa5+gtXU/T4WSPBzxONjPwRT9ern1DbGkryDd+CRQ9CRTXcn13T6XJTxGj55L1SUforhsUoYjny3a71kP4MxyrTVSwJgZCyideCEVG59j+pbFvL/pAKssnxVZJptCgg7Zx5nR/XOL+zYNEZDRg1+3PNbk+yyIO3xww6NM27uG0RfeSk7ZRLTWKN+jq2U/4awCrEhuP/00ALM4gh/rDF1IVzEo7eMlYjiJbqxQFqZp47oJmrcspnbto7wgerg332SXGUxEs49WnVYR+jqA6V4SOqNuCEp9wdyk5pKYx1zPprJsGqVzrqGy5tKAcpxllOEtA+AjJahIOJdx591M5exrqd77OjN2vsZ7G3awv6OVbabPtpBkW1iyzxTEpD68FcoRZNnP8I1gi9VnsnxejFrc3NPAghd+TLEMI9IlPdLEssMU5lZQVDaRvDFzyK2chpkKmvRt+py2zPHedjpqN9BZt5G21lo64u3gOWjPRSkflOKA9Ph9gcmqsAmpbQ0Q/ROQDpvcw3Y3kmp8UulpJiUVk5M+Nb7BqGgRheNmUjT1UorHnJMB/tkO3rMfwEdYY40mZEepnHwplZMvpTfWxsT6LVxQt4nOxl20dh3ikBuj1vCpMwV1tqTZlHQapBqXCJxgkzMMDWGlyXUEWV6Sdl/TKEzynN6AkgiBj2abitHgtZLdtJ7J6x9lQn4VJRMupGTaFWSlomIAXS37aNr0Aod2r2BPvJk6U5MwDMpdzWg3tSdcqvl3TGrO7U5Q0yuotwxaTEGXhERqb72Q0uQqyFOaSldR6WjKFZT6UCTD5NtZ5OaWkj1uPLlVM8mtnEo0q6B/wOQsynd4ywM4bY3T7ZJ0at/kaFYh0Zr5UDMfT3n0th8k1ryP3qY99LbVE+9pJtbbQcxPktQ+rvLxUlXDhpDYhknUilCUXUJBQRVGbgkiKw+lFE6ii0RPG/mHtlHbWc9mS/LXLEnUqWXu6t1M3fgkZTWXUjH2XNq3L2X37mWsUz3szApj5NiMizvMcCUVBdWUjTuP3OJqhDBI9LYzo6sV1dNKb08Lvd0tdHd306sc3JRFt4RBVAbXFskqJFJWTDivnHBBJaG8MsL55YSyCvv1k0ivBm8V4L71ANxnXc1wzz4OkylNcouqyS2qhimXAeB4SbxED25vJ77Ti+8m0L6HkAaGaWNFcrGz8jEjeRgDvHTPTdBeu57zti5hf9061uOwJD/K/mQvN6x7kt0bn2at4bI7alNIFud19zLZLmTUhPmUTrmc/FHT+vUv4whe6zox3HjQYMV3EwH3NcOY0VzMUDZWOAtTGAP4i+lNb8VbCrRvcQAfyyr3caS0TnVrFNhmCDs7BNlFQ6u1+oiy3T4h5JIJF1A84QLGdBxi8vqnuGDTc3RYIdbnCrYbPqUqzK0JTZGSjLnokxRPnk+0zzm1Vv239Ux9thSSkJ1FyM6CvPJhXJs+fM/irQvatw+Aj8LzkTVdOvWfHsye9weDOJaW6yOlgZCSxo56mkzYayhI9LLAFeRisjtqk9Ae2a37GRW+JtPaSohUT4kjm//2uUat+86cflc25LWNAPitDemMNT7RETTUk8Q6G1j64L/SG2sjbhpMTsCUCVeQUz2L2h2vkHtgA0pKare8QDzWxgXv/n+pnX2G6mwjUnNOMDJGAHzKJsK25fcS627GMCxqiiYw5aIPUVQ1C4Cqae+gZt8adq3+K80N22jc9zq71z1Gzbyb3/TeYiMAfjuPVOg12dtBw95VmFaESefeyKR5N2MYVh/PX1Ay9hyKqmexY9WD7Fi1iH0bn2HCnBswUkWXI2MEwKcfv6mF3U3GyCsZz7SLP0xhxZQMtRBHyFhSmky54AMUj57Bpld+T6yzkdyi6rOqhGcEwG81pxCI5pVxyfvuyFRQi2MoAH0LU4tHTWf+zd/O+GUj4B0B8Js60jrucEKzaZCbVmTkwZ2MZz/yCE6mRZbH8XN65IGNAPjsVi5GxtucQmitUamkdN6gTROpP4UAKYcHLqU1SunU/nQnA5CH70dKOWRBsNbBNaSdwJM5JQIePwLgUwTcALxSCoxTJPIrpQcFcvr70jipsOl3P4NdQ/p7xlAJ9CMW+MwDr0hVPhxq6mHb7jYONvYQT7j46sT3KhNCkJNtM3l8IXOnlyGlQOnAug4EnrpD3Tz2/C4272yhrSOBUm9srzTTkpQVZTFvVhnXv2Miudn2MUGsUpPXcX2WvV7Pui1NNDTHSCS8N75huIBYwuMzH5zNuTPLh5zIIwA+AfB29zh89+ev8djzu2jvTOIrhVb6DVMIIQUh22DO1FJu//J8zplRdhSI0y/0/se38W8/fJXW9jjSEBgn4SVrwPc1//fXTfz496/z/W9eyaXnj0YpSBd8pM+/fO1B/uX7r7B1Vwuup1JdJN/4NRiGoL0rydWXjePcmeXoM9zXNM8m8ILGcRWf+9dneeyF3RQXRMjOsvrv6PNG4JMq0Fi5oYHbvvAoD951IzOnlGRAk/57xdpDfPnbL2JZkuLCSIqHnizuGQDxwKFuPvG1J3n41+9j+qRiVKqlqpSCLTtb+NiXn6Cn1yEn2+boAvo3AGAZ5IfY1tnh3581KoRSgaPy+Au7eWrxHkaVZSFl8O++0vi+xvfVGziCz1FKU5gXpqMryfd/tTJjnvtC49f3rsfzFeGQiesFv6vUyTl8X+N5ipwsm64ehx/9bjV90psBuPNPa2nvSpCfGz7ivvVJO/RZovKdRY1Ngr+fWrwHyzTw1al7yK7nk51lsXZzIw3NMcpLsjLWN9brsml7M5GQie/rY6sZ4oSMf7/h+YqsiMXaTY20dSQozA8DkEh6rN/aTDRi4XpHd3+Q8o0pIoYUGIYc6U55sumDlALPV+yv78Ky5KDgDV7icKz6sTdb0Tp4kV09Dq3tccpLsjJlSp09SXp63ZRjo48Cr9Lg+8e3hZZhSKTo3zJY64CPdvUkae2IZwAci3t0dSePeX6AnpiT4cQnMr9NGXBgx/FHAHyyh+MoemIOUooBASxFYCVdL90zTQ/otkUjJpZpDLAPRsB51REas/L1MX9eAL7SWKYkLyc8rP0r0z/THXPwPI1pHn1faVqT+dpXA6otSmkuPb+KqoqcfqvW8akQgljCY1x13gl/xgiAB3zh/V/msWhGb8LlvFnlTK8pHlD+EULQG3dZsryOprYYtmW+oc1chAjAEw6Z/O771zJtUvHwMsxSssqufe184mtP0t3jYBjiuKlRmtqcP7uC+372npPrJMmR9qqnxxuVgp6Yw40LJvHTO96FMYwAw5adrbz/cw+TdLxBrfpwRDjPV5Tm2MyeVkokdHyP9ZwZZVSW5rCxvYmoaR33ZAqsv6KsOBpweNd/Q8DTKS480p3yTeDKH3vfDAwjEPmNIbqNT5tUxJQJhaxYd4jsLKufdT+RLdG0DpyssG2gtUAIfaR7d8TPBw25HU8NurIMd3gp9cAw5BlvOUcAPIAVlqkl2DDkoMGFdDhapCJarmscAWCB66rjt8r68GcfbdeOvgYA2zKGtWIMxxRrrU/KZBjJhXizJTc9HFlO8F9fv4LuWBJDyiOqk4NujRPHFmScm+GcNxqxjtv6HWzq4VBTzyAO5fCWfVOKYBLLt09uxNs+oX3i2PzhE80BrbnGMASd3Q6f+9dnsUx5VLGxafTPLkt/2/MVm7a30NaZwB5CHhxoKK2JhEzWbWnis//ybCroc+KWN5Hw+OInz+Wc6WUjuRBn+lBaD2qth/vypBAkHY+nXtpzbG15kHkRsk1s+9jglcNYyrUGy5Q0tMR4+Jkdb5iGdcccbrlhMkwvG8mFOPM9vxQXFQN9b/gFl0IIcrPtE5hER3NmIYLEnpxsm9ycoSuX0yAO5YTeMIANKYJVZIRCnB2O38kcvjo5Jss0JD2xJPNmlVNWlDWspVxr8N+gydSpexjJhTjTDW8qNfO/frGCrbtaiYTNft67ISVdPUluXDCJ9183GeVrpDk02NPZXG9ISkDT0+tiGIIvfWJeYI2VRg7xwcdTTTKoBTbODgXibW+Btda8srKOxctryckOofok55impLktxsSxBbz/usnDskhaazq6nTdmvbRGGpLxVXks/MdLuGTeKJTWQ+YbCwGup4jHvTc0gaQUdPc4uK4aAfBpd8iURqesqOcpMMQgzlNgaWzLoDA/Qla0fyDDNCSe7w87qqa1xrZNbriwGtsyhpULcaThjYRMykuymD2tlPnnjSYrYmUS6geT14QI7resOIs500rx/TeuQlSUZmc+ewTAp2sI+MujW7lgbiUhe+idg5auPsCGbc3YlnGUxREEebFqGOZUCJHK4bX4xXevxjpJyeDDlbCkEPQmPOZOL+MX311wRvsIIwAe5GVnRy0efGo7jc0xZk4pOebDT1vG9s4ET760B89Tg6ZnHs/r0xo6upMU5oXfcLuo4w1IpK2wn1qFxAkCLx0DkiORuFNiYAd9qVpDNGzx8so6Xli6nyG2LCY7ag+ZW2zbx7cHnJFyggIn8fQiQIjg/OossJxvSwBblkE0Yg0a61dak51lDwM8Qc7AQODVaAxDUlQQOX5TPDJO2zgr1GohQKeSxctLsvA8NejyFtSWDV0DN5jl1Rps02Dy+MIR/I4A+CRw3BTYzp9TEaRKGqcOUoYUJJMeY0bnMmtKSQBgOQLhEQC/ESscbAXHbe+eyriqfDo6k1imxEj1ZDgphyEwDYmvNF09Dp/7yFyiESso4RFH8NxjHKeLd77Z5z+rObChpPaO6duf4pmW0kJLi6L86j+u5ou3P8+OPW0gOCm9yYI+awGtyI7a/NuXLubDN05DqSCIkKmN0wG4exMuhiEzzprreIRC5ikPwabPH4s7mfMbUtDZnaQ37p49yEvvGNX3n8TxA+m4ASytkNJJgUaLdEM830kcJqunlAsHID5nRhlP//EWnlqyl9c3NNDc1ovj+ic8jQQC25Lk5YQYPyafBZeOo2ZcQaYauu+IhC0WXDaWpKOCbjk6uG/fV+TlhLDtU7uohWyTBZeOJeH4mfNLKYjFXc6dWX7m4zblT/heEs9LgghQK6XA99xOtM9CkHcE2+SdPADfcss0DWDZ2U1djuMKISyttZbSED0dhzIAO/UOXVAtnJ1lc8t1k7nlusmnhnMfEURIJ7QXF0b41X9cM6zrPNn3DZCfG+KX/3H14EbmjKYSgZmJdzfjJnsxrRBKa22YJq4rmwCuWLhQ3nHHHcMC8PDNhbhDA+RPnr4TjEbTkIDS0gzR2byX3u7mTPrhKacTqQLMdFeatBx24kdAH/p+3uB6s860NU0f6a9Pz+o70PnPEuqAoKl2Pcp3+0BQY4eztwX/v/jkO3EC9P233GLU1FyfNCx7hW2ZWmuUNEyS8U5qNz+f1rtOm7RmGCJTwJguwjyxQyCF6Pd5Q1nDNO9OHyevR/DwrPGxz38WgFdI3GQPB7a/jGmFg52clDJcFx0K5zwH0Dy9VJ90AAc0IjVTojl3C2kIlBZaKUw7yu51T9DZvBchDbQ6O7q6jIzTC970BjhbX7uHWFdjaqNH/FDIxMfcdPH7/n2N1ohbb12kTgmAxa2LfK0RxdM+/oTjym2hkCE1Wklp4PsOq5/+IbHOxgDEWqUOneI9I8fb7kiBVis/2BJXGuxe+yh7Nz6NFcpKY0SHQraIRPN+LITwb7/9cuN4ZK3jdpkXLbpFzpgxwwnnFX3DtkNCaO1rrTDNELHOBpY9tJCGvasQQqaOdAfxkeNtd6S2GxPSwEn0sHHJb9j06h+DHZoCzu5HQqaZcI21RTM/8aeFCxfK229fclzL9wmxpvvvv8W49dZF/rN/+PxvI2bvJ9s7e10ppSWExPccNIqyMecwuuZS8ssmYodzEPK4JtbIOOspA3heknhXE02166jbtoSejoPYoezA8qKVIcAOR52cvNEXXXDTHeu0XiiFuEOdcgBrjeD2hYLbbzFf+L87H7Nl74LOrqSLEKaUQT8aL9kLgBXO7gPgkfF24ry+lyQZ78R3kxhWCMOwU7QBXwptRKNZEC740JUf+P49aaN4/Br+iV+fEAK9bt0zWa0bHr3blon3dnb3ohEeYMhU8oBWPkr7I8b3bTiEEAhpIqRIyX1KaY2KhgwTGYrLSMmn33Hbf969cOFC84477vBO5BzmiV8ceuHChXLOnKtjQhg3Lr77i/9qh/T/swwViccdfOX7CKEFQhjSQouRhK63IY0IVGql0VoZYduUIduWLtbrZlbp5664+dur9P23GOLWEwPvG7LAhy2xFgR7lOnVj/7PlFis9p8SvT3vD5m6ILgDjef5Iwb4bTikFJhGQB0dX2BIa61p5/zqsg/+z2+FEO6J0oaTCuAjHTuA1Ut+WdF1cPtl2nOvcJ3uSoFVjhQhoYXW6BFL/HagDwjtKafDlFZDJJq1QYZyl1x84+2viVTLTr1woRR33KHe+HlO4li4cKGcPn2LOHJWCWmgfG8EuG87DiyP6tul77/F4NZFSpwkr+iUgEprLRbffoUB0LylVN+6aNFIaO5tSYERixdeHuBgeqlORdhOKps8XVZRaEbKct6eGB4ZI2NkjIyRMTJGxsgYGSNjZIyMkTEyRsbIGBkjY2SMjJExMk58/H/YyNLrhyuriAAAAABJRU5ErkJggg==" alt="CPF logo" /></div>
+  <div class="brand-txt">
+    <div id="appTitle">CPF Logistics Weather Monitoring Dashboard</div>
+    <div class="brand-sub">Logistics &amp; Supply Chain · Strategic Improvement</div>
+  </div>
+  <div class="appbar-right">
+    <span class="chip" id="dataChip"><span class="dot"></span><span id="dataChipTxt">Loading…</span></span>
+    <span class="chip"><span class="lbl">Issued&nbsp;</span><span id="issuedTxt" class="mono">—</span></span>
+    <span class="chip mono" id="clock">—</span>
+    <button class="btn" id="refreshBtn" title="Refresh live data">⟳ <span class="lbl">Refresh</span></button>
+    <button class="btn solid" id="printBtn" title="Print / save management view">🖨 <span class="lbl">Print</span></button>
+  </div>
+</header>
+
+<div id="fallbackStrip">⚠ Live PAGASA data file not loaded — showing OFFLINE SAMPLE / FALLBACK. Verify all conditions directly with PAGASA before making dispatch decisions.</div>
+
+<!-- Headline banner -->
+<div class="banner lv-normal" id="banner">
+  <div class="bicon" id="bIcon">☀️</div>
+  <div class="btext">
+    <div class="bmsg" id="bMsg">Clear lanes ahead — deliveries may proceed under normal monitoring.</div>
+    <div class="bsub">Based on latest PAGASA update and CPF Logistics risk rules.</div>
+  </div>
+  <div class="blevel" id="bLevel">Normal</div>
+</div>
+
+<!-- Mobile view toggle -->
+<div class="mobtoggle">
+  <div class="ptbtn" onclick="document.body.className='show-map'">🗺 Map</div>
+  <div class="ptbtn" onclick="document.body.className='show-panel'">📋 Operations Panel</div>
+</div>
+
+<div class="layout">
+  <!-- LEFT: Map -->
+  <div class="mapwrap">
+    <div class="maptitle" id="mapTitle">Philippine Area of Responsibility</div>
+    <div id="map"></div>
+  </div>
+
+  <!-- RIGHT: Operations panel -->
+  <aside class="panel" id="panel">
+    <div id="printHeader">
+      <h1 id="printTitle">CPF Logistics Weather Monitoring Dashboard</h1>
+      <div class="ph-sub" id="printSub">Management view</div>
+    </div>
+
+    <div class="panel-tools">
+      <div class="ptbtn" id="expandAll">＋ Expand all</div>
+      <div class="ptbtn" id="collapseAll">－ Collapse all</div>
+    </div>
+
+    <div id="sections"><!-- sections injected by JS --></div>
+
+    <div class="footnote">
+      PAGASA is the single source of truth for all tropical cyclone, rainfall, wind, and marine information shown here.
+      Secondary satellite references are for visual reference only and do not override PAGASA.<br>
+      CPF Logistics &amp; Supply Chain · Strategic Improvement — Auto-refresh every 10 minutes.
+    </div>
+  </aside>
+</div>
+
+<script>
+/* =========================================================================
+   CPF LOGISTICS WEATHER MONITORING DASHBOARD
+   - PAGASA = source of truth. Live data from latest_pagasa_weather.json
+   - Nothing weather-related is invented; missing values show a PAGASA note.
+   ========================================================================= */
+
+const DATA_URL = "latest_pagasa_weather.json";
+const REFRESH_MS = 10 * 60 * 1000; // 10 minutes
+const NA = "Not specified in latest PAGASA bulletin";
+
+/* -------- Offline fallback (SAMPLE — clearly flagged, never authoritative) -------- */
+const FALLBACK_DATA = {
+  meta:{source:"PAGASA (sample fallback)",bulletin_title:"Offline sample — not live",issued_at:"",prepared_by:"CPF Logistics"},
+  situation:{mode:"clear",has_active_tc:false,storm_name_local:"",storm_name_intl:"",category:"",severity:"normal",headline_override:""},
+  cyclone:{}, tcws:[], rainfall:{}, thunderstorm:{active:false}, gale_warning:{active:false}, marine:{},
+  forecast:{synopsis:"Live PAGASA data not loaded. Connect the dashboard on GitHub Pages so it can fetch latest_pagasa_weather.json."},
+  cpf:{
+    operational_status:"Normal Monitoring", dispatch_action:"Continue normal dispatch",
+    executive_summary:"Offline fallback active — no live PAGASA data. Verify conditions with PAGASA before dispatch decisions.",
+    priority_routes:[], risk_matrix:[], contractor_advisory:"", affected_deliveries_note:"",
+    hubs:[],
+    change_log:[{time:"",entry:"Offline fallback loaded. No live PAGASA data ingested."}]
+  }
+};
+
+/* -------- Province / area centroids for plotting TCWS & named areas -------- */
+const PH_CENTROIDS = {
+  "catanduanes":[13.7,124.24],"camarines sur":[13.62,123.35],"camarines norte":[14.14,122.79],
+  "albay":[13.28,123.55],"sorsogon":[12.87,124.0],"masbate":[12.37,123.62],"northern samar":[12.4,124.65],
+  "quezon":[14.0,122.1],"quezon (incl. polillo is.)":[14.6,122.0],"aurora":[15.75,121.55],"marinduque":[13.42,121.9],
+  "metro manila":[14.6,121.0],"rizal":[14.6,121.25],"laguna":[14.2,121.35],"cavite":[14.28,120.87],
+  "batangas":[13.9,121.05],"bulacan":[14.9,120.95],"pampanga":[15.05,120.68],"tarlac":[15.48,120.6],
+  "nueva ecija":[15.7,121.0],"zambales":[15.5,120.0],"bataan":[14.65,120.45],"pangasinan":[15.9,120.35],
+  "la union":[16.6,120.35],"ilocos sur":[17.3,120.5],"ilocos norte":[18.1,120.7],"cagayan":[18.0,121.7],
+  "isabela":[16.9,121.8],"nueva vizcaya":[16.4,121.15],"quirino":[16.4,121.6],"kalinga":[17.5,121.3],
+  "apayao":[18.0,121.2],"abra":[17.6,120.75],"benguet":[16.5,120.7],"ifugao":[16.85,121.15],
+  "mountain province":[17.05,121.0],"occidental mindoro":[12.9,120.9],"oriental mindoro":[13.0,121.2],
+  "palawan":[9.8,118.7],"romblon":[12.55,122.27],"antique":[11.2,122.0],"aklan":[11.7,122.35],
+  "capiz":[11.4,122.7],"iloilo":[10.9,122.55],"guimaras":[10.6,122.63],"negros occidental":[10.3,123.0],
+  "negros oriental":[9.6,123.0],"cebu":[10.5,123.85],"bohol":[9.85,124.15],"leyte":[10.8,124.85],
+  "southern leyte":[10.35,125.0],"samar":[11.8,125.0],"eastern samar":[11.65,125.5],"biliran":[11.55,124.45],
+  "surigao del norte":[9.8,125.5],"surigao del sur":[8.8,126.1],"agusan del norte":[9.0,125.55],
+  "agusan del sur":[8.45,125.75],"misamis oriental":[8.5,124.9],"misamis occidental":[8.35,123.7],
+  "bukidnon":[8.05,125.05],"lanao del norte":[8.0,123.9],"davao del sur":[6.75,125.35],
+  "davao del norte":[7.55,125.7],"davao oriental":[7.3,126.35],"south cotabato":[6.3,124.85],
+  "sarangani":[5.9,125.15],"sultan kudarat":[6.5,124.4],"cotabato":[7.2,124.85],
+  "zamboanga del sur":[7.85,123.4],"zamboanga del norte":[8.2,123.0],
+  "eastern seaboard of luzon":[15.0,124.5],"eastern seaboard of bicol":[13.8,124.6],
+  "eastern seaboard of quezon–aurora":[15.4,122.7],"northern seaboard of northern samar":[12.7,124.7]
+};
+const SIG_COLOR={1:"#E8A800",2:"#EA6D0A",3:"#D32F2F",4:"#8B0000",5:"#4A0000"};
+const RAIN_COLOR={light:"#7CB9E8",moderate:"#E8A800",heavy:"#EA6D0A",intense:"#D32F2F"};
+
+/* Canonical CPF hub roster — used when the JSON does not supply cpf.hubs.
+   Static logistics infrastructure, so it always renders on the map. */
+const DEFAULT_HUBS=[
+  {name:"Gerona Feedmill",   region:"Central Luzon (Tarlac)",       type:"Feedmill",     lat:15.61, lon:120.60, status:"Normal"},
+  {name:"Isabela Hub",       region:"Cagayan Valley (Isabela)",     type:"Distribution", lat:16.93, lon:121.77, status:"Normal"},
+  {name:"Samal Hub",         region:"Central Luzon (Bataan)",       type:"Distribution", lat:14.77, lon:120.54, status:"Normal"},
+  {name:"Manila Distribution",region:"NCR",                         type:"Distribution", lat:14.60, lon:120.98, status:"Normal"},
+  {name:"Batangas Port Hub", region:"CALABARZON",                   type:"Port / RORO",  lat:13.76, lon:121.06, status:"Normal"},
+  {name:"Cebu Hub",          region:"Central Visayas",              type:"Distribution", lat:10.32, lon:123.90, status:"Normal"},
+  {name:"CDO Hub",           region:"Northern Mindanao (Cagayan de Oro)", type:"Distribution", lat:8.48, lon:124.65, status:"Normal"},
+  {name:"Davao Hub",         region:"Davao Region",                 type:"Distribution", lat:7.19,  lon:125.46, status:"Normal"},
+  {name:"GenSan Hub",        region:"SOCCSKSARGEN (General Santos)", type:"Distribution", lat:6.11,  lon:125.17, status:"Normal"}
+];
+
+/* -------- helpers -------- */
+const $=(s,r=document)=>r.querySelector(s);
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+const has=v=>v!=null&&v!=="";
+const val=v=>has(v)?esc(v):`<span class="muted">${NA}</span>`;
+const arr=v=>Array.isArray(v)?v:[];
+function fmtTime(iso){if(!has(iso))return"—";const d=new Date(iso);if(isNaN(d))return esc(iso);
+  return d.toLocaleString("en-PH",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit",hour12:true});}
+
+/* =========================================================================
+   DERIVATION LOGIC  (title / severity / headline / status)
+   ========================================================================= */
+function maxSignal(d){return arr(d.tcws).reduce((m,t)=>Math.max(m,+t.signal||0),0);}
+
+function deriveTitle(d){
+  const s=d.situation||{}, name=has(s.storm_name_local)?String(s.storm_name_local).trim():"";
+  const tc=s.has_active_tc, mode=(s.mode||"").toLowerCase();
+  if(mode==="typhoon"||(tc&&/typhoon/i.test(s.category||"")&&name))
+    return name?`CPF Logistics Typhoon ${name} Monitoring Dashboard`:"CPF Logistics Typhoon Monitoring Dashboard";
+  if(mode==="tropical_depression"||(tc&&/depression/i.test(s.category||"")))
+    return name?`CPF Logistics Tropical Depression ${name} Monitoring Dashboard`
+               :"CPF Logistics Tropical Depression Monitoring Dashboard";
+  if(tc&&name) return `CPF Logistics Typhoon ${name} Monitoring Dashboard`;
+  if(mode==="advisory") return "CPF Logistics Weather Advisory Monitoring Dashboard";
+  const rain=((d.rainfall||{}).warning_level||"").toLowerCase();
+  const adv=(d.thunderstorm||{}).active||(d.gale_warning||{}).active||["moderate","heavy","intense"].includes(rain);
+  if(adv) return "CPF Logistics Weather Advisory Monitoring Dashboard";
+  return "CPF Logistics Daily Weather Monitoring Dashboard";
+}
+
+function deriveHeadline(d){
+  const s=d.situation||{}, mode=(s.mode||"").toLowerCase(), sig=maxSignal(d);
+  const gale=(d.gale_warning||{}).active, tstorm=(d.thunderstorm||{}).active;
+  const rain=((d.rainfall||{}).warning_level||"").toLowerCase();
+  const opStat=((d.cpf||{}).operational_status||"");
+  const critical = s.severity==="critical" || /suspen/i.test(opStat) || sig>=3
+                 || rain==="intense" || ((d.marine||{}).risk_level==="High"&&gale&&sig>=2);
+
+  if(critical) return H("⛔","Safety first — hold or suspend dispatch where route, wind, rain, or marine risk is unsafe.","critical");
+  if(sig>=1)   return H("🌀","Wind signal areas active — affected routes require dispatch clearance.","high");
+  if(mode==="typhoon"||/typhoon/i.test(s.category||"")) return H("🌀","Typhoon under watch — continue dispatch with route validation for affected corridors.","high");
+  if(gale)     return H("🌊","Rough seas ahead — validate port and RORO status before dispatch.","high");
+  if(rain==="heavy") return H("🌧️","Heavy rain watch — confirm passability and receiving readiness before releasing trips.","high");
+  if(tstorm)   return H("⛈️","Thunderstorms possible — monitor route conditions and driver updates closely.","caution");
+  if(rain==="moderate") return H("🌧️","Rainy routes ahead — validate road condition before dispatch.","caution");
+  if(mode==="tropical_depression") return H("🌀","Tropical depression under watch — heightened monitoring for affected corridors.","caution");
+  if(rain==="light") return H("🌦️","Light rain in some areas — keep wipers ready and dispatch with normal caution.","caution");
+  if(mode==="advisory") return H("🌦️","Weather advisory in effect — dispatch with caution and monitor updates.","caution");
+  return H("☀️","Clear lanes ahead — deliveries may proceed under normal monitoring.","normal");
+  function H(icon,msg,level){
+    if(has(s.headline_override)) msg=s.headline_override;
+    if(has(s.severity)) level=s.severity;
+    return {icon,msg,level};
+  }
+}
+
+const STATUS_MAP={
+  normal :{status:"Normal Monitoring",         action:"Continue normal dispatch",                       sb:"sb-green", acc:"acc-green"},
+  caution:{status:"Heightened Monitoring",      action:"Dispatch with caution",                          sb:"sb-gold",  acc:"acc-gold"},
+  high   :{status:"Route Validation Required",  action:"Require route validation before dispatch",       sb:"sb-orange",acc:"acc-orange"},
+  critical:{status:"Dispatch Hold",             action:"Hold dispatch",                                  sb:"sb-red",   acc:"acc-red"}
+};
+function statusStyleFor(name){
+  const n=(name||"").toLowerCase();
+  if(/suspen/.test(n))            return {sb:"sb-red",   acc:"acc-red"};
+  if(/hold/.test(n))              return {sb:"sb-red",   acc:"acc-red"};
+  if(/validation|required/.test(n))return{sb:"sb-orange",acc:"acc-orange"};
+  if(/heighten/.test(n))          return {sb:"sb-gold",  acc:"acc-gold"};
+  return {sb:"sb-green",acc:"acc-green"};
+}
+function actionForStatus(name){
+  const n=(name||"").toLowerCase();
+  if(/suspen/.test(n))            return "Suspend dispatch until further notice";
+  if(/hold/.test(n))              return "Hold dispatch";
+  if(/validation|required/.test(n))return "Require route validation before dispatch";
+  if(/heighten/.test(n))          return "Dispatch with caution";
+  if(/normal/.test(n))            return "Continue normal dispatch";
+  return "";
+}
+function deriveStatus(d,level){
+  const base=STATUS_MAP[level]||STATUS_MAP.normal;
+  const cpf=d.cpf||{};
+  const status=has(cpf.operational_status)?cpf.operational_status:base.status;
+  const action=has(cpf.dispatch_action)?cpf.dispatch_action
+              :(has(cpf.operational_status)?(actionForStatus(status)||base.action):base.action);
+  const st=has(cpf.operational_status)?statusStyleFor(status):{sb:base.sb,acc:base.acc};
+  return {status,action,sb:st.sb,acc:st.acc};
+}
+
+/* =========================================================================
+   RENDERING
+   ========================================================================= */
+let MAP,LAYERS={},LAYERCTRL;
+
+function render(d,isLive){
+  const title=deriveTitle(d);
+  document.title=title;
+  $("#appTitle").textContent=title;
+  $("#printTitle").textContent=title;
+
+  // data source chip
+  const chip=$("#dataChip"),txt=$("#dataChipTxt");
+  if(isLive){chip.className="chip live";txt.textContent="Data: live JSON";$("#fallbackStrip").classList.remove("show");}
+  else{chip.className="chip fallback";txt.textContent="Data: offline fallback";$("#fallbackStrip").classList.add("show");}
+
+  $("#issuedTxt").textContent=fmtTime((d.meta||{}).issued_at);
+  $("#printSub").textContent=`Management view · Issued ${fmtTime((d.meta||{}).issued_at)}`;
+
+  // banner
+  const hl=deriveHeadline(d);
+  const banner=$("#banner");
+  banner.className="banner lv-"+hl.level;
+  $("#bIcon").textContent=hl.icon;
+  $("#bMsg").textContent=hl.msg;
+  $("#bLevel").textContent=({normal:"Normal",caution:"Caution",high:"High Risk",critical:"Critical"})[hl.level];
+
+  const status=deriveStatus(d,hl.level);
+  buildSections(d,hl,status,isLive);
+  drawMap(d);
+}
+
+/* ---- section builder ---- */
+function card(num,title,acc,bodyNodes,collapsed){
+  const c=el("div","card "+(acc||"acc-green")+(collapsed?" collapsed":""));
+  const head=el("div","card-head",`<span class="cnum">${num}</span><h3>${title}</h3><span class="chev">▾</span>`);
+  head.addEventListener("click",()=>c.classList.toggle("collapsed"));
+  const body=el("div","card-body");
+  (Array.isArray(bodyNodes)?bodyNodes:[bodyNodes]).forEach(n=>{if(n)body.appendChild(typeof n==="string"?el("div",null,n):n);});
+  c.append(head,body);return c;
+}
+
+function buildSections(d,hl,status,isLive){
+  const wrap=$("#sections");wrap.innerHTML="";
+  const s=d.situation||{},cy=d.cyclone||{},cpf=d.cpf||{};
+  const activeTC=(s.mode==="typhoon"||s.mode==="tropical_depression"||s.has_active_tc);
+
+  /* 1. Executive Logistics Summary */
+  wrap.appendChild(card(1,"Executive Logistics Summary",status.acc,
+    el("div","para",has(cpf.executive_summary)?esc(cpf.executive_summary):
+      `<span class="muted">${NA}</span>`)));
+
+  /* 2. Latest PAGASA Bulletin / Forecast */
+  const met=d.meta||{};
+  wrap.appendChild(card(2,"Latest PAGASA Bulletin / Forecast","acc-green",
+    el("div",null,
+      kv("Bulletin",val(met.bulletin_title))+
+      kv("Issued",fmtTime(met.issued_at))+
+      kv("Valid until",has(met.valid_until)?fmtTime(met.valid_until):`<span class="muted">${NA}</span>`)+
+      kv("Next update",has(met.next_update)?fmtTime(met.next_update):`<span class="muted">${NA}</span>`)+
+      `<div class="para" style="margin-top:10px">${val((d.forecast||{}).synopsis)}</div>`+
+      (has(met.bulletin_url)?`<div style="margin-top:10px"><a class="refbtn" style="display:inline-flex;padding:8px 12px" href="${esc(met.bulletin_url)}" target="_blank" rel="noopener"><b>Open PAGASA bulletin ↗</b></a></div>`:""))));
+
+  /* 3. Current Operational Status */
+  wrap.appendChild(card(3,"Current Operational Status",status.acc,
+    el("div",null,
+      `<div class="statusbox ${status.sb}">
+         <div class="slabel">CPF Logistics status</div>
+         <div class="sval">${esc(status.status)}</div>
+         <div class="saction">Dispatch action: ${esc(status.action)}</div>
+       </div>`)));
+
+  /* 4. Priority Routes to Watch */
+  const routes=arr(cpf.priority_routes);
+  wrap.appendChild(card(4,"Priority Routes to Watch","acc-orange",
+    routes.length?routesNode(routes):emptyNode("No priority routes flagged in the latest update.")));
+
+  /* 5. Dispatch Decision Board */
+  wrap.appendChild(card(5,"Dispatch Decision Board",status.acc,decisionBoard(status)));
+
+  /* 6. Forecast Track & Intensity (TC only) */
+  if(activeTC){
+    const track=arr(cy.forecast_track);
+    wrap.appendChild(card(6,"Forecast Track & Intensity","acc-red",
+      el("div",null,
+        kv("System",has(s.storm_name_local)?`${esc(s.category||"TC")} “${esc(s.storm_name_local)}”${has(s.storm_name_intl)?` (${esc(s.storm_name_intl)})`:""}`:val(s.category))+
+        kv("Center",val(cy.center_text))+
+        kv("Position",has(cy.lat)&&has(cy.lon)?`${(+cy.lat).toFixed(1)}°N, ${(+cy.lon).toFixed(1)}°E`:`<span class="muted">${NA}</span>`)+
+        kv("Max winds",has(cy.max_sustained_winds_kph)?`${esc(cy.max_sustained_winds_kph)} km/h`:`<span class="muted">${NA}</span>`)+
+        kv("Gustiness",has(cy.gustiness_kph)?`${esc(cy.gustiness_kph)} km/h`:`<span class="muted">${NA}</span>`)+
+        kv("Pressure",has(cy.central_pressure_hpa)?`${esc(cy.central_pressure_hpa)} hPa`:`<span class="muted">${NA}</span>`)+
+        kv("Movement",val(cy.movement))+
+        (track.length?`<div style="margin-top:10px;font-weight:700;font-size:12px;color:var(--navy-soft)">FORECAST TRACK</div>`+
+          track.map(p=>`<div class="kv"><span class="k">${esc(p.label||p.time||"")}</span><span class="v">${has(p.category)?esc(p.category):""}${has(p.winds_kph)?` · ${esc(p.winds_kph)} km/h`:""}</span></div>`).join(""):""))));
+  }
+
+  /* 7. Wind Signal Areas */
+  const tcws=arr(d.tcws);
+  if(activeTC||tcws.length){
+    wrap.appendChild(card(7,"Wind Signal Areas (TCWS)",tcws.length?"acc-red":"acc-green",
+      tcws.length?el("div",null,tcws.slice().sort((a,b)=>(b.signal||0)-(a.signal||0)).map(t=>
+        `<div class="sig sig-${t.signal}"><span class="sbadge">${esc(t.signal)}</span> Signal No. ${esc(t.signal)}
+           <span class="muted" style="font-weight:500;margin-left:4px">${has(t.wind_range)?esc(t.wind_range):""}${has(t.lead_time)?` · ${esc(t.lead_time)}`:""}</span></div>
+         <div class="para" style="margin:0 0 10px">${arr(t.areas).length?arr(t.areas).map(esc).join(", "):`<span class="muted">${NA}</span>`}</div>`).join("")):
+      emptyNode("No tropical cyclone wind signals are in effect.")));
+  }
+
+  /* 8. Rainfall / Habagat Impact */
+  const rf=d.rainfall||{};
+  wrap.appendChild(card(8,"Rainfall / Habagat Impact",rainAcc((rf.warning_level||"")),
+    el("div",null,
+      kv("Warning level",has(rf.warning_level)?`<span class="tag t-${(rf.warning_level||"").toLowerCase()}">${esc(rf.warning_level)}</span>`:`<span class="muted">${NA}</span>`)+
+      `<div class="para" style="margin:8px 0">${val(rf.outlook)}</div>`+
+      (arr(rf.habagat_affected).length?`<div style="font-weight:700;font-size:12px;color:var(--navy-soft);margin-top:6px">HABAGAT-AFFECTED</div><div class="para">${arr(rf.habagat_affected).map(esc).join(", ")}</div>`:""))));
+
+  /* 9. Marine / Port Risk */
+  const mar=d.marine||{},gale=d.gale_warning||{};
+  wrap.appendChild(card(9,"Marine / Port Risk",(gale.active||mar.risk_level==="High")?"acc-red":"acc-gold",
+    el("div",null,
+      kv("Gale warning",gale.active?`<span class="tag t-high">Active</span>`:`<span class="tag t-normal">None</span>`)+
+      kv("Marine risk",has(mar.risk_level)?`<span class="tag t-${(mar.risk_level||"").toLowerCase()}">${esc(mar.risk_level)}</span>`:`<span class="muted">${NA}</span>`)+
+      `<div class="para" style="margin:8px 0">${val(mar.hazards)}</div>`+
+      (arr(gale.seaboards).length?`<div style="font-weight:700;font-size:12px;color:var(--navy-soft)">GALE SEABOARDS</div><div class="para">${arr(gale.seaboards).map(esc).join(", ")}</div>`:"")+
+      (arr(mar.affected_waters).length?`<div style="font-weight:700;font-size:12px;color:var(--navy-soft);margin-top:6px">AFFECTED WATERS</div><div class="para">${arr(mar.affected_waters).map(esc).join(", ")}</div>`:""))));
+
+  /* 10. CPF Logistics Risk Matrix */
+  const mx=arr(cpf.risk_matrix);
+  wrap.appendChild(card(10,"CPF Logistics Risk Matrix","acc-orange",
+    mx.length?matrixNode(mx):emptyNode("No risk matrix entries in the latest update.")));
+
+  /* 11. Contractor Advisory Message */
+  wrap.appendChild(card(11,"Contractor Advisory Message","acc-gold",
+    el("div","para",has(cpf.contractor_advisory)?esc(cpf.contractor_advisory):`<span class="muted">No contractor advisory issued in the latest update.</span>`)));
+
+  /* 12. Affected Delivery Updates Reminder */
+  wrap.appendChild(card(12,"Affected Delivery Updates — Reminder","acc-gold",
+    el("div","para",has(cpf.affected_deliveries_note)?esc(cpf.affected_deliveries_note):
+      `<span class="muted">Reminder: notify receiving sites and reconfirm delivery windows for any area under a warning or wind signal.</span>`)));
+
+  /* 13. Secondary References */
+  wrap.appendChild(card(13,"Secondary References","acc-green",secondaryRefs()));
+
+  /* 14. Change Log */
+  const log=arr(cpf.change_log);
+  wrap.appendChild(card(14,"Change Log","acc-green",
+    log.length?el("ul","log",log.map(l=>`<li><span class="lt">${fmtTime(l.time)}</span>${esc(l.entry)}</li>`).join("")):
+    emptyNode("No changes recorded.")));
+}
+
+/* ---- small node builders ---- */
+function kv(k,v){return `<div class="kv"><span class="k">${esc(k)}</span><span class="v">${v}</span></div>`;}
+function emptyNode(t){return el("div","para muted",esc(t));}
+function rainAcc(l){l=(l||"").toLowerCase();return l==="intense"?"acc-red":l==="heavy"?"acc-orange":l==="moderate"?"acc-gold":"acc-green";}
+function routesNode(routes){
+  const box=el("div");
+  routes.forEach(r=>{
+    const risk=(r.risk||"normal").toLowerCase();
+    box.appendChild(el("div","rowitem",
+      `<div class="rmain"><div class="rtitle">${val(r.route)}</div>${has(r.note)?`<div class="rnote">${esc(r.note)}</div>`:""}</div>
+       <span class="tag t-${risk}">${esc(r.risk||"—")}</span>`));
+  });
+  return box;
+}
+function matrixNode(mx){
+  const t=el("table","matrix");
+  t.innerHTML=`<tr><th>Area</th><th>Hazard</th><th>L/I</th><th>Action</th></tr>`+
+    mx.map(m=>{const lv=(m.level||"normal").toLowerCase();
+      return `<tr>
+        <td><b>${val(m.area)}</b><br><span class="tag t-${lv}">${esc(m.level||"—")}</span></td>
+        <td>${val(m.hazard)}</td>
+        <td>${esc(m.likelihood||"—")}/${esc(m.impact||"—")}</td>
+        <td>${val(m.action)}</td></tr>`;}).join("");
+  return t;
+}
+function decisionBoard(status){
+  const steps=[
+    {k:"Continue normal dispatch",c:"sb-green"},
+    {k:"Dispatch with caution",c:"sb-gold"},
+    {k:"Require route validation before dispatch",c:"sb-orange"},
+    {k:"Hold dispatch",c:"sb-red"},
+    {k:"Suspend dispatch until further notice",c:"sb-red"}
+  ];
+  const box=el("div");
+  const activeKey=(status.action||"").toLowerCase();
+  steps.forEach(s=>{
+    const on=activeKey.includes(s.k.toLowerCase().split(" ").slice(0,2).join(" "));
+    const node=el("div",null,
+      `<div style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;margin-bottom:6px;
+        ${on?`` :`opacity:.5`};background:var(--${s.c==="sb-green"?"cpf-green-soft":s.c==="sb-gold"?"gold-soft":s.c==="sb-orange"?"orange-soft":"red-soft"});
+        font-weight:${on?"700":"500"};font-size:12.5px;color:${s.c==="sb-green"?"var(--cpf-green-dark)":s.c==="sb-gold"?"#8a6a00":s.c==="sb-orange"?"#a34a00":"#a31515"}">
+        <span style="font-size:15px">${on?"▶":"○"}</span> ${esc(s.k)}${on?' <span style="margin-left:auto;font-size:10px;font-weight:800;letter-spacing:.5px">CURRENT</span>':""}</div>`);
+    box.appendChild(node);
+  });
+  return box;
+}
+function secondaryRefs(){
+  const refs=[
+    {n:"PAGASA (official)",s:"Source of truth",u:"https://www.pagasa.dost.gov.ph/"},
+    {n:"JMA Himawari",s:"Satellite imagery",u:"https://www.data.jma.go.jp/mscweb/data/himawari/"},
+    {n:"RAMMB / CIRA SLIDER",s:"Satellite loops",u:"https://rammb-slider.cira.colostate.edu/"},
+    {n:"NOAA GOES",s:"Satellite imagery",u:"https://www.star.nesdis.noaa.gov/goes/"},
+    {n:"Windy",s:"Wind & rain model",u:"https://www.windy.com/?12.8,122.0,5"},
+    {n:"Zoom Earth",s:"Live storm view",u:"https://zoom.earth/"}
+  ];
+  const box=el("div");
+  box.appendChild(el("div","refnote","🔎 Visual reference only — these do not override PAGASA."));
+  const grid=el("div","refgrid");grid.id="refbtnrow";
+  refs.forEach(r=>{
+    const a=document.createElement("a");a.className="refbtn";a.href=r.u;a.target="_blank";a.rel="noopener";
+    a.innerHTML=`<b>${esc(r.n)}</b><span>${esc(r.s)}</span>`;grid.appendChild(a);
+  });
+  box.appendChild(grid);
+  return box;
+}
+
+/* =========================================================================
+   MAP
+   ========================================================================= */
+function initMap(){
+  MAP=L.map("map",{center:[13.0,123.0],zoom:6,zoomControl:true,worldCopyJump:true});
+  const sat=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    {attribution:"Tiles © Esri — Satellite imagery (visual reference only)",maxZoom:18});
+  const streets=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+    {attribution:"Tiles © Esri",maxZoom:18});
+  const osm=L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {attribution:"© OpenStreetMap contributors",maxZoom:19});
+  sat.addTo(MAP);
+
+  LAYERS.par=L.layerGroup().addTo(MAP);
+  LAYERS.track=L.layerGroup().addTo(MAP);
+  LAYERS.signals=L.layerGroup().addTo(MAP);
+  LAYERS.rain=L.layerGroup().addTo(MAP);
+  LAYERS.marine=L.layerGroup().addTo(MAP);
+  LAYERS.hubs=L.layerGroup().addTo(MAP);
+
+  LAYERCTRL=L.control.layers(
+    {"Satellite (Esri)":sat,"Streets":streets,"OpenStreetMap":osm},
+    {"PAR boundary":LAYERS.par,"Storm track & wind":LAYERS.track,"Wind signals (TCWS)":LAYERS.signals,
+     "Rainfall / Habagat":LAYERS.rain,"Marine / gale":LAYERS.marine,"CPF hubs":LAYERS.hubs},
+    {collapsed:false,position:"topright"}).addTo(MAP);
+}
+
+function centroid(name){return PH_CENTROIDS[(name||"").trim().toLowerCase()]||null;}
+
+function drawMap(d){
+  if(!MAP)return;
+  Object.values(LAYERS).forEach(g=>g.clearLayers());
+  const cy=d.cyclone||{},cpf=d.cpf||{};
+
+  // PAR boundary
+  const PAR=[[5,115],[15,115],[21,120],[25,120],[25,135],[5,135]];
+  L.polygon(PAR,{color:"#17233D",weight:1.5,dashArray:"6 6",fill:false,opacity:.7})
+    .bindTooltip("Philippine Area of Responsibility (PAR)",{sticky:true}).addTo(LAYERS.par);
+
+  // Storm track
+  const track=arr(cy.forecast_track).filter(p=>has(p.lat)&&has(p.lon));
+  if(track.length){
+    const pts=track.map(p=>[+p.lat,+p.lon]);
+    L.polyline(pts,{color:"#D32F2F",weight:3,opacity:.85}).addTo(LAYERS.track);
+    track.forEach((p,i)=>{
+      const cur=i===0;
+      L.circleMarker([+p.lat,+p.lon],{radius:cur?9:6,color:"#fff",weight:2,
+        fillColor:cur?"#D32F2F":"#EA6D0A",fillOpacity:1})
+        .bindPopup(`<b>${esc(p.label||("+"+i))}</b><br>${esc(p.category||"")}${has(p.winds_kph)?` · ${esc(p.winds_kph)} km/h`:""}<br><span class="pp-sub">${(+p.lat).toFixed(1)}°N, ${(+p.lon).toFixed(1)}°E</span>`)
+        .addTo(LAYERS.track);
+    });
+    // wind extent
+    if(has(cy.wind_extent_km)&&has(cy.lat)&&has(cy.lon)){
+      L.circle([+cy.lat,+cy.lon],{radius:(+cy.wind_extent_km)*1000,color:"#EA6D0A",weight:1.5,
+        fillColor:"#EA6D0A",fillOpacity:.08,dashArray:"4 6"})
+        .bindTooltip(`Approx. wind extent ~${esc(cy.wind_extent_km)} km`).addTo(LAYERS.track);
+    }
+  } else if(has(cy.lat)&&has(cy.lon)){
+    L.circleMarker([+cy.lat,+cy.lon],{radius:9,color:"#fff",weight:2,fillColor:"#D32F2F",fillOpacity:1})
+      .bindPopup(`<b>Storm center</b><br>${val(cy.center_text)}`).addTo(LAYERS.track);
+  }
+
+  // TCWS signals
+  arr(d.tcws).forEach(t=>{
+    const col=SIG_COLOR[t.signal]||"#E8A800";
+    arr(t.areas).forEach(a=>{
+      const c=centroid(a);if(!c)return;
+      L.circleMarker(c,{radius:8,color:"#fff",weight:1.5,fillColor:col,fillOpacity:.9})
+        .bindPopup(`<b>Signal No. ${esc(t.signal)}</b><br>${esc(a)}<br><span class="pp-sub">${esc(t.wind_range||"")}</span>`)
+        .addTo(LAYERS.signals);
+    });
+  });
+
+  // Rainfall
+  arr((d.rainfall||{}).areas).forEach(a=>{
+    if(!has(a.lat)||!has(a.lon))return;
+    const col=RAIN_COLOR[(a.level||"").toLowerCase()]||"#7CB9E8";
+    L.circle([+a.lat,+a.lon],{radius:45000,color:col,weight:1.5,fillColor:col,fillOpacity:.28})
+      .bindPopup(`<b>Rainfall — ${esc(a.level||"")}</b><br>${esc(a.name||"")}`).addTo(LAYERS.rain);
+  });
+
+  // Marine / gale
+  arr((d.gale_warning||{}).areas).forEach(a=>{
+    if(!has(a.lat)||!has(a.lon))return;
+    L.marker([+a.lat,+a.lon],{icon:emojiIcon("🌊")})
+      .bindPopup(`<b>Gale warning</b><br>${esc(a.name||"")}`).addTo(LAYERS.marine);
+  });
+
+  // CPF hubs
+  const hubs=arr(cpf.hubs).length?arr(cpf.hubs):DEFAULT_HUBS;
+  hubs.forEach(h=>{
+    if(!has(h.lat)||!has(h.lon))return;
+    const col=hubColor(h.status);
+    L.marker([+h.lat,+h.lon],{icon:hubIcon(col)})
+      .bindPopup(`<div class="pp-hub">${esc(h.name)}</div><span class="pp-sub">${esc(h.region||"")} · ${esc(h.type||"")}</span><br><span class="tag ${hubTag(h.status)}" style="margin-top:4px">${esc(h.status||"—")}</span>`)
+      .addTo(LAYERS.hubs);
+  });
+
+  updateMapTitle(d);
+}
+function updateMapTitle(d){
+  const s=d.situation||{};
+  let t="Philippine Area of Responsibility";
+  if(has(s.storm_name_local)) t=`${esc(s.category||"TC")} “${esc(s.storm_name_local)}”${has(s.storm_name_intl)?` (${esc(s.storm_name_intl)})`:""} · within PAR`;
+  else if(s.mode==="advisory") t="Weather Advisory — Philippine Area of Responsibility";
+  $("#mapTitle").innerHTML=t;
+}
+function emojiIcon(e){return L.divIcon({html:`<div style="font-size:20px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.3))">${e}</div>`,className:"",iconSize:[24,24],iconAnchor:[12,12]});}
+function hubColor(st){st=(st||"").toLowerCase();
+  if(/suspen|hold/.test(st))return"#D32F2F";
+  if(/validation/.test(st))return"#EA6D0A";
+  if(/heighten/.test(st))return"#E8A800";
+  return"#0A7B3E";}
+function hubTag(st){st=(st||"").toLowerCase();
+  if(/suspen|hold/.test(st))return"t-critical";
+  if(/validation/.test(st))return"t-high";
+  if(/heighten/.test(st))return"t-caution";
+  return"t-normal";}
+function hubIcon(col){return L.divIcon({className:"",iconSize:[18,18],iconAnchor:[9,9],
+  html:`<div style="width:16px;height:16px;border-radius:4px;background:${col};border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4);transform:rotate(45deg)"></div>`});}
+
+/* =========================================================================
+   FETCH + LIFECYCLE
+   ========================================================================= */
+async function loadData(){
+  try{
+    const res=await fetch(`${DATA_URL}?t=${Date.now()}`,{cache:"no-store"});
+    if(!res.ok)throw new Error("HTTP "+res.status);
+    const data=await res.json();
+    render(data,true);
+  }catch(err){
+    console.warn("Live JSON unavailable, using fallback:",err.message);
+    render(FALLBACK_DATA,false);
+  }
+}
+
+function clockTick(){
+  $("#clock").textContent=new Date().toLocaleTimeString("en-PH",{hour:"numeric",minute:"2-digit",second:"2-digit",hour12:true});
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+  try{ if(window.L){ initMap(); } else { throw new Error("Leaflet not loaded"); } }
+  catch(e){ console.warn("Map init failed:",e.message);
+    const m=$("#map"); if(m) m.innerHTML='<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:#5A6A8A;text-align:center;padding:24px"><div style="font-size:32px">🗺</div><div style="font-weight:600">Map unavailable</div><div style="font-size:12px;max-width:280px">The mapping library could not load. The operations panel below remains fully live from PAGASA data.</div></div>'; }
+  loadData();
+  clockTick();setInterval(clockTick,1000);
+  setInterval(loadData,REFRESH_MS);
+
+  $("#refreshBtn").addEventListener("click",()=>{ $("#refreshBtn").textContent="⟳ …"; loadData().finally(()=>$("#refreshBtn").innerHTML='⟳ <span class="lbl">Refresh</span>'); });
+  $("#printBtn").addEventListener("click",()=>window.print());
+  $("#expandAll").addEventListener("click",()=>document.querySelectorAll(".card").forEach(c=>c.classList.remove("collapsed")));
+  $("#collapseAll").addEventListener("click",()=>document.querySelectorAll(".card").forEach(c=>c.classList.add("collapsed")));
+  setTimeout(()=>MAP&&MAP.invalidateSize(),300);
+  window.addEventListener("resize",()=>MAP&&MAP.invalidateSize());
+});
+</script>
+</body>
+</html>
