@@ -1,0 +1,50 @@
+name: Update PAGASA weather
+
+# Runs the scraper on a schedule and commits latest_pagasa_weather.json when it changes.
+# GitHub cron is best-effort (often a few minutes late) and pauses after ~60 days of
+# repo inactivity — a manual "Run workflow" click resumes it.
+
+on:
+  schedule:
+    - cron: "5,35 * * * *"        # twice per hour (UTC)
+  workflow_dispatch:               # manual "Run workflow" button (use this to test)
+
+permissions:
+  contents: write                  # allow the action to commit the updated JSON
+
+concurrency:
+  group: update-weather
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies (if any)
+        run: |
+          if [ -s scripts/requirements.txt ]; then
+            pip install -r scripts/requirements.txt
+          fi
+
+      - name: Fetch latest PAGASA data
+        run: python scripts/fetch_pagasa.py
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "cpf-weather-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add latest_pagasa_weather.json
+          if git diff --staged --quiet; then
+            echo "No change in PAGASA data — nothing to commit."
+          else
+            git commit -m "Auto-update PAGASA weather ($(date -u +%FT%TZ))"
+            git push
+          fi
