@@ -2,7 +2,7 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "Tropical Cyclone Bulletin No. 15",
-    "issued_at": "2026-07-11T15:10:30+08:00",
+    "issued_at": "2026-07-11T15:42:33+08:00",
     "valid_until": "",
     "next_update": "",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
@@ -33,10 +33,26 @@
         "lon": 124.2,
         "category": "Typhoon",
         "winds_kph": 140
+      },
+      {
+        "label": "Jul 11 8PM",
+        "lat": 27.39,
+        "lon": 121.85,
+        "category": "Typhoon",
+        "winds_kph": 140
       }
     ]
   },
-  "tcws": [],
+  "tcws": [
+    {
+      "signal": 1,
+      "wind_range": "",
+      "lead_time": "",
+      "areas": [
+        "Batanes"
+      ]
+    }
+  ],
   "rainfall": {
     "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 20 issued at 11:00 AM today for the heavy rainfall outlook due to the Southwest Monsoon. Severe Winds",
     "warning_level": "Heavy",
@@ -146,8 +162,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-11T15:10:30+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-07-11T15:10:30+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-07-11T15:42:33+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-07-11T15:42:33+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
