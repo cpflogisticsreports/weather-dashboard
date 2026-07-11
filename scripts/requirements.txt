@@ -1,0 +1,6 @@
+# The scraper (fetch_pagasa.py) uses only the Python standard library,
+# so no packages are required. If you later switch to richer HTML parsing,
+# uncomment these:
+# requests
+# beautifulsoup4
+# lxml
