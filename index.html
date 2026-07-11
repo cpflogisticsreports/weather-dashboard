@@ -499,7 +499,7 @@ function deriveStatus(d,level){
 /* =========================================================================
    RENDERING
    ========================================================================= */
-let MAP,LAYERS={},LAYERCTRL;
+let MAP,LAYERS={},LAYERCTRL,didFit=false;
 
 function render(d,isLive){
   const title=deriveTitle(d);
@@ -810,6 +810,19 @@ function drawMap(d){
   });
 
   updateMapTitle(d);
+
+  // One-time fit: if a storm track exists, frame the map to include the track
+  // and the CPF hubs so the storm is visible even when it's outside PAR.
+  // Only fits once so it never fights the user's manual pan/zoom on refresh.
+  if(!didFit){
+    const pts=[];
+    arr(cy.forecast_track).forEach(p=>{ if(has(p.lat)&&has(p.lon)) pts.push([+p.lat,+p.lon]); });
+    if(has(cy.lat)&&has(cy.lon)) pts.push([+cy.lat,+cy.lon]);
+    if(pts.length){
+      hubs.forEach(h=>{ if(has(h.lat)&&has(h.lon)) pts.push([+h.lat,+h.lon]); });
+      try{ MAP.fitBounds(L.latLngBounds(pts).pad(0.12),{maxZoom:6}); didFit=true; }catch(e){}
+    }
+  }
 }
 function updateMapTitle(d){
   const s=d.situation||{};
