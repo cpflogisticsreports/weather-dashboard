@@ -2,7 +2,7 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "No active tropical cyclone",
-    "issued_at": "2026-07-13T04:02:51+08:00",
+    "issued_at": "2026-07-13T06:33:42+08:00",
     "valid_until": "",
     "next_update": "",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA forecast",
@@ -41,7 +41,7 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Synopsis Southwest Monsoon affecting Luzon and Visayas. Forecast Weather Conditions Place Weather Condition Caused By Impacts Metro Manila, Ilocos Region, Cordillera Administrative Region, Western Visayas, Zambales, Bataan, Tarlac, Pampanga, Bulacan, Cavite, Laguna, Batangas, Rizal, Occidental Mindoro, Oriental Mindoro, Romblon, and Palawan Cloudy skies with scattered rains and thunderstorms Southwest Monsoon Possible flash floods or landslides due to moderate to heavy rains The rest of Luzon an",
+    "synopsis": "Synopsis Southwest Monsoon affecting Luzon. Forecast Weather Conditions Place Weather Condition Caused By Impacts Metro Manila, Ilocos Region, Cordillera Administrative Region, Zambales, Bataan, Tarlac, Pampanga, Bulacan, Cavite, Laguna, Batangas, Rizal, Occidental Mindoro, Oriental Mindoro, and Palawan Cloudy skies with scattered rains and thunderstorms Southwest Monsoon Possible flash floods or landslides due to moderate to heavy rains The rest of Luzon Partly cloudy to cloudy skies with isola",
     "regions": []
   },
   "cpf": {
@@ -128,8 +128,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-13T04:02:51+08:00",
-        "entry": "Auto-check at 2026-07-13T04:02:51+08:00: no active tropical cyclone found on PAGASA. Showing daily-weather mode."
+        "time": "2026-07-13T06:33:42+08:00",
+        "entry": "Auto-check at 2026-07-13T06:33:42+08:00: no active tropical cyclone found on PAGASA. Showing daily-weather mode."
       }
     ]
   }
