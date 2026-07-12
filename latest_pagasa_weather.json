@@ -2,7 +2,7 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "No active tropical cyclone",
-    "issued_at": "2026-07-12T23:39:58+08:00",
+    "issued_at": "2026-07-13T04:02:51+08:00",
     "valid_until": "",
     "next_update": "",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA forecast",
@@ -128,8 +128,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-12T23:39:58+08:00",
-        "entry": "Auto-check at 2026-07-12T23:39:58+08:00: no active tropical cyclone found on PAGASA. Showing daily-weather mode."
+        "time": "2026-07-13T04:02:51+08:00",
+        "entry": "Auto-check at 2026-07-13T04:02:51+08:00: no active tropical cyclone found on PAGASA. Showing daily-weather mode."
       }
     ]
   }
