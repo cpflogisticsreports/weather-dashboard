@@ -1,52 +1,27 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 16F",
-    "issued_at": "2026-07-12T05:31:58+08:00",
+    "bulletin_title": "No active tropical cyclone",
+    "issued_at": "2026-07-12T15:17:52+08:00",
     "valid_until": "",
     "next_update": "",
-    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
+    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "typhoon",
-    "has_active_tc": true,
-    "storm_name_local": "INDAY",
-    "storm_name_intl": null,
-    "category": "Typhoon",
+    "mode": "clear",
+    "has_active_tc": false,
+    "storm_name_local": "",
+    "storm_name_intl": "",
+    "category": "",
     "severity": "",
     "headline_override": ""
   },
-  "cyclone": {
-    "center_text": "",
-    "lat": 27.0,
-    "lon": 122.7,
-    "max_sustained_winds_kph": 140,
-    "gustiness_kph": 170,
-    "central_pressure_hpa": "",
-    "movement": "Westward at 40 km/h",
-    "wind_extent_km": "",
-    "forecast_track": [
-      {
-        "label": "Now",
-        "lat": 27.0,
-        "lon": 122.7,
-        "category": "Typhoon",
-        "winds_kph": 140
-      },
-      {
-        "label": "Jul 12 2AM",
-        "lat": 26.51,
-        "lon": 121.5,
-        "category": "Typhoon",
-        "winds_kph": 140
-      }
-    ]
-  },
+  "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "heavy rainfall and severe winds may still be experienced in localities outside the forecast confidence cone. Refer to “Other Hazards affecting Land Areas” for more details. Furthermore, the",
-    "warning_level": "Heavy",
+    "outlook": "",
+    "warning_level": "",
     "habagat_affected": [],
     "areas": []
   },
@@ -66,16 +41,16 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "",
+    "synopsis": "Synopsis Southwest Monsoon affecting Luzon and Visayas. Forecast Weather Conditions Place Weather Condition Caused By Impacts Zambales, Bataan, and Occidental Mindoro Occasional rains Southwest Monsoon Possible flash floods or landslides due to moderate to heavy rains Metro Manila, the rest of Luzon, and Visayas Cloudy skies with scattered rains and thunderstorms Southwest Monsoon Possible flash floods or landslides due to moderate to at times heavy rains Mindanao Partly cloudy to cloudy skies w",
     "regions": []
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Typhoon “INDAY” is being tracked by PAGASA. No CPF hub currently under a wind signal; continue monitoring.",
+    "executive_summary": "No active tropical cyclone. Deliveries may proceed under normal monitoring; verify local road/weather conditions before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
-    "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
+    "contractor_advisory": "",
     "affected_deliveries_note": "",
     "hubs": [
       {
@@ -153,8 +128,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-12T05:31:58+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-07-12T05:31:58+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-07-12T15:17:52+08:00",
+        "entry": "Auto-check at 2026-07-12T15:17:52+08:00: no active tropical cyclone found on PAGASA. Showing daily-weather mode."
       }
     ]
   }
