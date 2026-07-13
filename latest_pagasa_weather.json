@@ -2,7 +2,7 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-07-13T09:03:55+08:00",
+    "issued_at": "2026-07-13T09:16:40+08:00",
     "valid_until": "",
     "next_update": "",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
@@ -130,8 +130,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-13T09:03:55+08:00",
-        "entry": "Auto-check at 2026-07-13T09:03:55+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-07-13T09:16:40+08:00",
+        "entry": "Auto-check at 2026-07-13T09:16:40+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
