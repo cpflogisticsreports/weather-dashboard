@@ -1,15 +1,15 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "No active tropical cyclone",
-    "issued_at": "2026-07-13T06:33:42+08:00",
+    "bulletin_title": "PAGASA Daily Weather Forecast",
+    "issued_at": "2026-07-13T09:03:55+08:00",
     "valid_until": "",
     "next_update": "",
-    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA forecast",
+    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "clear",
+    "mode": "advisory",
     "has_active_tc": false,
     "storm_name_local": "",
     "storm_name_intl": "",
@@ -20,14 +20,16 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "",
-    "warning_level": "",
-    "habagat_affected": [],
+    "outlook": "Southwest Monsoon affecting Luzon. Forecast Weather Conditions Place Weather Condition Caused By Impacts Metro Manila, Ilocos Region, Cordillera Administrative Region, Zambales, Bataan, Tarlac, Pampanga, Bulacan, Cavite, Laguna, Batangas, Rizal, Occidental Mindoro, Oriental Mindoro, and Palawan Cloudy skies with scattered rains and thunderstorms Southwest Monsoon Possible flash floods or landslide",
+    "warning_level": "Moderate",
+    "habagat_affected": [
+      "Southwest Monsoon areas"
+    ],
     "areas": []
   },
   "thunderstorm": {
-    "active": false,
-    "advisory": "",
+    "active": true,
+    "advisory": "Southwest Monsoon affecting Luzon. Forecast Weather Conditions Place Weather Condition Caused By Impacts Metro Manila, Ilocos Region, Cordillera Administrative Region, Zambales, Bataan, Tarlac, Pampanga, Bulacan, Cavite, Laguna, Batangas, Rizal, Occidental Mindoro, Oriental Mindoro, and Palawan Cloudy skies with scattered rains and thunderstorms Southwest Monsoon Possible flash floods or landslide",
     "areas": []
   },
   "gale_warning": {
@@ -41,13 +43,13 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Synopsis Southwest Monsoon affecting Luzon. Forecast Weather Conditions Place Weather Condition Caused By Impacts Metro Manila, Ilocos Region, Cordillera Administrative Region, Zambales, Bataan, Tarlac, Pampanga, Bulacan, Cavite, Laguna, Batangas, Rizal, Occidental Mindoro, Oriental Mindoro, and Palawan Cloudy skies with scattered rains and thunderstorms Southwest Monsoon Possible flash floods or landslides due to moderate to heavy rains The rest of Luzon Partly cloudy to cloudy skies with isola",
+    "synopsis": "Southwest Monsoon affecting Luzon. Forecast Weather Conditions Place Weather Condition Caused By Impacts Metro Manila, Ilocos Region, Cordillera Administrative Region, Zambales, Bataan, Tarlac, Pampanga, Bulacan, Cavite, Laguna, Batangas, Rizal, Occidental Mindoro, Oriental Mindoro, and Palawan Cloudy skies with scattered rains and thunderstorms Southwest Monsoon Possible flash floods or landslide",
     "regions": []
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "No active tropical cyclone. Deliveries may proceed under normal monitoring; verify local road/weather conditions before dispatch.",
+    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting Luzon. Forecast Weather Conditions Place Weather Condition Caused By Impacts Metro Manila, Ilocos Region, Cordillera Administrative Region, Zambales, Bataan, Tarlac, Pampanga, Bulacan, Cavite, Laguna, Batangas, Rizal, Occidental Mindoro, Oriental Mindoro, and Palawan Cloudy skies with scattered rains and thunderstorms Southwest Monsoon Possible flash floods or landslide Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -128,8 +130,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-13T06:33:42+08:00",
-        "entry": "Auto-check at 2026-07-13T06:33:42+08:00: no active tropical cyclone found on PAGASA. Showing daily-weather mode."
+        "time": "2026-07-13T09:03:55+08:00",
+        "entry": "Auto-check at 2026-07-13T09:03:55+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
