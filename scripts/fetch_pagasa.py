@@ -428,27 +428,68 @@ def auto_contractor(hubs):
 # --------------------------------------------------------------------------- #
 # Clear / advisory state (no active cyclone)
 # --------------------------------------------------------------------------- #
-def assemble_clear(synopsis, source_url):
+def parse_daily(text):
+    """Parse PAGASA's daily weather forecast page for synopsis + advisory signals."""
+    d = {"synopsis":"","issued":"","advisory":False,"rain_level":"","thunderstorm":False,"monsoon":False}
+    m = re.search(r"Synopsis\b[\s:·|>-]*(.*?)(Extremes for the 24|Satellite Image|Surface Map|Predicted|We always find|$)",
+                  text, re.I|re.S)
+    if m:
+        d["synopsis"] = re.sub(r"\s+"," ", m.group(1)).strip(" ·|-:>")[:400]
+    m = re.search(r"Issued at[:\s]*([0-9:]+\s*[AP]M,?\s*\d{1,2}\s+\w+\s+\d{4})", text, re.I)
+    if m: d["issued"] = m.group(1)
+    s = d["synopsis"].lower()
+    if any(k in s for k in ["southwest monsoon","habagat","northeast monsoon","amihan"]): d["monsoon"]=True
+    if "thunderstorm" in s: d["thunderstorm"]=True
+    if any(k in s for k in ["scattered rain","occasional rain","monsoon rain","rains and thunderstorm","rainshower","cloudy with rain"]):
+        d["rain_level"]="Moderate"
+    if "heavy rain" in s: d["rain_level"]="Heavy"
+    d["advisory"] = bool(d["monsoon"] or d["thunderstorm"] or d["rain_level"] or
+                         any(k in s for k in ["itcz","intertropical","low pressure","lpa","trough",
+                                              "easterlies","tail-end","shear line","cold front"]))
+    return d
+
+
+def assemble_clear(daily, source_url):
+    """Daily / advisory state (no active cyclone). Uses PAGASA's daily synopsis
+    so the dashboard is useful for planning even with no storm."""
     stamp = now_iso()
+    daily = daily or {}
+    synopsis = daily.get("synopsis","")
+    advisory = daily.get("advisory", False)
+    rain_level = daily.get("rain_level","")
+    tstorm = daily.get("thunderstorm", False)
+    mode = "advisory" if advisory else "clear"
+
+    exec_summary = (("Weather advisory in effect. " if advisory else "No active tropical cyclone. ")
+        + (synopsis + " " if synopsis else "")
+        + ("Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch."
+           if advisory else
+           "Deliveries may proceed under normal monitoring; verify local road/weather conditions before dispatch."))
+
     return {
-        "meta": {"source":"PAGASA (auto-parsed)","bulletin_title":"No active tropical cyclone",
+        "meta": {"source":"PAGASA (auto-parsed)",
+                 "bulletin_title": "PAGASA Daily Weather Forecast" if advisory else "No active tropical cyclone",
                  "issued_at":stamp,"valid_until":"","next_update":"",
-                 "prepared_by":"Automated (fetch_pagasa.py) — verify against official PAGASA forecast",
+                 "prepared_by":"Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
                  "bulletin_url":source_url},
-        "situation": {"mode":"clear","has_active_tc":False,"storm_name_local":"",
+        "situation": {"mode":mode,"has_active_tc":False,"storm_name_local":"",
                       "storm_name_intl":"","category":"","severity":"","headline_override":""},
         "cyclone": {}, "tcws": [],
-        "rainfall": {"outlook":"","warning_level":"","habagat_affected":[],"areas":[]},
-        "thunderstorm": {"active":False,"advisory":"","areas":[]},
+        "rainfall": {"outlook": (synopsis if rain_level else ""), "warning_level": rain_level,
+                     "habagat_affected": (["Southwest Monsoon areas"] if daily.get("monsoon") else []), "areas": []},
+        "thunderstorm": {"active": tstorm, "advisory": (synopsis if tstorm else ""), "areas": []},
         "gale_warning": {"active":False,"seaboards":[],"areas":[]},
         "marine": {"hazards":"","affected_waters":[],"risk_level":""},
-        "forecast": {"synopsis":synopsis or "No active tropical cyclone inside PAR. Monitor PAGASA daily forecast.","regions":[]},
+        "forecast": {"synopsis": synopsis or "No active tropical cyclone inside PAR. Monitor PAGASA daily forecast.",
+                     "regions":[]},
         "cpf": {"operational_status":"","dispatch_action":"",
-                "executive_summary":"No active tropical cyclone. Deliveries may proceed under normal monitoring; verify local road/weather conditions before dispatch.",
+                "executive_summary": exec_summary,
                 "priority_routes":[],"risk_matrix":[],"contractor_advisory":"",
                 "affected_deliveries_note":"","hubs":[{"name":h["name"],"region":h["region"],"type":h["type"],
                     "lat":h["lat"],"lon":h["lon"],"status":"Normal"} for h in HUBS],
-                "change_log":[{"time":stamp,"entry":f"Auto-check at {stamp}: no active tropical cyclone found on PAGASA. Showing daily-weather mode."}]},
+                "change_log":[{"time":stamp,
+                    "entry":f"Auto-check at {stamp}: no active tropical cyclone. Daily forecast ingested "
+                            f"({'advisory' if advisory else 'fair weather'}). Verify against official PAGASA daily forecast."}]},
     }
 
 
@@ -492,18 +533,16 @@ def main():
               f"({len(facts.get('signals',[]))} signal levels)")
         data = assemble(facts, bulletin_src)
     else:
-        # No active cyclone -> try the daily forecast for a synopsis, write clear state.
-        synopsis = ""
+        # No active cyclone -> parse the daily forecast so calm days are still useful.
+        daily = {}
         for url in FORECAST_URLS:
             try:
-                ftxt = strip_tags(fetch(url))
-                m = re.search(r"(synopsis|forecast weather condition).{0,600}", ftxt, re.I|re.S)
-                if m: synopsis = re.sub(r"\s+", " ", m.group(0)).strip()[:500]
-                break
+                daily = parse_daily(strip_tags(fetch(url)))
+                if daily.get("synopsis"): break
             except Exception:
                 continue
-        print("[ok] no active cyclone; writing daily-weather (clear) state.")
-        data = assemble_clear(synopsis, bulletin_src)
+        print(f"[ok] no active cyclone; daily forecast ({'advisory' if daily.get('advisory') else 'fair'}).")
+        data = assemble_clear(daily, bulletin_src)
 
     with open(OUT_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
