@@ -1,126 +1,130 @@
 {
-  "_README": "CPF LOGISTICS WEATHER DATA FILE. Edit this file to update the dashboard. PAGASA is the ONLY source of truth. Leave a field as empty string or empty array if PAGASA has not specified it — the dashboard will display 'Not specified in latest PAGASA bulletin'. Do NOT invent values. Set situation.mode to one of: typhoon | tropical_depression | advisory | clear. The dashboard title, headline banner, operational status and colors are derived automatically from this data unless you override them under cpf.*.",
-
   "meta": {
-    "source": "PAGASA",
-    "bulletin_title": "Severe Weather Bulletin No. 12",
-    "issued_at": "2026-07-11T05:00:00+08:00",
-    "valid_until": "2026-07-11T11:00:00+08:00",
-    "next_update": "2026-07-11T11:00:00+08:00",
-    "prepared_by": "CPF Logistics — Strategic Improvement",
+    "source": "PAGASA (auto-parsed)",
+    "bulletin_title": "PAGASA Daily Weather Forecast",
+    "issued_at": "2026-07-13T11:17:40+08:00",
+    "valid_until": "",
+    "next_update": "",
+    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
-
   "situation": {
-    "mode": "typhoon",
-    "has_active_tc": true,
-    "storm_name_local": "INDAY",
-    "storm_name_intl": "BAVI",
-    "category": "Typhoon",
+    "mode": "advisory",
+    "has_active_tc": false,
+    "storm_name_local": "",
+    "storm_name_intl": "",
+    "category": "",
     "severity": "",
     "headline_override": ""
   },
-
-  "cyclone": {
-    "center_text": "445 km East of Virac, Catanduanes",
-    "lat": 13.6,
-    "lon": 128.6,
-    "max_sustained_winds_kph": 120,
-    "gustiness_kph": 150,
-    "central_pressure_hpa": 970,
-    "movement": "West Northwest at 20 km/h",
-    "wind_extent_km": 300,
-    "forecast_track": [
-      { "label": "Now",  "time": "2026-07-11T05:00:00+08:00", "lat": 13.6, "lon": 128.6, "category": "Typhoon", "winds_kph": 120 },
-      { "label": "24H",  "time": "2026-07-12T05:00:00+08:00", "lat": 14.4, "lon": 125.1, "category": "Typhoon", "winds_kph": 130 },
-      { "label": "48H",  "time": "2026-07-13T05:00:00+08:00", "lat": 15.5, "lon": 122.0, "category": "Typhoon", "winds_kph": 140 },
-      { "label": "72H",  "time": "2026-07-14T05:00:00+08:00", "lat": 16.8, "lon": 119.4, "category": "Severe Tropical Storm", "winds_kph": 95 },
-      { "label": "96H",  "time": "2026-07-15T05:00:00+08:00", "lat": 18.2, "lon": 117.2, "category": "Tropical Storm", "winds_kph": 75 }
-    ]
-  },
-
-  "tcws": [
-    { "signal": 2, "wind_range": "62–88 km/h", "lead_time": "24 hours", "areas": ["Catanduanes", "Camarines Sur", "Camarines Norte", "Albay"] },
-    { "signal": 1, "wind_range": "39–61 km/h", "lead_time": "36 hours", "areas": ["Sorsogon", "Masbate", "Northern Samar", "Quezon (incl. Polillo Is.)", "Aurora", "Marinduque"] }
-  ],
-
+  "cyclone": {},
+  "tcws": [],
   "rainfall": {
-    "outlook": "100–200 mm within 24 hours over Bicol Region, Quezon, and the eastern portion of Central Luzon; 50–100 mm over the rest of Southern Luzon.",
-    "warning_level": "Heavy",
-    "habagat_affected": ["Occidental Mindoro", "Palawan", "Antique", "Aklan"],
-    "areas": [
-      { "name": "Bicol Region", "lat": 13.4, "lon": 123.4, "level": "Heavy" },
-      { "name": "Quezon", "lat": 14.0, "lon": 122.0, "level": "Heavy" },
-      { "name": "Occidental Mindoro (Habagat)", "lat": 12.9, "lon": 120.9, "level": "Moderate" }
-    ]
+    "outlook": "Southwest Monsoon affecting Luzon. Forecast Weather Conditions Place Weather Condition Caused By Impacts Metro Manila, Ilocos Region, Cordillera Administrative Region, Zambales, Bataan, Tarlac, Pampanga, Bulacan, Cavite, Laguna, Batangas, Rizal, Occidental Mindoro, Oriental Mindoro, and Palawan Cloudy skies with scattered rains and thunderstorms Southwest Monsoon Possible flash floods or landslide",
+    "warning_level": "Moderate",
+    "habagat_affected": [
+      "Southwest Monsoon areas"
+    ],
+    "areas": []
   },
-
   "thunderstorm": {
     "active": true,
-    "advisory": "Moderate to heavy rains with lightning and strong winds expected over Metro Manila, Rizal, Laguna, and Cavite within the next 2 hours.",
-    "areas": ["Metro Manila", "Rizal", "Laguna", "Cavite"]
+    "advisory": "Southwest Monsoon affecting Luzon. Forecast Weather Conditions Place Weather Condition Caused By Impacts Metro Manila, Ilocos Region, Cordillera Administrative Region, Zambales, Bataan, Tarlac, Pampanga, Bulacan, Cavite, Laguna, Batangas, Rizal, Occidental Mindoro, Oriental Mindoro, and Palawan Cloudy skies with scattered rains and thunderstorms Southwest Monsoon Possible flash floods or landslide",
+    "areas": []
   },
-
   "gale_warning": {
-    "active": true,
-    "seaboards": ["Eastern seaboard of Luzon", "Northern seaboard of Northern Samar"],
-    "areas": [
-      { "name": "Eastern seaboard of Bicol", "lat": 13.8, "lon": 124.6 },
-      { "name": "Eastern seaboard of Quezon–Aurora", "lat": 15.4, "lon": 122.6 }
-    ]
+    "active": false,
+    "seaboards": [],
+    "areas": []
   },
-
   "marine": {
-    "hazards": "Rough to very rough seas (2.8 to 4.5 m) over the eastern and northern seaboards of Luzon. Sea travel is risky for all types of vessels; RORO and small craft should not venture out over affected waters.",
-    "affected_waters": ["Eastern waters of Bicol", "Waters east of Catanduanes", "Northern waters of Aurora–Quezon"],
-    "risk_level": "High"
+    "hazards": "",
+    "affected_waters": [],
+    "risk_level": ""
   },
-
   "forecast": {
-    "synopsis": "Typhoon INDAY and the Southwest Monsoon (Habagat) will bring rains and gusty winds over Luzon and the western sections of Visayas. Flooding and rain-induced landslides are possible in areas with heavy or prolonged rainfall.",
-    "regions": [
-      { "region": "Metro Manila", "condition": "Cloudy with rains and thunderstorms", "impact": "Flooding possible in low-lying and poorly drained areas" },
-      { "region": "Bicol Region", "condition": "Stormy", "impact": "Flooding, landslides, disrupted road access" },
-      { "region": "Central Luzon", "condition": "Cloudy with scattered rains", "impact": "Localized flooding on eastern corridors" },
-      { "region": "Western Visayas", "condition": "Occasional rains (Habagat)", "impact": "Rough coastal waters" }
-    ]
+    "synopsis": "Southwest Monsoon affecting Luzon. Forecast Weather Conditions Place Weather Condition Caused By Impacts Metro Manila, Ilocos Region, Cordillera Administrative Region, Zambales, Bataan, Tarlac, Pampanga, Bulacan, Cavite, Laguna, Batangas, Rizal, Occidental Mindoro, Oriental Mindoro, and Palawan Cloudy skies with scattered rains and thunderstorms Southwest Monsoon Possible flash floods or landslide",
+    "regions": []
   },
-
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Typhoon INDAY is tracking WNW toward eastern Luzon with TCWS #2 over Bicol. Habagat is enhancing rains over Southern Luzon and Western Visayas. Bicol and Quezon corridors face flood and wind risk; western seaboards face marine risk affecting RORO. Central Luzon feedmill operations remain workable under monitoring.",
-    "priority_routes": [
-      { "route": "Manila – Bicol (Maharlika Hwy / Andaya Hwy)", "risk": "Critical", "note": "Flood-prone at Camarines Sur; TCWS #2 in effect" },
-      { "route": "Manila – Quezon (Bicol-bound)", "risk": "High", "note": "Heavy rain; validate underpasses and low bridges" },
-      { "route": "Batangas – Mindoro (RORO)", "risk": "High", "note": "Gale warning; confirm port and RORO status" },
-      { "route": "Manila – Central Luzon (NLEX/SCTEX)", "risk": "Moderate", "note": "Thunderstorm cells; normal caution" },
-      { "route": "Iloilo – Antique (Habagat)", "risk": "Moderate", "note": "Occasional rains; monitor coastal sections" }
-    ],
-    "risk_matrix": [
-      { "area": "Bicol / Catanduanes", "hazard": "Wind Signal #2 + Heavy rain", "likelihood": "High", "impact": "High", "level": "Critical", "action": "Hold dispatch" },
-      { "area": "Quezon / Southern Luzon", "hazard": "Heavy rain + flooding", "likelihood": "High", "impact": "Medium", "level": "High", "action": "Route validation required" },
-      { "area": "Batangas–Mindoro seaboard", "hazard": "Gale warning / rough seas", "likelihood": "High", "impact": "High", "level": "Critical", "action": "Suspend RORO dispatch" },
-      { "area": "Metro Manila / Rizal", "hazard": "Thunderstorm advisory", "likelihood": "Medium", "impact": "Medium", "level": "Caution", "action": "Dispatch with caution" },
-      { "area": "Central Luzon (Tarlac/Pampanga)", "hazard": "Scattered rains", "likelihood": "Low", "impact": "Low", "level": "Normal", "action": "Continue normal dispatch" },
-      { "area": "Western Visayas", "hazard": "Habagat rains / coastal", "likelihood": "Medium", "impact": "Low", "level": "Caution", "action": "Dispatch with caution" }
-    ],
-    "contractor_advisory": "To all hauling partners: Trips to Bicol are on HOLD until TCWS is lowered and passability is confirmed. RORO trips via Batangas–Mindoro are SUSPENDED under the gale warning — do not proceed until PAGASA lifts the warning and the port confirms sailing. For Southern Luzon trips, validate route passability and receiving-site readiness before releasing. Report driver location and any road closures to Logistics Control immediately.",
-    "affected_deliveries_note": "Notify receiving sites in TCWS #2 areas (Catanduanes, Camarines Sur/Norte, Albay) of expected delays. Reconfirm delivery windows for Bicol and Mindoro-bound loads once signals are lowered. Hold cold-chain (reefer) trips to affected corridors to protect load integrity.",
+    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting Luzon. Forecast Weather Conditions Place Weather Condition Caused By Impacts Metro Manila, Ilocos Region, Cordillera Administrative Region, Zambales, Bataan, Tarlac, Pampanga, Bulacan, Cavite, Laguna, Batangas, Rizal, Occidental Mindoro, Oriental Mindoro, and Palawan Cloudy skies with scattered rains and thunderstorms Southwest Monsoon Possible flash floods or landslide Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "priority_routes": [],
+    "risk_matrix": [],
+    "contractor_advisory": "",
+    "affected_deliveries_note": "",
     "hubs": [
-      { "name": "Gerona Feedmill", "region": "Central Luzon (Tarlac)", "type": "Feedmill", "lat": 15.6344949, "lon": 120.5933201, "status": "Normal" },
-      { "name": "Ilagan Feedmill", "region": "Cagayan Valley (Isabela)", "type": "Feedmill", "lat": 17.1227406, "lon": 121.851358, "status": "Normal" },
-      { "name": "Samal Feedmill", "region": "Central Luzon (Bataan)", "type": "Feedmill", "lat": 14.7647281, "lon": 120.4945722, "status": "Normal" },
-      { "name": "Batangas Port Hub", "region": "CALABARZON", "type": "Port / RORO", "lat": 13.7557, "lon": 121.0579, "status": "Route Validation" },
-      { "name": "Cebu Hub", "region": "Central Visayas", "type": "Distribution", "lat": 10.2929, "lon": 123.9016, "status": "Normal" },
-      { "name": "CDO Hub", "region": "Northern Mindanao (Cagayan de Oro)", "type": "Distribution", "lat": 8.4765, "lon": 124.6412, "status": "Normal" },
-      { "name": "Davao Hub", "region": "Davao Region", "type": "Distribution", "lat": 7.0646, "lon": 125.6079, "status": "Normal" },
-      { "name": "GenSan Hub", "region": "SOCCSKSARGEN (General Santos)", "type": "Distribution", "lat": 6.1129, "lon": 125.1717, "status": "Normal" }
+      {
+        "name": "Gerona Feedmill",
+        "region": "Central Luzon (Tarlac)",
+        "type": "Feedmill",
+        "lat": 15.6344949,
+        "lon": 120.5933201,
+        "status": "Normal"
+      },
+      {
+        "name": "Ilagan Feedmill",
+        "region": "Cagayan Valley (Isabela)",
+        "type": "Feedmill",
+        "lat": 17.1227406,
+        "lon": 121.851358,
+        "status": "Normal"
+      },
+      {
+        "name": "Samal Feedmill",
+        "region": "Central Luzon (Bataan)",
+        "type": "Feedmill",
+        "lat": 14.7647281,
+        "lon": 120.4945722,
+        "status": "Normal"
+      },
+      {
+        "name": "Batangas Port Hub",
+        "region": "CALABARZON",
+        "type": "Port / RORO",
+        "lat": 13.7557,
+        "lon": 121.0579,
+        "status": "Normal"
+      },
+      {
+        "name": "Cebu Hub",
+        "region": "Central Visayas",
+        "type": "Distribution",
+        "lat": 10.2929,
+        "lon": 123.9016,
+        "status": "Normal"
+      },
+      {
+        "name": "CDO Hub",
+        "region": "Northern Mindanao (Cagayan de Oro)",
+        "type": "Distribution",
+        "lat": 8.4765,
+        "lon": 124.6412,
+        "status": "Normal"
+      },
+      {
+        "name": "Davao Hub",
+        "region": "Davao Region",
+        "type": "Distribution",
+        "lat": 7.0646,
+        "lon": 125.6079,
+        "status": "Normal"
+      },
+      {
+        "name": "GenSan Hub",
+        "region": "SOCCSKSARGEN (General Santos)",
+        "type": "Distribution",
+        "lat": 6.1129,
+        "lon": 125.1717,
+        "status": "Normal"
+      }
     ],
     "change_log": [
-      { "time": "2026-07-11T05:10:00+08:00", "entry": "SWB #12 ingested. Bicol corridors elevated to Dispatch Hold; Batangas–Mindoro RORO set to Suspension per gale warning." },
-      { "time": "2026-07-11T02:00:00+08:00", "entry": "TCWS #2 raised over Bicol. Naga/Bicol hub status changed to Dispatch Hold." },
-      { "time": "2026-07-10T20:00:00+08:00", "entry": "Heightened monitoring activated for Southern Luzon corridors ahead of INDAY approach." }
+      {
+        "time": "2026-07-13T11:17:40+08:00",
+        "entry": "Auto-check at 2026-07-13T11:17:40+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+      }
     ]
   }
 }
