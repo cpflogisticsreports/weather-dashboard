@@ -906,30 +906,37 @@ function hubIcon(col){return L.divIcon({className:"",iconSize:[18,18],iconAnchor
 
 /* =========================================================================
    LIVE WEATHER LAYERS (single map) — visual reference only
-   Off · Wind (animated, Open-Meteo + leaflet-velocity) · Rain (RainViewer radar)
-   · Clouds (RainViewer infrared satellite). PAGASA remains the source of truth.
+   Off · Wind (Open-Meteo + leaflet-velocity) · Rain (RainViewer radar)
+   · Clouds (JMA Himawari-9 IR real-time loop). PAGASA remains source of truth.
    ========================================================================= */
-const WX={mode:"off",host:"",radar:[],clouds:[],frames:[],idx:0,timer:null,
-          tile:null,wind:null,speed:750,opacity:0.72,ready:false};
+const JMA_TARGETTIMES="https://www.jma.go.jp/bosai/himawari/data/satimg/targetTimes_fd.json";
+function jmaTileUrl(bt,vt){ return `https://www.jma.go.jp/bosai/himawari/data/satimg/${bt}/fd/${vt}/B13/TBB/{z}/{x}/{y}.jpg`; }
+
+const WX={mode:"off",host:"",radar:[],clouds:[],layers:[],group:null,idx:0,timer:null,
+          wind:null,speed:700,opacity:0.72,ready:false,tileErrs:0};
 
 async function initWeather(){
   if(!MAP) return;
+  // RainViewer radar (rain)
   try{
-    const res=await fetch("https://api.rainviewer.com/public/weather-maps.json",{cache:"no-store"});
-    const j=await res.json();
+    const j=await (await fetch("https://api.rainviewer.com/public/weather-maps.json",{cache:"no-store"})).json();
     WX.host=j.host||"https://tilecache.rainviewer.com";
     WX.radar=[...((j.radar&&j.radar.past)||[]),...((j.radar&&j.radar.nowcast)||[])];
-    WX.clouds=(j.satellite&&j.satellite.infrared)?j.satellite.infrared:[];
   }catch(e){ console.warn("RainViewer unavailable:",e.message); }
+  // JMA Himawari-9 real-time frames (clouds)
+  try{
+    const times=await (await fetch(JMA_TARGETTIMES,{cache:"no-store"})).json();
+    if(Array.isArray(times)&&times.length) WX.clouds=times.slice(-12); // last 12 frames
+  }catch(e){ console.warn("Himawari targetTimes unavailable:",e.message); }
   WX.ready=true;
-  setWx("rain");   // default layer on load (change to "off"/"clouds"/"wind" if preferred)
+  setWx("clouds");   // default layer on load (change to "off"/"rain"/"wind" if preferred)
 }
 
 function teardownWx(){
   if(WX.timer){clearInterval(WX.timer);WX.timer=null;}
-  if(WX.tile){ try{MAP.removeLayer(WX.tile);}catch(e){} WX.tile=null; }
+  if(WX.group){ try{MAP.removeLayer(WX.group);}catch(e){} WX.group=null; }
   if(WX.wind){ try{MAP.removeLayer(WX.wind);}catch(e){} WX.wind=null; }
-  WX.frames=[];
+  WX.layers=[]; WX.tileErrs=0;
   $("#wxbar").classList.remove("loop");
   $("#wxSpin").textContent="";
 }
@@ -941,42 +948,53 @@ function setWx(mode){
   document.querySelectorAll(".wxbtn").forEach(b=>b.classList.toggle("active",b.dataset.wx===mode));
   if(mode==="off") return;
   if(mode==="wind"){ loadWind(); return; }
-  // rain / clouds loops
-  WX.frames = mode==="rain" ? WX.radar : WX.clouds;
-  if(!WX.frames.length){
-    $("#wxSpin").textContent = mode==="rain" ? "No rain data now" : "No cloud data now";
+  buildLoop(mode);
+}
+
+/* Preload all frames as tile layers (opacity 0 except newest), then fade between them. */
+function buildLoop(mode){
+  const frames = mode==="clouds" ? WX.clouds : WX.radar;
+  if(!frames.length){
+    $("#wxSpin").textContent = mode==="clouds" ? "Cloud imagery loading…" : "No rain data now";
     return;
   }
+  WX.group=L.layerGroup().addTo(MAP);
+  WX.layers=frames.map((f,i)=>{
+    const url = mode==="clouds" ? jmaTileUrl(f.basetime,f.validtime) : `${WX.host}${f.path}/256/{z}/{x}/{y}/4/1_1.png`;
+    const layer=L.tileLayer(url,{opacity:i===frames.length-1?WX.opacity:0,zIndex:250,
+      maxNativeZoom:mode==="clouds"?6:7,maxZoom:19,minZoom:3,
+      attribution:(mode==="clouds"?"Cloud imagery © JMA Himawari-9 (real-time loop)":"Radar © RainViewer")+" — visual reference only"});
+    layer.on("tileerror",()=>{ if(++WX.tileErrs>=10){ $("#wxSpin").textContent=(mode==="clouds"?"Clouds":"Rain")+" temporarily unavailable"; } });
+    WX.group.addLayer(layer);
+    return {layer,f};
+  });
   $("#wxbar").classList.add("loop");
-  const slider=$("#satSlider"); slider.max=String(WX.frames.length-1); slider.value=String(WX.frames.length-1);
-  WX.idx=WX.frames.length-1;
+  const slider=$("#satSlider"); slider.max=String(WX.layers.length-1); slider.value=String(WX.layers.length-1);
+  WX.idx=WX.layers.length-1;
   showFrame(WX.idx);
   startLoop();
 }
 
-function frameUrl(f){
-  return WX.mode==="rain"
-    ? `${WX.host}${f.path}/256/{z}/{x}/{y}/4/1_1.png`   // radar, colour scheme 4
-    : `${WX.host}${f.path}/256/{z}/{x}/{y}/0/0_0.png`;  // infrared clouds
+function frameLabel(mode,f){
+  if(mode==="clouds"){                 // f.validtime = YYYYMMDDHHMMSS (UTC)
+    const vt=f.validtime, y=+vt.slice(0,4),mo=+vt.slice(4,6),d=+vt.slice(6,8),h=+vt.slice(8,10),mi=+vt.slice(10,12);
+    const dt=new Date(Date.UTC(y,mo-1,d,h,mi)); dt.setUTCHours(dt.getUTCHours()+8);
+    return String(dt.getUTCHours()).padStart(2,"0")+":"+String(dt.getUTCMinutes()).padStart(2,"0")+" PHT";
+  }
+  return new Date(f.time*1000).toLocaleTimeString("en-PH",{hour:"numeric",minute:"2-digit",hour12:true});
 }
 function showFrame(i){
-  if(!WX.frames.length) return;
-  i=(i+WX.frames.length)%WX.frames.length;
-  const f=WX.frames[i];
-  const layer=L.tileLayer(frameUrl(f),{opacity:0,zIndex:250,maxNativeZoom:7,maxZoom:19,
-    attribution:(WX.mode==="rain"?"Radar":"IR clouds")+" © RainViewer (visual reference only)"});
-  layer.addTo(MAP);
-  const prev=WX.tile;
-  const reveal=()=>{ layer.setOpacity(WX.opacity); if(prev&&prev!==layer){ try{MAP.removeLayer(prev);}catch(e){} } };
-  layer.once("load",reveal); setTimeout(reveal,600);
-  WX.tile=layer; WX.idx=i;
-  $("#satTime").textContent=new Date(f.time*1000).toLocaleString("en-PH",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit",hour12:true});
+  if(!WX.layers.length) return;
+  i=(i+WX.layers.length)%WX.layers.length;
+  WX.layers.forEach((o,j)=>o.layer.setOpacity(j===i?WX.opacity:0));
+  WX.idx=i;
+  $("#satTime").textContent=frameLabel(WX.mode,WX.layers[i].f)+"  ("+(i+1)+"/"+WX.layers.length+")";
   $("#satSlider").value=String(i);
 }
 function startLoop(){
   stopLoop();
   $("#satPlay").textContent="⏸";
-  WX.timer=setInterval(()=>{ showFrame(WX.idx>=WX.frames.length-1?0:WX.idx+1); },WX.speed);
+  WX.timer=setInterval(()=>{ showFrame(WX.idx>=WX.layers.length-1?0:WX.idx+1); },WX.speed);
 }
 function stopLoop(){ if(WX.timer){clearInterval(WX.timer);WX.timer=null;} $("#satPlay").textContent="▶"; }
 
