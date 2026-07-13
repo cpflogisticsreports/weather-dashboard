@@ -12,6 +12,10 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
+<!-- leaflet-velocity (animated wind) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-velocity@1.10.2/dist/leaflet-velocity.min.css" />
+<script src="https://unpkg.com/leaflet-velocity@1.10.2/dist/leaflet-velocity.min.js"></script>
+
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -104,18 +108,8 @@ header.appbar{
 
 /* ---------- Layout ---------- */
 .layout{display:flex;flex:1 1 auto;min-height:0}
-.mapwrap{position:relative;flex:1 1 auto;min-width:0;display:flex;flex-direction:column}
-.maptabs{display:flex;gap:6px;padding:6px 8px;background:#0d1f39;flex:none}
-.mtab{font:600 12px/1 var(--sans);color:#cdd7e6;background:transparent;border:0;border-radius:8px;
-  padding:8px 13px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.15s}
-.mtab.active{background:#fff;color:var(--navy)}
-.mtab:not(.active):hover{background:rgba(255,255,255,.14);color:#fff}
-.mapview{position:relative;flex:1 1 auto;min-height:0}
+.mapwrap{position:relative;flex:1 1 auto;min-width:0}
 #map{position:absolute;inset:0;background:#dbe6f0}
-#windyFrame{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
-.livenote{position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:900;
-  background:rgba(23,35,61,.86);color:#fff;padding:5px 13px;border-radius:999px;font-size:11px;
-  pointer-events:none;max-width:92%;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.2)}
 .panel{
   width:var(--panel-w);flex:none;background:var(--bg);border-left:1px solid var(--border);
   overflow-y:auto;padding:14px 14px 40px;
@@ -282,26 +276,36 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
 #printHeader{display:none;padding:0 0 10px;border-bottom:2px solid var(--cpf-green);margin-bottom:12px}
 #printHeader h1{font-family:var(--display);font-size:20px;margin:0 0 4px;color:var(--cpf-green-dark)}
 #printHeader .ph-sub{font-size:12px;color:var(--navy-soft)}
-/* ---------- Satellite loop playback bar ---------- */
-#satbar{
+/* ---------- Weather layer toggle + loop playback bar ---------- */
+#wxbar{
   position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:900;
-  display:none;align-items:center;gap:8px;padding:7px 10px;border-radius:12px;
-  background:rgba(23,35,61,.88);color:#fff;box-shadow:0 4px 16px rgba(0,0,0,.3);
-  font-size:12px;max-width:94%;flex-wrap:wrap;justify-content:center;backdrop-filter:blur(4px);
+  display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:12px;
+  background:rgba(23,35,61,.9);color:#fff;box-shadow:0 4px 16px rgba(0,0,0,.3);
+  font-size:12px;max-width:96%;flex-wrap:wrap;justify-content:center;backdrop-filter:blur(4px);
 }
-#satbar.show{display:flex}
-#satbar button{
+.wxseg{display:inline-flex;background:rgba(255,255,255,.1);border-radius:9px;padding:2px;gap:2px}
+.wxseg .wxbtn{
+  background:transparent;border:0;color:#cdd7e6;font:600 12px/1 var(--sans);
+  padding:6px 11px;border-radius:7px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:.15s;
+}
+.wxseg .wxbtn:hover{color:#fff}
+.wxseg .wxbtn.active{background:#fff;color:var(--navy)}
+.wxseg .wxbtn.wx-wind.active{background:#8AF0A9;color:#0a3d1e}
+.wxseg .wxbtn.wx-rain.active{background:#7CB9E8;color:#0a2a45}
+.wxseg .wxbtn.wx-clouds.active{background:#E6ECF5;color:var(--navy)}
+#wxbar .loopctl{display:none;align-items:center;gap:8px}
+#wxbar.loop .loopctl{display:flex}
+#wxbar button.pbtn{
   background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);color:#fff;
   width:30px;height:30px;border-radius:7px;cursor:pointer;font-size:13px;display:flex;
   align-items:center;justify-content:center;line-height:1;padding:0;
 }
-#satbar button:hover{background:rgba(255,255,255,.28)}
-#satbar #satToggle{width:auto;padding:0 10px;gap:6px;font-weight:600}
-#satbar #satToggle.on{background:var(--cpf-green);border-color:var(--cpf-green)}
-#satbar input[type=range]{width:150px;accent-color:#8AF0A9;cursor:pointer}
-#satbar .sattime{font-variant-numeric:tabular-nums;font-weight:600;min-width:118px;text-align:center}
-#satbar .satcap{font-size:10px;opacity:.75;width:100%;text-align:center;margin-top:2px}
-@media (max-width:900px){ #satbar{bottom:10px} #satbar input[type=range]{width:110px} }
+#wxbar button.pbtn:hover{background:rgba(255,255,255,.28)}
+#wxbar input[type=range]{width:130px;accent-color:#8AF0A9;cursor:pointer}
+#wxbar .sattime{font-variant-numeric:tabular-nums;font-weight:600;min-width:112px;text-align:center}
+#wxbar .satcap{font-size:10px;opacity:.75;width:100%;text-align:center;margin-top:2px}
+#wxbar .wxspin{font-size:10px;opacity:.85}
+@media (max-width:900px){ #wxbar{bottom:10px} #wxbar input[type=range]{width:96px} .wxseg .wxbtn{padding:6px 8px} }
 </style>
 </head>
 <body class="show-map">
@@ -342,26 +346,24 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
 <div class="layout">
   <!-- LEFT: Map -->
   <div class="mapwrap">
-    <div class="maptabs">
-      <button class="mtab active" data-view="ops" id="tabOps">🗺 Operations Map</button>
-      <button class="mtab" data-view="live" id="tabLive">🛰 Live Satellite / Wind</button>
-    </div>
-    <div class="mapview" id="opsView">
-      <div class="maptitle" id="mapTitle">Philippine Area of Responsibility</div>
-      <div id="map"></div>
-      <div id="satbar">
-        <button id="satToggle" class="on" title="Show/hide satellite cloud loop">🛰 Clouds</button>
-        <button id="satPrev" title="Previous frame">⏮</button>
-        <button id="satPlay" title="Play / pause">⏸</button>
-        <button id="satNext" title="Next frame">⏭</button>
+    <div class="maptitle" id="mapTitle">Philippine Area of Responsibility</div>
+    <div id="map"></div>
+    <div id="wxbar">
+      <div class="wxseg" id="wxseg">
+        <button class="wxbtn active" data-wx="off">✕ Off</button>
+        <button class="wxbtn wx-wind" data-wx="wind">💨 Wind</button>
+        <button class="wxbtn wx-rain" data-wx="rain">🌧 Rain</button>
+        <button class="wxbtn wx-clouds" data-wx="clouds">🛰 Clouds</button>
+      </div>
+      <div class="loopctl">
+        <button class="pbtn" id="satPrev" title="Previous frame">⏮</button>
+        <button class="pbtn" id="satPlay" title="Play / pause">⏸</button>
+        <button class="pbtn" id="satNext" title="Next frame">⏭</button>
         <input id="satSlider" type="range" min="0" max="0" value="0" />
         <span class="sattime" id="satTime">—</span>
-        <div class="satcap">Infrared satellite loop — visual reference only. Official advisory: PAGASA.</div>
       </div>
-    </div>
-    <div class="mapview" id="liveView" style="display:none">
-      <div class="livenote">Live wind &amp; satellite (source: Windy) — visual reference only. PAGASA remains the source of truth.</div>
-      <iframe id="windyFrame" title="Live wind and satellite" loading="lazy" allow="fullscreen"></iframe>
+      <span class="wxspin" id="wxSpin"></span>
+      <div class="satcap">Live weather layers — visual reference only. Official advisory: PAGASA.</div>
     </div>
   </div>
 
@@ -903,67 +905,126 @@ function hubIcon(col){return L.divIcon({className:"",iconSize:[18,18],iconAnchor
   html:`<div style="width:16px;height:16px;border-radius:4px;background:${col};border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4);transform:rotate(45deg)"></div>`});}
 
 /* =========================================================================
-   SATELLITE CLOUD LOOP (infrared, animated) — visual reference only
-   Uses RainViewer's public infrared satellite tiles (Web Mercator, no key).
-   Over the Philippines this is geostationary (Himawari-derived) cloud imagery.
-   PAGASA remains the source of truth; this layer never overrides it.
+   LIVE WEATHER LAYERS (single map) — visual reference only
+   Off · Wind (animated, Open-Meteo + leaflet-velocity) · Rain (RainViewer radar)
+   · Clouds (RainViewer infrared satellite). PAGASA remains the source of truth.
    ========================================================================= */
-const SAT={frames:[],idx:0,host:"",layer:null,playing:true,visible:true,timer:null,speed:750,opacity:0.7};
+const WX={mode:"off",host:"",radar:[],clouds:[],frames:[],idx:0,timer:null,
+          tile:null,wind:null,speed:750,opacity:0.72,ready:false};
 
-async function initSatelliteLoop(){
+async function initWeather(){
   if(!MAP) return;
   try{
     const res=await fetch("https://api.rainviewer.com/public/weather-maps.json",{cache:"no-store"});
     const j=await res.json();
-    SAT.host=j.host||"https://tilecache.rainviewer.com";
-    SAT.frames=(j.satellite&&j.satellite.infrared)?j.satellite.infrared:[];
-    if(!SAT.frames.length){ console.warn("No satellite frames available."); return; }
-    const bar=$("#satbar"); bar.classList.add("show");
-    const slider=$("#satSlider"); slider.max=String(SAT.frames.length-1); slider.value=String(SAT.frames.length-1);
-    SAT.idx=SAT.frames.length-1;
-    showSatFrame(SAT.idx);
-    wireSatControls();
-    startSatLoop();
-  }catch(e){ console.warn("Satellite loop unavailable:",e.message); }
+    WX.host=j.host||"https://tilecache.rainviewer.com";
+    WX.radar=[...((j.radar&&j.radar.past)||[]),...((j.radar&&j.radar.nowcast)||[])];
+    WX.clouds=(j.satellite&&j.satellite.infrared)?j.satellite.infrared:[];
+  }catch(e){ console.warn("RainViewer unavailable:",e.message); }
+  WX.ready=true;
+  setWx("rain");   // default layer on load (change to "off"/"clouds"/"wind" if preferred)
 }
-function satUrl(f){ return `${SAT.host}${f.path}/512/{z}/{x}/{y}/0/0_0.png`; }
-function showSatFrame(i){
-  if(!SAT.frames.length) return;
-  i=(i+SAT.frames.length)%SAT.frames.length;
-  const f=SAT.frames[i];
-  const layer=L.tileLayer(satUrl(f),{opacity:0,zIndex:250,maxNativeZoom:7,maxZoom:19,
-    attribution:"IR clouds © RainViewer (visual reference only)"});
+
+function teardownWx(){
+  if(WX.timer){clearInterval(WX.timer);WX.timer=null;}
+  if(WX.tile){ try{MAP.removeLayer(WX.tile);}catch(e){} WX.tile=null; }
+  if(WX.wind){ try{MAP.removeLayer(WX.wind);}catch(e){} WX.wind=null; }
+  WX.frames=[];
+  $("#wxbar").classList.remove("loop");
+  $("#wxSpin").textContent="";
+}
+
+function setWx(mode){
+  if(!MAP) return;
+  teardownWx();
+  WX.mode=mode;
+  document.querySelectorAll(".wxbtn").forEach(b=>b.classList.toggle("active",b.dataset.wx===mode));
+  if(mode==="off") return;
+  if(mode==="wind"){ loadWind(); return; }
+  // rain / clouds loops
+  WX.frames = mode==="rain" ? WX.radar : WX.clouds;
+  if(!WX.frames.length){
+    $("#wxSpin").textContent = mode==="rain" ? "No rain data now" : "No cloud data now";
+    return;
+  }
+  $("#wxbar").classList.add("loop");
+  const slider=$("#satSlider"); slider.max=String(WX.frames.length-1); slider.value=String(WX.frames.length-1);
+  WX.idx=WX.frames.length-1;
+  showFrame(WX.idx);
+  startLoop();
+}
+
+function frameUrl(f){
+  return WX.mode==="rain"
+    ? `${WX.host}${f.path}/256/{z}/{x}/{y}/4/1_1.png`   // radar, colour scheme 4
+    : `${WX.host}${f.path}/256/{z}/{x}/{y}/0/0_0.png`;  // infrared clouds
+}
+function showFrame(i){
+  if(!WX.frames.length) return;
+  i=(i+WX.frames.length)%WX.frames.length;
+  const f=WX.frames[i];
+  const layer=L.tileLayer(frameUrl(f),{opacity:0,zIndex:250,maxNativeZoom:7,maxZoom:19,
+    attribution:(WX.mode==="rain"?"Radar":"IR clouds")+" © RainViewer (visual reference only)"});
   layer.addTo(MAP);
-  const prev=SAT.layer;
-  const reveal=()=>{ if(SAT.visible) layer.setOpacity(SAT.opacity); if(prev&&prev!==layer){ try{MAP.removeLayer(prev);}catch(e){} } };
+  const prev=WX.tile;
+  const reveal=()=>{ layer.setOpacity(WX.opacity); if(prev&&prev!==layer){ try{MAP.removeLayer(prev);}catch(e){} } };
   layer.once("load",reveal); setTimeout(reveal,600);
-  SAT.layer=layer; SAT.idx=i;
-  const f2=SAT.frames[i];
-  $("#satTime").textContent=new Date(f2.time*1000).toLocaleString("en-PH",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit",hour12:true});
+  WX.tile=layer; WX.idx=i;
+  $("#satTime").textContent=new Date(f.time*1000).toLocaleString("en-PH",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit",hour12:true});
   $("#satSlider").value=String(i);
 }
-function startSatLoop(){
-  stopSatLoop();
-  SAT.playing=true; $("#satPlay").textContent="⏸";
-  SAT.timer=setInterval(()=>{
-    let n=SAT.idx+1;
-    // brief pause on the newest frame
-    if(SAT.idx===SAT.frames.length-1){ /* loop back */ n=0; }
-    showSatFrame(n);
-  },SAT.speed);
+function startLoop(){
+  stopLoop();
+  $("#satPlay").textContent="⏸";
+  WX.timer=setInterval(()=>{ showFrame(WX.idx>=WX.frames.length-1?0:WX.idx+1); },WX.speed);
 }
-function stopSatLoop(){ if(SAT.timer){clearInterval(SAT.timer);SAT.timer=null;} SAT.playing=false; $("#satPlay").textContent="▶"; }
-function wireSatControls(){
-  $("#satPlay").addEventListener("click",()=>{ SAT.playing?stopSatLoop():startSatLoop(); });
-  $("#satPrev").addEventListener("click",()=>{ stopSatLoop(); showSatFrame(SAT.idx-1); });
-  $("#satNext").addEventListener("click",()=>{ stopSatLoop(); showSatFrame(SAT.idx+1); });
-  $("#satSlider").addEventListener("input",e=>{ stopSatLoop(); showSatFrame(+e.target.value); });
-  $("#satToggle").addEventListener("click",()=>{
-    SAT.visible=!SAT.visible;
-    const t=$("#satToggle"); t.classList.toggle("on",SAT.visible);
-    if(SAT.visible){ if(SAT.layer)SAT.layer.setOpacity(SAT.opacity); startSatLoop(); }
-    else{ stopSatLoop(); if(SAT.layer)SAT.layer.setOpacity(0); }
+function stopLoop(){ if(WX.timer){clearInterval(WX.timer);WX.timer=null;} $("#satPlay").textContent="▶"; }
+
+/* ---- Animated wind (leaflet-velocity fed by a live Open-Meteo grid) ---- */
+async function loadWind(){
+  if(typeof L.velocityLayer!=="function"){ $("#wxSpin").textContent="Wind layer unavailable"; return; }
+  $("#wxSpin").textContent="Loading wind…";
+  try{
+    const lats=[], lons=[];
+    const LA1=22, LA2=4, LO1=116, LO2=130, D=2;            // grid over PH region
+    for(let la=LA1; la>=LA2; la-=D) for(let lo=LO1; lo<=LO2; lo+=D){ lats.push(la); lons.push(lo); }
+    const nx=(LO2-LO1)/D+1, ny=(LA1-LA2)/D+1;
+    const url="https://api.open-meteo.com/v1/forecast"
+      +`?latitude=${lats.join(",")}&longitude=${lons.join(",")}`
+      +"&current=wind_speed_10m,wind_direction_10m&wind_speed_unit=ms";
+    const res=await fetch(url,{cache:"no-store"});
+    const j=await res.json();
+    const arr=Array.isArray(j)?j:[j];
+    const u=[], v=[];
+    for(const loc of arr){
+      const spd=(loc.current&&loc.current.wind_speed_10m)||0;
+      const dir=(loc.current&&loc.current.wind_direction_10m)||0;
+      const r=dir*Math.PI/180;
+      u.push(-spd*Math.sin(r)); v.push(-spd*Math.cos(r));   // meteorological "from" direction
+    }
+    const hdr=(num)=>({parameterUnit:"m.s-1",parameterCategory:2,parameterNumber:num,
+      nx,ny,lo1:LO1,la1:LA1,lo2:LO2,la2:LA2,dx:D,dy:D,refTime:new Date().toISOString()});
+    const data=[{header:hdr(2),data:u},{header:hdr(3),data:v}];
+    WX.wind=L.velocityLayer({
+      displayValues:true,
+      displayOptions:{velocityType:"Wind",position:"bottomleft",emptyString:"No wind data",
+        speedUnit:"k/h",angleConvention:"bearingCW",displayPosition:"bottomleft"},
+      data, maxVelocity:35, velocityScale:0.012, particleAge:64, lineWidth:1.6,
+      colorScale:["#e6f7ff","#a9dbf5","#8AF0A9","#ffe08a","#ff9e5e","#ff5e5e"]
+    });
+    WX.wind.addTo(MAP);
+    $("#wxSpin").textContent="";
+  }catch(e){ console.warn("Wind load failed:",e.message); $("#wxSpin").textContent="Wind unavailable"; }
+}
+
+function wireWeatherToggle(){
+  document.querySelectorAll(".wxbtn").forEach(b=>{
+    b.addEventListener("click",()=>{ if(WX.ready||b.dataset.wx==="off") setWx(b.dataset.wx); });
   });
+  $("#satPlay").addEventListener("click",()=>{ WX.timer?stopLoop():startLoop(); });
+  $("#satPrev").addEventListener("click",()=>{ stopLoop(); showFrame(WX.idx-1); });
+  $("#satNext").addEventListener("click",()=>{ stopLoop(); showFrame(WX.idx+1); });
+  $("#satSlider").addEventListener("input",e=>{ stopLoop(); showFrame(+e.target.value); });
 }
 
 /* =========================================================================
@@ -990,7 +1051,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   catch(e){ console.warn("Map init failed:",e.message);
     const m=$("#map"); if(m) m.innerHTML='<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:#5A6A8A;text-align:center;padding:24px"><div style="font-size:32px">🗺</div><div style="font-weight:600">Map unavailable</div><div style="font-size:12px;max-width:280px">The mapping library could not load. The operations panel below remains fully live from PAGASA data.</div></div>'; }
   loadData();
-  if(window.L && MAP){ initSatelliteLoop(); }
+  if(window.L && MAP){ initWeather(); }
   clockTick();setInterval(clockTick,1000);
   setInterval(loadData,REFRESH_MS);
 
@@ -1001,28 +1062,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   setTimeout(()=>MAP&&MAP.invalidateSize(),300);
   window.addEventListener("resize",()=>MAP&&MAP.invalidateSize());
 
-  // ---- Map tabs: Operations Map <-> Live Satellite / Wind (Windy) ----
-  function windyURL(){
-    const la=(+stormLL[0]).toFixed(2), lo=(+stormLL[1]).toFixed(2);
-    const active = !(la==="13.00" && lo==="123.00");
-    const zoom = active ? 5 : 5;
-    return "https://embed.windy.com/embed2.html"
-      + `?lat=${la}&lon=${lo}&detailLat=${la}&detailLon=${lo}&zoom=${zoom}`
-      + "&level=surface&overlay=wind&product=ecmwf&menu=true&message=true"
-      + "&marker=true&calendar=now&type=map&location=coordinates"
-      + "&metricWind=km%2Fh&metricTemp=%C2%B0C&pressure=true";
-  }
-  function showView(v){
-    const ops=v==="ops";
-    $("#opsView").style.display = ops?"block":"none";
-    $("#liveView").style.display = ops?"none":"block";
-    $("#tabOps").classList.toggle("active",ops);
-    $("#tabLive").classList.toggle("active",!ops);
-    if(ops){ setTimeout(()=>MAP&&MAP.invalidateSize(),60); }
-    else{ $("#windyFrame").src = windyURL(); }  // (re)center on latest storm each open
-  }
-  $("#tabOps").addEventListener("click",()=>showView("ops"));
-  $("#tabLive").addEventListener("click",()=>showView("live"));
+  wireWeatherToggle();
 });
 </script>
 </body>
