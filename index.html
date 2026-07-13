@@ -350,10 +350,10 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
     <div id="map"></div>
     <div id="wxbar">
       <div class="wxseg" id="wxseg">
-        <button class="wxbtn active" data-wx="off">✕ Off</button>
+        <button class="wxbtn" data-wx="off">✕ Off</button>
         <button class="wxbtn wx-wind" data-wx="wind">💨 Wind</button>
         <button class="wxbtn wx-rain" data-wx="rain">🌧 Rain</button>
-        <button class="wxbtn wx-clouds" data-wx="clouds">🛰 Clouds</button>
+        <button class="wxbtn wx-clouds active" data-wx="clouds">🛰 Clouds</button>
       </div>
       <div class="loopctl">
         <button class="pbtn" id="satPrev" title="Previous frame">⏮</button>
@@ -1004,9 +1004,9 @@ async function loadWind(){
   $("#wxSpin").textContent="Loading wind…";
   try{
     const lats=[], lons=[];
-    const LA1=22, LA2=4, LO1=116, LO2=130, D=2;            // grid over PH region
-    for(let la=LA1; la>=LA2; la-=D) for(let lo=LO1; lo<=LO2; lo+=D){ lats.push(la); lons.push(lo); }
-    const nx=(LO2-LO1)/D+1, ny=(LA1-LA2)/D+1;
+    const LA1=30, LA2=-5, LO1=105, LO2=142.5, D=2.5;      // wide grid over PH + surrounding seas
+    for(let la=LA1; la>=LA2-1e-9; la-=D) for(let lo=LO1; lo<=LO2+1e-9; lo+=D){ lats.push(+la.toFixed(2)); lons.push(+lo.toFixed(2)); }
+    const nx=Math.round((LO2-LO1)/D)+1, ny=Math.round((LA1-LA2)/D)+1;
     const url="https://api.open-meteo.com/v1/forecast"
       +`?latitude=${lats.join(",")}&longitude=${lons.join(",")}`
       +"&current=wind_speed_10m,wind_direction_10m&wind_speed_unit=ms";
