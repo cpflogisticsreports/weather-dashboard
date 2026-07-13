@@ -104,8 +104,18 @@ header.appbar{
 
 /* ---------- Layout ---------- */
 .layout{display:flex;flex:1 1 auto;min-height:0}
-.mapwrap{position:relative;flex:1 1 auto;min-width:0}
+.mapwrap{position:relative;flex:1 1 auto;min-width:0;display:flex;flex-direction:column}
+.maptabs{display:flex;gap:6px;padding:6px 8px;background:#0d1f39;flex:none}
+.mtab{font:600 12px/1 var(--sans);color:#cdd7e6;background:transparent;border:0;border-radius:8px;
+  padding:8px 13px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.15s}
+.mtab.active{background:#fff;color:var(--navy)}
+.mtab:not(.active):hover{background:rgba(255,255,255,.14);color:#fff}
+.mapview{position:relative;flex:1 1 auto;min-height:0}
 #map{position:absolute;inset:0;background:#dbe6f0}
+#windyFrame{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.livenote{position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:900;
+  background:rgba(23,35,61,.86);color:#fff;padding:5px 13px;border-radius:999px;font-size:11px;
+  pointer-events:none;max-width:92%;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.2)}
 .panel{
   width:var(--panel-w);flex:none;background:var(--bg);border-left:1px solid var(--border);
   overflow-y:auto;padding:14px 14px 40px;
@@ -272,6 +282,26 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
 #printHeader{display:none;padding:0 0 10px;border-bottom:2px solid var(--cpf-green);margin-bottom:12px}
 #printHeader h1{font-family:var(--display);font-size:20px;margin:0 0 4px;color:var(--cpf-green-dark)}
 #printHeader .ph-sub{font-size:12px;color:var(--navy-soft)}
+/* ---------- Satellite loop playback bar ---------- */
+#satbar{
+  position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:900;
+  display:none;align-items:center;gap:8px;padding:7px 10px;border-radius:12px;
+  background:rgba(23,35,61,.88);color:#fff;box-shadow:0 4px 16px rgba(0,0,0,.3);
+  font-size:12px;max-width:94%;flex-wrap:wrap;justify-content:center;backdrop-filter:blur(4px);
+}
+#satbar.show{display:flex}
+#satbar button{
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);color:#fff;
+  width:30px;height:30px;border-radius:7px;cursor:pointer;font-size:13px;display:flex;
+  align-items:center;justify-content:center;line-height:1;padding:0;
+}
+#satbar button:hover{background:rgba(255,255,255,.28)}
+#satbar #satToggle{width:auto;padding:0 10px;gap:6px;font-weight:600}
+#satbar #satToggle.on{background:var(--cpf-green);border-color:var(--cpf-green)}
+#satbar input[type=range]{width:150px;accent-color:#8AF0A9;cursor:pointer}
+#satbar .sattime{font-variant-numeric:tabular-nums;font-weight:600;min-width:118px;text-align:center}
+#satbar .satcap{font-size:10px;opacity:.75;width:100%;text-align:center;margin-top:2px}
+@media (max-width:900px){ #satbar{bottom:10px} #satbar input[type=range]{width:110px} }
 </style>
 </head>
 <body class="show-map">
@@ -312,8 +342,27 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
 <div class="layout">
   <!-- LEFT: Map -->
   <div class="mapwrap">
-    <div class="maptitle" id="mapTitle">Philippine Area of Responsibility</div>
-    <div id="map"></div>
+    <div class="maptabs">
+      <button class="mtab active" data-view="ops" id="tabOps">🗺 Operations Map</button>
+      <button class="mtab" data-view="live" id="tabLive">🛰 Live Satellite / Wind</button>
+    </div>
+    <div class="mapview" id="opsView">
+      <div class="maptitle" id="mapTitle">Philippine Area of Responsibility</div>
+      <div id="map"></div>
+      <div id="satbar">
+        <button id="satToggle" class="on" title="Show/hide satellite cloud loop">🛰 Clouds</button>
+        <button id="satPrev" title="Previous frame">⏮</button>
+        <button id="satPlay" title="Play / pause">⏸</button>
+        <button id="satNext" title="Next frame">⏭</button>
+        <input id="satSlider" type="range" min="0" max="0" value="0" />
+        <span class="sattime" id="satTime">—</span>
+        <div class="satcap">Infrared satellite loop — visual reference only. Official advisory: PAGASA.</div>
+      </div>
+    </div>
+    <div class="mapview" id="liveView" style="display:none">
+      <div class="livenote">Live wind &amp; satellite (source: Windy) — visual reference only. PAGASA remains the source of truth.</div>
+      <iframe id="windyFrame" title="Live wind and satellite" loading="lazy" allow="fullscreen"></iframe>
+    </div>
   </div>
 
   <!-- RIGHT: Operations panel -->
@@ -499,13 +548,17 @@ function deriveStatus(d,level){
 /* =========================================================================
    RENDERING
    ========================================================================= */
-let MAP,LAYERS={},LAYERCTRL,didFit=false;
+let MAP,LAYERS={},LAYERCTRL,didFit=false,stormLL=[13.0,123.0];
 
 function render(d,isLive){
   const title=deriveTitle(d);
   document.title=title;
   $("#appTitle").textContent=title;
   $("#printTitle").textContent=title;
+
+  // storm position for the Live Satellite / Wind (Windy) view (set regardless of map)
+  const _cy=d.cyclone||{};
+  stormLL = (has(_cy.lat)&&has(_cy.lon)) ? [+_cy.lat,+_cy.lon] : [13.0,123.0];
 
   // data source chip
   const chip=$("#dataChip"),txt=$("#dataChipTxt");
@@ -811,6 +864,10 @@ function drawMap(d){
 
   updateMapTitle(d);
 
+  // remember storm position for the Live Satellite / Wind (Windy) view
+  if(has(cy.lat)&&has(cy.lon)) stormLL=[+cy.lat,+cy.lon];
+  else stormLL=[13.0,123.0];
+
   // One-time fit: if a storm track exists, frame the map to include the track
   // and the CPF hubs so the storm is visible even when it's outside PAR.
   // Only fits once so it never fights the user's manual pan/zoom on refresh.
@@ -846,6 +903,70 @@ function hubIcon(col){return L.divIcon({className:"",iconSize:[18,18],iconAnchor
   html:`<div style="width:16px;height:16px;border-radius:4px;background:${col};border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4);transform:rotate(45deg)"></div>`});}
 
 /* =========================================================================
+   SATELLITE CLOUD LOOP (infrared, animated) — visual reference only
+   Uses RainViewer's public infrared satellite tiles (Web Mercator, no key).
+   Over the Philippines this is geostationary (Himawari-derived) cloud imagery.
+   PAGASA remains the source of truth; this layer never overrides it.
+   ========================================================================= */
+const SAT={frames:[],idx:0,host:"",layer:null,playing:true,visible:true,timer:null,speed:750,opacity:0.7};
+
+async function initSatelliteLoop(){
+  if(!MAP) return;
+  try{
+    const res=await fetch("https://api.rainviewer.com/public/weather-maps.json",{cache:"no-store"});
+    const j=await res.json();
+    SAT.host=j.host||"https://tilecache.rainviewer.com";
+    SAT.frames=(j.satellite&&j.satellite.infrared)?j.satellite.infrared:[];
+    if(!SAT.frames.length){ console.warn("No satellite frames available."); return; }
+    const bar=$("#satbar"); bar.classList.add("show");
+    const slider=$("#satSlider"); slider.max=String(SAT.frames.length-1); slider.value=String(SAT.frames.length-1);
+    SAT.idx=SAT.frames.length-1;
+    showSatFrame(SAT.idx);
+    wireSatControls();
+    startSatLoop();
+  }catch(e){ console.warn("Satellite loop unavailable:",e.message); }
+}
+function satUrl(f){ return `${SAT.host}${f.path}/512/{z}/{x}/{y}/0/0_0.png`; }
+function showSatFrame(i){
+  if(!SAT.frames.length) return;
+  i=(i+SAT.frames.length)%SAT.frames.length;
+  const f=SAT.frames[i];
+  const layer=L.tileLayer(satUrl(f),{opacity:0,zIndex:250,maxNativeZoom:7,maxZoom:19,
+    attribution:"IR clouds © RainViewer (visual reference only)"});
+  layer.addTo(MAP);
+  const prev=SAT.layer;
+  const reveal=()=>{ if(SAT.visible) layer.setOpacity(SAT.opacity); if(prev&&prev!==layer){ try{MAP.removeLayer(prev);}catch(e){} } };
+  layer.once("load",reveal); setTimeout(reveal,600);
+  SAT.layer=layer; SAT.idx=i;
+  const f2=SAT.frames[i];
+  $("#satTime").textContent=new Date(f2.time*1000).toLocaleString("en-PH",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit",hour12:true});
+  $("#satSlider").value=String(i);
+}
+function startSatLoop(){
+  stopSatLoop();
+  SAT.playing=true; $("#satPlay").textContent="⏸";
+  SAT.timer=setInterval(()=>{
+    let n=SAT.idx+1;
+    // brief pause on the newest frame
+    if(SAT.idx===SAT.frames.length-1){ /* loop back */ n=0; }
+    showSatFrame(n);
+  },SAT.speed);
+}
+function stopSatLoop(){ if(SAT.timer){clearInterval(SAT.timer);SAT.timer=null;} SAT.playing=false; $("#satPlay").textContent="▶"; }
+function wireSatControls(){
+  $("#satPlay").addEventListener("click",()=>{ SAT.playing?stopSatLoop():startSatLoop(); });
+  $("#satPrev").addEventListener("click",()=>{ stopSatLoop(); showSatFrame(SAT.idx-1); });
+  $("#satNext").addEventListener("click",()=>{ stopSatLoop(); showSatFrame(SAT.idx+1); });
+  $("#satSlider").addEventListener("input",e=>{ stopSatLoop(); showSatFrame(+e.target.value); });
+  $("#satToggle").addEventListener("click",()=>{
+    SAT.visible=!SAT.visible;
+    const t=$("#satToggle"); t.classList.toggle("on",SAT.visible);
+    if(SAT.visible){ if(SAT.layer)SAT.layer.setOpacity(SAT.opacity); startSatLoop(); }
+    else{ stopSatLoop(); if(SAT.layer)SAT.layer.setOpacity(0); }
+  });
+}
+
+/* =========================================================================
    FETCH + LIFECYCLE
    ========================================================================= */
 async function loadData(){
@@ -869,6 +990,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   catch(e){ console.warn("Map init failed:",e.message);
     const m=$("#map"); if(m) m.innerHTML='<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:#5A6A8A;text-align:center;padding:24px"><div style="font-size:32px">🗺</div><div style="font-weight:600">Map unavailable</div><div style="font-size:12px;max-width:280px">The mapping library could not load. The operations panel below remains fully live from PAGASA data.</div></div>'; }
   loadData();
+  if(window.L && MAP){ initSatelliteLoop(); }
   clockTick();setInterval(clockTick,1000);
   setInterval(loadData,REFRESH_MS);
 
@@ -878,6 +1000,29 @@ document.addEventListener("DOMContentLoaded",()=>{
   $("#collapseAll").addEventListener("click",()=>document.querySelectorAll(".card").forEach(c=>c.classList.add("collapsed")));
   setTimeout(()=>MAP&&MAP.invalidateSize(),300);
   window.addEventListener("resize",()=>MAP&&MAP.invalidateSize());
+
+  // ---- Map tabs: Operations Map <-> Live Satellite / Wind (Windy) ----
+  function windyURL(){
+    const la=(+stormLL[0]).toFixed(2), lo=(+stormLL[1]).toFixed(2);
+    const active = !(la==="13.00" && lo==="123.00");
+    const zoom = active ? 5 : 5;
+    return "https://embed.windy.com/embed2.html"
+      + `?lat=${la}&lon=${lo}&detailLat=${la}&detailLon=${lo}&zoom=${zoom}`
+      + "&level=surface&overlay=wind&product=ecmwf&menu=true&message=true"
+      + "&marker=true&calendar=now&type=map&location=coordinates"
+      + "&metricWind=km%2Fh&metricTemp=%C2%B0C&pressure=true";
+  }
+  function showView(v){
+    const ops=v==="ops";
+    $("#opsView").style.display = ops?"block":"none";
+    $("#liveView").style.display = ops?"none":"block";
+    $("#tabOps").classList.toggle("active",ops);
+    $("#tabLive").classList.toggle("active",!ops);
+    if(ops){ setTimeout(()=>MAP&&MAP.invalidateSize(),60); }
+    else{ $("#windyFrame").src = windyURL(); }  // (re)center on latest storm each open
+  }
+  $("#tabOps").addEventListener("click",()=>showView("ops"));
+  $("#tabLive").addEventListener("click",()=>showView("live"));
 });
 </script>
 </body>
