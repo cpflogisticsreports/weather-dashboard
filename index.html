@@ -165,6 +165,29 @@ header.appbar{
 .kv .v{font-weight:600;text-align:right}
 .muted{color:var(--navy-soft);font-style:italic}
 .para{font-size:13px;line-height:1.55;color:var(--navy-2)}
+
+/* Executive Summary — CPF interpretation card */
+.execstatus{display:flex;align-items:center;gap:10px;border-radius:10px;padding:9px 12px;font-weight:700;margin-bottom:10px}
+.execstatus .exec-dot{width:10px;height:10px;border-radius:50%;background:currentColor;flex:none;box-shadow:0 0 0 4px rgba(0,0,0,.06)}
+.execstatus .exec-lbl{font-size:10px;letter-spacing:.6px;text-transform:uppercase;opacity:.75;font-weight:800}
+.execstatus .exec-val{font-family:var(--display);font-size:15px;line-height:1.15;margin-top:1px}
+.exec-body{font-size:13px;color:var(--navy-2);line-height:1.55}
+.exec-guide{margin-top:10px;padding-top:9px;border-top:1px dashed var(--border);font-size:12.5px;color:var(--navy-2);line-height:1.5}
+.exec-guide-lbl{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--navy-soft);margin-right:6px}
+/* PAGASA Bulletin — official grouped fields */
+.pf-fields{margin-top:10px;border-top:1px solid var(--line);padding-top:4px}
+.pf-row{display:grid;grid-template-columns:120px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:12.8px}
+.pf-row:last-child{border-bottom:0}
+.pf-lbl{font-size:10.5px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--navy-soft);padding-top:2px}
+.pf-val{font-weight:500;color:var(--navy-2);line-height:1.45}
+.pf-val.pf-hazard{color:#a34a00;font-weight:600}
+.pf-details{margin-top:10px}
+.pf-details summary{cursor:pointer;font-size:11.5px;font-weight:700;color:var(--cpf-green-dark);list-style:none;display:flex;align-items:center;gap:6px;padding:6px 0;user-select:none}
+.pf-details summary::-webkit-details-marker{display:none}
+.pf-details summary::before{content:"▸";transition:transform .15s;font-size:10px}
+.pf-details[open] summary::before{transform:rotate(90deg)}
+.pf-raw{font-size:12px;color:var(--navy-soft);line-height:1.55;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 11px;margin-top:4px}
+@media (max-width:900px){ .pf-row{grid-template-columns:1fr;gap:2px} .pf-lbl{padding-top:6px} }
 ul.clean{margin:6px 0 0;padding-left:0;list-style:none}
 ul.clean li{padding:6px 0 6px 18px;position:relative;font-size:12.8px;border-bottom:1px solid var(--line)}
 ul.clean li:last-child{border-bottom:0}
@@ -598,21 +621,36 @@ function buildSections(d,hl,status,isLive){
   const s=d.situation||{},cy=d.cyclone||{},cpf=d.cpf||{};
   const activeTC=(s.mode==="typhoon"||s.mode==="tropical_depression"||s.has_active_tc);
 
-  /* 1. Executive Logistics Summary */
+  /* 1. Executive Logistics Summary — CPF Logistics interpretation only */
+  const synopsisRaw=(d.forecast||{}).synopsis||"";
+  const cpfText=cpfInterpretation(cpf.executive_summary||"", synopsisRaw);
   wrap.appendChild(card(1,"Executive Logistics Summary",status.acc,
-    el("div","para",has(cpf.executive_summary)?esc(cpf.executive_summary):
-      `<span class="muted">${NA}</span>`)));
+    el("div",null,
+      `<div class="execstatus ${status.sb}">
+         <span class="exec-dot"></span>
+         <div><div class="exec-lbl">CPF Logistics status</div>
+         <div class="exec-val">${esc(status.status)}</div></div>
+       </div>`+
+      `<div class="exec-body">${cpfText?esc(cpfText):`<span class="muted">CPF interpretation will appear here once PAGASA data is available.</span>`}</div>`+
+      `<div class="exec-guide"><span class="exec-guide-lbl">Dispatch guidance</span>${esc(status.action)}</div>`)));
 
-  /* 2. Latest PAGASA Bulletin / Forecast */
+  /* 2. Latest PAGASA Bulletin / Forecast — official PAGASA data only */
   const met=d.meta||{};
+  const pf=pagasaFields(synopsisRaw);
+  const grp=(label,value,cls)=> value?`<div class="pf-row"><div class="pf-lbl">${label}</div><div class="pf-val ${cls||''}">${esc(value)}</div></div>`:"";
+  const fields = grp("Weather System",pf.system)+grp("Affected Areas",pf.areas)+
+                 grp("Expected Weather",pf.weather)+grp("Possible Hazards",pf.hazards,"pf-hazard");
+  const metaRows = kv("Bulletin",val(met.bulletin_title))+kv("Issued",fmtTime(met.issued_at))+
+    (has(met.valid_until)?kv("Valid until",fmtTime(met.valid_until)):"")+
+    (has(met.next_update)?kv("Next update",fmtTime(met.next_update)):"");
   wrap.appendChild(card(2,"Latest PAGASA Bulletin / Forecast","acc-green",
     el("div",null,
-      kv("Bulletin",val(met.bulletin_title))+
-      kv("Issued",fmtTime(met.issued_at))+
-      kv("Valid until",has(met.valid_until)?fmtTime(met.valid_until):`<span class="muted">${NA}</span>`)+
-      kv("Next update",has(met.next_update)?fmtTime(met.next_update):`<span class="muted">${NA}</span>`)+
-      `<div class="para" style="margin-top:10px">${val((d.forecast||{}).synopsis)}</div>`+
-      (has(met.bulletin_url)?`<div style="margin-top:10px"><a class="refbtn" style="display:inline-flex;padding:8px 12px" href="${esc(met.bulletin_url)}" target="_blank" rel="noopener"><b>Open PAGASA bulletin ↗</b></a></div>`:""))));
+      metaRows+
+      (fields
+        ? `<div class="pf-fields">${fields}</div>`+
+          (has(synopsisRaw)?`<details class="pf-details"><summary>Full PAGASA forecast text</summary><div class="pf-raw">${esc(synopsisRaw)}</div></details>`:"")
+        : `<div class="para" style="margin-top:8px">${val(synopsisRaw)}</div>`)+
+      (has(met.bulletin_url)?`<div style="margin-top:12px"><a class="refbtn" style="display:inline-flex;padding:8px 12px" href="${esc(met.bulletin_url)}" target="_blank" rel="noopener"><b>Open PAGASA bulletin ↗</b></a></div>`:""))));
 
   /* 3. Current Operational Status */
   wrap.appendChild(card(3,"Current Operational Status",status.acc,
@@ -703,6 +741,40 @@ function buildSections(d,hl,status,isLive){
 /* ---- small node builders ---- */
 function kv(k,v){return `<div class="kv"><span class="k">${esc(k)}</span><span class="v">${v}</span></div>`;}
 function emptyNode(t){return el("div","para muted",esc(t));}
+
+/* ---- Parse PAGASA's daily-forecast blob into clean labeled fields ---- */
+function tcase(s){return s.replace(/\b(itcz|lpa|par|tc)\b/ig,m=>m.toUpperCase()).replace(/\b([a-z])([a-z']*)/g,(m,a,b)=>a.toUpperCase()+b);}
+function cap(s){return s?s.charAt(0).toUpperCase()+s.slice(1):s;}
+function pagasaFields(text){
+  const out={system:"",areas:"",weather:"",hazards:""};
+  if(!text) return out;
+  const t=text.replace(/\s+/g," ").trim();
+  const sysRe=/(southwest monsoon|habagat|northeast monsoon|amihan|intertropical convergence zone|itcz|low pressure area|lpa|shear line|tail-?end of a (?:cold )?front(?:al system)?|frontal system|easterlies|ridge of high pressure|super typhoon|typhoon|severe tropical storm|tropical storm|tropical depression|tropical cyclone)/i;
+  const sm=t.match(sysRe); if(sm) out.system=tcase(sm[1]);
+  // Affected areas: text between "Impacts" and the weather description
+  let am=t.match(/Impacts?\b(.*?)(?:\bCloudy\b|Partly cloudy|Fair weather|Generally fair|\bRainy\b|\bStormy\b|Occasional rain|Scattered rain|Monsoon rain|Rains and thunderstorm|Rainshower|Isolated|$)/i);
+  if(am){
+    let a=am[1].replace(/^\s*(Forecast Weather Conditions?|Place|Weather Condition|Caused By)\s*/ig,"")
+               .replace(/\band\b/gi,",").replace(/\s*,\s*/g,", ").replace(/(,\s*)+/g,", ")
+               .replace(/^[,\s]+|[,\s]+$/g,"").trim();
+    if(a && /[A-Za-z]{3}/.test(a) && a.length<400) out.areas=a;
+  }
+  const wm=t.match(/((?:Cloudy skies?|Partly cloudy|Fair weather|Generally fair|Rainy|Stormy|Occasional rains?|Scattered rains?|Monsoon rains?|Isolated rainshowers?)[^.]*?)(?=\s+(?:Southwest|Northeast|Habagat|Amihan|Possible|Flash flood|and possible|Monsoon Possible)|[.;]|$)/i);
+  if(wm) out.weather=cap(wm[1].replace(/\s+/g," ").trim());
+  const hm=t.match(/((?:possible\s+)?(?:flash floods?|flooding|rain-?induced landslides?|landslides?|storm surges?|gusty winds?|strong winds?|rough seas?|large waves)(?:\s+(?:or|and)\s+[a-z\- ]+?)?)(?=[.;]|$|\s+(?:Plan|Southwest|Northeast|Habagat|Monitor|Validate|Refer))/i);
+  if(hm) out.hazards=cap(hm[1].replace(/\s+/g," ").trim());
+  return out;
+}
+/* ---- CPF-only text: strip the PAGASA synopsis so card 1 isn't a duplicate ---- */
+function cpfInterpretation(execRaw,synopsis){
+  if(!execRaw) return "";
+  let t=execRaw;
+  if(synopsis) t=t.split(synopsis).join(" ");
+  t=t.replace(/Forecast Weather Conditions?/ig," ").replace(/Place Weather Condition Caused By Impacts/ig," ");
+  t=t.replace(/\s+/g," ").replace(/\s+([.;,])/g,"$1").replace(/\.\s*\./g,".").trim();
+  t=t.replace(/^[.;,\s]+/,"").trim();
+  return t;
+}
 function rainAcc(l){l=(l||"").toLowerCase();return l==="intense"?"acc-red":l==="heavy"?"acc-orange":l==="moderate"?"acc-gold":"acc-green";}
 function routesNode(routes){
   const box=el("div");
