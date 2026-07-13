@@ -41,15 +41,14 @@ FORECAST_URLS = [
 # CPF hub roster (mirrors the dashboard). `keys` = lowercase strings that may
 # appear in PAGASA area text so we can flag a hub as affected.
 HUBS = [
-    {"name":"Gerona Feedmill","region":"Central Luzon (Tarlac)","type":"Feedmill","lat":15.61,"lon":120.60,"keys":["tarlac"]},
-    {"name":"Isabela Hub","region":"Cagayan Valley (Isabela)","type":"Distribution","lat":16.93,"lon":121.77,"keys":["isabela"]},
-    {"name":"Samal Hub","region":"Central Luzon (Bataan)","type":"Distribution","lat":14.77,"lon":120.54,"keys":["bataan"]},
-    {"name":"Manila Distribution","region":"NCR","type":"Distribution","lat":14.60,"lon":120.98,"keys":["metro manila"]},
-    {"name":"Batangas Port Hub","region":"CALABARZON","type":"Port / RORO","lat":13.76,"lon":121.06,"keys":["batangas"]},
-    {"name":"Cebu Hub","region":"Central Visayas","type":"Distribution","lat":10.32,"lon":123.90,"keys":["cebu"]},
-    {"name":"CDO Hub","region":"Northern Mindanao (Cagayan de Oro)","type":"Distribution","lat":8.48,"lon":124.65,"keys":["misamis oriental"]},
-    {"name":"Davao Hub","region":"Davao Region","type":"Distribution","lat":7.19,"lon":125.46,"keys":["davao del sur","davao del norte"]},
-    {"name":"GenSan Hub","region":"SOCCSKSARGEN (General Santos)","type":"Distribution","lat":6.11,"lon":125.17,"keys":["south cotabato","sarangani"]},
+    {"name":"Gerona Feedmill","region":"Central Luzon (Tarlac)","type":"Feedmill","lat":15.6344949,"lon":120.5933201,"keys":["tarlac"]},
+    {"name":"Ilagan Feedmill","region":"Cagayan Valley (Isabela)","type":"Feedmill","lat":17.1227406,"lon":121.851358,"keys":["isabela"]},
+    {"name":"Samal Feedmill","region":"Central Luzon (Bataan)","type":"Feedmill","lat":14.7647281,"lon":120.4945722,"keys":["bataan"]},
+    {"name":"Batangas Port Hub","region":"CALABARZON","type":"Port / RORO","lat":13.7557,"lon":121.0579,"keys":["batangas"]},
+    {"name":"Cebu Hub","region":"Central Visayas","type":"Distribution","lat":10.2929,"lon":123.9016,"keys":["cebu"]},
+    {"name":"CDO Hub","region":"Northern Mindanao (Cagayan de Oro)","type":"Distribution","lat":8.4765,"lon":124.6412,"keys":["misamis oriental"]},
+    {"name":"Davao Hub","region":"Davao Region","type":"Distribution","lat":7.0646,"lon":125.6079,"keys":["davao del sur","davao del norte"]},
+    {"name":"GenSan Hub","region":"SOCCSKSARGEN (General Santos)","type":"Distribution","lat":6.1129,"lon":125.1717,"keys":["south cotabato","sarangani"]},
 ]
 
 # Province vocabulary used to pull area names out of signal blocks.
