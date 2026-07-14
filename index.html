@@ -300,6 +300,23 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
   box-shadow:0 6px 20px rgba(16,32,58,.22);padding:9px 11px;font-family:var(--sans);backdrop-filter:blur(3px)}
 #layerPanel .lp-sec{margin-bottom:9px}
 #layerPanel .lp-sec:last-child{margin-bottom:0}
+#layerPanel .lp-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px;cursor:pointer;user-select:none}
+#layerPanel .lp-top-t{font-family:var(--display);font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--cpf-green-dark);display:flex;align-items:center;gap:6px}
+#layerPanel .lp-ic{font-size:12px}
+#layerPanel .lp-lbl-closed{display:none}
+#layerPanel .lp-toggle{background:var(--cpf-green-soft);border:1px solid #cfe3d6;color:var(--cpf-green-dark);
+  width:24px;height:22px;border-radius:6px;cursor:pointer;font-size:15px;line-height:1;display:flex;
+  align-items:center;justify-content:center;padding:0;flex:none}
+#layerPanel .lp-toggle:hover{background:#d6ecdd}
+#layerPanel .lp-reset{margin-bottom:8px}
+#layerPanel .lp-reset-btn{width:100%;background:var(--cpf-green);color:#fff;border:0;border-radius:8px;
+  padding:7px 8px;font-family:var(--sans);font-size:11.5px;font-weight:700;cursor:pointer;letter-spacing:.2px}
+#layerPanel .lp-reset-btn:hover{background:var(--cpf-green-dark)}
+#layerPanel.collapsed{width:auto;padding:8px 12px}
+#layerPanel.collapsed .lp-sec,#layerPanel.collapsed hr,#layerPanel.collapsed .lp-reset,#layerPanel.collapsed .lp-toggle{display:none}
+#layerPanel.collapsed .lp-top{margin:0}
+#layerPanel.collapsed .lp-lbl-open{display:none}
+#layerPanel.collapsed .lp-lbl-closed{display:inline}
 #layerPanel .lp-h{font-size:9.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--navy-soft);
   margin:2px 0 5px;display:flex;align-items:center;gap:6px}
 #layerPanel .lp-vr{font-weight:600;letter-spacing:.2px;text-transform:none;color:#9aa7b6;font-size:9px}
@@ -481,6 +498,13 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
 const DATA_URL = "latest_pagasa_weather.json";
 const REFRESH_MS = 10 * 60 * 1000; // 10 minutes
 const NA = "Not specified in latest PAGASA bulletin";
+function bulletinSourceLabel(s){
+  s=s||{};
+  if(s.has_active_tc || ["typhoon","tropical_depression","tropical_storm"].includes((s.mode||"").toLowerCase()))
+    return "PAGASA Tropical Cyclone Bulletin";
+  if((s.mode||"").toLowerCase()==="advisory") return "PAGASA Weather Advisory";
+  return "PAGASA Daily Weather Forecast";
+}
 
 /* -------- Offline fallback (SAMPLE — clearly flagged, never authoritative) -------- */
 const FALLBACK_DATA = {
@@ -698,9 +722,9 @@ function buildSections(d,hl,status,isLive){
   const grp=(label,value,cls)=> value?`<div class="pf-row"><div class="pf-lbl">${label}</div><div class="pf-val ${cls||''}">${esc(value)}</div></div>`:"";
   const fields = grp("Weather System",pf.system)+grp("Affected Areas",pf.areas)+
                  grp("Expected Weather",pf.weather)+grp("Possible Hazards",pf.hazards,"pf-hazard");
-  const metaRows = kv("Bulletin",val(met.bulletin_title))+kv("Issued",fmtTime(met.issued_at))+
-    (has(met.valid_until)?kv("Valid until",fmtTime(met.valid_until)):"")+
-    (has(met.next_update)?kv("Next update",fmtTime(met.next_update)):"");
+  const metaRows = kv("Source",bulletinSourceLabel(d.situation||{}))+
+    kv("Bulletin",val(met.bulletin_title))+kv("Issued",fmtTime(met.issued_at))+
+    kv("Valid until / Next advisory", has(met.valid_until)?fmtTime(met.valid_until):(has(met.next_update)?fmtTime(met.next_update):NA));
   wrap.appendChild(card(2,"Latest PAGASA Bulletin / Forecast","acc-green",
     el("div",null,
       metaRows+
@@ -903,7 +927,7 @@ let BASELAYERS={}, LABELS_LAYER=null;
 const PANE_Z={pWxClouds:250,pWxRain:260,pWxWind:270,pRainfall:300,pMarine:310,pPar:320,pRoutes:330,pTrack:340,pSignals:350,pLabels:380,pHubs:390};
 
 function initMap(){
-  MAP=L.map("map",{center:[13.0,123.0],zoom:6,zoomControl:true,worldCopyJump:true});
+  MAP=L.map("map",{center:[16.0,127.0],zoom:5,zoomControl:true,worldCopyJump:true});
 
   // dedicated panes so every layer has independent stacking + opacity
   Object.entries(PANE_Z).forEach(([n,z])=>{ MAP.createPane(n); MAP.getPane(n).style.zIndex=z; });
@@ -958,7 +982,12 @@ LAYER_GROUPS.forEach(g=>g.rows.forEach(r=>LAYER_BY_KEY[r.key]=r));
 
 function buildLayerPanel(){
   const p=document.getElementById("layerPanel"); if(!p) return;
-  let html=`<div class="lp-sec"><div class="lp-h">Base map</div>`+
+  let html=`<div class="lp-top" id="lpTop">
+      <span class="lp-top-t"><span class="lp-ic">▤</span> <span class="lp-lbl-open">Map layers</span><span class="lp-lbl-closed">Layers</span></span>
+      <button class="lp-toggle" id="lpToggle" title="Hide layers" aria-label="Hide layers">×</button>
+    </div>
+    <div class="lp-reset"><button class="lp-reset-btn" id="resetViewBtn" title="Restore the default cloud-monitoring view">↺ Reset to Cloud View</button></div>`;
+  html+=`<div class="lp-sec"><div class="lp-h">Base map</div>`+
     [["sat","Satellite (Esri)"],["streets","Streets"],["osm","OpenStreetMap"]]
       .map(([v,l],i)=>`<label class="lp-base"><input type="radio" name="lpbase" value="${v}"${i===0?" checked":""}> ${l}</label>`).join("")+
     `</div>`;
@@ -974,6 +1003,11 @@ function buildLayerPanel(){
     html+=`</div>`;
   });
   p.innerHTML=html;
+
+  // collapse / expand — the whole header toggles; when collapsed it's a small "Layers" pill
+  p.querySelector("#lpTop").addEventListener("click",()=>p.classList.toggle("collapsed"));
+  // reset to cloud view (don't let the click collapse the panel)
+  p.querySelector("#resetViewBtn").addEventListener("click",e=>{ e.stopPropagation(); resetCloudView(); });
 
   // base switch
   p.querySelectorAll('input[name="lpbase"]').forEach(rb=>rb.addEventListener("change",()=>{
@@ -995,6 +1029,29 @@ function buildLayerPanel(){
   LAYER_GROUPS.forEach(g=>g.rows.forEach(r=>{
     if(r.kind==="vec"||r.kind==="labels") MAP.getPane(r.pane).style.opacity=r.op/100;
   }));
+
+  // mobile: start collapsed so the panel doesn't cover the map
+  if(window.matchMedia && window.matchMedia("(max-width:900px)").matches) p.classList.add("collapsed");
+}
+
+/* Default "cloud view": wide framing of PH + seas + Taiwan + the active system */
+const CLOUD_VIEW={center:[16.0,127.0], zoom:5};
+function setPanelLayer(key,on){
+  const row=LAYER_BY_KEY[key]; if(!row) return;
+  toggleLayer(row,on);
+  const cb=document.querySelector(`#layerPanel input[data-lyr="${key}"]`); if(cb) cb.checked=on;
+  const r=document.querySelector(`#layerPanel .lp-row[data-key="${key}"]`); if(r) r.classList.toggle("off",!on);
+}
+function resetCloudView(){
+  if(!MAP) return;
+  // base = satellite
+  const rb=document.querySelector('#layerPanel input[name="lpbase"][value="sat"]'); if(rb) rb.checked=true;
+  Object.values(BASELAYERS).forEach(b=>{ if(MAP.hasLayer(b)) MAP.removeLayer(b); });
+  BASELAYERS.sat.addTo(MAP);
+  // clouds on; rain & wind off; core PAGASA + logistics layers on
+  setPanelLayer("clouds",true); setPanelLayer("rain",false); setPanelLayer("wind",false);
+  ["track","par","hubs","labels","signals","rainfall","marine","routes"].forEach(k=>setPanelLayer(k,true));
+  MAP.setView(CLOUD_VIEW.center, CLOUD_VIEW.zoom);
 }
 
 function toggleLayer(row,on){
@@ -1173,17 +1230,6 @@ function drawMap(d){
 
   updateMapTitle(d);
   if(has(cy.lat)&&has(cy.lon)) stormLL=[+cy.lat,+cy.lon]; else stormLL=[13.0,123.0];
-
-  // One-time fit to include storm track + hubs
-  if(!didFit){
-    const pts=[];
-    track.forEach(p=>pts.push([+p.lat,+p.lon]));
-    if(has(cy.lat)&&has(cy.lon)) pts.push([+cy.lat,+cy.lon]);
-    if(pts.length){
-      hubs.forEach(h=>{ if(has(h.lat)&&has(h.lon)) pts.push([+h.lat,+h.lon]); });
-      try{ MAP.fitBounds(L.latLngBounds(pts).pad(0.12),{maxZoom:6}); didFit=true; }catch(e){}
-    }
-  }
 }
 function updateMapTitle(d){
   const s=d.situation||{};
@@ -1267,13 +1313,17 @@ function buildLoop(key){
   if(!frames.length){ $("#wxSpin").textContent = key==="clouds"?"Cloud imagery loading…":"Rain radar loading…"; return; }
   $("#wxSpin").textContent="";
   if(MAP.getPane(st.pane)) MAP.getPane(st.pane).style.opacity=st.op;
-  let errs=0;
+  let errs=0, loadedAny=false;
   st.layers=frames.map((f,i)=>{
     const url = key==="clouds"?jmaTileUrl(f.basetime,f.validtime):`${WX.host}${f.path}/256/{z}/{x}/{y}/4/1_1.png`;
     const layer=L.tileLayer(url,{pane:st.pane,opacity:i===frames.length-1?1:0,
-      maxNativeZoom:key==="clouds"?6:7,maxZoom:19,minZoom:3,
+      maxNativeZoom:key==="clouds"?6:7, maxZoom:19, minZoom:3, keepBuffer:4, updateWhenZooming:false,
       attribution:(key==="clouds"?"Cloud imagery © JMA Himawari-9 (real-time loop)":"Radar © RainViewer")+" — visual reference only"});
-    layer.on("tileerror",()=>{ if(++errs>=12) $("#wxSpin").textContent=(key==="clouds"?"Clouds":"Rain")+" temporarily unavailable"; });
+    // Keep the layer usable when zoomed in: native tiles top out around z6–7, so Leaflet
+    // upscales them (blurrier but still shown) instead of disappearing. Only flag "unavailable"
+    // if errors pile up AND not a single tile ever loaded.
+    layer.on("load",()=>{ loadedAny=true; if(/temporarily unavailable/.test($("#wxSpin").textContent)) $("#wxSpin").textContent=""; });
+    layer.on("tileerror",()=>{ if(++errs>=40 && !loadedAny) $("#wxSpin").textContent=(key==="clouds"?"Clouds":"Rain")+" temporarily unavailable"; });
     layer.addTo(MAP);
     return {layer,f};
   });
