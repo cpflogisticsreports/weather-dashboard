@@ -298,16 +298,44 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
 }
 
 /* ---------- Print (simple) — hide map & controls, print the panel ---------- */
+/* ---------- Print-only report chrome (hidden on screen) ---------- */
+#printHead,#printFoot{display:none}
 @media print{
-  @page{margin:12mm}
+  @page{margin:11mm}
   html,body{background:#fff !important;height:auto !important;overflow:visible !important}
-  header.appbar,#fallbackStrip,.mobtoggle,.mapwrap,.panel-tools,.card-head .chev,.refgrid,.refnote,#refbtnrow{display:none !important}
+  /* hide all interactive / screen-only chrome */
+  header.appbar,#fallbackStrip,.banner,.mobtoggle,.mapwrap,.panel-tools,
+  .card-head .chev,.refgrid,.refnote,#refbtnrow,#layerPanel,#wxbar{display:none !important}
   .layout{display:block;height:auto}
-  .banner{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .panel{width:100%;border:0;overflow:visible;max-height:none;padding:0}
-  .card{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
+
+  /* report header */
+  #printHead{display:flex;align-items:center;gap:14px;border-bottom:3px solid var(--cpf-green);
+    padding-bottom:10px;margin-bottom:12px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #printHead .ph-logo{width:52px;height:52px;object-fit:contain;flex:none}
+  #printHead .ph-mid{flex:1;min-width:0}
+  #printHead .ph-title{font-family:var(--display);font-size:16px;font-weight:800;color:var(--cpf-green-dark);line-height:1.15}
+  #printHead .ph-sub{font-size:10px;color:#555;margin-top:1px}
+  #printHead .ph-headline{font-size:11px;color:#222;margin-top:5px;font-weight:600}
+  #printHead .ph-meta{text-align:right;flex:none;font-size:10px;color:#333}
+  #printHead .ph-status{font-weight:800;font-size:11px;padding:4px 10px;border-radius:6px;margin-bottom:5px;
+    display:inline-block;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #printHead .ph-t{display:flex;gap:8px;justify-content:flex-end;line-height:1.5}
+  #printHead .ph-t span{color:#777}
+  #printHead .ph-t b{color:#111;font-variant-numeric:tabular-nums}
+
+  /* cards flow as a compact single column */
+  .card{break-inside:avoid;box-shadow:none;border:1px solid #cbd5e2;margin-bottom:9px;border-radius:8px}
   .card.collapsed .card-body{display:block !important}
-  .statusbox,.chip,.tag,.execstatus,.pf-hazard,.matrix th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .card-head{background:#f3f6f9 !important}
+  .areas-tbl,.matrix{break-inside:avoid}
+
+  /* report footer */
+  #printFoot{display:block;margin-top:12px;padding-top:8px;border-top:1px solid #ccc;
+    font-size:8.8px;color:#666;line-height:1.5;text-align:center}
+
+  .statusbox,.chip,.tag,.execstatus,.pf-hazard,.matrix th,.areas-h,.banner,
+  .exec-status-dot,.chip.risk{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 /* ---------- Custom layer panel (toggles + opacity sliders) ---------- */
 #layerPanel{position:absolute;top:12px;right:12px;z-index:900;width:236px;max-height:calc(100% - 90px);
@@ -455,9 +483,24 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
     <span class="chip"><span class="lbl">Issued&nbsp;</span><span id="issuedTxt" class="mono">—</span></span>
     <span class="chip mono" id="clock">—</span>
     <button class="btn" id="refreshBtn" title="Refresh live data">⟳ <span class="lbl">Refresh</span></button>
-    <button class="btn solid" id="printBtn" title="Print / save management view">🖨 <span class="lbl">Print</span></button>
+    <button class="btn solid" id="printBtn" title="Print this briefing">🖨 <span class="lbl">Print</span></button>
   </div>
 </header>
+
+<!-- Print-only report header (hidden on screen) -->
+<div id="printHead">
+  <img class="ph-logo" id="phLogo" alt="CPF logo" />
+  <div class="ph-mid">
+    <div class="ph-title" id="phTitle">CPF Logistics Weather Monitoring Dashboard</div>
+    <div class="ph-sub">Logistics &amp; Supply Chain · Strategic Improvement</div>
+    <div class="ph-headline" id="phHeadline"></div>
+  </div>
+  <div class="ph-meta">
+    <div class="ph-status" id="phStatus">—</div>
+    <div class="ph-t"><span>Issued (PAGASA)</span><b id="phIssued">—</b></div>
+    <div class="ph-t"><span>Generated</span><b id="phGenerated">—</b></div>
+  </div>
+</div>
 
 <div id="fallbackStrip">⚠ Live PAGASA data file not loaded — showing OFFLINE SAMPLE / FALLBACK. Verify all conditions directly with PAGASA before making dispatch decisions.</div>
 
@@ -506,6 +549,12 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
       CPF Logistics &amp; Supply Chain · Strategic Improvement — Auto-refresh every 10 minutes.
     </div>
   </aside>
+</div>
+
+<!-- Print-only report footer (hidden on screen) -->
+<div id="printFoot">
+  PAGASA is the single source of truth for all tropical cyclone, rainfall, and marine information. Secondary satellite / model layers (satellite clouds, rain radar, wind) are visual reference only and do not override PAGASA.
+  &nbsp;·&nbsp; CPF Logistics &amp; Supply Chain — Strategic Improvement &nbsp;·&nbsp; Generated <span id="phFootTime"></span> &nbsp;·&nbsp; cpflogisticsreports.github.io/weather-dashboard
 </div>
 
 
@@ -735,6 +784,27 @@ function render(d,isLive){
   const status=deriveStatus(d,hl.level);
   buildSections(d,hl,status,isLive);
   drawMap(d);
+  updatePrintChrome(d,title,hl,status);
+}
+
+/* Fill the print-only report header/footer (used when the user prints) */
+function updatePrintChrome(d,title,hl,status){
+  const met=d.meta||{};
+  const logo=document.querySelector(".brand-badge img");
+  const phLogo=$("#phLogo"); if(phLogo&&logo) phLogo.src=logo.src;
+  const set=(id,v)=>{const e=$(id); if(e) e.textContent=v;};
+  set("#phTitle",title);
+  set("#phHeadline",hl.msg||"");
+  set("#phIssued", fmtTime(met.issued_at)+"  ·  "+bulletinSourceLabel(d.situation||{}));
+  const gen=new Date().toLocaleString("en-PH",{dateStyle:"medium",timeStyle:"short"});
+  set("#phGenerated",gen);
+  set("#phFootTime",gen);
+  const ps=$("#phStatus");
+  if(ps){
+    ps.textContent=status.status||"—";
+    const c=({normal:["#e7f5ec","#0A7B3E"],caution:["#fff8e1","#8a6d00"],high:["#fff2e6","#a34a00"],critical:["#fdecea","#a31515"]})[hl.level]||["#eef1f5","#41506a"];
+    ps.style.background=c[0]; ps.style.color=c[1];
+  }
 }
 
 /* ---- section builder ---- */
