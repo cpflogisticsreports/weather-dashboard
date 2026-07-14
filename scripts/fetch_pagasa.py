@@ -270,15 +270,53 @@ def parse_signals(raw):
 # Bulletin parsing (active tropical cyclone)
 # --------------------------------------------------------------------------- #
 def parse_bulletin(raw):
-    """Return a dict of PAGASA facts, or None if no active cyclone is detected.
-    `raw` is the raw HTML (needed to read signal levels from image filenames)."""
+    """Return a dict of PAGASA facts, or None if nothing trackable is on the page.
+    Handles active tropical cyclones AND a Low Pressure Area (formerly a TC) that
+    PAGASA is still bulletining on the tropical-cyclone page. `raw` is the raw HTML
+    (needed to read signal levels from image filenames)."""
     text = strip_tags(raw)
-    # If PAGASA has issued the FINAL bulletin or the system has degenerated to a
-    # Low Pressure Area / remnant low, stop treating it as an active cyclone so the
-    # dashboard falls back to the Daily Weather Forecast (avoids showing a stale TC).
-    if re.search(r"final tropical cyclone bulletin|last tropical cyclone bulletin"
-                 r"|(?:weakened|degenerated)\s+into\s+a\s+(?:remnant\s+)?low[\s-]*pressure\s+area"
-                 r"|no longer a tropical cyclone", text, re.I):
+
+    # ---- Low Pressure Area path -------------------------------------------- #
+    # When a storm weakens, PAGASA keeps publishing it here as an LPA (e.g.
+    # 'LPA "Josie"' / 'Low Pressure Area (formerly "JOSIE")'). Capture it as a
+    # Low Pressure Area system so the dashboard reflects the latest bulletin,
+    # rather than silently dropping to the daily forecast or showing a stale TC.
+    is_lpa = bool(re.search(r"low\s*pressure\s*area|(?<![A-Za-z])LPA(?![A-Za-z])"
+                            r"|(?:weakened|degenerated)\s+into\s+a\s+(?:remnant\s+)?low", text, re.I))
+    has_tc_cat = any(re.search(c + r"\s+[\"“']?[A-Z][A-Za-z]+", text) for c in CATEGORY_WORDS)
+    if is_lpa and not has_tc_cat:
+        # A genuinely final bulletin with no center/track left is not useful.
+        lpa_name = None
+        m = re.search(r'(?:low\s*pressure\s*area|LPA)[^"“\'A-Za-z]*(?:\(?\s*formerly\s*)?["“\']([A-Za-z]+)', text, re.I)
+        if not m:
+            m = re.search(r'formerly\s+["“\']([A-Za-z]+)', text, re.I)
+        if m: lpa_name = m.group(1).upper()
+        facts = {"category": "Low Pressure Area", "name": lpa_name, "intl": None, "is_lpa": True, "signals": []}
+        mm = re.search(r"\(\s*([\d.]+)\s*°?\s*N\s*,\s*([\d.]+)\s*°?\s*E", text)
+        if mm:
+            facts["lat"] = float(mm.group(1)); facts["lon"] = float(mm.group(2))
+        m = re.search(r"moving\s+([A-Za-z ]+?)\s+at\s+([\d]+)\s*(?:km/?h|kph)", text, re.I)
+        if m: facts["movement"] = f"{m.group(1).strip().title()} at {m.group(2)} km/h"
+        mc = re.search(r"(?:estimated .{0,80}?at\s+)(.*?)\(\s*[\d.]+\s*°?\s*N", text, re.I|re.S)
+        if mc: facts["center_text"] = re.sub(r"\s+", " ", mc.group(1)).strip(" ,")
+        m = re.search(r"(?:Bulletin|SWB)\s*(?:No\.|#)\s*([0-9]+[A-Z]?)", text, re.I)
+        if m: facts["bulletin_no"] = m.group(1)
+        m = re.search(r"Issued at[:\s]+(\d{1,2}:\d{2}\s*[AaPp][Mm])\s*,?\s*(\d{1,2}\s+[A-Za-z]+\s+\d{4})", text)
+        facts["issued_at_iso"] = issued_to_iso(m.group(1), m.group(2)) if m else ""
+        m = re.search(r"next advisory to be issued at\s+(\d{1,2}:\d{2}\s*[AaPp][Mm])\s*(today|tomorrow)?", text, re.I)
+        if m: facts["next_advisory_iso"] = time_relative_iso(m.group(1), m.group(2), facts["issued_at_iso"])
+        m = re.search(r"(heavy rainfall.{0,600}?)(?:\n\n|The wind signals|Hoisting|Track|$)", text, re.I|re.S)
+        if m: facts["rain_text"] = re.sub(r"\s+", " ", m.group(1)).strip()[:600]
+        track = []
+        if facts.get("lat") is not None and facts.get("lon") is not None and _valid_ph(facts["lat"], facts["lon"]):
+            track.append({"label": "Now", "lat": facts["lat"], "lon": facts["lon"]})
+        for p in parse_forecast_positions(text):
+            track.append(p)
+        facts["track"] = track[:9]
+        return facts
+
+    # A truly final bulletin with no LPA/center → let the daily forecast take over.
+    if re.search(r"final tropical cyclone bulletin|last tropical cyclone bulletin|no longer a tropical cyclone", text, re.I) and not is_lpa:
         return None
     # Storm category + local name, e.g. "Typhoon INDAY", "Tropical Depression AghON"
     cat, name = None, None
@@ -400,7 +438,10 @@ def assemble(facts, source_url):
     hubs = build_hubs(signals, rain_provs)
 
     cl = facts["category"].lower()
-    if "depression" in cl:
+    is_lpa = facts.get("is_lpa", False)
+    if is_lpa:
+        mode = "lpa"
+    elif "depression" in cl:
         mode = "tropical_depression"
     elif "storm" in cl:          # Tropical Storm & Severe Tropical Storm
         mode = "tropical_storm"
@@ -414,13 +455,14 @@ def assemble(facts, source_url):
         "meta": {
             "source": "PAGASA (auto-parsed)",
             "bulletin_title": (f"Tropical Cyclone Bulletin No. {facts['bulletin_no']}"
-                               if facts.get("bulletin_no") else "PAGASA Tropical Cyclone Bulletin"),
+                               if facts.get("bulletin_no") else
+                               ("PAGASA Low Pressure Area Bulletin" if is_lpa else "PAGASA Tropical Cyclone Bulletin")),
             "issued_at": issued, "valid_until": nxt, "next_update": nxt,
             "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
             "bulletin_url": source_url,
         },
         "situation": {
-            "mode": mode, "has_active_tc": True,
+            "mode": mode, "has_active_tc": (not is_lpa),
             "storm_name_local": facts.get("name",""),
             "storm_name_intl": facts.get("intl",""),
             "category": facts["category"], "severity": "", "headline_override": "",
