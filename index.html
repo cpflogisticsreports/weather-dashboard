@@ -282,42 +282,72 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
   body.show-map .panel{display:none}
 }
 
-/* ---------- Print / management view ---------- */
+/* ---------- Print (simple) — hide map & controls, print the panel ---------- */
 @media print{
   @page{margin:12mm}
-  header.appbar{background:#075C2E !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .appbar-right,.panel-tools,.mobtoggle,.card-head .chev,.refgrid,.refnote,#refbtnrow{display:none !important}
+  html,body{background:#fff !important;height:auto !important;overflow:visible !important}
+  header.appbar,#fallbackStrip,.mobtoggle,.mapwrap,.panel-tools,.card-head .chev,.refgrid,.refnote,#refbtnrow{display:none !important}
   .layout{display:block;height:auto}
-  .mapwrap{display:none}
+  .banner{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .panel{width:100%;border:0;overflow:visible;max-height:none;padding:0}
   .card{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
   .card.collapsed .card-body{display:block !important}
-  .banner,.statusbox,.chip,.tag,.sig .sbadge,.matrix th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  body{background:#fff}
-  #printHeader{display:block !important}
+  .statusbox,.chip,.tag,.execstatus,.pf-hazard,.matrix th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
-#printHeader{display:none;padding:0 0 10px;border-bottom:2px solid var(--cpf-green);margin-bottom:12px}
-#printHeader h1{font-family:var(--display);font-size:20px;margin:0 0 4px;color:var(--cpf-green-dark)}
-#printHeader .ph-sub{font-size:12px;color:var(--navy-soft)}
-/* ---------- Weather layer toggle + loop playback bar ---------- */
+/* ---------- Custom layer panel (toggles + opacity sliders) ---------- */
+#layerPanel{position:absolute;top:12px;right:12px;z-index:900;width:236px;max-height:calc(100% - 90px);
+  overflow-y:auto;background:rgba(255,255,255,.96);border:1px solid #d5deea;border-radius:12px;
+  box-shadow:0 6px 20px rgba(16,32,58,.22);padding:9px 11px;font-family:var(--sans);backdrop-filter:blur(3px)}
+#layerPanel .lp-sec{margin-bottom:9px}
+#layerPanel .lp-sec:last-child{margin-bottom:0}
+#layerPanel .lp-h{font-size:9.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--navy-soft);
+  margin:2px 0 5px;display:flex;align-items:center;gap:6px}
+#layerPanel .lp-vr{font-weight:600;letter-spacing:.2px;text-transform:none;color:#9aa7b6;font-size:9px}
+#layerPanel label.lp-base{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--navy-2);padding:2px 0;cursor:pointer}
+#layerPanel .lp-row{display:grid;grid-template-columns:1fr 54px;align-items:center;gap:6px;padding:3px 0}
+#layerPanel .lp-row label{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--navy-2);cursor:pointer;min-width:0}
+#layerPanel .lp-row label span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#layerPanel .lp-row input[type=range]{width:54px;accent-color:var(--cpf-green);cursor:pointer;height:3px}
+#layerPanel .lp-row.off input[type=range]{opacity:.35;pointer-events:none}
+#layerPanel input[type=checkbox]{accent-color:var(--cpf-green);width:14px;height:14px;flex:none}
+#layerPanel .lp-dot{width:9px;height:9px;border-radius:2px;flex:none;transform:rotate(45deg)}
+#layerPanel hr{border:0;border-top:1px solid #e7edf3;margin:8px 0}
+@media (max-width:900px){ #layerPanel{width:200px;top:8px;right:8px;font-size:11px} }
+
+/* ---------- Blinking storm marker + rich map tooltips/popups ---------- */
+.storm-ico{position:relative}
+.storm-dot{width:20px;height:20px;border-radius:50%;background:#E33;border:3px solid #fff;
+  box-shadow:0 0 0 2px #E33,0 1px 4px rgba(0,0,0,.5);position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%);animation:stormBlink 1s steps(2,jump-none) infinite;z-index:2}
+.storm-pulse{width:20px;height:20px;border-radius:50%;background:rgba(227,51,51,.55);position:absolute;
+  left:50%;top:50%;transform:translate(-50%,-50%);animation:stormPulse 1.6s ease-out infinite;z-index:1}
+@keyframes stormBlink{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes stormPulse{0%{transform:translate(-50%,-50%) scale(1);opacity:.6}100%{transform:translate(-50%,-50%) scale(4.2);opacity:0}}
+.storm-tip{background:#B71C1C !important;color:#fff !important;border:0 !important;font-weight:800 !important;
+  font-size:12px !important;padding:3px 9px !important;border-radius:6px !important;box-shadow:0 2px 6px rgba(0,0,0,.35) !important;white-space:nowrap}
+.storm-tip::before{border-top-color:#B71C1C !important}
+.trk-tip{background:rgba(23,35,61,.92) !important;color:#fff !important;border:0 !important;font-size:10.5px !important;
+  font-weight:700 !important;padding:2px 6px !important;border-radius:5px !important;box-shadow:0 1px 4px rgba(0,0,0,.3) !important}
+.trk-tip::before{display:none !important}
+.pp-storm{font-size:12px;line-height:1.5;min-width:210px}
+.pp-storm .pp-storm-h{font-family:var(--display);font-size:14px;font-weight:800;color:#B71C1C;margin-bottom:2px}
+.pp-storm .pp-storm-cat{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;
+  background:#B71C1C;color:#fff;padding:1px 7px;border-radius:5px;margin-bottom:6px}
+.pp-storm table{width:100%;border-collapse:collapse}
+.pp-storm td{padding:2px 0;vertical-align:top;font-size:11.5px}
+.pp-storm td.k{color:var(--navy-soft);white-space:nowrap;padding-right:10px;font-weight:600}
+.pp-risk{margin-top:6px;padding:5px 8px;border-radius:6px;font-size:11px;font-weight:700}
+.pp-src{margin-top:6px;font-size:9.5px;color:var(--navy-soft);border-top:1px solid #eee;padding-top:4px}
+
+/* ---------- Weather loop playback bar (shown only when a loop layer is on) ---------- */
 #wxbar{
   position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:900;
-  display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:12px;
+  display:none;align-items:center;gap:8px;padding:7px 10px;border-radius:12px;
   background:rgba(23,35,61,.9);color:#fff;box-shadow:0 4px 16px rgba(0,0,0,.3);
   font-size:12px;max-width:96%;flex-wrap:wrap;justify-content:center;backdrop-filter:blur(4px);
 }
-.wxseg{display:inline-flex;background:rgba(255,255,255,.1);border-radius:9px;padding:2px;gap:2px}
-.wxseg .wxbtn{
-  background:transparent;border:0;color:#cdd7e6;font:600 12px/1 var(--sans);
-  padding:6px 11px;border-radius:7px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:.15s;
-}
-.wxseg .wxbtn:hover{color:#fff}
-.wxseg .wxbtn.active{background:#fff;color:var(--navy)}
-.wxseg .wxbtn.wx-wind.active{background:#8AF0A9;color:#0a3d1e}
-.wxseg .wxbtn.wx-rain.active{background:#7CB9E8;color:#0a2a45}
-.wxseg .wxbtn.wx-clouds.active{background:#E6ECF5;color:var(--navy)}
-#wxbar .loopctl{display:none;align-items:center;gap:8px}
-#wxbar.loop .loopctl{display:flex}
+#wxbar.show{display:flex}
+#wxbar .loopctl{display:flex;align-items:center;gap:8px}
 #wxbar button.pbtn{
   background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);color:#fff;
   width:30px;height:30px;border-radius:7px;cursor:pointer;font-size:13px;display:flex;
@@ -328,7 +358,50 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
 #wxbar .sattime{font-variant-numeric:tabular-nums;font-weight:600;min-width:112px;text-align:center}
 #wxbar .satcap{font-size:10px;opacity:.75;width:100%;text-align:center;margin-top:2px}
 #wxbar .wxspin{font-size:10px;opacity:.85}
-@media (max-width:900px){ #wxbar{bottom:10px} #wxbar input[type=range]{width:96px} .wxseg .wxbtn{padding:6px 8px} }
+@media (max-width:900px){ #wxbar{bottom:10px} #wxbar input[type=range]{width:96px} }
+
+/* ---------- Custom Layers panel (toggles + opacity sliders) ---------- */
+.lyrpanel{background:rgba(255,255,255,.96);border:1px solid var(--border);border-radius:10px;
+  box-shadow:0 4px 16px rgba(23,35,61,.18);font-size:12px;color:var(--navy);width:214px;overflow:hidden;backdrop-filter:blur(3px)}
+.lyrhead{display:flex;align-items:center;justify-content:space-between;background:var(--navy);color:#fff;
+  padding:7px 10px;font-family:var(--display);font-weight:700;font-size:12px}
+.lyrhead .lyrtoggle{background:transparent;border:0;color:#fff;cursor:pointer;font-size:13px;padding:0 2px}
+.lyrbody{padding:8px 10px;max-height:min(70vh,560px);overflow-y:auto}
+.lyrpanel.collapsed .lyrbody{display:none}
+.lyrgroup{font-size:9.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--navy-soft);
+  margin:9px 0 4px;border-bottom:1px solid var(--line);padding-bottom:2px}
+.lyrgroup:first-child{margin-top:0}
+.lyrgroup .vro{color:var(--orange);font-weight:800}
+.lyrbase{display:flex;align-items:center;gap:6px;padding:2px 0;cursor:pointer}
+.lyrrow{display:flex;align-items:center;gap:6px;padding:3px 0}
+.lyrrow label{display:flex;align-items:center;gap:6px;cursor:pointer;flex:1;min-width:0;line-height:1.2}
+.lyrrow label span{white-space:normal}
+.lyrrow label em{font-style:normal;color:var(--navy-soft);font-size:10px}
+.lyrrow input[type=checkbox]{accent-color:var(--cpf-green);flex:none}
+.lyrrow input[type=range].lyrop{width:52px;accent-color:var(--cpf-green);cursor:pointer;flex:none}
+.lyrbase input[type=radio]{accent-color:var(--cpf-green)}
+
+/* ---------- Blinking storm marker, track labels, rich popups ---------- */
+.storm-ico{position:relative}
+.storm-ico .storm-dot{position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;
+  border-radius:50%;background:#ff2d2d;border:2px solid #fff;box-shadow:0 0 6px rgba(255,45,45,.9);animation:stormBlink 1s steps(1) infinite}
+.storm-ico .storm-pulse{position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;
+  border-radius:50%;background:rgba(255,45,45,.5);animation:stormPulse 1.6s ease-out infinite}
+@keyframes stormPulse{0%{transform:scale(1);opacity:.8}100%{transform:scale(3.6);opacity:0}}
+@keyframes stormBlink{0%,60%{opacity:1}61%,100%{opacity:.35}}
+.storm-tip{background:#c81616;color:#fff;border:0;border-radius:6px;font-family:var(--display);font-weight:800;
+  font-size:12px;padding:3px 9px;box-shadow:0 2px 6px rgba(0,0,0,.3);white-space:nowrap}
+.storm-tip::before{border-top-color:#c81616}
+.trk-tip{background:rgba(23,35,61,.82);color:#fff;border:0;border-radius:5px;font-size:10px;font-weight:700;
+  padding:1px 6px;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.trk-tip::before{display:none}
+.pp-storm{min-width:210px}
+.pp-storm .pp-storm-h{font-family:var(--display);font-weight:800;font-size:13px;color:var(--navy);margin-bottom:6px;line-height:1.2}
+.pp-storm .pp-row{display:flex;justify-content:space-between;gap:10px;font-size:11.5px;padding:2px 0;border-bottom:1px solid var(--line)}
+.pp-storm .pp-row span{color:var(--navy-soft)}
+.pp-storm .pp-row b{text-align:right}
+.pp-storm .pp-note{margin-top:6px;font-size:11px;font-weight:600;color:#a34a00;background:var(--orange-soft);border-radius:6px;padding:5px 7px}
+.pp-storm .pp-src{margin-top:5px;font-size:9.5px;color:var(--cpf-green-dark);font-weight:700}
 </style>
 </head>
 <body class="show-map">
@@ -371,20 +444,10 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
   <div class="mapwrap">
     <div class="maptitle" id="mapTitle">Philippine Area of Responsibility</div>
     <div id="map"></div>
+    <div id="layerPanel" aria-label="Map layers"></div>
     <div id="wxbar">
-      <div class="wxseg" id="wxseg">
-        <button class="wxbtn" data-wx="off">✕ Off</button>
-        <button class="wxbtn wx-wind" data-wx="wind">💨 Wind</button>
-        <button class="wxbtn wx-rain" data-wx="rain">🌧 Rain</button>
-        <button class="wxbtn wx-clouds active" data-wx="clouds">🛰 Clouds</button>
-      </div>
-      <div class="loopctl">
-        <button class="pbtn" id="satPrev" title="Previous frame">⏮</button>
-        <button class="pbtn" id="satPlay" title="Play / pause">⏸</button>
-        <button class="pbtn" id="satNext" title="Next frame">⏭</button>
-        <input id="satSlider" type="range" min="0" max="0" value="0" />
-        <span class="sattime" id="satTime">—</span>
-      </div>
+      <button class="pbtn" id="satPlay" title="Play / pause weather animation">⏸</button>
+      <span class="sattime" id="satTime">—</span>
       <span class="wxspin" id="wxSpin"></span>
       <div class="satcap">Live weather layers — visual reference only. Official advisory: PAGASA.</div>
     </div>
@@ -392,11 +455,6 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
 
   <!-- RIGHT: Operations panel -->
   <aside class="panel" id="panel">
-    <div id="printHeader">
-      <h1 id="printTitle">CPF Logistics Weather Monitoring Dashboard</h1>
-      <div class="ph-sub" id="printSub">Management view</div>
-    </div>
-
     <div class="panel-tools">
       <div class="ptbtn" id="expandAll">＋ Expand all</div>
       <div class="ptbtn" id="collapseAll">－ Collapse all</div>
@@ -411,6 +469,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
     </div>
   </aside>
 </div>
+
 
 <script>
 /* =========================================================================
@@ -496,14 +555,16 @@ function maxSignal(d){return arr(d.tcws).reduce((m,t)=>Math.max(m,+t.signal||0),
 
 function deriveTitle(d){
   const s=d.situation||{}, name=has(s.storm_name_local)?String(s.storm_name_local).trim():"";
-  const tc=s.has_active_tc, mode=(s.mode||"").toLowerCase();
-  if(mode==="typhoon"||(tc&&/typhoon/i.test(s.category||"")&&name))
-    return name?`CPF Logistics Typhoon ${name} Monitoring Dashboard`:"CPF Logistics Typhoon Monitoring Dashboard";
-  if(mode==="tropical_depression"||(tc&&/depression/i.test(s.category||"")))
-    return name?`CPF Logistics Tropical Depression ${name} Monitoring Dashboard`
-               :"CPF Logistics Tropical Depression Monitoring Dashboard";
-  if(tc&&name) return `CPF Logistics Typhoon ${name} Monitoring Dashboard`;
-  if(mode==="advisory") return "CPF Logistics Weather Advisory Monitoring Dashboard";
+  const cat=has(s.category)?String(s.category).trim():"";
+  const tc=s.has_active_tc||["typhoon","tropical_depression","tropical_storm"].includes((s.mode||"").toLowerCase());
+  if(tc){
+    // Use the EXACT PAGASA category (Tropical Depression / Tropical Storm /
+    // Severe Tropical Storm / Typhoon / Super Typhoon). Never upgrade to "Typhoon".
+    const label = cat || "Tropical Cyclone";
+    return name ? `CPF Logistics ${label} ${name} Monitoring Dashboard`
+                : `CPF Logistics ${label} Monitoring Dashboard`;
+  }
+  if((s.mode||"").toLowerCase()==="advisory") return "CPF Logistics Weather Advisory Monitoring Dashboard";
   const rain=((d.rainfall||{}).warning_level||"").toLowerCase();
   const adv=(d.thunderstorm||{}).active||(d.gale_warning||{}).active||["moderate","heavy","intense"].includes(rain);
   if(adv) return "CPF Logistics Weather Advisory Monitoring Dashboard";
@@ -572,13 +633,12 @@ function deriveStatus(d,level){
 /* =========================================================================
    RENDERING
    ========================================================================= */
-let MAP,LAYERS={},LAYERCTRL,didFit=false,stormLL=[13.0,123.0];
+let MAP,LAYERS={},didFit=false,stormLL=[13.0,123.0];
 
 function render(d,isLive){
   const title=deriveTitle(d);
   document.title=title;
   $("#appTitle").textContent=title;
-  $("#printTitle").textContent=title;
 
   // storm position for the Live Satellite / Wind (Windy) view (set regardless of map)
   const _cy=d.cyclone||{};
@@ -590,7 +650,6 @@ function render(d,isLive){
   else{chip.className="chip fallback";txt.textContent="Data: offline fallback";$("#fallbackStrip").classList.add("show");}
 
   $("#issuedTxt").textContent=fmtTime((d.meta||{}).issued_at);
-  $("#printSub").textContent=`Management view · Issued ${fmtTime((d.meta||{}).issued_at)}`;
 
   // banner
   const hl=deriveHeadline(d);
@@ -840,63 +899,237 @@ function secondaryRefs(){
 /* =========================================================================
    MAP
    ========================================================================= */
+let BASELAYERS={}, LABELS_LAYER=null;
+const PANE_Z={pWxClouds:250,pWxRain:260,pWxWind:270,pRainfall:300,pMarine:310,pPar:320,pRoutes:330,pTrack:340,pSignals:350,pLabels:380,pHubs:390};
+
 function initMap(){
   MAP=L.map("map",{center:[13.0,123.0],zoom:6,zoomControl:true,worldCopyJump:true});
-  const sat=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-    {attribution:"Tiles © Esri — Satellite imagery (visual reference only)",maxZoom:18});
-  const streets=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
-    {attribution:"Tiles © Esri",maxZoom:18});
-  const osm=L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    {attribution:"© OpenStreetMap contributors",maxZoom:19});
-  sat.addTo(MAP);
 
+  // dedicated panes so every layer has independent stacking + opacity
+  Object.entries(PANE_Z).forEach(([n,z])=>{ MAP.createPane(n); MAP.getPane(n).style.zIndex=z; });
+
+  // base maps (one stable realistic base at all times; satellite by default)
+  BASELAYERS.sat=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    {attribution:"Tiles © Esri — Satellite imagery (visual reference only)",maxZoom:18});
+  BASELAYERS.streets=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+    {attribution:"Tiles © Esri",maxZoom:18});
+  BASELAYERS.osm=L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {attribution:"© OpenStreetMap contributors",maxZoom:19});
+  BASELAYERS.sat.addTo(MAP);
+
+  // optional reference labels (provinces, cities, seas, islands) as an overlay on top of imagery
+  LABELS_LAYER=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}",
+    {pane:"pLabels",maxZoom:18,attribution:"Labels © Esri"});
+  LABELS_LAYER.addTo(MAP);
+  MAP.getPane("pLabels").style.opacity=0.9;
+
+  // independent vector overlay groups (each feature is drawn into its own pane)
   LAYERS.par=L.layerGroup().addTo(MAP);
   LAYERS.track=L.layerGroup().addTo(MAP);
   LAYERS.signals=L.layerGroup().addTo(MAP);
-  LAYERS.rain=L.layerGroup().addTo(MAP);
+  LAYERS.rain=L.layerGroup().addTo(MAP);      // PAGASA rainfall / Habagat areas
   LAYERS.marine=L.layerGroup().addTo(MAP);
+  LAYERS.routes=L.layerGroup().addTo(MAP);
   LAYERS.hubs=L.layerGroup().addTo(MAP);
 
-  LAYERCTRL=L.control.layers(
-    {"Satellite (Esri)":sat,"Streets":streets,"OpenStreetMap":osm},
-    {"PAR boundary":LAYERS.par,"Storm track & wind":LAYERS.track,"Wind signals (TCWS)":LAYERS.signals,
-     "Rainfall / Habagat":LAYERS.rain,"Marine / gale":LAYERS.marine,"CPF hubs":LAYERS.hubs},
-    {collapsed:false,position:"topright"}).addTo(MAP);
+  buildLayerPanel();
+}
+
+/* ---- Custom layer panel: per-layer toggle + opacity slider ---- */
+const LAYER_GROUPS=[
+  {title:"Weather overlays", vr:true, rows:[
+    {key:"clouds",  label:"Satellite clouds",     kind:"wx",  on:true,  op:72,  dot:"#cfd8e3"},
+    {key:"rain",    label:"Rain / precipitation", kind:"wx",  on:false, op:70,  dot:"#7CB9E8"},
+    {key:"wind",    label:"Wind",                 kind:"wx",  on:false, op:100, dot:"#8AF0A9"},
+  ]},
+  {title:"PAGASA & logistics", vr:false, rows:[
+    {key:"track",   label:"PAGASA track",         kind:"vec", grp:"track",  pane:"pTrack",   on:true, op:100, dot:"#D32F2F"},
+    {key:"signals", label:"Wind signals (TCWS)",  kind:"vec", grp:"signals",pane:"pSignals", on:true, op:100, dot:"#E8A800"},
+    {key:"rainfall",label:"Rainfall / Habagat",   kind:"vec", grp:"rain",   pane:"pRainfall",on:true, op:100, dot:"#7CB9E8"},
+    {key:"marine",  label:"Marine / gale",        kind:"vec", grp:"marine", pane:"pMarine",  on:true, op:100, dot:"#1E88E5"},
+    {key:"routes",  label:"Priority routes",      kind:"vec", grp:"routes", pane:"pRoutes",  on:true, op:100, dot:"#8E24AA"},
+    {key:"par",     label:"PAR boundary",         kind:"vec", grp:"par",    pane:"pPar",     on:true, op:100, dot:"#17233D"},
+    {key:"hubs",    label:"CPF hubs",             kind:"vec", grp:"hubs",   pane:"pHubs",    on:true, op:100, dot:"#0A7B3E"},
+    {key:"labels",  label:"Reference labels",     kind:"labels", pane:"pLabels",             on:true, op:90,  dot:"#7a8aa0"},
+  ]},
+];
+const LAYER_BY_KEY={};
+LAYER_GROUPS.forEach(g=>g.rows.forEach(r=>LAYER_BY_KEY[r.key]=r));
+
+function buildLayerPanel(){
+  const p=document.getElementById("layerPanel"); if(!p) return;
+  let html=`<div class="lp-sec"><div class="lp-h">Base map</div>`+
+    [["sat","Satellite (Esri)"],["streets","Streets"],["osm","OpenStreetMap"]]
+      .map(([v,l],i)=>`<label class="lp-base"><input type="radio" name="lpbase" value="${v}"${i===0?" checked":""}> ${l}</label>`).join("")+
+    `</div>`;
+  LAYER_GROUPS.forEach(g=>{
+    html+=`<hr><div class="lp-sec"><div class="lp-h">${g.title}${g.vr?`<span class="lp-vr">visual reference only</span>`:""}</div>`;
+    g.rows.forEach(r=>{
+      html+=`<div class="lp-row${r.on?"":" off"}" data-key="${r.key}">
+        <label><input type="checkbox" data-lyr="${r.key}"${r.on?" checked":""}>
+          <span class="lp-dot" style="background:${r.dot}"></span><span>${r.label}</span></label>
+        <input type="range" data-op="${r.key}" min="0" max="100" value="${r.op}">
+      </div>`;
+    });
+    html+=`</div>`;
+  });
+  p.innerHTML=html;
+
+  // base switch
+  p.querySelectorAll('input[name="lpbase"]').forEach(rb=>rb.addEventListener("change",()=>{
+    Object.values(BASELAYERS).forEach(b=>{ if(MAP.hasLayer(b)) MAP.removeLayer(b); });
+    (BASELAYERS[rb.value]||BASELAYERS.sat).addTo(MAP);
+  }));
+  // toggles
+  p.querySelectorAll("input[data-lyr]").forEach(cb=>cb.addEventListener("change",()=>{
+    const row=LAYER_BY_KEY[cb.dataset.lyr];
+    toggleLayer(row, cb.checked);
+    const r=p.querySelector(`.lp-row[data-key="${cb.dataset.lyr}"]`); if(r) r.classList.toggle("off",!cb.checked);
+  }));
+  // opacity sliders
+  p.querySelectorAll("input[data-op]").forEach(sl=>sl.addEventListener("input",()=>{
+    setLayerOpacity(LAYER_BY_KEY[sl.dataset.op], +sl.value);
+  }));
+
+  // apply initial opacities for vector/label panes
+  LAYER_GROUPS.forEach(g=>g.rows.forEach(r=>{
+    if(r.kind==="vec"||r.kind==="labels") MAP.getPane(r.pane).style.opacity=r.op/100;
+  }));
+}
+
+function toggleLayer(row,on){
+  if(!row) return;
+  if(row.kind==="vec"){ const g=LAYERS[row.grp]; if(!g) return; on?g.addTo(MAP):MAP.removeLayer(g); }
+  else if(row.kind==="labels"){ on?LABELS_LAYER.addTo(MAP):MAP.removeLayer(LABELS_LAYER); }
+  else if(row.kind==="wx"){ wxToggle(row.key,on); }
+}
+function setLayerOpacity(row,val){
+  if(!row) return;
+  const o=Math.max(0,Math.min(100,val))/100;
+  if(row.kind==="wx"){ wxSetOpacity(row.key,o); }
+  else { MAP.getPane(row.pane).style.opacity=o; }
 }
 
 function centroid(name){return PH_CENTROIDS[(name||"").trim().toLowerCase()]||null;}
 
+/* ---- Delivery-risk interpretation from PAGASA category / winds ---- */
+function deliveryRisk(catText, winds){
+  const c=(catText||"").toLowerCase(); const w=+winds||0;
+  if(/super typhoon/.test(c) || w>=185) return {label:"Severe — suspend/hold dispatch along the storm path.", bg:"#fdecea", fg:"#a31515"};
+  if(/(^|\s)typhoon/.test(c) || w>=118)  return {label:"Severe — hold dispatch in affected corridors; expect closures.", bg:"#fdecea", fg:"#a31515"};
+  if(/severe tropical storm/.test(c) || w>=89) return {label:"High — validate routes; damaging winds & flooding likely.", bg:"#fff2e6", fg:"#a34a00"};
+  if(/tropical storm/.test(c) || w>=62)  return {label:"Elevated — gusty winds & rain; dispatch with route validation.", bg:"#fff8e1", fg:"#8a6d00"};
+  if(/tropical depression/.test(c) || w>0) return {label:"Moderate — monitor; rain-related delays possible.", bg:"#eef4ff", fg:"#1c4b8a"};
+  return {label:"Reference point — monitor PAGASA updates.", bg:"#eef1f5", fg:"#41506a"};
+}
+function dash(v){ return has(v)?esc(v):"—"; }
+function stormIcon(){ return L.divIcon({className:"storm-ico",html:`<span class="storm-pulse"></span><span class="storm-dot"></span>`,iconSize:[20,20],iconAnchor:[10,10]}); }
+function stormPopup(cy,s,met){
+  const cat=s.category||"Tropical Cyclone", nm=s.storm_name_local?`“${esc(s.storm_name_local)}”`:"";
+  const intl=has(s.storm_name_intl)?` (${esc(s.storm_name_intl)})`:"";
+  const risk=deliveryRisk(cat, cy.max_sustained_winds_kph);
+  return `<div class="pp-storm">
+    <div class="pp-storm-h">${esc(cat)} ${nm}${intl}</div>
+    <span class="pp-storm-cat">Official PAGASA center</span>
+    <table>
+      <tr><td class="k">Center time</td><td>${fmtTime(met.issued_at)}</td></tr>
+      <tr><td class="k">Latitude / Longitude</td><td>${has(cy.lat)?(+cy.lat).toFixed(2)+"°N":"—"}, ${has(cy.lon)?(+cy.lon).toFixed(2)+"°E":"—"}</td></tr>
+      <tr><td class="k">Max sustained winds</td><td>${has(cy.max_sustained_winds_kph)?esc(cy.max_sustained_winds_kph)+" km/h":"—"}</td></tr>
+      <tr><td class="k">Gustiness</td><td>${has(cy.gustiness_kph)?esc(cy.gustiness_kph)+" km/h":"—"}</td></tr>
+      <tr><td class="k">Movement</td><td>${dash(cy.movement)}</td></tr>
+      <tr><td class="k">Position</td><td>${dash(cy.center_text)}</td></tr>
+    </table>
+    <div class="pp-risk" style="background:${risk.bg};color:${risk.fg}">Delivery impact: ${risk.label}</div>
+    <div class="pp-src">Source of truth: PAGASA. Secondary layers are visual reference only.</div>
+  </div>`;
+}
+function fcPopup(p,i,s){
+  const cat=p.category||s.category||"", risk=deliveryRisk(cat, p.winds_kph);
+  return `<div class="pp-storm">
+    <div class="pp-storm-h" style="font-size:13px">Forecast · ${esc(p.label||("+"+i))}</div>
+    <table>
+      <tr><td class="k">Latitude / Longitude</td><td>${(+p.lat).toFixed(2)}°N, ${(+p.lon).toFixed(2)}°E</td></tr>
+      ${has(p.category)?`<tr><td class="k">Category</td><td>${esc(p.category)}</td></tr>`:""}
+      ${has(p.winds_kph)?`<tr><td class="k">Max winds</td><td>${esc(p.winds_kph)} km/h</td></tr>`:""}
+      ${has(p.gustiness_kph)?`<tr><td class="k">Gustiness</td><td>${esc(p.gustiness_kph)} km/h</td></tr>`:""}
+      ${has(p.movement)?`<tr><td class="k">Movement</td><td>${esc(p.movement)}</td></tr>`:""}
+      ${has(p.position_text)?`<tr><td class="k">Position</td><td>${esc(p.position_text)}</td></tr>`:""}
+    </table>
+    <div class="pp-risk" style="background:${risk.bg};color:${risk.fg}">Delivery impact: ${risk.label}</div>
+    <div class="pp-src">PAGASA forecast position (plotted from official lat/lon).</div>
+  </div>`;
+}
+
+/* ---- Priority route corridors (drawn from a small gazetteer of endpoints) ---- */
+const ROUTE_GAZ={
+  "manila":[14.60,120.98],"metro manila":[14.60,120.98],"bulacan":[14.79,120.88],"pampanga":[15.05,120.66],
+  "tarlac":[15.48,120.59],"gerona":[15.63,120.59],"clark":[15.19,120.53],"subic":[14.79,120.28],
+  "bataan":[14.68,120.49],"samal":[14.76,120.49],"batangas":[13.76,121.06],"laguna":[14.17,121.33],
+  "cavite":[14.28,120.87],"bicol":[13.42,123.42],"naga":[13.62,123.19],"legazpi":[13.14,123.73],
+  "quezon":[13.93,121.62],"nueva ecija":[15.58,120.99],"isabela":[17.13,121.85],"ilagan":[17.12,121.85],
+  "cagayan":[17.61,121.72],"tuguegarao":[17.61,121.73],"cebu":[10.29,123.90],"iloilo":[10.72,122.56],
+  "bacolod":[10.68,122.95],"tacloban":[11.24,125.00],"cdo":[8.48,124.65],"cagayan de oro":[8.48,124.65],
+  "davao":[7.06,125.61],"gensan":[6.11,125.17],"general santos":[6.11,125.17],"zamboanga":[6.92,122.08],
+  "mindoro":[13.10,121.07],"occidental mindoro":[13.10,121.07],"oriental mindoro":[13.10,121.41],
+  "palawan":[9.84,118.74],"antique":[11.16,122.06],"nlex":[14.95,120.85],"sctex":[15.25,120.60]
+};
+function routeColor(risk){ const r=(risk||"").toLowerCase();
+  if(/crit|suspend|hold/.test(r))return"#D32F2F"; if(/high/.test(r))return"#EA6D0A";
+  if(/mod|caution/.test(r))return"#E8A800"; return"#8E24AA"; }
+function geocodeRoutePoint(s){ const t=(s||"").toLowerCase().trim();
+  for(const k of Object.keys(ROUTE_GAZ).sort((a,b)=>b.length-a.length)) if(t.includes(k)) return ROUTE_GAZ[k];
+  return null; }
+function drawRoutes(cpf){
+  arr(cpf.priority_routes).forEach(r=>{
+    const name=r.route||""; const parts=name.split(/[–—\-→>]|to\s|vs\s/i).map(x=>x.trim()).filter(Boolean);
+    if(parts.length<2) return;
+    const a=geocodeRoutePoint(parts[0]), b=geocodeRoutePoint(parts[parts.length-1]);
+    if(!a||!b) return;
+    const col=routeColor(r.risk);
+    L.polyline([a,b],{pane:"pRoutes",color:col,weight:4,opacity:.85,dashArray:"1 8",lineCap:"round"})
+      .bindPopup(`<div class="pp-storm"><div class="pp-storm-h" style="font-size:13px;color:${col}">${esc(name)}</div>`+
+        `<table>${r.risk?`<tr><td class="k">Risk</td><td>${esc(r.risk)}</td></tr>`:""}${r.note?`<tr><td class="k">Note</td><td>${esc(r.note)}</td></tr>`:""}</table>`+
+        `<div class="pp-src">CPF priority corridor · PAGASA-informed.</div></div>`).addTo(LAYERS.routes);
+  });
+}
+
 function drawMap(d){
   if(!MAP)return;
   Object.values(LAYERS).forEach(g=>g.clearLayers());
-  const cy=d.cyclone||{},cpf=d.cpf||{};
+  const cy=d.cyclone||{}, cpf=d.cpf||{}, s=d.situation||{}, met=d.meta||{};
 
   // PAR boundary
   const PAR=[[5,115],[15,115],[21,120],[25,120],[25,135],[5,135]];
-  L.polygon(PAR,{color:"#17233D",weight:1.5,dashArray:"6 6",fill:false,opacity:.7})
+  L.polygon(PAR,{pane:"pPar",color:"#17233D",weight:1.5,dashArray:"6 6",fill:false,opacity:.75})
     .bindTooltip("Philippine Area of Responsibility (PAR)",{sticky:true}).addTo(LAYERS.par);
 
-  // Storm track
+  // Storm track (official PAGASA lat/lon only)
   const track=arr(cy.forecast_track).filter(p=>has(p.lat)&&has(p.lon));
-  if(track.length){
-    const pts=track.map(p=>[+p.lat,+p.lon]);
-    L.polyline(pts,{color:"#D32F2F",weight:3,opacity:.85}).addTo(LAYERS.track);
-    track.forEach((p,i)=>{
-      const cur=i===0;
-      L.circleMarker([+p.lat,+p.lon],{radius:cur?9:6,color:"#fff",weight:2,
-        fillColor:cur?"#D32F2F":"#EA6D0A",fillOpacity:1})
-        .bindPopup(`<b>${esc(p.label||("+"+i))}</b><br>${esc(p.category||"")}${has(p.winds_kph)?` · ${esc(p.winds_kph)} km/h`:""}<br><span class="pp-sub">${(+p.lat).toFixed(1)}°N, ${(+p.lon).toFixed(1)}°E</span>`)
-        .addTo(LAYERS.track);
-    });
-    // wind extent
-    if(has(cy.wind_extent_km)&&has(cy.lat)&&has(cy.lon)){
-      L.circle([+cy.lat,+cy.lon],{radius:(+cy.wind_extent_km)*1000,color:"#EA6D0A",weight:1.5,
-        fillColor:"#EA6D0A",fillOpacity:.08,dashArray:"4 6"})
-        .bindTooltip(`Approx. wind extent ~${esc(cy.wind_extent_km)} km`).addTo(LAYERS.track);
-    }
+  if(track.length>1){
+    L.polyline(track.map(p=>[+p.lat,+p.lon]),{pane:"pTrack",color:"#D32F2F",weight:3,opacity:.9,dashArray:"2 7"}).addTo(LAYERS.track);
+  }
+  // forecast points (skip index 0 = current center, which gets the blinking marker)
+  track.forEach((p,i)=>{
+    if(i===0 && has(cy.lat) && has(cy.lon)) return;
+    L.circleMarker([+p.lat,+p.lon],{pane:"pTrack",radius:6,color:"#fff",weight:2,fillColor:"#EA6D0A",fillOpacity:1})
+      .bindTooltip(esc(p.label||("+"+i)),{permanent:true,direction:"right",className:"trk-tip",offset:[8,0]})
+      .bindPopup(fcPopup(p,i,s),{maxWidth:280}).addTo(LAYERS.track);
+  });
+  // wind extent ring
+  if(has(cy.wind_extent_km)&&has(cy.lat)&&has(cy.lon)){
+    L.circle([+cy.lat,+cy.lon],{pane:"pTrack",radius:(+cy.wind_extent_km)*1000,color:"#EA6D0A",weight:1.5,
+      fillColor:"#EA6D0A",fillOpacity:.07,dashArray:"4 6"})
+      .bindTooltip(`Approx. wind extent ~${esc(cy.wind_extent_km)} km`).addTo(LAYERS.track);
+  }
+  // BLINKING current-center marker (active TC only) at exact PAGASA lat/lon
+  if(s.has_active_tc && has(cy.lat) && has(cy.lon)){
+    const label=`${esc(s.category||"TC")} ${s.storm_name_local?"“"+esc(s.storm_name_local)+"”":""}`.trim();
+    L.marker([+cy.lat,+cy.lon],{pane:"pTrack",icon:stormIcon(),zIndexOffset:1000})
+      .bindTooltip(label,{permanent:true,direction:"right",className:"storm-tip",offset:[13,0]})
+      .bindPopup(stormPopup(cy,s,met),{maxWidth:300}).addTo(LAYERS.track);
   } else if(has(cy.lat)&&has(cy.lon)){
-    L.circleMarker([+cy.lat,+cy.lon],{radius:9,color:"#fff",weight:2,fillColor:"#D32F2F",fillOpacity:1})
-      .bindPopup(`<b>Storm center</b><br>${val(cy.center_text)}`).addTo(LAYERS.track);
+    L.circleMarker([+cy.lat,+cy.lon],{pane:"pTrack",radius:8,color:"#fff",weight:2,fillColor:"#D32F2F",fillOpacity:1})
+      .bindPopup(stormPopup(cy,s,met),{maxWidth:300}).addTo(LAYERS.track);
   }
 
   // TCWS signals
@@ -904,49 +1137,47 @@ function drawMap(d){
     const col=SIG_COLOR[t.signal]||"#E8A800";
     arr(t.areas).forEach(a=>{
       const c=centroid(a);if(!c)return;
-      L.circleMarker(c,{radius:8,color:"#fff",weight:1.5,fillColor:col,fillOpacity:.9})
+      L.circleMarker(c,{pane:"pSignals",radius:8,color:"#fff",weight:1.5,fillColor:col,fillOpacity:.92})
         .bindPopup(`<b>Signal No. ${esc(t.signal)}</b><br>${esc(a)}<br><span class="pp-sub">${esc(t.wind_range||"")}</span>`)
         .addTo(LAYERS.signals);
     });
   });
 
-  // Rainfall
+  // Rainfall / Habagat watch areas
   arr((d.rainfall||{}).areas).forEach(a=>{
     if(!has(a.lat)||!has(a.lon))return;
     const col=RAIN_COLOR[(a.level||"").toLowerCase()]||"#7CB9E8";
-    L.circle([+a.lat,+a.lon],{radius:45000,color:col,weight:1.5,fillColor:col,fillOpacity:.28})
+    L.circle([+a.lat,+a.lon],{pane:"pRainfall",radius:45000,color:col,weight:1.5,fillColor:col,fillOpacity:.28})
       .bindPopup(`<b>Rainfall — ${esc(a.level||"")}</b><br>${esc(a.name||"")}`).addTo(LAYERS.rain);
   });
 
-  // Marine / gale
+  // Marine / gale risk zones
   arr((d.gale_warning||{}).areas).forEach(a=>{
     if(!has(a.lat)||!has(a.lon))return;
-    L.marker([+a.lat,+a.lon],{icon:emojiIcon("🌊")})
+    L.marker([+a.lat,+a.lon],{pane:"pMarine",icon:emojiIcon("🌊")})
       .bindPopup(`<b>Gale warning</b><br>${esc(a.name||"")}`).addTo(LAYERS.marine);
   });
+
+  // Priority route corridors
+  drawRoutes(cpf);
 
   // CPF hubs
   const hubs=arr(cpf.hubs).length?arr(cpf.hubs):DEFAULT_HUBS;
   hubs.forEach(h=>{
     if(!has(h.lat)||!has(h.lon))return;
     const col=hubColor(h.status);
-    L.marker([+h.lat,+h.lon],{icon:hubIcon(col)})
+    L.marker([+h.lat,+h.lon],{pane:"pHubs",icon:hubIcon(col)})
       .bindPopup(`<div class="pp-hub">${esc(h.name)}</div><span class="pp-sub">${esc(h.region||"")} · ${esc(h.type||"")}</span><br><span class="tag ${hubTag(h.status)}" style="margin-top:4px">${esc(h.status||"—")}</span>`)
       .addTo(LAYERS.hubs);
   });
 
   updateMapTitle(d);
+  if(has(cy.lat)&&has(cy.lon)) stormLL=[+cy.lat,+cy.lon]; else stormLL=[13.0,123.0];
 
-  // remember storm position for the Live Satellite / Wind (Windy) view
-  if(has(cy.lat)&&has(cy.lon)) stormLL=[+cy.lat,+cy.lon];
-  else stormLL=[13.0,123.0];
-
-  // One-time fit: if a storm track exists, frame the map to include the track
-  // and the CPF hubs so the storm is visible even when it's outside PAR.
-  // Only fits once so it never fights the user's manual pan/zoom on refresh.
+  // One-time fit to include storm track + hubs
   if(!didFit){
     const pts=[];
-    arr(cy.forecast_track).forEach(p=>{ if(has(p.lat)&&has(p.lon)) pts.push([+p.lat,+p.lon]); });
+    track.forEach(p=>pts.push([+p.lat,+p.lon]));
     if(has(cy.lat)&&has(cy.lon)) pts.push([+cy.lat,+cy.lon]);
     if(pts.length){
       hubs.forEach(h=>{ if(has(h.lat)&&has(h.lon)) pts.push([+h.lat,+h.lon]); });
@@ -983,91 +1214,101 @@ function hubIcon(col){return L.divIcon({className:"",iconSize:[18,18],iconAnchor
 const JMA_TARGETTIMES="https://www.jma.go.jp/bosai/himawari/data/satimg/targetTimes_fd.json";
 function jmaTileUrl(bt,vt){ return `https://www.jma.go.jp/bosai/himawari/data/satimg/${bt}/fd/${vt}/B13/TBB/{z}/{x}/{y}.jpg`; }
 
-const WX={mode:"off",host:"",radar:[],clouds:[],layers:[],group:null,idx:0,timer:null,
-          wind:null,speed:700,opacity:0.72,ready:false,tileErrs:0};
+/* Independent weather overlays: Clouds (Himawari), Rain (RainViewer radar), Wind
+   (leaflet-velocity + Open-Meteo). Each has its own pane so it can be toggled and
+   have its opacity set independently. All are visual reference only. */
+const WX={
+  host:"", radarFrames:[], cloudFrames:[], ready:false, speed:700, playing:true,
+  clouds:{on:false, pane:"pWxClouds", layers:[], idx:0, timer:null, op:0.72},
+  rain:{on:false, pane:"pWxRain", layers:[], idx:0, timer:null, op:0.70},
+  wind:{on:false, layer:null, op:1.0}
+};
 
 async function initWeather(){
   if(!MAP) return;
-  // RainViewer radar (rain)
   try{
     const j=await (await fetch("https://api.rainviewer.com/public/weather-maps.json",{cache:"no-store"})).json();
     WX.host=j.host||"https://tilecache.rainviewer.com";
-    WX.radar=[...((j.radar&&j.radar.past)||[]),...((j.radar&&j.radar.nowcast)||[])];
+    WX.radarFrames=[...((j.radar&&j.radar.past)||[]),...((j.radar&&j.radar.nowcast)||[])];
   }catch(e){ console.warn("RainViewer unavailable:",e.message); }
-  // JMA Himawari-9 real-time frames (clouds)
   try{
     const times=await (await fetch(JMA_TARGETTIMES,{cache:"no-store"})).json();
-    if(Array.isArray(times)&&times.length) WX.clouds=times.slice(-12); // last 12 frames
+    if(Array.isArray(times)&&times.length) WX.cloudFrames=times.slice(-12);
   }catch(e){ console.warn("Himawari targetTimes unavailable:",e.message); }
   WX.ready=true;
-  setWx("clouds");   // default layer on load (change to "off"/"rain"/"wind" if preferred)
+  // apply panel defaults (clouds on by default; rain/wind off)
+  ["clouds","rain","wind"].forEach(k=>{ if(LAYER_BY_KEY[k] && LAYER_BY_KEY[k].on) wxToggle(k,true); });
+  updateWxReadout();
 }
 
-function teardownWx(){
-  if(WX.timer){clearInterval(WX.timer);WX.timer=null;}
-  if(WX.group){ try{MAP.removeLayer(WX.group);}catch(e){} WX.group=null; }
-  if(WX.wind){ try{MAP.removeLayer(WX.wind);}catch(e){} WX.wind=null; }
-  WX.layers=[]; WX.tileErrs=0;
-  $("#wxbar").classList.remove("loop");
+function wxToggle(key,on){
+  if(!WX.ready && key!=="off") { /* allow queue via defaults */ }
+  if(key==="wind"){ WX.wind.on=on; on?loadWind():removeWind(); updateWxReadout(); return; }
+  const st=WX[key]; if(!st) return;
+  st.on=on;
+  if(on) buildLoop(key); else teardownLoop(key);
+  updateWxReadout();
+}
+function wxSetOpacity(key,o){
+  if(key==="wind"){ WX.wind.op=o; const c=document.querySelector(".velocity-overlay"); if(c) c.style.opacity=o; return; }
+  const st=WX[key]; if(!st) return; st.op=o;
+  if(MAP.getPane(st.pane)) MAP.getPane(st.pane).style.opacity=o;
+}
+
+function teardownLoop(key){
+  const st=WX[key]; if(!st) return;
+  if(st.timer){clearInterval(st.timer);st.timer=null;}
+  st.layers.forEach(o=>{ try{MAP.removeLayer(o.layer);}catch(e){} });
+  st.layers=[];
+}
+function buildLoop(key){
+  const st=WX[key], frames = key==="clouds"?WX.cloudFrames:WX.radarFrames;
+  teardownLoop(key);
+  if(!frames.length){ $("#wxSpin").textContent = key==="clouds"?"Cloud imagery loading…":"Rain radar loading…"; return; }
   $("#wxSpin").textContent="";
-}
-
-function setWx(mode){
-  if(!MAP) return;
-  teardownWx();
-  WX.mode=mode;
-  document.querySelectorAll(".wxbtn").forEach(b=>b.classList.toggle("active",b.dataset.wx===mode));
-  if(mode==="off") return;
-  if(mode==="wind"){ loadWind(); return; }
-  buildLoop(mode);
-}
-
-/* Preload all frames as tile layers (opacity 0 except newest), then fade between them. */
-function buildLoop(mode){
-  const frames = mode==="clouds" ? WX.clouds : WX.radar;
-  if(!frames.length){
-    $("#wxSpin").textContent = mode==="clouds" ? "Cloud imagery loading…" : "No rain data now";
-    return;
-  }
-  WX.group=L.layerGroup().addTo(MAP);
-  WX.layers=frames.map((f,i)=>{
-    const url = mode==="clouds" ? jmaTileUrl(f.basetime,f.validtime) : `${WX.host}${f.path}/256/{z}/{x}/{y}/4/1_1.png`;
-    const layer=L.tileLayer(url,{opacity:i===frames.length-1?WX.opacity:0,zIndex:250,
-      maxNativeZoom:mode==="clouds"?6:7,maxZoom:19,minZoom:3,
-      attribution:(mode==="clouds"?"Cloud imagery © JMA Himawari-9 (real-time loop)":"Radar © RainViewer")+" — visual reference only"});
-    layer.on("tileerror",()=>{ if(++WX.tileErrs>=10){ $("#wxSpin").textContent=(mode==="clouds"?"Clouds":"Rain")+" temporarily unavailable"; } });
-    WX.group.addLayer(layer);
+  if(MAP.getPane(st.pane)) MAP.getPane(st.pane).style.opacity=st.op;
+  let errs=0;
+  st.layers=frames.map((f,i)=>{
+    const url = key==="clouds"?jmaTileUrl(f.basetime,f.validtime):`${WX.host}${f.path}/256/{z}/{x}/{y}/4/1_1.png`;
+    const layer=L.tileLayer(url,{pane:st.pane,opacity:i===frames.length-1?1:0,
+      maxNativeZoom:key==="clouds"?6:7,maxZoom:19,minZoom:3,
+      attribution:(key==="clouds"?"Cloud imagery © JMA Himawari-9 (real-time loop)":"Radar © RainViewer")+" — visual reference only"});
+    layer.on("tileerror",()=>{ if(++errs>=12) $("#wxSpin").textContent=(key==="clouds"?"Clouds":"Rain")+" temporarily unavailable"; });
+    layer.addTo(MAP);
     return {layer,f};
   });
-  $("#wxbar").classList.add("loop");
-  const slider=$("#satSlider"); slider.max=String(WX.layers.length-1); slider.value=String(WX.layers.length-1);
-  WX.idx=WX.layers.length-1;
-  showFrame(WX.idx);
-  startLoop();
+  st.idx=st.layers.length-1;
+  showFrame(key,st.idx);
+  if(WX.playing) startLoop(key);
 }
-
-function frameLabel(mode,f){
-  if(mode==="clouds"){                 // f.validtime = YYYYMMDDHHMMSS (UTC)
-    const vt=f.validtime, y=+vt.slice(0,4),mo=+vt.slice(4,6),d=+vt.slice(6,8),h=+vt.slice(8,10),mi=+vt.slice(10,12);
+function showFrame(key,i){
+  const st=WX[key]; if(!st.layers.length) return;
+  i=(i+st.layers.length)%st.layers.length;
+  st.layers.forEach((o,j)=>o.layer.setOpacity(j===i?1:0));
+  st.idx=i;
+  updateWxReadout();
+}
+function startLoop(key){
+  const st=WX[key]; if(st.timer) clearInterval(st.timer);
+  st.timer=setInterval(()=>{ showFrame(key, st.idx>=st.layers.length-1?0:st.idx+1); }, WX.speed);
+}
+function frameLabel(key,f){
+  if(key==="clouds"){
+    const vt=f.validtime,y=+vt.slice(0,4),mo=+vt.slice(4,6),d=+vt.slice(6,8),h=+vt.slice(8,10),mi=+vt.slice(10,12);
     const dt=new Date(Date.UTC(y,mo-1,d,h,mi)); dt.setUTCHours(dt.getUTCHours()+8);
     return String(dt.getUTCHours()).padStart(2,"0")+":"+String(dt.getUTCMinutes()).padStart(2,"0")+" PHT";
   }
   return new Date(f.time*1000).toLocaleTimeString("en-PH",{hour:"numeric",minute:"2-digit",hour12:true});
 }
-function showFrame(i){
-  if(!WX.layers.length) return;
-  i=(i+WX.layers.length)%WX.layers.length;
-  WX.layers.forEach((o,j)=>o.layer.setOpacity(j===i?WX.opacity:0));
-  WX.idx=i;
-  $("#satTime").textContent=frameLabel(WX.mode,WX.layers[i].f)+"  ("+(i+1)+"/"+WX.layers.length+")";
-  $("#satSlider").value=String(i);
+function updateWxReadout(){
+  const key = (WX.clouds.on&&WX.clouds.layers.length)?"clouds":((WX.rain.on&&WX.rain.layers.length)?"rain":null);
+  const bar=$("#wxbar");
+  if(!key){ $("#satTime").textContent="—"; bar.classList.remove("show"); return; }
+  const st=WX[key];
+  $("#satTime").textContent=frameLabel(key,st.layers[st.idx].f)+"  ("+(st.idx+1)+"/"+st.layers.length+")";
+  bar.classList.add("show");
+  $("#satPlay").textContent=WX.playing?"⏸":"▶";
 }
-function startLoop(){
-  stopLoop();
-  $("#satPlay").textContent="⏸";
-  WX.timer=setInterval(()=>{ showFrame(WX.idx>=WX.layers.length-1?0:WX.idx+1); },WX.speed);
-}
-function stopLoop(){ if(WX.timer){clearInterval(WX.timer);WX.timer=null;} $("#satPlay").textContent="▶"; }
 
 /* ---- Animated wind (leaflet-velocity fed by a live Open-Meteo grid) ---- */
 async function loadWind(){
@@ -1075,45 +1316,40 @@ async function loadWind(){
   $("#wxSpin").textContent="Loading wind…";
   try{
     const lats=[], lons=[];
-    const LA1=30, LA2=-5, LO1=105, LO2=142.5, D=2.5;      // wide grid over PH + surrounding seas
+    const LA1=30, LA2=-5, LO1=105, LO2=142.5, D=2.5;
     for(let la=LA1; la>=LA2-1e-9; la-=D) for(let lo=LO1; lo<=LO2+1e-9; lo+=D){ lats.push(+la.toFixed(2)); lons.push(+lo.toFixed(2)); }
     const nx=Math.round((LO2-LO1)/D)+1, ny=Math.round((LA1-LA2)/D)+1;
     const url="https://api.open-meteo.com/v1/forecast"
       +`?latitude=${lats.join(",")}&longitude=${lons.join(",")}`
       +"&current=wind_speed_10m,wind_direction_10m&wind_speed_unit=ms";
-    const res=await fetch(url,{cache:"no-store"});
-    const j=await res.json();
-    const arr=Array.isArray(j)?j:[j];
-    const u=[], v=[];
-    for(const loc of arr){
-      const spd=(loc.current&&loc.current.wind_speed_10m)||0;
-      const dir=(loc.current&&loc.current.wind_direction_10m)||0;
-      const r=dir*Math.PI/180;
-      u.push(-spd*Math.sin(r)); v.push(-spd*Math.cos(r));   // meteorological "from" direction
+    const j=await (await fetch(url,{cache:"no-store"})).json();
+    const a=Array.isArray(j)?j:[j], u=[], v=[];
+    for(const loc of a){
+      const spd=(loc.current&&loc.current.wind_speed_10m)||0, dir=(loc.current&&loc.current.wind_direction_10m)||0, r=dir*Math.PI/180;
+      u.push(-spd*Math.sin(r)); v.push(-spd*Math.cos(r));
     }
-    const hdr=(num)=>({parameterUnit:"m.s-1",parameterCategory:2,parameterNumber:num,
-      nx,ny,lo1:LO1,la1:LA1,lo2:LO2,la2:LA2,dx:D,dy:D,refTime:new Date().toISOString()});
-    const data=[{header:hdr(2),data:u},{header:hdr(3),data:v}];
-    WX.wind=L.velocityLayer({
+    const hdr=(num)=>({parameterUnit:"m.s-1",parameterCategory:2,parameterNumber:num,nx,ny,lo1:LO1,la1:LA1,lo2:LO2,la2:LA2,dx:D,dy:D,refTime:new Date().toISOString()});
+    WX.wind.layer=L.velocityLayer({
       displayValues:true,
-      displayOptions:{velocityType:"Wind",position:"bottomleft",emptyString:"No wind data",
-        speedUnit:"k/h",angleConvention:"bearingCW",displayPosition:"bottomleft"},
-      data, maxVelocity:35, velocityScale:0.012, particleAge:64, lineWidth:1.6,
+      displayOptions:{velocityType:"Wind",position:"bottomleft",emptyString:"No wind data",speedUnit:"k/h",angleConvention:"bearingCW",displayPosition:"bottomleft"},
+      data:[{header:hdr(2),data:u},{header:hdr(3),data:v}],
+      maxVelocity:35, velocityScale:0.012, particleAge:64, lineWidth:1.6,
       colorScale:["#e6f7ff","#a9dbf5","#8AF0A9","#ffe08a","#ff9e5e","#ff5e5e"]
     });
-    WX.wind.addTo(MAP);
+    WX.wind.layer.addTo(MAP);
+    const c=document.querySelector(".velocity-overlay"); if(c) c.style.opacity=WX.wind.op;
     $("#wxSpin").textContent="";
   }catch(e){ console.warn("Wind load failed:",e.message); $("#wxSpin").textContent="Wind unavailable"; }
 }
+function removeWind(){ if(WX.wind.layer){ try{MAP.removeLayer(WX.wind.layer);}catch(e){} WX.wind.layer=null; } }
 
-function wireWeatherToggle(){
-  document.querySelectorAll(".wxbtn").forEach(b=>{
-    b.addEventListener("click",()=>{ if(WX.ready||b.dataset.wx==="off") setWx(b.dataset.wx); });
+function wirePlayPause(){
+  $("#satPlay").addEventListener("click",()=>{
+    WX.playing=!WX.playing;
+    if(WX.playing){ ["clouds","rain"].forEach(k=>{ if(WX[k].on && WX[k].layers.length) startLoop(k); }); }
+    else { ["clouds","rain"].forEach(k=>{ if(WX[k].timer){clearInterval(WX[k].timer);WX[k].timer=null;} }); }
+    $("#satPlay").textContent=WX.playing?"⏸":"▶";
   });
-  $("#satPlay").addEventListener("click",()=>{ WX.timer?stopLoop():startLoop(); });
-  $("#satPrev").addEventListener("click",()=>{ stopLoop(); showFrame(WX.idx-1); });
-  $("#satNext").addEventListener("click",()=>{ stopLoop(); showFrame(WX.idx+1); });
-  $("#satSlider").addEventListener("input",e=>{ stopLoop(); showFrame(+e.target.value); });
 }
 
 /* =========================================================================
@@ -1151,7 +1387,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   setTimeout(()=>MAP&&MAP.invalidateSize(),300);
   window.addEventListener("resize",()=>MAP&&MAP.invalidateSize());
 
-  wireWeatherToggle();
+  wirePlayPause();
 });
 </script>
 </body>
