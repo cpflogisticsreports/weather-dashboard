@@ -104,6 +104,49 @@ def _valid_ph(lat, lon):
 def now_iso():
     return datetime.datetime.now(PH_TZ).replace(microsecond=0).isoformat()
 
+_MONTHS = {m.lower(): i for i, m in enumerate(
+    ["January","February","March","April","May","June","July","August",
+     "September","October","November","December"], 1)}
+
+def _parse_ampm(tstr):
+    """'11:00 am' -> (hour24, minute) or None."""
+    m = re.match(r"\s*(\d{1,2}):(\d{2})\s*([AaPp])[Mm]", tstr or "")
+    if not m:
+        return None
+    h = int(m.group(1)) % 12
+    mi = int(m.group(2))
+    if m.group(3).lower() == "p":
+        h += 12
+    return h, mi
+
+def issued_to_iso(tstr, dstr):
+    """('11:00 am', '14 July 2026') -> ISO8601 with +08:00, or '' on failure."""
+    hm = _parse_ampm(tstr)
+    dm = re.match(r"\s*(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})", dstr or "")
+    if not hm or not dm:
+        return ""
+    mon = _MONTHS.get(dm.group(2).lower())
+    if not mon:
+        return ""
+    try:
+        return datetime.datetime(int(dm.group(3)), mon, int(dm.group(1)),
+                                 hm[0], hm[1], tzinfo=PH_TZ).replace(microsecond=0).isoformat()
+    except ValueError:
+        return ""
+
+def time_relative_iso(tstr, rel, base_iso):
+    """('5:00 PM', 'today'|'tomorrow'|None, issued_iso) -> ISO on that date."""
+    hm = _parse_ampm(tstr)
+    if not hm:
+        return ""
+    try:
+        base = datetime.datetime.fromisoformat(base_iso) if base_iso else datetime.datetime.now(PH_TZ)
+    except ValueError:
+        base = datetime.datetime.now(PH_TZ)
+    if rel and rel.lower() == "tomorrow":
+        base = base + datetime.timedelta(days=1)
+    return base.replace(hour=hm[0], minute=hm[1], second=0, microsecond=0).isoformat()
+
 def fetch(url):
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/html"})
     with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
@@ -230,6 +273,13 @@ def parse_bulletin(raw):
     """Return a dict of PAGASA facts, or None if no active cyclone is detected.
     `raw` is the raw HTML (needed to read signal levels from image filenames)."""
     text = strip_tags(raw)
+    # If PAGASA has issued the FINAL bulletin or the system has degenerated to a
+    # Low Pressure Area / remnant low, stop treating it as an active cyclone so the
+    # dashboard falls back to the Daily Weather Forecast (avoids showing a stale TC).
+    if re.search(r"final tropical cyclone bulletin|last tropical cyclone bulletin"
+                 r"|(?:weakened|degenerated)\s+into\s+a\s+(?:remnant\s+)?low[\s-]*pressure\s+area"
+                 r"|no longer a tropical cyclone", text, re.I):
+        return None
     # Storm category + local name, e.g. "Typhoon INDAY", "Tropical Depression AghON"
     cat, name = None, None
     for c in CATEGORY_WORDS:  # ordered so 'Typhoon' doesn't shadow 'Super Typhoon'
@@ -266,6 +316,14 @@ def parse_bulletin(raw):
     if m: facts["movement"] = f"{m.group(1).strip().title()} at {m.group(2)} km/h"
     m = re.search(r"(?:Bulletin|SWB)\s*(?:No\.|#)\s*([0-9]+[A-Z]?)", text, re.I)
     if m: facts["bulletin_no"] = m.group(1)
+
+    # Official issued time, e.g. "Issued at 11:00 am, 14 July 2026"
+    m = re.search(r"Issued at[:\s]+(\d{1,2}:\d{2}\s*[AaPp][Mm])\s*,?\s*(\d{1,2}\s+[A-Za-z]+\s+\d{4})", text)
+    issued_iso = issued_to_iso(m.group(1), m.group(2)) if m else ""
+    facts["issued_at_iso"] = issued_iso
+    # Next advisory / validity, e.g. "the next advisory to be issued at 5:00 PM today"
+    m = re.search(r"next advisory to be issued at\s+(\d{1,2}:\d{2}\s*[AaPp][Mm])\s*(today|tomorrow)?", text, re.I)
+    if m: facts["next_advisory_iso"] = time_relative_iso(m.group(1), m.group(2), issued_iso)
 
     # Wind signals: levels come from tcwsN.png image markers in the raw HTML.
     facts["signals"] = parse_signals(raw)
@@ -341,15 +399,23 @@ def assemble(facts, source_url):
     rain_provs = find_provinces(facts.get("rain_text","")) if facts.get("rain_text") else []
     hubs = build_hubs(signals, rain_provs)
 
-    mode = "typhoon" if "typhoon" in facts["category"].lower() else \
-           "tropical_depression" if "depression" in facts["category"].lower() else "typhoon"
+    cl = facts["category"].lower()
+    if "depression" in cl:
+        mode = "tropical_depression"
+    elif "storm" in cl:          # Tropical Storm & Severe Tropical Storm
+        mode = "tropical_storm"
+    else:                        # Typhoon & Super Typhoon
+        mode = "typhoon"
+
+    issued = facts.get("issued_at_iso") or stamp
+    nxt = facts.get("next_advisory_iso", "")
 
     data = {
         "meta": {
             "source": "PAGASA (auto-parsed)",
             "bulletin_title": (f"Tropical Cyclone Bulletin No. {facts['bulletin_no']}"
                                if facts.get("bulletin_no") else "PAGASA Tropical Cyclone Bulletin"),
-            "issued_at": stamp, "valid_until": "", "next_update": "",
+            "issued_at": issued, "valid_until": nxt, "next_update": nxt,
             "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
             "bulletin_url": source_url,
         },
@@ -459,6 +525,15 @@ def assemble_clear(daily, source_url):
     tstorm = daily.get("thunderstorm", False)
     mode = "advisory" if advisory else "clear"
 
+    # Official daily issued time, e.g. "4:00 PM, 14 July 2026"
+    issued = stamp
+    if daily.get("issued"):
+        m = re.match(r"(\d{1,2}:\d{2}\s*[AaPp][Mm])\s*,?\s*(\d{1,2}\s+[A-Za-z]+\s+\d{4})", daily["issued"])
+        if m:
+            iso = issued_to_iso(m.group(1), m.group(2))
+            if iso:
+                issued = iso
+
     exec_summary = (("Weather advisory in effect. " if advisory else "No active tropical cyclone. ")
         + (synopsis + " " if synopsis else "")
         + ("Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch."
@@ -468,7 +543,7 @@ def assemble_clear(daily, source_url):
     return {
         "meta": {"source":"PAGASA (auto-parsed)",
                  "bulletin_title": "PAGASA Daily Weather Forecast" if advisory else "No active tropical cyclone",
-                 "issued_at":stamp,"valid_until":"","next_update":"",
+                 "issued_at":issued,"valid_until":"","next_update":"",
                  "prepared_by":"Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
                  "bulletin_url":source_url},
         "situation": {"mode":mode,"has_active_tc":False,"storm_name_local":"",
