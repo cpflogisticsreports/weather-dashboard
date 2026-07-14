@@ -176,6 +176,21 @@ header.appbar{
 .exec-guide-lbl{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--navy-soft);margin-right:6px}
 /* PAGASA Bulletin — official grouped fields */
 .pf-fields{margin-top:10px;border-top:1px solid var(--line);padding-top:4px}
+.areas-block{margin-top:12px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.areas-h{background:var(--cpf-green-soft);color:var(--cpf-green-dark);font-family:var(--display);
+  font-size:11px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;padding:7px 10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.areas-haz{font-family:var(--sans);text-transform:none;letter-spacing:0;font-weight:700;font-size:10.5px;
+  background:#fff2e6;color:#a34a00;padding:1px 8px;border-radius:20px}
+.areas-tblwrap{overflow-x:auto}
+.areas-tbl{width:100%;border-collapse:collapse;font-size:12px}
+.areas-tbl th{text-align:left;background:#f3f6f9;color:var(--navy-soft);font-weight:700;font-size:10.5px;
+  text-transform:uppercase;letter-spacing:.3px;padding:6px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+.areas-tbl td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--navy-2)}
+.areas-tbl tr:last-child td{border-bottom:0}
+.areas-when{font-weight:700;color:var(--cpf-green-dark);white-space:nowrap}
+.areas-note{font-size:10.5px;color:var(--navy-soft);padding:6px 10px;background:#fafcfd}
+.areas-chips{display:flex;flex-wrap:wrap;gap:6px;padding:9px 10px}
+.areas-chip{font-size:11.5px;background:#eef4f7;color:var(--navy-2);border:1px solid var(--line);border-radius:20px;padding:3px 10px}
 .pf-row{display:grid;grid-template-columns:120px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:12.8px}
 .pf-row:last-child{border-bottom:0}
 .pf-lbl{font-size:10.5px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--navy-soft);padding-top:2px}
@@ -508,8 +523,32 @@ function bulletinSourceLabel(s){
   s=s||{};
   if(s.has_active_tc || ["typhoon","tropical_depression","tropical_storm"].includes((s.mode||"").toLowerCase()))
     return "PAGASA Tropical Cyclone Bulletin";
+  if((s.mode||"").toLowerCase()==="lpa") return "PAGASA Low Pressure Area Bulletin";
   if((s.mode||"").toLowerCase()==="advisory") return "PAGASA Weather Advisory";
   return "PAGASA Daily Weather Forecast";
+}
+
+/* Regions affected — shaped by whichever PAGASA source is live */
+function affectedRegionsBlock(d){
+  const f=d.forecast||{};
+  const conditions=arr(f.conditions), outlook=arr(f.wind_outlook);
+  if(conditions.length){
+    const rows=conditions.map(c=>`<tr><td>${esc(c.place||"")}</td><td>${esc(c.condition||"")}</td><td>${esc(c.cause||"")}</td><td class="pf-hazard">${esc(c.impact||"")}</td></tr>`).join("");
+    return `<div class="areas-block"><div class="areas-h">Regions affected · Daily Weather Forecast</div>
+      <div class="areas-tblwrap"><table class="areas-tbl"><thead><tr><th>Area</th><th>Weather</th><th>Cause</th><th>Impact</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
+  }
+  if(outlook.length){
+    const haz=has(f.wind_hazard)?`<span class="areas-haz">${esc(f.wind_hazard)}</span>`:"";
+    const rows=outlook.map(o=>`<tr><td class="areas-when">${esc(o.when||"")}</td><td>${esc(o.areas||"")}</td></tr>`).join("");
+    return `<div class="areas-block"><div class="areas-h">Regions affected · wind &amp; monsoon outlook ${haz}</div>
+      <div class="areas-tblwrap"><table class="areas-tbl"><thead><tr><th>When</th><th>Areas</th></tr></thead><tbody>${rows}</tbody></table></div>
+      <div class="areas-note">Southwest Monsoon outlook from the latest PAGASA bulletin — validate rain-prone routes before dispatch.</div></div>`;
+  }
+  const regions=arr(f.regions);
+  if(regions.length){
+    return `<div class="areas-block"><div class="areas-h">Regions affected</div><div class="areas-chips">${regions.map(r=>`<span class="areas-chip">${esc(r)}</span>`).join("")}</div></div>`;
+  }
+  return "";
 }
 
 /* -------- Offline fallback (SAMPLE — clearly flagged, never authoritative) -------- */
@@ -738,6 +777,7 @@ function buildSections(d,hl,status,isLive){
   wrap.appendChild(card(2,"Latest PAGASA Bulletin / Forecast","acc-green",
     el("div",null,
       metaRows+
+      affectedRegionsBlock(d)+
       (fields
         ? `<div class="pf-fields">${fields}</div>`+
           (has(synopsisRaw)?`<details class="pf-details"><summary>Full PAGASA forecast text</summary><div class="pf-raw">${esc(synopsisRaw)}</div></details>`:"")
