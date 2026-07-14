@@ -1,51 +1,35 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 3",
-    "issued_at": "2026-07-14T17:00:00+08:00",
+    "bulletin_title": "PAGASA Daily Weather Forecast",
+    "issued_at": "2026-07-15T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
+    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "lpa",
+    "mode": "advisory",
     "has_active_tc": false,
-    "storm_name_local": "JOSIE",
-    "storm_name_intl": null,
-    "category": "Low Pressure Area",
+    "storm_name_local": "",
+    "storm_name_intl": "",
+    "category": "",
     "severity": "",
     "headline_override": ""
   },
-  "cyclone": {
-    "center_text": "1,125 km East of Southeastern Luzon",
-    "lat": 14.5,
-    "lon": 134.0,
-    "max_sustained_winds_kph": "",
-    "gustiness_kph": "",
-    "central_pressure_hpa": "",
-    "movement": "",
-    "wind_extent_km": "",
-    "forecast_track": [
-      {
-        "label": "Now",
-        "lat": 14.5,
-        "lon": 134.0,
-        "category": "Low Pressure Area",
-        "winds_kph": ""
-      }
-    ]
-  },
+  "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "heavy rainfall warnings, thunderstorm/rainfall advisories, and other severe weather information specific to your area, please monitor products issued by your local PAGASA Regional Services Division. Unless re-development occur, this is the final bulletin for this weather disturbance.",
-    "warning_level": "Heavy",
-    "habagat_affected": [],
+    "outlook": "Southwest Monsoon affecting the western section of Northern Luzon. Forecast Weather Conditions Place Weather Condition Caused By Impacts Metro Manila and the rest of the country Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms Localized Thunderstorms Possible flash floods or landslides during severe thunderstorms Forecast Wind and Coastal Water Conditions Place Speed Direct",
+    "warning_level": "Moderate",
+    "habagat_affected": [
+      "Southwest Monsoon areas"
+    ],
     "areas": []
   },
   "thunderstorm": {
-    "active": false,
-    "advisory": "",
+    "active": true,
+    "advisory": "Southwest Monsoon affecting the western section of Northern Luzon. Forecast Weather Conditions Place Weather Condition Caused By Impacts Metro Manila and the rest of the country Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms Localized Thunderstorms Possible flash floods or landslides during severe thunderstorms Forecast Wind and Coastal Water Conditions Place Speed Direct",
     "areas": []
   },
   "gale_warning": {
@@ -59,43 +43,28 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "",
+    "synopsis": "Southwest Monsoon affecting the western section of Northern Luzon. Forecast Weather Conditions Place Weather Condition Caused By Impacts Metro Manila and the rest of the country Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms Localized Thunderstorms Possible flash floods or landslides during severe thunderstorms Forecast Wind and Coastal Water Conditions Place Speed Direct",
     "regions": [
-      "Ilocos Region",
-      "Cordillera Administrative Region",
-      "Cagayan Valley",
-      "Central Luzon",
-      "Abra",
-      "Apayao",
-      "Zambales",
-      "Bataan",
-      "Batanes",
-      "Babuyan Islands"
+      "Metro Manila and the rest of the country"
     ],
-    "wind_outlook": [
+    "wind_outlook": [],
+    "wind_hazard": "",
+    "conditions": [
       {
-        "when": "Today",
-        "areas": "Ilocos Region, Cordillera Administrative Region, Cagayan Valley, and Central Luzon"
-      },
-      {
-        "when": "Tomorrow (15 July)",
-        "areas": "Ilocos Region, Abra, Apayao, Zambales, Bataan, Batanes, and Babuyan Islands"
-      },
-      {
-        "when": "Thursday (16 July)",
-        "areas": "Ilocos Region, Abra, Apayao, Batanes, and Babuyan Islands"
+        "place": "Metro Manila and the rest of the country",
+        "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
+        "cause": "Localized Thunderstorms",
+        "impact": "Possible flash floods or landslides during severe thunderstorms"
       }
-    ],
-    "wind_hazard": "Strong to gale-force gusts",
-    "conditions": []
+    ]
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Low Pressure Area “JOSIE” is being tracked by PAGASA. Center: 1,125 km East of Southeastern Luzon. No CPF hub currently under a wind signal; continue monitoring.",
+    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting the western section of Northern Luzon. Forecast Weather Conditions Place Weather Condition Caused By Impacts Metro Manila and the rest of the country Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms Localized Thunderstorms Possible flash floods or landslides during severe thunderstorms Forecast Wind and Coastal Water Conditions Place Speed Direct Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
-    "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
+    "contractor_advisory": "",
     "affected_deliveries_note": "",
     "hubs": [
       {
@@ -165,8 +134,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-15T04:43:02+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-07-15T04:43:02+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-07-15T07:38:27+08:00",
+        "entry": "Auto-check at 2026-07-15T07:38:27+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
