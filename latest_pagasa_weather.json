@@ -1,46 +1,30 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 2",
-    "issued_at": "2026-07-14T14:24:02+08:00",
+    "bulletin_title": "PAGASA Daily Weather Forecast",
+    "issued_at": "2026-07-14T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
+    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "tropical_depression",
-    "has_active_tc": true,
-    "storm_name_local": "JOSIE",
-    "storm_name_intl": null,
-    "category": "Tropical Depression",
+    "mode": "advisory",
+    "has_active_tc": false,
+    "storm_name_local": "",
+    "storm_name_intl": "",
+    "category": "",
     "severity": "",
     "headline_override": ""
   },
-  "cyclone": {
-    "center_text": "",
-    "lat": 14.0,
-    "lon": 134.1,
-    "max_sustained_winds_kph": 45,
-    "gustiness_kph": 55,
-    "central_pressure_hpa": "",
-    "movement": "North Northwestward at 25 km/h",
-    "wind_extent_km": "",
-    "forecast_track": [
-      {
-        "label": "Now",
-        "lat": 14.0,
-        "lon": 134.1,
-        "category": "Tropical Depression",
-        "winds_kph": 45
-      }
-    ]
-  },
+  "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "heavy rainfall warnings, thunderstorm/rainfall advisories, and other severe weather information specific to your area, please monitor products issued by your local PAGASA Regional Services Division.",
-    "warning_level": "Heavy",
-    "habagat_affected": [],
+    "outlook": "",
+    "warning_level": "",
+    "habagat_affected": [
+      "Southwest Monsoon areas"
+    ],
     "areas": []
   },
   "thunderstorm": {
@@ -59,16 +43,16 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "",
+    "synopsis": "At 3:00 PM today, the Low Pressure Area (LPA) {formerly \"JOSIE\"} was estimated based on all available data at 1,095 km East of Southeastern Luzon (14.4°N, 134.3°E). Southwest Monsoon affecting the western section of Northern Luzon. TC Information --> TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY TROPICAL DEPRESSION LOCATION: 940 KM WEST NORTHWEST OF EXTREME NORTHERN LUZON OR IN THE VICINITY OF ",
     "regions": []
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Tropical Depression “JOSIE” is being tracked by PAGASA. No CPF hub currently under a wind signal; continue monitoring.",
+    "executive_summary": "Weather advisory in effect. At 3:00 PM today, the Low Pressure Area (LPA) {formerly \"JOSIE\"} was estimated based on all available data at 1,095 km East of Southeastern Luzon (14.4°N, 134.3°E). Southwest Monsoon affecting the western section of Northern Luzon. TC Information --> TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY TROPICAL DEPRESSION LOCATION: 940 KM WEST NORTHWEST OF EXTREME NORTHERN LUZON OR IN THE VICINITY OF  Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
-    "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
+    "contractor_advisory": "",
     "affected_deliveries_note": "",
     "hubs": [
       {
@@ -138,8 +122,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-14T14:24:02+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-07-14T14:24:02+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-07-14T19:48:04+08:00",
+        "entry": "Auto-check at 2026-07-14T19:48:04+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
