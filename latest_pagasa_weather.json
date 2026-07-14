@@ -60,7 +60,34 @@
   },
   "forecast": {
     "synopsis": "",
-    "regions": []
+    "regions": [
+      "Ilocos Region",
+      "Cordillera Administrative Region",
+      "Cagayan Valley",
+      "Central Luzon",
+      "Abra",
+      "Apayao",
+      "Zambales",
+      "Bataan",
+      "Batanes",
+      "Babuyan Islands"
+    ],
+    "wind_outlook": [
+      {
+        "when": "Today",
+        "areas": "Ilocos Region, Cordillera Administrative Region, Cagayan Valley, and Central Luzon"
+      },
+      {
+        "when": "Tomorrow (15 July)",
+        "areas": "Ilocos Region, Abra, Apayao, Zambales, Bataan, Batanes, and Babuyan Islands"
+      },
+      {
+        "when": "Thursday (16 July)",
+        "areas": "Ilocos Region, Abra, Apayao, Batanes, and Babuyan Islands"
+      }
+    ],
+    "wind_hazard": "Strong to gale-force gusts",
+    "conditions": []
   },
   "cpf": {
     "operational_status": "",
@@ -138,8 +165,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-14T20:04:02+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-07-14T20:04:02+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-07-14T21:09:13+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-07-14T21:09:13+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
