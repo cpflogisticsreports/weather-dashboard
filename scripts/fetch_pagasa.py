@@ -313,6 +313,7 @@ def parse_bulletin(raw):
         for p in parse_forecast_positions(text):
             track.append(p)
         facts["track"] = track[:9]
+        facts["affected_areas"] = parse_affected_areas(text)
         return facts
 
     # A truly final bulletin with no LPA/center → let the daily forecast take over.
@@ -383,6 +384,7 @@ def parse_bulletin(raw):
             continue
         track.append(p)
     facts["track"] = track[:9]
+    facts["affected_areas"] = parse_affected_areas(text)
 
     return facts
 
@@ -493,7 +495,10 @@ def assemble(facts, source_url):
         "thunderstorm": {"active": False, "advisory": "", "areas": []},
         "gale_warning": {"active": False, "seaboards": [], "areas": []},
         "marine": {"hazards": "", "affected_waters": [], "risk_level": ""},
-        "forecast": {"synopsis": "", "regions": []},
+        "forecast": {"synopsis": "", "regions": _flatten_regions(facts.get("affected_areas")),
+                     "wind_outlook": (facts.get("affected_areas") or {}).get("days", []),
+                     "wind_hazard": (facts.get("affected_areas") or {}).get("hazard", ""),
+                     "conditions": []},
         "cpf": {
             "operational_status": "", "dispatch_action": "",
             "executive_summary": auto_summary(facts, signals, hubs),
@@ -535,6 +540,67 @@ def auto_contractor(hubs):
 # --------------------------------------------------------------------------- #
 # Clear / advisory state (no active cyclone)
 # --------------------------------------------------------------------------- #
+def _flatten_regions(affected):
+    """Distinct region names across the day-by-day outlook (for quick chips)."""
+    if not affected:
+        return []
+    seen, out = set(), []
+    for d in affected.get("days", []):
+        for part in re.split(r",|\band\b", d.get("areas", "")):
+            r = part.strip(" .;·")
+            if r and r.lower() not in seen and len(r) < 60:
+                seen.add(r.lower()); out.append(r)
+    return out[:24]
+
+def parse_affected_areas(text):
+    """From a TC/LPA bulletin, extract the day-by-day wind/monsoon outlook, e.g.
+    'Today: Ilocos Region, CAR, Cagayan Valley, and Central Luzon'."""
+    m = re.search(r"over the following areas.*?:(.*?)(?:HAZARDS AFFECTING COASTAL|24-Hour|Up to\s*\d|Mariners|$)",
+                  text, re.I | re.S)
+    block = m.group(1) if m else text
+    day_re = re.compile(
+        r"\b(Today|Tomorrow|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b"
+        r"\s*(\([^)]*\))?\s*:\s*(.+?)"
+        r"(?=\b(?:Today|Tomorrow|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b\s*(?:\([^)]*\))?\s*:|$)",
+        re.I | re.S)
+    out = []
+    for mm in day_re.finditer(block):
+        when = (mm.group(1) + (" " + mm.group(2) if mm.group(2) else "")).strip()
+        areas = re.sub(r"\s+", " ", mm.group(3)).strip(" .;·")
+        if areas and len(areas) < 300:
+            out.append({"when": when, "areas": areas})
+    hazard = ""
+    mh = re.search(r"(strong to gale[- ]force gusts|gale[- ]force gusts|strong winds)", text, re.I)
+    if not mh:
+        mh = re.search(r"(heavy rainfall)", text, re.I)
+    if mh: hazard = mh.group(1)[0].upper() + mh.group(1)[1:]
+    return {"hazard": hazard, "days": out[:6]}
+
+def _html_tables(raw):
+    tables = []
+    for tb in re.findall(r"<table[^>]*>(.*?)</table>", raw, re.I | re.S):
+        rows = []
+        for tr in re.findall(r"<tr[^>]*>(.*?)</tr>", tb, re.I | re.S):
+            cells = [re.sub(r"\s+", " ", strip_tags(c)).strip()
+                     for c in re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", tr, re.I | re.S)]
+            if any(cells): rows.append(cells)
+        if rows: tables.append(rows)
+    return tables
+
+def parse_daily_conditions(raw):
+    """From the Daily Weather Forecast page, extract the 'Forecast Weather
+    Conditions' table -> [{place, condition, cause, impact}]."""
+    for rows in _html_tables(raw):
+        hdr = " ".join(rows[0]).lower()
+        if "place" in hdr and ("weather" in hdr or "condition" in hdr):
+            out = []
+            for r in rows[1:]:
+                if len(r) >= 4 and r[0]:
+                    out.append({"place": r[0], "condition": r[1], "cause": r[2], "impact": r[3]})
+            if out: return out
+    return []
+
+
 def parse_daily(text):
     """Parse PAGASA's daily weather forecast page for synopsis + advisory signals."""
     d = {"synopsis":"","issued":"","advisory":False,"rain_level":"","thunderstorm":False,"monsoon":False}
@@ -597,7 +663,9 @@ def assemble_clear(daily, source_url):
         "gale_warning": {"active":False,"seaboards":[],"areas":[]},
         "marine": {"hazards":"","affected_waters":[],"risk_level":""},
         "forecast": {"synopsis": synopsis or "No active tropical cyclone inside PAR. Monitor PAGASA daily forecast.",
-                     "regions":[]},
+                     "regions": [c["place"] for c in daily.get("conditions", []) if c.get("place")],
+                     "wind_outlook": [], "wind_hazard": "",
+                     "conditions": daily.get("conditions", [])},
         "cpf": {"operational_status":"","dispatch_action":"",
                 "executive_summary": exec_summary,
                 "priority_routes":[],"risk_matrix":[],"contractor_advisory":"",
@@ -653,7 +721,9 @@ def main():
         daily = {}
         for url in FORECAST_URLS:
             try:
-                daily = parse_daily(strip_tags(fetch(url)))
+                raw_daily = fetch(url)
+                daily = parse_daily(strip_tags(raw_daily))
+                daily["conditions"] = parse_daily_conditions(raw_daily)
                 if daily.get("synopsis"): break
             except Exception:
                 continue
