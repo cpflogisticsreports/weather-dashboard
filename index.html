@@ -343,6 +343,12 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
 .storm-tip{background:#B71C1C !important;color:#fff !important;border:0 !important;font-weight:800 !important;
   font-size:12px !important;padding:3px 9px !important;border-radius:6px !important;box-shadow:0 2px 6px rgba(0,0,0,.35) !important;white-space:nowrap}
 .storm-tip::before{border-top-color:#B71C1C !important}
+.lpa-ico .lpa-badge{display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;
+  background:#3F6CB5;color:#fff;font-weight:800;font-size:13px;font-family:var(--display);border:2px solid #fff;
+  box-shadow:0 1px 4px rgba(0,0,0,.4)}
+.lpa-tip{background:#2F4E80 !important;color:#fff !important;border:0 !important;font-weight:700 !important;
+  font-size:11.5px !important;padding:3px 9px !important;border-radius:6px !important;box-shadow:0 2px 6px rgba(0,0,0,.3) !important;white-space:nowrap}
+.lpa-tip::before{border-top-color:#2F4E80 !important}
 .trk-tip{background:rgba(23,35,61,.92) !important;color:#fff !important;border:0 !important;font-size:10.5px !important;
   font-weight:700 !important;padding:2px 6px !important;border-radius:5px !important;box-shadow:0 1px 4px rgba(0,0,0,.3) !important}
 .trk-tip::before{display:none !important}
@@ -588,6 +594,9 @@ function deriveTitle(d){
     return name ? `CPF Logistics ${label} ${name} Monitoring Dashboard`
                 : `CPF Logistics ${label} Monitoring Dashboard`;
   }
+  if((s.mode||"").toLowerCase()==="lpa" || /low pressure|(^|\s)lpa(\s|$)/i.test(cat))
+    return name ? `CPF Logistics Low Pressure Area ${name} Monitoring Dashboard`
+               : "CPF Logistics Low Pressure Area Monitoring Dashboard";
   if((s.mode||"").toLowerCase()==="advisory") return "CPF Logistics Weather Advisory Monitoring Dashboard";
   const rain=((d.rainfall||{}).warning_level||"").toLowerCase();
   const adv=(d.thunderstorm||{}).active||(d.gale_warning||{}).active||["moderate","heavy","intense"].includes(rain);
@@ -611,6 +620,7 @@ function deriveHeadline(d){
   if(tstorm)   return H("⛈️","Thunderstorms possible — monitor route conditions and driver updates closely.","caution");
   if(rain==="moderate") return H("🌧️","Rainy routes ahead — validate road condition before dispatch.","caution");
   if(mode==="tropical_depression") return H("🌀","Tropical depression under watch — heightened monitoring for affected corridors.","caution");
+  if(mode==="lpa"||/low pressure/i.test(s.category||"")) return H("🌀","Low pressure area offshore — main risk is monsoon rain and gale gusts; validate rain-prone routes.","caution");
   if(rain==="light") return H("🌦️","Light rain in some areas — keep wipers ready and dispatch with normal caution.","caution");
   if(mode==="advisory") return H("🌦️","Weather advisory in effect — dispatch with caution and monitor updates.","caution");
   return H("☀️","Clear lanes ahead — deliveries may proceed under normal monitoring.","normal");
@@ -1072,6 +1082,7 @@ function centroid(name){return PH_CENTROIDS[(name||"").trim().toLowerCase()]||nu
 /* ---- Delivery-risk interpretation from PAGASA category / winds ---- */
 function deliveryRisk(catText, winds){
   const c=(catText||"").toLowerCase(); const w=+winds||0;
+  if(/low pressure|(^|\s)lpa(\s|$)/.test(c)) return {label:"Low direct risk — main watch is enhanced monsoon rain & gale gusts on exposed routes.", bg:"#eef4ff", fg:"#1c4b8a"};
   if(/super typhoon/.test(c) || w>=185) return {label:"Severe — suspend/hold dispatch along the storm path.", bg:"#fdecea", fg:"#a31515"};
   if(/(^|\s)typhoon/.test(c) || w>=118)  return {label:"Severe — hold dispatch in affected corridors; expect closures.", bg:"#fdecea", fg:"#a31515"};
   if(/severe tropical storm/.test(c) || w>=89) return {label:"High — validate routes; damaging winds & flooding likely.", bg:"#fff2e6", fg:"#a34a00"};
@@ -1081,6 +1092,7 @@ function deliveryRisk(catText, winds){
 }
 function dash(v){ return has(v)?esc(v):"—"; }
 function stormIcon(){ return L.divIcon({className:"storm-ico",html:`<span class="storm-pulse"></span><span class="storm-dot"></span>`,iconSize:[20,20],iconAnchor:[10,10]}); }
+function lpaIcon(){ return L.divIcon({className:"lpa-ico",html:`<span class="lpa-badge">L</span>`,iconSize:[22,22],iconAnchor:[11,11]}); }
 function stormPopup(cy,s,met){
   const cat=s.category||"Tropical Cyclone", nm=s.storm_name_local?`“${esc(s.storm_name_local)}”`:"";
   const intl=has(s.storm_name_intl)?` (${esc(s.storm_name_intl)})`:"";
@@ -1179,10 +1191,16 @@ function drawMap(d){
       .bindTooltip(`Approx. wind extent ~${esc(cy.wind_extent_km)} km`).addTo(LAYERS.track);
   }
   // BLINKING current-center marker (active TC only) at exact PAGASA lat/lon
+  const isLPA=(s.mode||"").toLowerCase()==="lpa" || /low pressure|(^|\s)lpa(\s|$)/i.test(s.category||"");
   if(s.has_active_tc && has(cy.lat) && has(cy.lon)){
     const label=`${esc(s.category||"TC")} ${s.storm_name_local?"“"+esc(s.storm_name_local)+"”":""}`.trim();
     L.marker([+cy.lat,+cy.lon],{pane:"pTrack",icon:stormIcon(),zIndexOffset:1000})
       .bindTooltip(label,{permanent:true,direction:"right",className:"storm-tip",offset:[13,0]})
+      .bindPopup(stormPopup(cy,s,met),{maxWidth:300}).addTo(LAYERS.track);
+  } else if(isLPA && has(cy.lat) && has(cy.lon)){
+    const label=`Low Pressure Area ${s.storm_name_local?"“"+esc(s.storm_name_local)+"”":""}`.trim();
+    L.marker([+cy.lat,+cy.lon],{pane:"pTrack",icon:lpaIcon(),zIndexOffset:1000})
+      .bindTooltip(label,{permanent:true,direction:"right",className:"lpa-tip",offset:[13,0]})
       .bindPopup(stormPopup(cy,s,met),{maxWidth:300}).addTo(LAYERS.track);
   } else if(has(cy.lat)&&has(cy.lon)){
     L.circleMarker([+cy.lat,+cy.lon],{pane:"pTrack",radius:8,color:"#fff",weight:2,fillColor:"#D32F2F",fillOpacity:1})
