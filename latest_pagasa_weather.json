@@ -1,44 +1,44 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 1",
-    "issued_at": "2026-07-14T05:36:45+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 2",
+    "issued_at": "2026-07-14T14:24:02+08:00",
     "valid_until": "",
     "next_update": "",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "typhoon",
+    "mode": "tropical_depression",
     "has_active_tc": true,
     "storm_name_local": "JOSIE",
     "storm_name_intl": null,
-    "category": "Tropical Storm",
+    "category": "Tropical Depression",
     "severity": "",
     "headline_override": ""
   },
   "cyclone": {
     "center_text": "",
-    "lat": 13.0,
-    "lon": 134.6,
-    "max_sustained_winds_kph": 65,
-    "gustiness_kph": 80,
+    "lat": 14.0,
+    "lon": 134.1,
+    "max_sustained_winds_kph": 45,
+    "gustiness_kph": 55,
     "central_pressure_hpa": "",
-    "movement": "Northwestward at 25 km/h",
+    "movement": "North Northwestward at 25 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 13.0,
-        "lon": 134.6,
-        "category": "Tropical Storm",
-        "winds_kph": 65
+        "lat": 14.0,
+        "lon": 134.1,
+        "category": "Tropical Depression",
+        "winds_kph": 45
       }
     ]
   },
   "tcws": [],
   "rainfall": {
-    "outlook": "heavy rainfall and severe winds may still be experienced in localities outside the forecast confidence cone. Refer to “Other Hazards affecting Land Areas” for more details. Furthermore, the",
+    "outlook": "heavy rainfall warnings, thunderstorm/rainfall advisories, and other severe weather information specific to your area, please monitor products issued by your local PAGASA Regional Services Division.",
     "warning_level": "Heavy",
     "habagat_affected": [],
     "areas": []
@@ -65,7 +65,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Tropical Storm “JOSIE” is being tracked by PAGASA. No CPF hub currently under a wind signal; continue monitoring.",
+    "executive_summary": "Tropical Depression “JOSIE” is being tracked by PAGASA. No CPF hub currently under a wind signal; continue monitoring.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
@@ -138,8 +138,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-14T05:36:45+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-07-14T05:36:45+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-07-14T14:24:02+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-07-14T14:24:02+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
