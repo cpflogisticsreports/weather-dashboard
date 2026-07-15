@@ -299,7 +299,26 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
 
 /* ---------- Print (simple) — hide map & controls, print the panel ---------- */
 /* ---------- Print-only report chrome (hidden on screen) ---------- */
-#printHead,#printFoot{display:none}
+#printHead,#printFoot,#printSummary{display:none}
+@media print{
+  /* one-pager: hide the full scrolling panel, show only the briefing */
+  .layout,.panel{display:none !important}
+  #printSummary{display:block !important}
+  #printSummary .ps-grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+  #printSummary .ps-box{border:1px solid #cbd5e2;border-radius:8px;padding:7px 9px;break-inside:avoid}
+  #printSummary .ps-h{font-family:var(--display);font-size:9.5px;font-weight:800;letter-spacing:.4px;
+    text-transform:uppercase;color:var(--cpf-green-dark);margin-bottom:4px}
+  #printSummary .ps-body{font-size:11px;color:#222;line-height:1.45}
+  #printSummary .ps-status{font-weight:800;font-size:12.5px;color:#a34a00}
+  #printSummary .ps-muted{font-size:10px;color:#666;margin-top:2px}
+  #printSummary .ps-meta{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:10.5px;color:#222;
+    border:1px solid #cbd5e2;border-radius:8px;padding:7px 9px;margin-bottom:8px}
+  #printSummary .ps-meta b{color:#111}
+  #printSummary .ps-list{margin:0;padding-left:16px;font-size:10.5px;line-height:1.5}
+  #printSummary .areas-block{margin-bottom:8px;break-inside:avoid}
+  #printSummary .areas-tbl td,#printSummary .areas-tbl th{padding:4px 8px;font-size:10px}
+  #printSummary .areas-h{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
 @media print{
   @page{margin:11mm}
   html,body{background:#fff !important;height:auto !important;overflow:visible !important}
@@ -550,6 +569,9 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
     </div>
   </aside>
 </div>
+
+<!-- Print-only one-page briefing (built by JS; hidden on screen) -->
+<div id="printSummary"></div>
 
 <!-- Print-only report footer (hidden on screen) -->
 <div id="printFoot">
@@ -805,6 +827,56 @@ function updatePrintChrome(d,title,hl,status){
     const c=({normal:["#e7f5ec","#0A7B3E"],caution:["#fff8e1","#8a6d00"],high:["#fff2e6","#a34a00"],critical:["#fdecea","#a31515"]})[hl.level]||["#eef1f5","#41506a"];
     ps.style.background=c[0]; ps.style.color=c[1];
   }
+  const psEl=$("#printSummary"); if(psEl) psEl.innerHTML=buildPrintSummary(d,hl,status);
+}
+
+/* Build the print-only one-page briefing (header + this + footer = the printout) */
+function buildPrintSummary(d,hl,status){
+  const cy=d.cyclone||{}, s=d.situation||{}, cpf=d.cpf||{}, met=d.meta||{}, f=d.forecast||{};
+  let sit="";
+  const isSys = s.has_active_tc || /low pressure|lpa/i.test(s.category||"") || (s.mode||"")==="lpa";
+  if(isSys){
+    const b=[`${esc(s.category||"System")}${s.storm_name_local?' "'+esc(s.storm_name_local)+'"':""}`];
+    if(has(cy.center_text)) b.push(esc(cy.center_text));
+    const w=[]; if(has(cy.max_sustained_winds_kph)) w.push(esc(cy.max_sustained_winds_kph)+" km/h winds");
+    if(has(cy.gustiness_kph)) w.push("gusts "+esc(cy.gustiness_kph)+" km/h");
+    if(w.length) b.push(w.join(", "));
+    if(has(cy.movement)) b.push("moving "+esc(cy.movement));
+    sit=b.join(" · ");
+  } else { sit=esc(f.synopsis||"No active tropical cyclone. Monitor PAGASA daily forecast."); }
+
+  const routes=arr(cpf.priority_routes);
+  const routesHTML = routes.length
+    ? `<ul class="ps-list">`+routes.map(r=>`<li><b>${esc(r.route||"")}</b>${r.risk?" — "+esc(r.risk):""}${r.note?` <span class="ps-muted">(${esc(r.note)})</span>`:""}</li>`).join("")+`</ul>`
+    : `<div class="ps-muted">No priority routes flagged in the latest update.</div>`;
+
+  const hubs=arr(cpf.hubs).length?arr(cpf.hubs):(typeof DEFAULT_HUBS!=="undefined"?DEFAULT_HUBS:[]);
+  const flagged=hubs.filter(h=>h.status && !/normal/i.test(h.status));
+  const hubsHTML = flagged.length
+    ? `<ul class="ps-list">`+flagged.map(h=>`<li><b>${esc(h.name)}</b> — ${esc(h.status)}</li>`).join("")+`</ul>`
+    : `<div class="ps-muted">All CPF hubs normal — no hub under a wind signal.</div>`;
+
+  const statusTxt=(status&&status.status)?status.status:(cpf.operational_status||"—");
+  const dispatch=cpf.dispatch_action||"—";
+
+  return `
+    <div class="ps-grid2">
+      <div class="ps-box"><div class="ps-h">Situation</div><div class="ps-body">${sit}</div></div>
+      <div class="ps-box"><div class="ps-h">CPF Logistics status</div>
+        <div class="ps-status">${esc(statusTxt)}</div>
+        <div class="ps-muted">Dispatch: ${esc(dispatch)}</div></div>
+    </div>
+    <div class="ps-meta">
+      <span><b>Source:</b> ${esc(bulletinSourceLabel(s))}</span>
+      <span><b>Bulletin:</b> ${esc(met.bulletin_title||"—")}</span>
+      <span><b>Issued:</b> ${fmtTime(met.issued_at)}</span>
+      <span><b>Valid until:</b> ${has(met.valid_until)?fmtTime(met.valid_until):(has(met.next_update)?fmtTime(met.next_update):"—")}</span>
+    </div>
+    ${affectedRegionsBlock(d)}
+    <div class="ps-grid2">
+      <div class="ps-box"><div class="ps-h">Priority routes</div>${routesHTML}</div>
+      <div class="ps-box"><div class="ps-h">Hub status</div>${hubsHTML}</div>
+    </div>`;
 }
 
 /* ---- section builder ---- */
