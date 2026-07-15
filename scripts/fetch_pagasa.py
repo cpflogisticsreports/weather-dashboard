@@ -459,7 +459,7 @@ def assemble(facts, source_url):
             "bulletin_title": (f"Tropical Cyclone Bulletin No. {facts['bulletin_no']}"
                                if facts.get("bulletin_no") else
                                ("PAGASA Low Pressure Area Bulletin" if is_lpa else "PAGASA Tropical Cyclone Bulletin")),
-            "issued_at": issued, "valid_until": nxt, "next_update": nxt,
+            "issued_at": issued, "valid_until": nxt, "next_update": nxt, "generated_at": stamp,
             "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
             "bulletin_url": source_url,
         },
@@ -651,7 +651,7 @@ def assemble_clear(daily, source_url):
     return {
         "meta": {"source":"PAGASA (auto-parsed)",
                  "bulletin_title": "PAGASA Daily Weather Forecast" if advisory else "No active tropical cyclone",
-                 "issued_at":issued,"valid_until":"","next_update":"",
+                 "issued_at":issued,"valid_until":"","next_update":"","generated_at":stamp,
                  "prepared_by":"Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
                  "bulletin_url":source_url},
         "situation": {"mode":mode,"has_active_tc":False,"storm_name_local":"",
