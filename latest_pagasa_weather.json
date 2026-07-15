@@ -5,7 +5,7 @@
     "issued_at": "2026-07-15T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-07-15T20:07:43+08:00",
+    "generated_at": "2026-07-16T00:55:40+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -142,8 +142,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-15T20:07:43+08:00",
-        "entry": "Auto-check at 2026-07-15T20:07:43+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-07-16T00:55:40+08:00",
+        "entry": "Auto-check at 2026-07-16T00:55:40+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
