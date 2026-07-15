@@ -70,6 +70,8 @@ header.appbar{
 .chip.live .dot{background:#8AF0A9}
 .chip.fallback{background:rgba(211,47,47,.9)}
 .chip.fallback .dot{background:#FFD6D6;box-shadow:0 0 0 3px rgba(255,214,214,.25)}
+.chip.stale{background:#E8A800;color:#3a2e00}
+.chip.stale .lbl{opacity:.85}
 .btn{
   font-family:var(--sans);font-size:12px;font-weight:600;cursor:pointer;
   border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#fff;
@@ -500,6 +502,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
   <div class="appbar-right">
     <span class="chip" id="dataChip"><span class="dot"></span><span id="dataChipTxt">Loading…</span></span>
     <span class="chip"><span class="lbl">Issued&nbsp;</span><span id="issuedTxt" class="mono">—</span></span>
+    <span class="chip" id="ageChip" title="How long since the live data was last refreshed by the PAGASA scraper"><span class="lbl">Updated&nbsp;</span><span id="ageTxt" class="mono">—</span></span>
     <span class="chip mono" id="clock">—</span>
     <button class="btn" id="refreshBtn" title="Refresh live data">⟳ <span class="lbl">Refresh</span></button>
     <button class="btn solid" id="printBtn" title="Print this briefing">🖨 <span class="lbl">Print</span></button>
@@ -794,6 +797,10 @@ function render(d,isLive){
   else{chip.className="chip fallback";txt.textContent="Data: offline fallback";$("#fallbackStrip").classList.add("show");}
 
   $("#issuedTxt").textContent=fmtTime((d.meta||{}).issued_at);
+
+  // data-age chip: how long since the scraper last refreshed the JSON.
+  // Scheduled GitHub Actions can lag or skip, so surfacing staleness matters operationally.
+  LAST_GEN=(d.meta||{}).generated_at||null; LAST_LIVE=isLive; refreshAgeChip();
 
   // banner
   const hl=deriveHeadline(d);
@@ -1617,8 +1624,21 @@ async function loadData(){
   }
 }
 
+let LAST_GEN=null, LAST_LIVE=false;
 function clockTick(){
   $("#clock").textContent=new Date().toLocaleTimeString("en-PH",{hour:"numeric",minute:"2-digit",second:"2-digit",hour12:true});
+  refreshAgeChip();
+}
+function refreshAgeChip(){
+  const ageChip=$("#ageChip"), ageTxt=$("#ageTxt"); if(!ageChip||!ageTxt) return;
+  if(LAST_LIVE && LAST_GEN && !isNaN(new Date(LAST_GEN))){
+    const mins=Math.max(0,Math.round((Date.now()-new Date(LAST_GEN).getTime())/60000));
+    ageTxt.textContent = mins<60 ? mins+"m ago" : Math.floor(mins/60)+"h "+(mins%60)+"m ago";
+    const stale=mins>=90;
+    ageChip.className = stale ? "chip stale" : "chip";
+    ageChip.title = "Live data last refreshed "+fmtTime(LAST_GEN)+
+      (stale?" — PAGASA may have issued a newer forecast. Run the ‘Update weather’ workflow (Actions tab) to refresh.":"");
+  } else { ageTxt.textContent = LAST_LIVE?"—":"offline"; ageChip.className="chip"; }
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
