@@ -5,7 +5,7 @@
     "issued_at": "2026-07-16T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-07-16T08:13:11+08:00",
+    "generated_at": "2026-07-16T10:07:01+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Southwest Monsoon affecting Extreme Northern Luzon. Forecast Weather Conditions Place Weather Condition Caused By Impacts Batanes and Babuyan Islands Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms Southwest Monsoon Possible flash floods or landslides during severe thunderstorms Metro Manila and the rest of the country Partly cloudy to cloudy skies with isolated rainshower",
+    "outlook": "Southwest Monsoon affecting Extreme Northern Luzon.",
     "warning_level": "Moderate",
     "habagat_affected": [
       "Southwest Monsoon areas"
@@ -30,7 +30,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Southwest Monsoon affecting Extreme Northern Luzon. Forecast Weather Conditions Place Weather Condition Caused By Impacts Batanes and Babuyan Islands Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms Southwest Monsoon Possible flash floods or landslides during severe thunderstorms Metro Manila and the rest of the country Partly cloudy to cloudy skies with isolated rainshower",
+    "advisory": "Southwest Monsoon affecting Extreme Northern Luzon.",
     "areas": []
   },
   "gale_warning": {
@@ -44,7 +44,7 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Southwest Monsoon affecting Extreme Northern Luzon. Forecast Weather Conditions Place Weather Condition Caused By Impacts Batanes and Babuyan Islands Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms Southwest Monsoon Possible flash floods or landslides during severe thunderstorms Metro Manila and the rest of the country Partly cloudy to cloudy skies with isolated rainshower",
+    "synopsis": "Southwest Monsoon affecting Extreme Northern Luzon.",
     "regions": [
       "Batanes and Babuyan Islands",
       "Metro Manila and the rest of the country"
@@ -69,7 +69,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting Extreme Northern Luzon. Forecast Weather Conditions Place Weather Condition Caused By Impacts Batanes and Babuyan Islands Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms Southwest Monsoon Possible flash floods or landslides during severe thunderstorms Metro Manila and the rest of the country Partly cloudy to cloudy skies with isolated rainshower Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting Extreme Northern Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -142,8 +142,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-16T08:13:11+08:00",
-        "entry": "Auto-check at 2026-07-16T08:13:11+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-07-16T10:07:01+08:00",
+        "entry": "Auto-check at 2026-07-16T10:07:01+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
