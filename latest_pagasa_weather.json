@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-07-16T04:00:00+08:00",
+    "issued_at": "2026-07-16T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-07-16T10:07:01+08:00",
+    "generated_at": "2026-07-16T17:05:51+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -46,14 +46,14 @@
   "forecast": {
     "synopsis": "Southwest Monsoon affecting Extreme Northern Luzon.",
     "regions": [
-      "Batanes and Babuyan Islands",
+      "Ilocos Norte, Ilocos Sur, Abra, Batanes, and Babuyan Islands",
       "Metro Manila and the rest of the country"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Batanes and Babuyan Islands",
+        "place": "Ilocos Norte, Ilocos Sur, Abra, Batanes, and Babuyan Islands",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -142,8 +142,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-16T10:07:01+08:00",
-        "entry": "Auto-check at 2026-07-16T10:07:01+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-07-16T17:05:51+08:00",
+        "entry": "Auto-check at 2026-07-16T17:05:51+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
