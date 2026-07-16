@@ -604,13 +604,16 @@ def parse_daily_conditions(raw):
 def parse_daily(text):
     """Parse PAGASA's daily weather forecast page for synopsis + advisory signals."""
     d = {"synopsis":"","issued":"","advisory":False,"rain_level":"","thunderstorm":False,"monsoon":False}
-    m = re.search(r"Synopsis\b[\s:·|>-]*(.*?)(Extremes for the 24|Satellite Image|Surface Map|Predicted|We always find|$)",
+    m = re.search(r"Synopsis\b[\s:·|>-]*(.*?)(Forecast Weather|Forecast Wind|TC Information|Tropical Cyclone"
+                  r"|Temperature and|Extremes for the 24|Satellite Image|Surface Map|Predicted|We always find|$)",
                   text, re.I|re.S)
     if m:
-        d["synopsis"] = re.sub(r"\s+"," ", m.group(1)).strip(" ·|-:>")[:400]
+        d["synopsis"] = re.sub(r"\s+"," ", m.group(1)).strip(" ·|-:>")[:320]
     m = re.search(r"Issued at[:\s]*([0-9:]+\s*[AP]M,?\s*\d{1,2}\s+\w+\s+\d{4})", text, re.I)
     if m: d["issued"] = m.group(1)
-    s = d["synopsis"].lower()
+    # Advisory signals come from the FULL forecast text (synopsis + conditions),
+    # not just the short synopsis line, so rain/thunderstorm flags stay accurate.
+    s = text.lower()
     if any(k in s for k in ["southwest monsoon","habagat","northeast monsoon","amihan"]): d["monsoon"]=True
     if "thunderstorm" in s: d["thunderstorm"]=True
     if any(k in s for k in ["scattered rain","occasional rain","monsoon rain","rains and thunderstorm","rainshower","cloudy with rain"]):
