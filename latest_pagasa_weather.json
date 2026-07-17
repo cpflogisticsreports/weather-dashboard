@@ -5,7 +5,7 @@
     "issued_at": "2026-07-17T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-07-17T07:14:36+08:00",
+    "generated_at": "2026-07-17T09:59:49+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -65,6 +65,16 @@
         "impact": "Possible flash floods or landslides during severe thunderstorms"
       }
     ]
+  },
+  "tc_outside_par": {
+    "present": true,
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
+    "category": "Tropical Depression",
+    "location": "2,965 KM EAST OF SOUTHEASTERN MINDANAO",
+    "lat": 5.3,
+    "lon": 152.4,
+    "winds_kph": "45",
+    "gustiness_kph": "55"
   },
   "cpf": {
     "operational_status": "",
@@ -142,8 +152,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-17T07:14:36+08:00",
-        "entry": "Auto-check at 2026-07-17T07:14:36+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-07-17T09:59:49+08:00",
+        "entry": "Auto-check at 2026-07-17T09:59:49+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
