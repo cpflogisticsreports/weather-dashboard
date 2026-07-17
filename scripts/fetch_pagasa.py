@@ -601,6 +601,34 @@ def parse_daily_conditions(raw):
     return []
 
 
+def parse_tc_information(text):
+    """From the Daily Forecast 'TC Information' block, capture a tropical cyclone
+    OUTSIDE (or entering) PAR. PAGASA notes these even when nothing is inside PAR."""
+    m = re.search(r"TC Information(.*?)(Forecast Weather|Forecast Wind|Temperature and|$)", text, re.I | re.S)
+    block = m.group(1) if m else ""
+    if not block or re.search(r"no tropical cyclone", block, re.I):
+        return {"present": False}
+    cat = ""
+    for c in ["Super Typhoon", "Severe Tropical Storm", "Tropical Storm", "Tropical Depression", "Typhoon"]:
+        if re.search(c, block, re.I): cat = c; break
+    hd = re.search(r"(Tropical Cyclone\s+(?:Outside|Inside)\s+PAR[^\n.]*?Today)", block, re.I)
+    if not cat:
+        return {"present": False}
+    out = {"present": True, "headline": (hd.group(1).strip() if hd else ""), "category": cat}
+    mm = re.search(r"LOCATION:\s*(.*?)\(\s*([\d.]+)\s*°?\s*N\s*,\s*([\d.]+)\s*°?\s*E", block, re.I | re.S)
+    if mm:
+        out["location"] = re.sub(r"\s+", " ", mm.group(1)).strip(" ,")
+        try: out["lat"] = float(mm.group(2)); out["lon"] = float(mm.group(3))
+        except ValueError: pass
+    mw = re.search(r"MAXIMUM SUSTAINED WINDS:\s*([\d]+)\s*KM/?H", block, re.I)
+    if mw: out["winds_kph"] = mw.group(1)
+    mg = re.search(r"GUSTINESS:\s*(?:UP TO\s*)?([\d]+)\s*KM/?H", block, re.I)
+    if mg: out["gustiness_kph"] = mg.group(1)
+    mv = re.search(r"MOVEMENT:\s*([A-Za-z][A-Za-z ]+?)(?:\s*(?:LOCATION|MAXIMUM|GUSTINESS|$))", block, re.I)
+    if mv: out["movement"] = re.sub(r"\s+", " ", mv.group(1)).strip().title()
+    return out
+
+
 def parse_daily(text):
     """Parse PAGASA's daily weather forecast page for synopsis + advisory signals."""
     d = {"synopsis":"","issued":"","advisory":False,"rain_level":"","thunderstorm":False,"monsoon":False}
@@ -669,6 +697,7 @@ def assemble_clear(daily, source_url):
                      "regions": [c["place"] for c in daily.get("conditions", []) if c.get("place")],
                      "wind_outlook": [], "wind_hazard": "",
                      "conditions": daily.get("conditions", [])},
+        "tc_outside_par": daily.get("tc_information") or {"present": False},
         "cpf": {"operational_status":"","dispatch_action":"",
                 "executive_summary": exec_summary,
                 "priority_routes":[],"risk_matrix":[],"contractor_advisory":"",
@@ -727,6 +756,7 @@ def main():
                 raw_daily = fetch(url)
                 daily = parse_daily(strip_tags(raw_daily))
                 daily["conditions"] = parse_daily_conditions(raw_daily)
+                daily["tc_information"] = parse_tc_information(strip_tags(raw_daily))
                 if daily.get("synopsis"): break
             except Exception:
                 continue
