@@ -178,6 +178,16 @@ header.appbar{
 .exec-guide-lbl{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--navy-soft);margin-right:6px}
 /* PAGASA Bulletin — official grouped fields */
 .pf-fields{margin-top:10px;border-top:1px solid var(--line);padding-top:4px}
+/* Prominent full-width strip: tropical cyclone outside PAR */
+#tcParStrip{display:none}
+#tcParStrip.show{display:flex;align-items:center;gap:12px;background:#4a3208;color:#ffe9c2;
+  border-top:2px solid #E8A800;padding:8px 22px;font-family:var(--sans)}
+#tcParStrip .tcs-ico{font-size:18px;flex:none}
+#tcParStrip .tcs-body{flex:1;min-width:0;font-size:12.5px;line-height:1.4}
+#tcParStrip .tcs-body b{color:#fff;font-weight:800}
+#tcParStrip .tcs-tag{flex:none;font-family:var(--display);font-size:10px;font-weight:800;letter-spacing:.5px;
+  text-transform:uppercase;background:#E8A800;color:#3a2600;padding:4px 11px;border-radius:999px;white-space:nowrap}
+@media (max-width:900px){ #tcParStrip.show{padding:8px 14px} #tcParStrip .tcs-body{font-size:11.5px} }
 .tcpar{margin-top:12px;border:1px solid #f0d9a8;background:#fffaf0;border-radius:10px;padding:9px 11px}
 .tcpar-h{font-family:var(--display);font-size:11px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;color:#a34a00}
 .tcpar-b{font-size:12.5px;color:var(--navy-2);margin-top:4px;line-height:1.45}
@@ -540,6 +550,9 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
   <div class="blevel" id="bLevel">Normal</div>
 </div>
 
+<!-- Prominent alert when PAGASA notes a tropical cyclone outside PAR (populated by JS) -->
+<div id="tcParStrip"></div>
+
 <!-- Mobile view toggle -->
 <div class="mobtoggle">
   <div class="ptbtn" onclick="document.body.className='show-map'">🗺 Map</div>
@@ -607,6 +620,22 @@ function bulletinSourceLabel(s){
 }
 
 /* Tropical cyclone OUTSIDE PAR (noted on the Daily Forecast even with nothing inside PAR) */
+function updateTcParStrip(d){
+  const strip=$("#tcParStrip"); if(!strip) return;
+  const t=(d.tc_outside_par)||{};
+  if(!t.present){ strip.className=""; strip.innerHTML=""; return; }
+  const det=[];
+  if(has(t.location)) det.push(esc(t.location));
+  if(has(t.lat)&&has(t.lon)) det.push(`${(+t.lat).toFixed(1)}°N, ${(+t.lon).toFixed(1)}°E`);
+  const w=[]; if(has(t.winds_kph)) w.push(esc(t.winds_kph)+" km/h"); if(has(t.gustiness_kph)) w.push("gusts "+esc(t.gustiness_kph)+" km/h");
+  if(w.length) det.push(w.join(", "));
+  if(has(t.movement)) det.push("moving "+esc(t.movement));
+  strip.innerHTML=`<span class="tcs-ico">🌀</span>
+    <div class="tcs-body"><b>Tropical cyclone outside PAR — ${esc(t.category||"Tropical cyclone")}.</b> ${det.join(" · ")}. Not directly affecting the country; monitor for possible PAR entry.</div>
+    <span class="tcs-tag">Outside PAR</span>`;
+  strip.className="show";
+}
+
 function tcOutsidePARBlock(d){
   const t=d.tc_outside_par||{};
   if(!t.present) return "";
@@ -827,6 +856,7 @@ function render(d,isLive){
   $("#bIcon").textContent=hl.icon;
   $("#bMsg").textContent=hl.msg;
   $("#bLevel").textContent=({normal:"Normal",caution:"Caution",high:"High Risk",critical:"Critical"})[hl.level];
+  updateTcParStrip(d);
 
   const status=deriveStatus(d,hl.level);
   buildSections(d,hl,status,isLive);
@@ -946,7 +976,6 @@ function buildSections(d,hl,status,isLive){
     el("div",null,
       metaRows+
       affectedRegionsBlock(d)+
-      tcOutsidePARBlock(d)+
       (fields
         ? `<div class="pf-fields">${fields}</div>`+
           (has(synopsisRaw)?`<details class="pf-details"><summary>Full PAGASA forecast text</summary><div class="pf-raw">${esc(synopsisRaw)}</div></details>`:"")
