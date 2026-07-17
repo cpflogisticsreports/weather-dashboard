@@ -178,6 +178,10 @@ header.appbar{
 .exec-guide-lbl{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--navy-soft);margin-right:6px}
 /* PAGASA Bulletin — official grouped fields */
 .pf-fields{margin-top:10px;border-top:1px solid var(--line);padding-top:4px}
+.tcpar{margin-top:12px;border:1px solid #f0d9a8;background:#fffaf0;border-radius:10px;padding:9px 11px}
+.tcpar-h{font-family:var(--display);font-size:11px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;color:#a34a00}
+.tcpar-b{font-size:12.5px;color:var(--navy-2);margin-top:4px;line-height:1.45}
+.tcpar-n{font-size:11px;color:var(--navy-soft);margin-top:5px}
 .areas-block{margin-top:12px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
 .areas-h{background:var(--cpf-green-soft);color:var(--cpf-green-dark);font-family:var(--display);
   font-size:11px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;padding:7px 10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
@@ -602,6 +606,20 @@ function bulletinSourceLabel(s){
   return "PAGASA Daily Weather Forecast";
 }
 
+/* Tropical cyclone OUTSIDE PAR (noted on the Daily Forecast even with nothing inside PAR) */
+function tcOutsidePARBlock(d){
+  const t=d.tc_outside_par||{};
+  if(!t.present) return "";
+  const loc=[]; if(has(t.location)) loc.push(esc(t.location));
+  if(has(t.lat)&&has(t.lon)) loc.push(`${(+t.lat).toFixed(1)}°N, ${(+t.lon).toFixed(1)}°E`);
+  const w=[]; if(has(t.winds_kph)) w.push(esc(t.winds_kph)+" km/h winds"); if(has(t.gustiness_kph)) w.push("gusts "+esc(t.gustiness_kph)+" km/h");
+  return `<div class="tcpar">
+    <div class="tcpar-h">⚠ Tropical cyclone outside PAR</div>
+    <div class="tcpar-b"><b>${esc(t.category||"Tropical cyclone")}</b>${loc.length?" — "+loc.join(" · "):""}${w.length||has(t.movement)?"<br>":""}${w.join(", ")}${has(t.movement)?(w.length?" · ":"")+"moving "+esc(t.movement):""}</div>
+    <div class="tcpar-n">${has(t.headline)?esc(t.headline)+". ":""}Not directly affecting the country — monitor for possible PAR entry.</div>
+  </div>`;
+}
+
 /* Regions affected — shaped by whichever PAGASA source is live */
 function affectedRegionsBlock(d){
   const f=d.forecast||{};
@@ -880,6 +898,7 @@ function buildPrintSummary(d,hl,status){
       <span><b>Valid until:</b> ${has(met.valid_until)?fmtTime(met.valid_until):(has(met.next_update)?fmtTime(met.next_update):"—")}</span>
     </div>
     ${affectedRegionsBlock(d)}
+    ${tcOutsidePARBlock(d)}
     <div class="ps-grid2">
       <div class="ps-box"><div class="ps-h">Priority routes</div>${routesHTML}</div>
       <div class="ps-box"><div class="ps-h">Hub status</div>${hubsHTML}</div>
@@ -927,6 +946,7 @@ function buildSections(d,hl,status,isLive){
     el("div",null,
       metaRows+
       affectedRegionsBlock(d)+
+      tcOutsidePARBlock(d)+
       (fields
         ? `<div class="pf-fields">${fields}</div>`+
           (has(synopsisRaw)?`<details class="pf-details"><summary>Full PAGASA forecast text</summary><div class="pf-raw">${esc(synopsisRaw)}</div></details>`:"")
@@ -1397,6 +1417,21 @@ function drawMap(d){
   } else if(has(cy.lat)&&has(cy.lon)){
     L.circleMarker([+cy.lat,+cy.lon],{pane:"pTrack",radius:8,color:"#fff",weight:2,fillColor:"#D32F2F",fillOpacity:1})
       .bindPopup(stormPopup(cy,s,met),{maxWidth:300}).addTo(LAYERS.track);
+  }
+
+  // Tropical cyclone OUTSIDE PAR (from the Daily Forecast TC Information block)
+  const tp=d.tc_outside_par||{};
+  if(tp.present && has(tp.lat) && has(tp.lon)){
+    const w=[]; if(has(tp.winds_kph)) w.push(esc(tp.winds_kph)+" km/h winds"); if(has(tp.gustiness_kph)) w.push("gusts "+esc(tp.gustiness_kph)+" km/h");
+    L.circleMarker([+tp.lat,+tp.lon],{pane:"pTrack",radius:7,color:"#fff",weight:2,fillColor:"#EA6D0A",fillOpacity:.92,dashArray:"2 2"})
+      .bindTooltip(`${esc(tp.category||"TC")} · outside PAR`,{permanent:true,direction:"left",className:"lpa-tip",offset:[-11,0]})
+      .bindPopup(`<div class="pp-storm"><div class="pp-storm-h" style="font-size:13px;color:#a34a00">${esc(tp.category||"Tropical cyclone")} — outside PAR</div>`+
+        `<table>${has(tp.location)?`<tr><td class="k">Location</td><td>${esc(tp.location)}</td></tr>`:""}`+
+        `<tr><td class="k">Lat / Lon</td><td>${(+tp.lat).toFixed(1)}°N, ${(+tp.lon).toFixed(1)}°E</td></tr>`+
+        `${w.length?`<tr><td class="k">Intensity</td><td>${w.join(", ")}</td></tr>`:""}`+
+        `${has(tp.movement)?`<tr><td class="k">Movement</td><td>${esc(tp.movement)}</td></tr>`:""}</table>`+
+        `<div class="pp-risk" style="background:#fff8e1;color:#8a6d00">Outside PAR — not directly affecting the country; monitor for possible entry.</div>`+
+        `<div class="pp-src">PAGASA Daily Forecast — TC Information.</div></div>`,{maxWidth:300}).addTo(LAYERS.track);
   }
 
   // TCWS signals
