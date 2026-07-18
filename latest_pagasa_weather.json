@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-07-18T16:00:00+08:00",
+    "issued_at": "2026-07-19T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-07-19T02:10:02+08:00",
+    "generated_at": "2026-07-19T05:11:01+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Southwest Monsoon affecting the western section of Northern Luzon.",
+    "outlook": "Southwest Monsoon affecting the western sections of Northern and Central Luzon.",
     "warning_level": "Heavy",
     "habagat_affected": [
       "Southwest Monsoon areas"
@@ -30,7 +30,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Southwest Monsoon affecting the western section of Northern Luzon.",
+    "advisory": "Southwest Monsoon affecting the western sections of Northern and Central Luzon.",
     "areas": []
   },
   "gale_warning": {
@@ -44,9 +44,9 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Southwest Monsoon affecting the western section of Northern Luzon.",
+    "synopsis": "Southwest Monsoon affecting the western sections of Northern and Central Luzon.",
     "regions": [
-      "Ilocos Region and Zambales",
+      "Ilocos Region, Zambales, and Bataan",
       "Cordillera Administrative Region, Batanes, and Babuyan Islands",
       "Metro Manila and the rest of the country"
     ],
@@ -54,7 +54,7 @@
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Ilocos Region and Zambales",
+        "place": "Ilocos Region, Zambales, and Bataan",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
@@ -79,7 +79,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting the western section of Northern Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting the western sections of Northern and Central Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -152,8 +152,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-19T02:10:02+08:00",
-        "entry": "Auto-check at 2026-07-19T02:10:02+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-07-19T05:11:01+08:00",
+        "entry": "Auto-check at 2026-07-19T05:11:01+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
