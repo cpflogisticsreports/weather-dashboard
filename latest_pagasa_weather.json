@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-07-19T16:00:00+08:00",
+    "issued_at": "2026-07-20T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-07-20T02:11:05+08:00",
+    "generated_at": "2026-07-20T05:34:16+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,8 +21,8 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Southwest Monsoon affecting the western section of Luzon.",
-    "warning_level": "Heavy",
+    "outlook": "Southwest Monsoon affecting the western sections of Luzon and Visayas.",
+    "warning_level": "Moderate",
     "habagat_affected": [
       "Southwest Monsoon areas"
     ],
@@ -30,7 +30,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Southwest Monsoon affecting the western section of Luzon.",
+    "advisory": "Southwest Monsoon affecting the western sections of Luzon and Visayas.",
     "areas": []
   },
   "gale_warning": {
@@ -44,23 +44,16 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Southwest Monsoon affecting the western section of Luzon.",
+    "synopsis": "Southwest Monsoon affecting the western sections of Luzon and Visayas.",
     "regions": [
-      "Ilocos Region, Zambales, and Bataan",
-      "Metro Manila, Cordillera Administrative Region, MIMAROPA, Western Visayas, Negros Island Region, Zamboanga Peninsula, BARMM, Lanao del Norte, Cavite, Batangas, Batanes, and Babuyan Islands",
+      "Metro Manila, Ilocos Region, Cordillera Administrative Region, MIMAROPA, Western Visayas, Negros Island Region, Zamboanga Peninsula, BARMM, Batanes, Babuyan Islands, Zambales, Bataan, Cavite, Batangas, Lanao del Norte",
       "The rest of the country"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Ilocos Region, Zambales, and Bataan",
-        "condition": "Cloudy skies with scattered rains and thunderstorms",
-        "cause": "Southwest Monsoon",
-        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
-      },
-      {
-        "place": "Metro Manila, Cordillera Administrative Region, MIMAROPA, Western Visayas, Negros Island Region, Zamboanga Peninsula, BARMM, Lanao del Norte, Cavite, Batangas, Batanes, and Babuyan Islands",
+        "place": "Metro Manila, Ilocos Region, Cordillera Administrative Region, MIMAROPA, Western Visayas, Negros Island Region, Zamboanga Peninsula, BARMM, Batanes, Babuyan Islands, Zambales, Bataan, Cavite, Batangas, Lanao del Norte",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -79,7 +72,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting the western section of Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting the western sections of Luzon and Visayas. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -152,8 +145,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-20T02:11:05+08:00",
-        "entry": "Auto-check at 2026-07-20T02:11:05+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-07-20T05:34:16+08:00",
+        "entry": "Auto-check at 2026-07-20T05:34:16+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
