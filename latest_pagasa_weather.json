@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-07-21T16:00:00+08:00",
+    "issued_at": "2026-07-22T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-07-21T23:57:21+08:00",
+    "generated_at": "2026-07-22T04:40:04+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Southwest Monsoon affecting Mindanao and Palawan.",
+    "outlook": "Southwest Monsoon affecting Mindanao and Palawan. Trough of Low Pressure Area (LPA) affecting the eastern sections of Southern Luzon and Visayas.",
     "warning_level": "Heavy",
     "habagat_affected": [
       "Southwest Monsoon areas"
@@ -30,7 +30,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Southwest Monsoon affecting Mindanao and Palawan.",
+    "advisory": "Southwest Monsoon affecting Mindanao and Palawan. Trough of Low Pressure Area (LPA) affecting the eastern sections of Southern Luzon and Visayas.",
     "areas": []
   },
   "gale_warning": {
@@ -44,10 +44,10 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Southwest Monsoon affecting Mindanao and Palawan.",
+    "synopsis": "Southwest Monsoon affecting Mindanao and Palawan. Trough of Low Pressure Area (LPA) affecting the eastern sections of Southern Luzon and Visayas.",
     "regions": [
       "Mindanao, Western Visayas, Negros Island Region, Central Visayas, and Palawan",
-      "Eastern Visayas",
+      "Bicol Region and Eastern Visayas",
       "Metro Manila and the rest of Luzon"
     ],
     "wind_outlook": [],
@@ -60,9 +60,9 @@
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Eastern Visayas",
+        "place": "Bicol Region and Eastern Visayas",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
-        "cause": "Trough of a Low Pressure Area",
+        "cause": "Trough of LPA",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
@@ -79,7 +79,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting Mindanao and Palawan. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting Mindanao and Palawan. Trough of Low Pressure Area (LPA) affecting the eastern sections of Southern Luzon and Visayas. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -152,8 +152,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-21T23:57:21+08:00",
-        "entry": "Auto-check at 2026-07-21T23:57:21+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-07-22T04:40:04+08:00",
+        "entry": "Auto-check at 2026-07-22T04:40:04+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
