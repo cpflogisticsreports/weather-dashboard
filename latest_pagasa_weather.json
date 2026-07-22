@@ -1,36 +1,97 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-07-22T16:00:00+08:00",
-    "valid_until": "",
-    "next_update": "",
-    "generated_at": "2026-07-22T17:41:31+08:00",
-    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 1",
+    "issued_at": "2026-07-22T23:00:00+08:00",
+    "valid_until": "2026-07-23T05:00:00+08:00",
+    "next_update": "2026-07-23T05:00:00+08:00",
+    "generated_at": "2026-07-22T23:53:48+08:00",
+    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "advisory",
-    "has_active_tc": false,
-    "storm_name_local": "",
-    "storm_name_intl": "",
-    "category": "",
+    "mode": "tropical_depression",
+    "has_active_tc": true,
+    "storm_name_local": "KIYAPO",
+    "storm_name_intl": null,
+    "category": "Tropical Depression",
     "severity": "",
     "headline_override": ""
   },
-  "cyclone": {},
-  "tcws": [],
+  "cyclone": {
+    "center_text": "",
+    "lat": 14.8,
+    "lon": 131.7,
+    "max_sustained_winds_kph": 45,
+    "gustiness_kph": 55,
+    "central_pressure_hpa": "",
+    "movement": "Northwestward at 25 km/h",
+    "wind_extent_km": "",
+    "forecast_track": [
+      {
+        "label": "Now",
+        "lat": 14.8,
+        "lon": 131.7,
+        "category": "Tropical Depression",
+        "winds_kph": 45
+      },
+      {
+        "label": "Jul 23 8AM",
+        "lat": 16.15,
+        "lon": 129.61,
+        "category": "Tropical Depression",
+        "winds_kph": 45
+      },
+      {
+        "label": "Jul 24 8AM",
+        "lat": 18.34,
+        "lon": 124.53,
+        "category": "Tropical Depression",
+        "winds_kph": 45
+      },
+      {
+        "label": "Jul 25 8AM",
+        "lat": 20.43,
+        "lon": 119.47,
+        "category": "Tropical Depression",
+        "winds_kph": 45
+      },
+      {
+        "label": "Jul 25 8PM",
+        "lat": 20.72,
+        "lon": 117.47,
+        "category": "Tropical Depression",
+        "winds_kph": 45
+      },
+      {
+        "label": "Jul 26 8PM",
+        "lat": 21.26,
+        "lon": 114.23,
+        "category": "Tropical Depression",
+        "winds_kph": 45
+      }
+    ]
+  },
+  "tcws": [
+    {
+      "signal": 1,
+      "wind_range": "",
+      "lead_time": "",
+      "areas": [
+        "Cagayan",
+        "Isabela"
+      ]
+    }
+  ],
   "rainfall": {
-    "outlook": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 940 km East of Southeastern Luzon (14.2°N, 132.9°E). Southwest Monsoon affecting Mindanao and Palawan.",
+    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 7 issued at 11:00 PM today for the heavy rainfall outlook due to TC KIYAPO and the Southwest Monsoon. Severe Winds",
     "warning_level": "Heavy",
-    "habagat_affected": [
-      "Southwest Monsoon areas"
-    ],
+    "habagat_affected": [],
     "areas": []
   },
   "thunderstorm": {
-    "active": true,
-    "advisory": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 940 km East of Southeastern Luzon (14.2°N, 132.9°E). Southwest Monsoon affecting Mindanao and Palawan.",
+    "active": false,
+    "advisory": "",
     "areas": []
   },
   "gale_warning": {
@@ -44,45 +105,56 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 940 km East of Southeastern Luzon (14.2°N, 132.9°E). Southwest Monsoon affecting Mindanao and Palawan.",
+    "synopsis": "",
     "regions": [
-      "Mindanao, Western Visayas, Negros Island Region, Central Visayas, and Palawan",
-      "Bicol Region, Eastern Visayas, and Romblon",
-      "Metro Manila and the rest of Luzon"
+      "Sarangani",
+      "Davao Occidental",
+      "Davao Oriental",
+      "Most of Mindanao",
+      "Siquijor",
+      "Bohol",
+      "Southern Leyte",
+      "Most of the country"
     ],
-    "wind_outlook": [],
-    "wind_hazard": "",
-    "conditions": [
+    "wind_outlook": [
       {
-        "place": "Mindanao, Western Visayas, Negros Island Region, Central Visayas, and Palawan",
-        "condition": "Cloudy skies with scattered rains and thunderstorms",
-        "cause": "Southwest Monsoon",
-        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
+        "when": "Today",
+        "areas": "Sarangani, Davao Occidental, and Davao Oriental"
       },
       {
-        "place": "Bicol Region, Eastern Visayas, and Romblon",
-        "condition": "Cloudy skies with scattered rains and thunderstorms",
-        "cause": "Trough of LPA",
-        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
+        "when": "Tomorrow (23 July)",
+        "areas": "Most of Mindanao, Siquijor, Bohol, and Southern Leyte"
       },
       {
-        "place": "Metro Manila and the rest of Luzon",
-        "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
-        "cause": "Localized Thunderstorms",
-        "impact": "Possible flash floods or landslides during severe thunderstorms"
+        "when": "Friday (24 July)",
+        "areas": "Most of the country"
       }
-    ]
-  },
-  "tc_outside_par": {
-    "present": false
+    ],
+    "wind_hazard": "Strong winds",
+    "conditions": []
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 940 km East of Southeastern Luzon (14.2°N, 132.9°E). Southwest Monsoon affecting Mindanao and Palawan. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
-    "priority_routes": [],
-    "risk_matrix": [],
-    "contractor_advisory": "",
+    "executive_summary": "Tropical Depression “KIYAPO” is being tracked by PAGASA. Route validation required for: Cagayan Valley (Isabela).",
+    "priority_routes": [
+      {
+        "route": "Trips to Cagayan Valley (Isabela)",
+        "risk": "High",
+        "note": "Auto-flagged from PAGASA affected areas"
+      }
+    ],
+    "risk_matrix": [
+      {
+        "area": "Cagayan Valley (Isabela)",
+        "hazard": "Wind Signal / heavy rain",
+        "likelihood": "High",
+        "impact": "Medium",
+        "level": "High",
+        "action": "Require route validation before dispatch"
+      }
+    ],
+    "contractor_advisory": "Validate route passability and receiving-site readiness before releasing trips to Cagayan Valley (Isabela). Report driver location and any road closures to Logistics Control immediately.",
     "affected_deliveries_note": "",
     "hubs": [
       {
@@ -99,7 +171,7 @@
         "type": "Feedmill",
         "lat": 17.1227406,
         "lon": 121.851358,
-        "status": "Normal"
+        "status": "Route Validation"
       },
       {
         "name": "Samal Feedmill",
@@ -152,8 +224,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-22T17:41:31+08:00",
-        "entry": "Auto-check at 2026-07-22T17:41:31+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-07-22T23:53:48+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-07-22T23:53:48+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
