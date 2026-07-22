@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 1",
-    "issued_at": "2026-07-22T23:00:00+08:00",
-    "valid_until": "2026-07-23T05:00:00+08:00",
-    "next_update": "2026-07-23T05:00:00+08:00",
-    "generated_at": "2026-07-23T04:19:50+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 2",
+    "issued_at": "2026-07-23T05:00:00+08:00",
+    "valid_until": "2026-07-23T11:00:00+08:00",
+    "next_update": "2026-07-23T11:00:00+08:00",
+    "generated_at": "2026-07-23T07:48:28+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -20,53 +20,60 @@
   },
   "cyclone": {
     "center_text": "",
-    "lat": 14.8,
-    "lon": 131.7,
+    "lat": 15.5,
+    "lon": 130.5,
     "max_sustained_winds_kph": 45,
     "gustiness_kph": 55,
     "central_pressure_hpa": "",
-    "movement": "Northwestward at 25 km/h",
+    "movement": "West Northwestward at 20 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 14.8,
-        "lon": 131.7,
+        "lat": 15.5,
+        "lon": 130.5,
         "category": "Tropical Depression",
         "winds_kph": 45
       },
       {
-        "label": "Jul 23 8AM",
-        "lat": 16.15,
-        "lon": 129.61,
+        "label": "Jul 24 2AM",
+        "lat": 17.58,
+        "lon": 125.46,
         "category": "Tropical Depression",
         "winds_kph": 45
       },
       {
-        "label": "Jul 24 8AM",
-        "lat": 18.34,
-        "lon": 124.53,
+        "label": "Jul 24 2PM",
+        "lat": 18.8,
+        "lon": 122.78,
         "category": "Tropical Depression",
         "winds_kph": 45
       },
       {
-        "label": "Jul 25 8AM",
-        "lat": 20.43,
-        "lon": 119.47,
+        "label": "Jul 25 2AM",
+        "lat": 20.27,
+        "lon": 120.39,
         "category": "Tropical Depression",
         "winds_kph": 45
       },
       {
-        "label": "Jul 25 8PM",
-        "lat": 20.72,
-        "lon": 117.47,
+        "label": "Jul 25 2PM",
+        "lat": 20.74,
+        "lon": 118.29,
         "category": "Tropical Depression",
         "winds_kph": 45
       },
       {
-        "label": "Jul 26 8PM",
-        "lat": 21.26,
-        "lon": 114.23,
+        "label": "Jul 26 2AM",
+        "lat": 22.7,
+        "lon": 116.63,
+        "category": "Tropical Depression",
+        "winds_kph": 45
+      },
+      {
+        "label": "Jul 27 2AM",
+        "lat": 24.7,
+        "lon": 114.65,
         "category": "Tropical Depression",
         "winds_kph": 45
       }
@@ -78,13 +85,22 @@
       "wind_range": "",
       "lead_time": "",
       "areas": [
+        "Batanes",
         "Cagayan",
-        "Isabela"
+        "Isabela",
+        "Apayao",
+        "Abra",
+        "Kalinga",
+        "Mountain Province",
+        "Ifugao",
+        "Ilocos Norte",
+        "Ilocos Sur",
+        "Aurora"
       ]
     }
   ],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 7 issued at 11:00 PM today for the heavy rainfall outlook due to TC KIYAPO and the Southwest Monsoon. Severe Winds",
+    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 8 issued at 5:00 AM today for the heavy rainfall outlook due to TC KIYAPO and the Southwest Monsoon. Severe Winds",
     "warning_level": "Heavy",
     "habagat_affected": [],
     "areas": []
@@ -107,27 +123,31 @@
   "forecast": {
     "synopsis": "",
     "regions": [
-      "Sarangani",
-      "Davao Occidental",
-      "Davao Oriental",
       "Most of Mindanao",
       "Siquijor",
       "Bohol",
       "Southern Leyte",
-      "Most of the country"
+      "Most of the country",
+      "Most of Luzon",
+      "most of Visayas",
+      "Zamboanga Peninsula",
+      "Misamis Occidental",
+      "Camiguin",
+      "Dinagat Islands",
+      "Davao Oriental"
     ],
     "wind_outlook": [
       {
         "when": "Today",
-        "areas": "Sarangani, Davao Occidental, and Davao Oriental"
-      },
-      {
-        "when": "Tomorrow (23 July)",
         "areas": "Most of Mindanao, Siquijor, Bohol, and Southern Leyte"
       },
       {
-        "when": "Friday (24 July)",
+        "when": "Tomorrow (24 July)",
         "areas": "Most of the country"
+      },
+      {
+        "when": "Saturday (25 July)",
+        "areas": "Most of Luzon, most of Visayas, Zamboanga Peninsula, Misamis Occidental, Camiguin, Dinagat Islands, and Davao Oriental"
       }
     ],
     "wind_hazard": "Strong winds",
@@ -224,8 +244,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-23T04:19:50+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-07-23T04:19:50+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-07-23T07:48:28+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-07-23T07:48:28+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
