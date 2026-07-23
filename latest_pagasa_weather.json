@@ -1,91 +1,93 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 7",
-    "issued_at": "2026-07-24T02:00:00+08:00",
-    "valid_until": "2026-07-24T05:00:00+08:00",
-    "next_update": "2026-07-24T05:00:00+08:00",
-    "generated_at": "2026-07-24T04:18:47+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 8",
+    "issued_at": "2026-07-24T05:00:00+08:00",
+    "valid_until": "2026-07-24T08:00:00+08:00",
+    "next_update": "2026-07-24T08:00:00+08:00",
+    "generated_at": "2026-07-24T07:43:51+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "tropical_depression",
+    "mode": "tropical_storm",
     "has_active_tc": true,
     "storm_name_local": "KIYAPO",
     "storm_name_intl": null,
-    "category": "Tropical Depression",
+    "category": "Tropical Storm",
     "severity": "",
     "headline_override": ""
   },
   "cyclone": {
     "center_text": "",
-    "lat": 18.3,
-    "lon": 125.5,
-    "max_sustained_winds_kph": 55,
-    "gustiness_kph": 70,
+    "lat": 18.2,
+    "lon": 129.4,
+    "max_sustained_winds_kph": 65,
+    "gustiness_kph": 80,
     "central_pressure_hpa": "",
     "movement": "West Northwestward at 30 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 18.3,
-        "lon": 125.5,
-        "category": "Tropical Depression",
-        "winds_kph": 55
+        "lat": 18.2,
+        "lon": 129.4,
+        "category": "Tropical Storm",
+        "winds_kph": 65
       },
       {
-        "label": "Jul 24 11AM",
-        "lat": 19.25,
-        "lon": 122.95,
-        "category": "Tropical Depression",
-        "winds_kph": 55
-      },
-      {
-        "label": "Jul 24 11PM",
+        "label": "Jul 25 2AM",
         "lat": 20.44,
-        "lon": 120.0,
-        "category": "Tropical Depression",
-        "winds_kph": 55
+        "lon": 119.76,
+        "category": "Tropical Storm",
+        "winds_kph": 65
       },
       {
-        "label": "Jul 25 11AM",
-        "lat": 22.31,
-        "lon": 117.72,
-        "category": "Tropical Depression",
-        "winds_kph": 55
+        "label": "Jul 25 2PM",
+        "lat": 22.38,
+        "lon": 117.54,
+        "category": "Tropical Storm",
+        "winds_kph": 65
       },
       {
-        "label": "Jul 25 11PM",
-        "lat": 22.96,
-        "lon": 115.85,
-        "category": "Tropical Depression",
-        "winds_kph": 55
+        "label": "Jul 26 2AM",
+        "lat": 23.07,
+        "lon": 115.53,
+        "category": "Tropical Storm",
+        "winds_kph": 65
       },
       {
-        "label": "Jul 26 11AM",
-        "lat": 21.31,
-        "lon": 114.1,
-        "category": "Tropical Depression",
-        "winds_kph": 55
+        "label": "Jul 26 2PM",
+        "lat": 21.34,
+        "lon": 114.01,
+        "category": "Tropical Storm",
+        "winds_kph": 65
       },
       {
-        "label": "Jul 26 11PM",
-        "lat": 24.58,
-        "lon": 114.8,
-        "category": "Tropical Depression",
-        "winds_kph": 55
+        "label": "Jul 27 2AM",
+        "lat": 24.61,
+        "lon": 114.76,
+        "category": "Tropical Storm",
+        "winds_kph": 65
       }
     ]
   },
   "tcws": [
     {
-      "signal": 1,
+      "signal": 2,
       "wind_range": "",
       "lead_time": "",
       "areas": [
         "Batanes",
+        "Cagayan",
+        "Ilocos Norte"
+      ]
+    },
+    {
+      "signal": 1,
+      "wind_range": "",
+      "lead_time": "",
+      "areas": [
         "Cagayan",
         "Isabela",
         "Nueva Vizcaya",
@@ -104,7 +106,7 @@
     }
   ],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 11 issued at 11:00 PM yesterday for the heavy rainfall outlook due to TC KIYAPO and the Southwest Monsoon. Severe Winds",
+    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 12 issued at 5:00 AM today for the heavy rainfall outlook due to TC KIYAPO and the Southwest Monsoon. Severe Winds",
     "warning_level": "Heavy",
     "habagat_affected": [],
     "areas": []
@@ -132,7 +134,6 @@
       "Visayas",
       "Zamboanga del Norte",
       "Davao Oriental",
-      "Dinagat Islands",
       "Ilocos Region",
       "Zambales",
       "Bataan",
@@ -146,7 +147,7 @@
       },
       {
         "when": "Tomorrow (25 July)",
-        "areas": "Most of Luzon and Visayas, Zamboanga del Norte, Davao Oriental, and Dinagat Islands"
+        "areas": "Most of Luzon and Visayas, Zamboanga del Norte, and Davao Oriental"
       },
       {
         "when": "Sunday (26 July)",
@@ -159,7 +160,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Tropical Depression “KIYAPO” is being tracked by PAGASA. Route validation required for: Cagayan Valley (Isabela).",
+    "executive_summary": "Tropical Storm “KIYAPO” is being tracked by PAGASA. Route validation required for: Cagayan Valley (Isabela).",
     "priority_routes": [
       {
         "route": "Trips to Cagayan Valley (Isabela)",
@@ -247,8 +248,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-24T04:18:47+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-07-24T04:18:47+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-07-24T07:43:51+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-07-24T07:43:51+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
