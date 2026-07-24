@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 10",
-    "issued_at": "2026-07-24T11:00:00+08:00",
-    "valid_until": "2026-07-24T14:00:00+08:00",
-    "next_update": "2026-07-24T14:00:00+08:00",
-    "generated_at": "2026-07-24T11:06:46+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 12",
+    "issued_at": "2026-07-24T17:00:00+08:00",
+    "valid_until": "2026-07-24T20:00:00+08:00",
+    "next_update": "2026-07-24T20:00:00+08:00",
+    "generated_at": "2026-07-24T18:50:44+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -20,62 +20,62 @@
   },
   "cyclone": {
     "center_text": "",
-    "lat": 18.5,
-    "lon": 122.9,
-    "max_sustained_winds_kph": 75,
-    "gustiness_kph": 90,
+    "lat": 19.1,
+    "lon": 121.6,
+    "max_sustained_winds_kph": 85,
+    "gustiness_kph": 105,
     "central_pressure_hpa": "",
-    "movement": "Westward at 30 km/h",
+    "movement": "West Northwestward at 30 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 18.5,
-        "lon": 122.9,
+        "lat": 19.1,
+        "lon": 121.6,
         "category": "Tropical Storm",
-        "winds_kph": 75
+        "winds_kph": 85
       },
       {
-        "label": "Jul 24 8PM",
-        "lat": 19.5,
-        "lon": 120.85,
+        "label": "Jul 25 2AM",
+        "lat": 20.43,
+        "lon": 119.19,
         "category": "Tropical Storm",
-        "winds_kph": 75
+        "winds_kph": 85
       },
       {
-        "label": "Jul 25 8AM",
-        "lat": 20.75,
-        "lon": 118.39,
+        "label": "Jul 25 2PM",
+        "lat": 22.44,
+        "lon": 117.36,
         "category": "Tropical Storm",
-        "winds_kph": 75
+        "winds_kph": 85
       },
       {
-        "label": "Jul 25 8PM",
-        "lat": 22.66,
-        "lon": 116.72,
+        "label": "Jul 26 2AM",
+        "lat": 23.07,
+        "lon": 115.53,
         "category": "Tropical Storm",
-        "winds_kph": 75
+        "winds_kph": 85
       },
       {
-        "label": "Jul 26 8AM",
-        "lat": 23.24,
-        "lon": 115.02,
+        "label": "Jul 26 2PM",
+        "lat": 21.37,
+        "lon": 113.92,
         "category": "Tropical Storm",
-        "winds_kph": 75
+        "winds_kph": 85
       },
       {
-        "label": "Jul 26 8PM",
-        "lat": 21.46,
-        "lon": 113.64,
+        "label": "Jul 27 2AM",
+        "lat": 24.67,
+        "lon": 114.69,
         "category": "Tropical Storm",
-        "winds_kph": 75
+        "winds_kph": 85
       },
       {
-        "label": "Jul 27 8AM",
-        "lat": 25.34,
-        "lon": 113.88,
+        "label": "Jul 27 2PM",
+        "lat": 25.73,
+        "lon": 113.4,
         "category": "Tropical Storm",
-        "winds_kph": 75
+        "winds_kph": 85
       }
     ]
   },
@@ -114,7 +114,7 @@
     }
   ],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 13 issued at 11:00 AM today for the heavy rainfall outlook due to TC KIYAPO and the Southwest Monsoon. Severe Winds",
+    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 14 issued at 5:00 PM today for the heavy rainfall outlook due to TC KIYAPO and the Southwest Monsoon. Severe Winds",
     "warning_level": "Heavy",
     "habagat_affected": [],
     "areas": []
@@ -139,14 +139,20 @@
     "regions": [
       "Most of the country",
       "Most of Luzon",
-      "Visayas",
+      "Western Visayas",
+      "Negros Island Region",
+      "Cebu",
+      "Northern Samar",
       "Zamboanga del Norte",
+      "Sultan Kudarat",
       "Davao Oriental",
+      "Batanes",
+      "Cagayan",
       "Ilocos Region",
-      "MIMAROPA",
       "Zambales",
       "Bataan",
-      "Quezon"
+      "Quezon",
+      "MIMAROPA"
     ],
     "wind_outlook": [
       {
@@ -155,11 +161,11 @@
       },
       {
         "when": "Tomorrow (25 July)",
-        "areas": "Most of Luzon and Visayas, Zamboanga del Norte, and Davao Oriental"
+        "areas": "Most of Luzon, Western Visayas, Negros Island Region, Cebu, Northern Samar, Zamboanga del Norte, Sultan Kudarat, and Davao Oriental"
       },
       {
         "when": "Sunday (26 July)",
-        "areas": "Ilocos Region, MIMAROPA, Zambales, Bataan, and Quezon"
+        "areas": "Batanes, Cagayan, Ilocos Region, Zambales, Bataan, Quezon, and MIMAROPA"
       }
     ],
     "wind_hazard": "Strong winds",
@@ -256,8 +262,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-24T11:06:46+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-07-24T11:06:46+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-07-24T18:50:44+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-07-24T18:50:44+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
