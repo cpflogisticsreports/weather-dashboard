@@ -1,87 +1,73 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 12",
-    "issued_at": "2026-07-24T17:00:00+08:00",
-    "valid_until": "2026-07-24T20:00:00+08:00",
-    "next_update": "2026-07-24T20:00:00+08:00",
-    "generated_at": "2026-07-24T18:50:44+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 15",
+    "issued_at": "2026-07-25T05:00:00+08:00",
+    "valid_until": "2026-07-25T11:00:00+08:00",
+    "next_update": "2026-07-25T11:00:00+08:00",
+    "generated_at": "2026-07-25T04:48:42+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "tropical_storm",
+    "mode": "typhoon",
     "has_active_tc": true,
     "storm_name_local": "KIYAPO",
     "storm_name_intl": null,
-    "category": "Tropical Storm",
+    "category": "Typhoon",
     "severity": "",
     "headline_override": ""
   },
   "cyclone": {
-    "center_text": "",
-    "lat": 19.1,
-    "lon": 121.6,
-    "max_sustained_winds_kph": 85,
-    "gustiness_kph": 105,
+    "center_text": "320 km West of Basco, Batanes (OUTSIDE PAR)",
+    "lat": 20.3,
+    "lon": 118.9,
+    "max_sustained_winds_kph": 120,
+    "gustiness_kph": 150,
     "central_pressure_hpa": "",
-    "movement": "West Northwestward at 30 km/h",
+    "movement": "West Northwestward at 25 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 19.1,
-        "lon": 121.6,
-        "category": "Tropical Storm",
-        "winds_kph": 85
-      },
-      {
-        "label": "Jul 25 2AM",
-        "lat": 20.43,
-        "lon": 119.19,
-        "category": "Tropical Storm",
-        "winds_kph": 85
+        "lat": 20.3,
+        "lon": 118.9,
+        "category": "Typhoon",
+        "winds_kph": 120
       },
       {
         "label": "Jul 25 2PM",
-        "lat": 22.44,
-        "lon": 117.36,
-        "category": "Tropical Storm",
-        "winds_kph": 85
+        "lat": 20.71,
+        "lon": 116.99,
+        "category": "Typhoon",
+        "winds_kph": 120
       },
       {
         "label": "Jul 26 2AM",
-        "lat": 23.07,
-        "lon": 115.53,
-        "category": "Tropical Storm",
-        "winds_kph": 85
-      },
-      {
-        "label": "Jul 26 2PM",
-        "lat": 21.37,
-        "lon": 113.92,
-        "category": "Tropical Storm",
-        "winds_kph": 85
+        "lat": 23.09,
+        "lon": 115.48,
+        "category": "Typhoon",
+        "winds_kph": 120
       },
       {
         "label": "Jul 27 2AM",
-        "lat": 24.67,
-        "lon": 114.69,
-        "category": "Tropical Storm",
-        "winds_kph": 85
+        "lat": 21.76,
+        "lon": 112.73,
+        "category": "Typhoon",
+        "winds_kph": 120
       },
       {
         "label": "Jul 27 2PM",
-        "lat": 25.73,
-        "lon": 113.4,
-        "category": "Tropical Storm",
-        "winds_kph": 85
+        "lat": 25.79,
+        "lon": 113.32,
+        "category": "Typhoon",
+        "winds_kph": 120
       }
     ]
   },
   "tcws": [
     {
-      "signal": 2,
+      "signal": 1,
       "wind_range": "",
       "lead_time": "",
       "areas": [
@@ -90,31 +76,10 @@
         "Apayao",
         "Ilocos Norte"
       ]
-    },
-    {
-      "signal": 1,
-      "wind_range": "",
-      "lead_time": "",
-      "areas": [
-        "Cagayan",
-        "Isabela",
-        "Quirino",
-        "Nueva Vizcaya",
-        "Apayao",
-        "Abra",
-        "Kalinga",
-        "Mountain Province",
-        "Ifugao",
-        "Benguet",
-        "Ilocos Norte",
-        "Ilocos Sur",
-        "La Union",
-        "Aurora"
-      ]
     }
   ],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 14 issued at 5:00 PM today for the heavy rainfall outlook due to TC KIYAPO and the Southwest Monsoon. Severe Winds",
+    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 16 issued at 5:00 AM today for the heavy rainfall outlook due to TC KIYAPO and the Southwest Monsoon. Severe Winds",
     "warning_level": "Heavy",
     "habagat_affected": [],
     "areas": []
@@ -137,14 +102,11 @@
   "forecast": {
     "synopsis": "",
     "regions": [
-      "Most of the country",
       "Most of Luzon",
       "Western Visayas",
       "Negros Island Region",
-      "Cebu",
       "Northern Samar",
       "Zamboanga del Norte",
-      "Sultan Kudarat",
       "Davao Oriental",
       "Batanes",
       "Cagayan",
@@ -152,20 +114,24 @@
       "Zambales",
       "Bataan",
       "Quezon",
-      "MIMAROPA"
+      "MIMAROPA",
+      "La Union",
+      "Pangasinan",
+      "Lubang Islands",
+      "Kalayaan Islands"
     ],
     "wind_outlook": [
       {
         "when": "Today",
-        "areas": "Most of the country"
+        "areas": "Most of Luzon, Western Visayas, Negros Island Region, Northern Samar, Zamboanga del Norte, and Davao Oriental"
       },
       {
-        "when": "Tomorrow (25 July)",
-        "areas": "Most of Luzon, Western Visayas, Negros Island Region, Cebu, Northern Samar, Zamboanga del Norte, Sultan Kudarat, and Davao Oriental"
-      },
-      {
-        "when": "Sunday (26 July)",
+        "when": "Tomorrow (26 July)",
         "areas": "Batanes, Cagayan, Ilocos Region, Zambales, Bataan, Quezon, and MIMAROPA"
+      },
+      {
+        "when": "Monday (27 July)",
+        "areas": "La Union, Pangasinan, Zambales, Lubang Islands, and Kalayaan Islands"
       }
     ],
     "wind_hazard": "Strong winds",
@@ -174,25 +140,10 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Tropical Storm “KIYAPO” is being tracked by PAGASA. Route validation required for: Cagayan Valley (Isabela).",
-    "priority_routes": [
-      {
-        "route": "Trips to Cagayan Valley (Isabela)",
-        "risk": "High",
-        "note": "Auto-flagged from PAGASA affected areas"
-      }
-    ],
-    "risk_matrix": [
-      {
-        "area": "Cagayan Valley (Isabela)",
-        "hazard": "Wind Signal / heavy rain",
-        "likelihood": "High",
-        "impact": "Medium",
-        "level": "High",
-        "action": "Require route validation before dispatch"
-      }
-    ],
-    "contractor_advisory": "Validate route passability and receiving-site readiness before releasing trips to Cagayan Valley (Isabela). Report driver location and any road closures to Logistics Control immediately.",
+    "executive_summary": "Typhoon “KIYAPO” is being tracked by PAGASA. Center: 320 km West of Basco, Batanes (OUTSIDE PAR). No CPF hub currently under a wind signal; continue monitoring.",
+    "priority_routes": [],
+    "risk_matrix": [],
+    "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
     "affected_deliveries_note": "",
     "hubs": [
       {
@@ -209,7 +160,7 @@
         "type": "Feedmill",
         "lat": 17.1227406,
         "lon": 121.851358,
-        "status": "Route Validation"
+        "status": "Normal"
       },
       {
         "name": "Samal Feedmill",
@@ -262,8 +213,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-24T18:50:44+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-07-24T18:50:44+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-07-25T04:48:42+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-07-25T04:48:42+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
