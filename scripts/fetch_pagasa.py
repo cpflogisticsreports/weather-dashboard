@@ -235,9 +235,9 @@ def parse_forecast_positions(text):
     block = m.group(1)
     line_re = re.compile(
         r"([A-Z][a-z]{2}\s+\d{1,2},\s*\d{4}\s+\d{1,2}:\d{2}\s*[AP]M)\s*[-–]\s*"
-        r"([\d]+)\s*km\s+([A-Za-z ]+?)\s+of\s+([A-Za-z .]+?)\s*(?:,|\(|$)", re.I)
+        r"([\d][\d,]*(?:\.\d+)?)\s*km\s+([A-Za-z ]+?)\s+of\s+([A-Za-z .]+?)\s*(?:,|\(|$)", re.I)
     for lm in line_re.finditer(block):
-        when, km, direction, place = lm.group(1), int(lm.group(2)), lm.group(3), lm.group(4)
+        when, km, direction, place = lm.group(1), float(lm.group(2).replace(",", "")), lm.group(3), lm.group(4)
         base = geocode_place(place)
         br = dir_to_bearing(direction)
         if base and br is not None:
