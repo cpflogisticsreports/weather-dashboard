@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-07-25T16:00:00+08:00",
+    "issued_at": "2026-07-26T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-07-26T02:10:31+08:00",
+    "generated_at": "2026-07-26T05:12:50+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Typhoon \"KIYAPO\" {NOUL} affecting Extreme Northern Luzon. Southwest Monsoon affecting Central and Southern Luzon, Visayas, and Mindanao.",
+    "outlook": "Southwest Monsoon affecting Luzon and the western section of Visayas.",
     "warning_level": "Heavy",
     "habagat_affected": [
       "Southwest Monsoon areas"
@@ -30,7 +30,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Typhoon \"KIYAPO\" {NOUL} affecting Extreme Northern Luzon. Southwest Monsoon affecting Central and Southern Luzon, Visayas, and Mindanao.",
+    "advisory": "Southwest Monsoon affecting Luzon and the western section of Visayas.",
     "areas": []
   },
   "gale_warning": {
@@ -44,56 +44,49 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Typhoon \"KIYAPO\" {NOUL} affecting Extreme Northern Luzon. Southwest Monsoon affecting Central and Southern Luzon, Visayas, and Mindanao.",
+    "synopsis": "Southwest Monsoon affecting Luzon and the western section of Visayas.",
     "regions": [
-      "Pangasinan, Zambales, Bataan, and Occidental Mindoro",
-      "Batanes, Cagayan, Apayao, and Ilocos Norte",
-      "Metro Manila, Visayas, the rest of Luzon, Zamboanga Peninsula, BARMM, Northern Mindanao, and Caraga",
-      "The rest of Mindanao"
+      "Pangasinan and Zambales",
+      "Metro Manila, the rest of Luzon, Aklan, and Antique",
+      "The rest of the country"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Pangasinan, Zambales, Bataan, and Occidental Mindoro",
+        "place": "Pangasinan and Zambales",
         "condition": "Occasional rains",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to heavy rains"
       },
       {
-        "place": "Batanes, Cagayan, Apayao, and Ilocos Norte",
-        "condition": "Cloudy skies with scattered rains and thunderstorms",
-        "cause": "Trough of TC KIYAPO",
-        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
-      },
-      {
-        "place": "Metro Manila, Visayas, the rest of Luzon, Zamboanga Peninsula, BARMM, Northern Mindanao, and Caraga",
+        "place": "Metro Manila, the rest of Luzon, Aklan, and Antique",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "The rest of Mindanao",
+        "place": "The rest of the country",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
-        "cause": "Southwest Monsoon",
+        "cause": "Localized Thunderstorms",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
       }
     ]
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
     "category": "Typhoon",
-    "location": "560 KM WEST OF ITBAYAT, BATANES",
-    "lat": 21.5,
-    "lon": 116.5,
-    "winds_kph": "130",
-    "gustiness_kph": "160"
+    "location": "745 KM WEST NORTHWEST OF ITBAYAT, BATANES",
+    "lat": 22.5,
+    "lon": 114.9,
+    "winds_kph": "140",
+    "gustiness_kph": "195"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Typhoon \"KIYAPO\" {NOUL} affecting Extreme Northern Luzon. Southwest Monsoon affecting Central and Southern Luzon, Visayas, and Mindanao. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting Luzon and the western section of Visayas. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -166,8 +159,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-26T02:10:31+08:00",
-        "entry": "Auto-check at 2026-07-26T02:10:31+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-07-26T05:12:50+08:00",
+        "entry": "Auto-check at 2026-07-26T05:12:50+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
