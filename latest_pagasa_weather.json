@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 15",
-    "issued_at": "2026-07-25T05:00:00+08:00",
-    "valid_until": "2026-07-25T11:00:00+08:00",
-    "next_update": "2026-07-25T11:00:00+08:00",
-    "generated_at": "2026-07-25T04:48:42+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 16",
+    "issued_at": "2026-07-25T11:00:00+08:00",
+    "valid_until": "2026-07-25T17:00:00+08:00",
+    "next_update": "2026-07-25T17:00:00+08:00",
+    "generated_at": "2026-07-25T14:06:16+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -19,67 +19,62 @@
     "headline_override": ""
   },
   "cyclone": {
-    "center_text": "320 km West of Basco, Batanes (OUTSIDE PAR)",
-    "lat": 20.3,
-    "lon": 118.9,
+    "center_text": "465 km West of Basco, Batanes",
+    "lat": 21.1,
+    "lon": 117.4,
     "max_sustained_winds_kph": 120,
     "gustiness_kph": 150,
     "central_pressure_hpa": "",
-    "movement": "West Northwestward at 25 km/h",
+    "movement": "Northwestward at 25 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 20.3,
-        "lon": 118.9,
+        "lat": 21.1,
+        "lon": 117.4,
         "category": "Typhoon",
         "winds_kph": 120
       },
       {
-        "label": "Jul 25 2PM",
-        "lat": 20.71,
-        "lon": 116.99,
+        "label": "Jul 25 8PM",
+        "lat": 22.79,
+        "lon": 116.35,
         "category": "Typhoon",
         "winds_kph": 120
       },
       {
-        "label": "Jul 26 2AM",
-        "lat": 23.09,
-        "lon": 115.48,
+        "label": "Jul 26 8AM",
+        "lat": 23.33,
+        "lon": 114.75,
         "category": "Typhoon",
         "winds_kph": 120
       },
       {
-        "label": "Jul 27 2AM",
-        "lat": 21.76,
-        "lon": 112.73,
+        "label": "Jul 26 8PM",
+        "lat": 21.55,
+        "lon": 113.37,
         "category": "Typhoon",
         "winds_kph": 120
       },
       {
-        "label": "Jul 27 2PM",
-        "lat": 25.79,
-        "lon": 113.32,
+        "label": "Jul 27 8AM",
+        "lat": 25.25,
+        "lon": 113.99,
+        "category": "Typhoon",
+        "winds_kph": 120
+      },
+      {
+        "label": "Jul 27 8PM",
+        "lat": 26.48,
+        "lon": 112.47,
         "category": "Typhoon",
         "winds_kph": 120
       }
     ]
   },
-  "tcws": [
-    {
-      "signal": 1,
-      "wind_range": "",
-      "lead_time": "",
-      "areas": [
-        "Batanes",
-        "Cagayan",
-        "Apayao",
-        "Ilocos Norte"
-      ]
-    }
-  ],
+  "tcws": [],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 16 issued at 5:00 AM today for the heavy rainfall outlook due to TC KIYAPO and the Southwest Monsoon. Severe Winds",
+    "outlook": "heavy rainfall warnings, thunderstorm/rainfall advisories, and other severe weather information specific to your area, please monitor products issued by your local PAGASA Regional Services Division.",
     "warning_level": "Heavy",
     "habagat_affected": [],
     "areas": []
@@ -134,13 +129,13 @@
         "areas": "La Union, Pangasinan, Zambales, Lubang Islands, and Kalayaan Islands"
       }
     ],
-    "wind_hazard": "Strong winds",
+    "wind_hazard": "Strong to gale-force gusts",
     "conditions": []
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Typhoon “KIYAPO” is being tracked by PAGASA. Center: 320 km West of Basco, Batanes (OUTSIDE PAR). No CPF hub currently under a wind signal; continue monitoring.",
+    "executive_summary": "Typhoon “KIYAPO” is being tracked by PAGASA. Center: 465 km West of Basco, Batanes. No CPF hub currently under a wind signal; continue monitoring.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
@@ -213,8 +208,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-25T04:48:42+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-07-25T04:48:42+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-07-25T14:06:16+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-07-25T14:06:16+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
