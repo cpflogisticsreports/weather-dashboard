@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-07-27T16:00:00+08:00",
+    "issued_at": "2026-07-28T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-07-28T02:01:18+08:00",
+    "generated_at": "2026-07-28T05:52:01+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -46,21 +46,28 @@
   "forecast": {
     "synopsis": "Southwest Monsoon affecting the western section of Luzon.",
     "regions": [
-      "Ilocos Region, Zambales, Bataan, Occidental Mindoro, and Palawan",
-      "Metro Manila, Cordillera Administrative Region, rest of MIMAROPA, Pampanga, Tarlac, Bulacan, Cavite, Laguna, and Batangas",
+      "Ilocos Region, Zambales, and Bataan",
+      "Eastern Visayas, Caraga, and Davao Region",
+      "Metro Manila, Cordillera Administrative Region, Pampanga, Tarlac, Bulacan, Cavite, Batangas, Palawan, Occidental Mindoro, and Oriental Mindoro",
       "The rest of the country"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Ilocos Region, Zambales, Bataan, Occidental Mindoro, and Palawan",
+        "place": "Ilocos Region, Zambales, and Bataan",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Metro Manila, Cordillera Administrative Region, rest of MIMAROPA, Pampanga, Tarlac, Bulacan, Cavite, Laguna, and Batangas",
+        "place": "Eastern Visayas, Caraga, and Davao Region",
+        "condition": "Cloudy skies with scattered rains and thunderstorms",
+        "cause": "Easterlies",
+        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
+      },
+      {
+        "place": "Metro Manila, Cordillera Administrative Region, Pampanga, Tarlac, Bulacan, Cavite, Batangas, Palawan, Occidental Mindoro, and Oriental Mindoro",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -152,8 +159,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-28T02:01:18+08:00",
-        "entry": "Auto-check at 2026-07-28T02:01:18+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-07-28T05:52:01+08:00",
+        "entry": "Auto-check at 2026-07-28T05:52:01+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
