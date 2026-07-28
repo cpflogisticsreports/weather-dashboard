@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-07-28T04:00:00+08:00",
+    "issued_at": "2026-07-28T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-07-28T15:48:12+08:00",
+    "generated_at": "2026-07-28T23:55:27+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,16 +21,14 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Southwest Monsoon affecting the western section of Luzon.",
+    "outlook": "At 3:00 PM today, a Low Pressure Area (LPA) was estimated based on all available data at 310 km East of Borongan City, Eastern Samar (11.6°N, 128.3°E).",
     "warning_level": "Heavy",
-    "habagat_affected": [
-      "Southwest Monsoon areas"
-    ],
+    "habagat_affected": [],
     "areas": []
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Southwest Monsoon affecting the western section of Luzon.",
+    "advisory": "At 3:00 PM today, a Low Pressure Area (LPA) was estimated based on all available data at 310 km East of Borongan City, Eastern Samar (11.6°N, 128.3°E).",
     "areas": []
   },
   "gale_warning": {
@@ -44,36 +42,36 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Southwest Monsoon affecting the western section of Luzon.",
+    "synopsis": "At 3:00 PM today, a Low Pressure Area (LPA) was estimated based on all available data at 310 km East of Borongan City, Eastern Samar (11.6°N, 128.3°E).",
     "regions": [
-      "Ilocos Region, Zambales, and Bataan",
-      "Eastern Visayas, Caraga, and Davao Region",
-      "Metro Manila, Cordillera Administrative Region, Pampanga, Tarlac, Bulacan, Cavite, Batangas, Palawan, Occidental Mindoro, and Oriental Mindoro",
-      "The rest of the country"
+      "Eastern Visayas, Central Visayas, Caraga, Northern Mindanao, Catanduanes, Masbate, Albay, and Sorsogon",
+      "The rest of Bicol Region",
+      "Cagayan Valley, Aurora, and Quezon",
+      "Metro Manila and the rest of the country"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Ilocos Region, Zambales, and Bataan",
+        "place": "Eastern Visayas, Central Visayas, Caraga, Northern Mindanao, Catanduanes, Masbate, Albay, and Sorsogon",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
-        "cause": "Southwest Monsoon",
+        "cause": "LPA",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Eastern Visayas, Caraga, and Davao Region",
+        "place": "The rest of Bicol Region",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Easterlies",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Metro Manila, Cordillera Administrative Region, Pampanga, Tarlac, Bulacan, Cavite, Batangas, Palawan, Occidental Mindoro, and Oriental Mindoro",
+        "place": "Cagayan Valley, Aurora, and Quezon",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
-        "cause": "Southwest Monsoon",
+        "cause": "Easterlies",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
       },
       {
-        "place": "The rest of the country",
+        "place": "Metro Manila and the rest of the country",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Localized Thunderstorms",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -86,7 +84,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting the western section of Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. At 3:00 PM today, a Low Pressure Area (LPA) was estimated based on all available data at 310 km East of Borongan City, Eastern Samar (11.6°N, 128.3°E). Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -159,8 +157,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-28T15:48:12+08:00",
-        "entry": "Auto-check at 2026-07-28T15:48:12+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-07-28T23:55:27+08:00",
+        "entry": "Auto-check at 2026-07-28T23:55:27+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
