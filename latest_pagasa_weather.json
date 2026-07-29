@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-07-29T04:00:00+08:00",
+    "issued_at": "2026-07-29T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-07-29T04:37:35+08:00",
+    "generated_at": "2026-07-29T18:16:47+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,14 +21,14 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "At 3:00 AM today, the Low Pressure Area (LPA) was estimated based on all available data over the coastal waters of Rapu-Rapu, Albay (13.1°N, 124.3°E).",
+    "outlook": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data in the vicinity of Macalelon, Quezon (13.8°N, 122.2°E). Easterlies affecting Northern Luzon.",
     "warning_level": "Heavy",
     "habagat_affected": [],
     "areas": []
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "At 3:00 AM today, the Low Pressure Area (LPA) was estimated based on all available data over the coastal waters of Rapu-Rapu, Albay (13.1°N, 124.3°E).",
+    "advisory": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data in the vicinity of Macalelon, Quezon (13.8°N, 122.2°E). Easterlies affecting Northern Luzon.",
     "areas": []
   },
   "gale_warning": {
@@ -42,33 +42,26 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "At 3:00 AM today, the Low Pressure Area (LPA) was estimated based on all available data over the coastal waters of Rapu-Rapu, Albay (13.1°N, 124.3°E).",
+    "synopsis": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data in the vicinity of Macalelon, Quezon (13.8°N, 122.2°E). Easterlies affecting Northern Luzon.",
     "regions": [
-      "Metro Manila, Central Luzon, CALABARZON, Bicol Region, Oriental Mindoro, Occidental Mindoro, Romblon, and Marinduque",
-      "Cagayan and Isabela",
-      "Cordillera Administrative Region, Ilocos Region, and the rest of Cagayan Valley",
+      "Metro Manila, Central Luzon, CALABARZON, MIMAROPA, Bicol Region, Western Visayas, Quirino, Nueva Vizcaya, Benguet, La Union, and Pangasinan",
+      "The rest of Luzon",
       "The rest of the country"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Metro Manila, Central Luzon, CALABARZON, Bicol Region, Oriental Mindoro, Occidental Mindoro, Romblon, and Marinduque",
+        "place": "Metro Manila, Central Luzon, CALABARZON, MIMAROPA, Bicol Region, Western Visayas, Quirino, Nueva Vizcaya, Benguet, La Union, and Pangasinan",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "LPA",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Cagayan and Isabela",
+        "place": "The rest of Luzon",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Easterlies",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
-      },
-      {
-        "place": "Cordillera Administrative Region, Ilocos Region, and the rest of Cagayan Valley",
-        "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
-        "cause": "Easterlies",
-        "impact": "Possible flash floods or landslides during severe thunderstorms"
       },
       {
         "place": "The rest of the country",
@@ -84,7 +77,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. At 3:00 AM today, the Low Pressure Area (LPA) was estimated based on all available data over the coastal waters of Rapu-Rapu, Albay (13.1°N, 124.3°E). Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data in the vicinity of Macalelon, Quezon (13.8°N, 122.2°E). Easterlies affecting Northern Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -157,8 +150,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-29T04:37:35+08:00",
-        "entry": "Auto-check at 2026-07-29T04:37:35+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-07-29T18:16:47+08:00",
+        "entry": "Auto-check at 2026-07-29T18:16:47+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
