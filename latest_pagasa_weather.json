@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-07-30T16:00:00+08:00",
+    "issued_at": "2026-07-31T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-07-31T02:05:37+08:00",
+    "generated_at": "2026-07-31T06:17:41+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,14 +21,14 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Easterlies affecting Northern Luzon. Trough of a Low Pressure Area (LPA) affecting the eastern sections of Visayas and Mindanao.",
+    "outlook": "Trough of the Low Pressure Area (LPA) affecting Visayas and the eastern section of Mindanao.",
     "warning_level": "Heavy",
     "habagat_affected": [],
     "areas": []
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Easterlies affecting Northern Luzon. Trough of a Low Pressure Area (LPA) affecting the eastern sections of Visayas and Mindanao.",
+    "advisory": "Trough of the Low Pressure Area (LPA) affecting Visayas and the eastern section of Mindanao.",
     "areas": []
   },
   "gale_warning": {
@@ -42,26 +42,19 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Easterlies affecting Northern Luzon. Trough of a Low Pressure Area (LPA) affecting the eastern sections of Visayas and Mindanao.",
+    "synopsis": "Trough of the Low Pressure Area (LPA) affecting Visayas and the eastern section of Mindanao.",
     "regions": [
-      "Eastern Visayas, Northern Mindanao, Caraga, and Davao Region",
-      "Cagayan Valley and Cordillera Administrative Region",
+      "Visayas, Northern Mindanao, Caraga, Davao Region, Masbate, Sarangani, and South Cotabato",
       "Metro Manila and the rest of the country"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Eastern Visayas, Northern Mindanao, Caraga, and Davao Region",
+        "place": "Visayas, Northern Mindanao, Caraga, Davao Region, Masbate, Sarangani, and South Cotabato",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Trough of LPA",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
-      },
-      {
-        "place": "Cagayan Valley and Cordillera Administrative Region",
-        "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
-        "cause": "Easterlies",
-        "impact": "Possible flash floods or landslides during severe thunderstorms"
       },
       {
         "place": "Metro Manila and the rest of the country",
@@ -77,7 +70,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Easterlies affecting Northern Luzon. Trough of a Low Pressure Area (LPA) affecting the eastern sections of Visayas and Mindanao. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Trough of the Low Pressure Area (LPA) affecting Visayas and the eastern section of Mindanao. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -150,8 +143,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-07-31T02:05:37+08:00",
-        "entry": "Auto-check at 2026-07-31T02:05:37+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-07-31T06:17:41+08:00",
+        "entry": "Auto-check at 2026-07-31T06:17:41+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
