@@ -1,34 +1,105 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-08-01T16:00:00+08:00",
-    "valid_until": "",
-    "next_update": "",
-    "generated_at": "2026-08-01T20:14:41+08:00",
-    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 1",
+    "issued_at": "2026-08-01T23:00:00+08:00",
+    "valid_until": "2026-08-02T05:00:00+08:00",
+    "next_update": "2026-08-02T05:00:00+08:00",
+    "generated_at": "2026-08-01T23:46:48+08:00",
+    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "advisory",
-    "has_active_tc": false,
-    "storm_name_local": "",
-    "storm_name_intl": "",
-    "category": "",
+    "mode": "tropical_depression",
+    "has_active_tc": true,
+    "storm_name_local": "LUIS",
+    "storm_name_intl": null,
+    "category": "Tropical Depression",
     "severity": "",
     "headline_override": ""
   },
-  "cyclone": {},
-  "tcws": [],
+  "cyclone": {
+    "center_text": "",
+    "lat": 14.5,
+    "lon": 126.3,
+    "max_sustained_winds_kph": 45,
+    "gustiness_kph": 55,
+    "central_pressure_hpa": "",
+    "movement": "Westward at 15 km/h",
+    "wind_extent_km": "",
+    "forecast_track": [
+      {
+        "label": "Now",
+        "lat": 14.5,
+        "lon": 126.3,
+        "category": "Tropical Depression",
+        "winds_kph": 45
+      },
+      {
+        "label": "Aug 02 8AM",
+        "lat": 14.72,
+        "lon": 125.28,
+        "category": "Tropical Depression",
+        "winds_kph": 45
+      },
+      {
+        "label": "Aug 02 8PM",
+        "lat": 14.73,
+        "lon": 124.09,
+        "category": "Tropical Depression",
+        "winds_kph": 45
+      },
+      {
+        "label": "Aug 03 8AM",
+        "lat": 15.75,
+        "lon": 123.52,
+        "category": "Tropical Depression",
+        "winds_kph": 45
+      },
+      {
+        "label": "Aug 03 8PM",
+        "lat": 16.27,
+        "lon": 123.81,
+        "category": "Tropical Depression",
+        "winds_kph": 45
+      },
+      {
+        "label": "Aug 04 8AM",
+        "lat": 16.27,
+        "lon": 124.42,
+        "category": "Tropical Depression",
+        "winds_kph": 45
+      },
+      {
+        "label": "Aug 04 8PM",
+        "lat": 16.26,
+        "lon": 125.21,
+        "category": "Tropical Depression",
+        "winds_kph": 45
+      }
+    ]
+  },
+  "tcws": [
+    {
+      "signal": 1,
+      "wind_range": "",
+      "lead_time": "",
+      "areas": [
+        "Polillo",
+        "Camarines Norte",
+        "Catanduanes"
+      ]
+    }
+  ],
   "rainfall": {
-    "outlook": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 595 km East of Infanta, Quezon (14.3°N, 127.2°E).",
+    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 1 issued at 11:00 PM today for the heavy rainfall outlook due to TC LUIS. Severe Winds",
     "warning_level": "Heavy",
     "habagat_affected": [],
     "areas": []
   },
   "thunderstorm": {
-    "active": true,
-    "advisory": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 595 km East of Infanta, Quezon (14.3°N, 127.2°E).",
+    "active": false,
+    "advisory": "",
     "areas": []
   },
   "gale_warning": {
@@ -42,38 +113,40 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 595 km East of Infanta, Quezon (14.3°N, 127.2°E).",
+    "synopsis": "",
     "regions": [
-      "Metro Manila, Visayas, Bicol Region, CALABARZON, Occidental Mindoro, Oriental Mindoro, Marinduque, Romblon, Cagayan, Isabela, and Aurora",
-      "The rest of the country"
+      "Marinduque",
+      "Romblon",
+      "Caluya Islands",
+      "Siquijor",
+      "Southern Leyte",
+      "Camiguin",
+      "Dinagat Islands",
+      "Most of Luzon",
+      "Visayas",
+      "Lanao del Norte",
+      "Surigao del Norte"
     ],
-    "wind_outlook": [],
-    "wind_hazard": "",
-    "conditions": [
+    "wind_outlook": [
       {
-        "place": "Metro Manila, Visayas, Bicol Region, CALABARZON, Occidental Mindoro, Oriental Mindoro, Marinduque, Romblon, Cagayan, Isabela, and Aurora",
-        "condition": "Cloudy skies with scattered rains and thunderstorms",
-        "cause": "LPA",
-        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
+        "when": "Tomorrow (02 August)",
+        "areas": "Marinduque, Romblon, Caluya Islands, Siquijor, Southern Leyte, Camiguin, and Dinagat Islands"
       },
       {
-        "place": "The rest of the country",
-        "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
-        "cause": "Localized Thunderstorms",
-        "impact": "Possible flash floods or landslides during severe thunderstorms"
+        "when": "Monday (03 August)",
+        "areas": "Most of Luzon and Visayas, Lanao del Norte, Camiguin, Surigao del Norte, and Dinagat Islands"
       }
-    ]
-  },
-  "tc_outside_par": {
-    "present": false
+    ],
+    "wind_hazard": "Strong winds",
+    "conditions": []
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 595 km East of Infanta, Quezon (14.3°N, 127.2°E). Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Tropical Depression “LUIS” is being tracked by PAGASA. No CPF hub currently under a wind signal; continue monitoring.",
     "priority_routes": [],
     "risk_matrix": [],
-    "contractor_advisory": "",
+    "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
     "affected_deliveries_note": "",
     "hubs": [
       {
@@ -143,8 +216,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-01T20:14:41+08:00",
-        "entry": "Auto-check at 2026-08-01T20:14:41+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-08-01T23:46:48+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-08-01T23:46:48+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
