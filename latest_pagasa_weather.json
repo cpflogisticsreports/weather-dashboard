@@ -1,81 +1,74 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 1",
-    "issued_at": "2026-08-01T23:00:00+08:00",
-    "valid_until": "2026-08-02T05:00:00+08:00",
-    "next_update": "2026-08-02T05:00:00+08:00",
-    "generated_at": "2026-08-02T04:02:33+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 2",
+    "issued_at": "2026-08-02T05:00:00+08:00",
+    "valid_until": "2026-08-02T11:00:00+08:00",
+    "next_update": "2026-08-02T11:00:00+08:00",
+    "generated_at": "2026-08-02T07:17:55+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "tropical_depression",
+    "mode": "typhoon",
     "has_active_tc": true,
-    "storm_name_local": "LUIS",
+    "storm_name_local": "DOLPHIN",
     "storm_name_intl": null,
-    "category": "Tropical Depression",
+    "category": "Super Typhoon",
     "severity": "",
     "headline_override": ""
   },
   "cyclone": {
     "center_text": "",
-    "lat": 14.5,
-    "lon": 126.3,
-    "max_sustained_winds_kph": 45,
-    "gustiness_kph": 55,
+    "lat": 14.4,
+    "lon": 125.7,
+    "max_sustained_winds_kph": 55,
+    "gustiness_kph": 70,
     "central_pressure_hpa": "",
-    "movement": "Westward at 15 km/h",
+    "movement": "",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 14.5,
-        "lon": 126.3,
-        "category": "Tropical Depression",
-        "winds_kph": 45
+        "lat": 14.4,
+        "lon": 125.7,
+        "category": "Super Typhoon",
+        "winds_kph": 55
       },
       {
-        "label": "Aug 02 8AM",
-        "lat": 14.72,
-        "lon": 125.28,
-        "category": "Tropical Depression",
-        "winds_kph": 45
+        "label": "Aug 02 2PM",
+        "lat": 14.1,
+        "lon": 125.31,
+        "category": "Super Typhoon",
+        "winds_kph": 55
       },
       {
-        "label": "Aug 02 8PM",
+        "label": "Aug 03 2AM",
         "lat": 14.73,
-        "lon": 124.09,
-        "category": "Tropical Depression",
-        "winds_kph": 45
+        "lon": 124.49,
+        "category": "Super Typhoon",
+        "winds_kph": 55
       },
       {
-        "label": "Aug 03 8AM",
+        "label": "Aug 03 2PM",
+        "lat": 14.74,
+        "lon": 123.88,
+        "category": "Super Typhoon",
+        "winds_kph": 55
+      },
+      {
+        "label": "Aug 04 2AM",
+        "lat": 14.98,
+        "lon": 123.5,
+        "category": "Super Typhoon",
+        "winds_kph": 55
+      },
+      {
+        "label": "Aug 04 2PM",
         "lat": 15.75,
-        "lon": 123.52,
-        "category": "Tropical Depression",
-        "winds_kph": 45
-      },
-      {
-        "label": "Aug 03 8PM",
-        "lat": 16.27,
-        "lon": 123.81,
-        "category": "Tropical Depression",
-        "winds_kph": 45
-      },
-      {
-        "label": "Aug 04 8AM",
-        "lat": 16.27,
-        "lon": 124.42,
-        "category": "Tropical Depression",
-        "winds_kph": 45
-      },
-      {
-        "label": "Aug 04 8PM",
-        "lat": 16.26,
-        "lon": 125.21,
-        "category": "Tropical Depression",
-        "winds_kph": 45
+        "lon": 123.85,
+        "category": "Super Typhoon",
+        "winds_kph": 55
       }
     ]
   },
@@ -87,12 +80,13 @@
       "areas": [
         "Polillo",
         "Camarines Norte",
+        "Camarines Sur",
         "Catanduanes"
       ]
     }
   ],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 1 issued at 11:00 PM today for the heavy rainfall outlook due to TC LUIS. Severe Winds",
+    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 2 issued at 5:00 AM today for the heavy rainfall outlook due to TC LUIS and the Southwest Monsoon. Severe Winds",
     "warning_level": "Heavy",
     "habagat_affected": [],
     "areas": []
@@ -116,25 +110,31 @@
     "synopsis": "",
     "regions": [
       "Marinduque",
+      "southern portion of Mindoro Provinces",
       "Romblon",
+      "mainland Masbate",
       "Caluya Islands",
       "Siquijor",
       "Southern Leyte",
       "Camiguin",
-      "Dinagat Islands",
+      "Dinagat Islands. Tomorrow (03 August)",
       "Most of Luzon",
       "Visayas",
       "Lanao del Norte",
-      "Surigao del Norte"
+      "Misamis Occidental",
+      "Surigao del Norte",
+      "Dinagat Islands",
+      "Davao Occidental",
+      "Davao Oriental"
     ],
     "wind_outlook": [
       {
-        "when": "Tomorrow (02 August)",
-        "areas": "Marinduque, Romblon, Caluya Islands, Siquijor, Southern Leyte, Camiguin, and Dinagat Islands"
+        "when": "Today (02 August)",
+        "areas": "Marinduque, southern portion of Mindoro Provinces, Romblon, mainland Masbate, Caluya Islands, Siquijor, Southern Leyte, Camiguin, and Dinagat Islands. Tomorrow (03 August) and"
       },
       {
-        "when": "Monday (03 August)",
-        "areas": "Most of Luzon and Visayas, Lanao del Norte, Camiguin, Surigao del Norte, and Dinagat Islands"
+        "when": "Tuesday (04 August)",
+        "areas": "Most of Luzon and Visayas, Lanao del Norte, Misamis Occidental, Camiguin, Surigao del Norte, Dinagat Islands, Davao Occidental, and Davao Oriental"
       }
     ],
     "wind_hazard": "Strong winds",
@@ -143,7 +143,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Tropical Depression “LUIS” is being tracked by PAGASA. No CPF hub currently under a wind signal; continue monitoring.",
+    "executive_summary": "Super Typhoon “DOLPHIN” is being tracked by PAGASA. No CPF hub currently under a wind signal; continue monitoring.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
@@ -216,8 +216,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-02T04:02:33+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-08-02T04:02:33+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-08-02T07:17:55+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-08-02T07:17:55+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
