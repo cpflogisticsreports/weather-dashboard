@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 3",
-    "issued_at": "2026-08-02T11:00:00+08:00",
-    "valid_until": "2026-08-02T17:00:00+08:00",
-    "next_update": "2026-08-02T17:00:00+08:00",
-    "generated_at": "2026-08-02T15:52:01+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 4",
+    "issued_at": "2026-08-02T17:00:00+08:00",
+    "valid_until": "2026-08-02T23:00:00+08:00",
+    "next_update": "2026-08-02T23:00:00+08:00",
+    "generated_at": "2026-08-02T19:45:42+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -20,8 +20,8 @@
   },
   "cyclone": {
     "center_text": "",
-    "lat": 15.0,
-    "lon": 125.4,
+    "lat": 15.9,
+    "lon": 124.3,
     "max_sustained_winds_kph": 55,
     "gustiness_kph": 70,
     "central_pressure_hpa": "",
@@ -30,43 +30,29 @@
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 15.0,
-        "lon": 125.4,
+        "lat": 15.9,
+        "lon": 124.3,
         "category": "Tropical Depression",
         "winds_kph": 55
       },
       {
-        "label": "Aug 02 8PM",
+        "label": "Aug 03 2AM",
         "lat": 15.74,
-        "lon": 124.18,
+        "lon": 124.22,
         "category": "Tropical Depression",
         "winds_kph": 55
       },
       {
-        "label": "Aug 03 8AM",
-        "lat": 15.75,
-        "lon": 123.62,
-        "category": "Tropical Depression",
-        "winds_kph": 55
-      },
-      {
-        "label": "Aug 03 8PM",
+        "label": "Aug 03 2PM",
         "lat": 16.27,
-        "lon": 123.9,
+        "lon": 124.23,
         "category": "Tropical Depression",
         "winds_kph": 55
       },
       {
-        "label": "Aug 04 8AM",
-        "lat": 16.27,
-        "lon": 124.42,
-        "category": "Tropical Depression",
-        "winds_kph": 55
-      },
-      {
-        "label": "Aug 05 8AM",
-        "lat": 17.5,
-        "lon": 128.28,
+        "label": "Aug 05 2AM",
+        "lat": 17.55,
+        "lon": 126.78,
         "category": "Tropical Depression",
         "winds_kph": 55
       }
@@ -78,7 +64,6 @@
       "wind_range": "",
       "lead_time": "",
       "areas": [
-        "Polillo",
         "Camarines Norte",
         "Camarines Sur",
         "Catanduanes"
@@ -86,7 +71,7 @@
     }
   ],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 3 issued at 11:00 AM today for the heavy rainfall outlook due to TC LUIS and the Southwest Monsoon. Severe Winds",
+    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 4 issued at 5:00 PM today for the heavy rainfall outlook due to TC LUIS and the Southwest Monsoon. Severe Winds",
     "warning_level": "Heavy",
     "habagat_affected": [],
     "areas": []
@@ -110,10 +95,15 @@
     "synopsis": "",
     "regions": [
       "Marinduque",
-      "southern portion of Mindoro Provinces",
+      "Occidental Mindoro",
+      "Oriental Mindoro",
       "Romblon",
-      "mainland Masbate",
+      "Masbate",
+      "Sorsogon",
       "Caluya Islands",
+      "Northern Samar",
+      "Samar",
+      "Biliran",
       "Siquijor",
       "Southern Leyte",
       "Camiguin",
@@ -124,17 +114,18 @@
       "Misamis Occidental",
       "Surigao del Norte",
       "Dinagat Islands",
+      "Sarangani",
       "Davao Occidental",
       "Davao Oriental"
     ],
     "wind_outlook": [
       {
         "when": "Today (02 August)",
-        "areas": "Marinduque, southern portion of Mindoro Provinces, Romblon, mainland Masbate, Caluya Islands, Siquijor, Southern Leyte, Camiguin, and Dinagat Islands. Tomorrow (03 August) and"
+        "areas": "Marinduque, Occidental Mindoro, Oriental Mindoro, Romblon, Masbate, Sorsogon, Caluya Islands, Northern Samar, Samar, Biliran, Siquijor, Southern Leyte, Camiguin, and Dinagat Islands. Tomorrow (03 August) and"
       },
       {
         "when": "Tuesday (04 August)",
-        "areas": "Most of Luzon and Visayas, Lanao del Norte, Misamis Occidental, Camiguin, Surigao del Norte, Dinagat Islands, Davao Occidental, and Davao Oriental"
+        "areas": "Most of Luzon and Visayas, Lanao del Norte, Misamis Occidental, Camiguin, Surigao del Norte, Dinagat Islands, Sarangani, Davao Occidental, and Davao Oriental"
       }
     ],
     "wind_hazard": "Strong winds",
@@ -216,8 +207,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-02T15:52:01+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-08-02T15:52:01+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-08-02T19:45:42+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-08-02T19:45:42+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
