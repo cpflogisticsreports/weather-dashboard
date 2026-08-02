@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 6",
-    "issued_at": "2026-08-03T02:00:00+08:00",
-    "valid_until": "2026-08-03T05:00:00+08:00",
-    "next_update": "2026-08-03T05:00:00+08:00",
-    "generated_at": "2026-08-03T04:01:25+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 7",
+    "issued_at": "2026-08-03T05:00:00+08:00",
+    "valid_until": "2026-08-03T08:00:00+08:00",
+    "next_update": "2026-08-03T08:00:00+08:00",
+    "generated_at": "2026-08-03T07:36:38+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -20,32 +20,32 @@
   },
   "cyclone": {
     "center_text": "",
-    "lat": 16.1,
+    "lat": 15.9,
     "lon": 123.3,
     "max_sustained_winds_kph": 55,
     "gustiness_kph": 70,
     "central_pressure_hpa": "",
-    "movement": "West Northwestward at 15 km/h",
+    "movement": "",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 16.1,
+        "lat": 15.9,
         "lon": 123.3,
         "category": "Tropical Depression",
         "winds_kph": 55
       },
       {
-        "label": "Aug 04 11PM",
+        "label": "Aug 05 2AM",
         "lat": 17.6,
-        "lon": 123.48,
+        "lon": 123.76,
         "category": "Tropical Depression",
         "winds_kph": 55
       },
       {
-        "label": "Aug 05 11AM",
-        "lat": 17.58,
-        "lon": 125.17,
+        "label": "Aug 05 2PM",
+        "lat": 17.57,
+        "lon": 125.69,
         "category": "Tropical Depression",
         "winds_kph": 55
       }
@@ -72,7 +72,7 @@
     }
   ],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 5 issued at 11:00 PM yesterday for the heavy rainfall outlook due to TC LUIS and the Southwest Monsoon. Severe Winds",
+    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 6 issued at 5:00 AM today for the heavy rainfall outlook due to TC LUIS and the Southwest Monsoon. Severe Winds",
     "warning_level": "Heavy",
     "habagat_affected": [],
     "areas": []
@@ -105,7 +105,6 @@
       "Sarangani",
       "Davao Occidental",
       "Davao Oriental",
-      "Most of the Luzon",
       "Zamboanga Peninsula",
       "Northern Mindanao",
       "Agusan del Norte"
@@ -117,7 +116,7 @@
       },
       {
         "when": "Wednesday (05 August)",
-        "areas": "Most of the Luzon and Visayas, Zamboanga Peninsula, Northern Mindanao, Dinagat Islands, Surigao del Norte, Agusan del Norte, Davao Occidental, and Davao Oriental"
+        "areas": "Most of Luzon and Visayas, Zamboanga Peninsula, Northern Mindanao, Dinagat Islands, Surigao del Norte, Agusan del Norte, Davao Occidental, and Davao Oriental"
       }
     ],
     "wind_hazard": "Strong winds",
@@ -214,8 +213,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-03T04:01:25+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-08-03T04:01:25+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-08-03T07:36:38+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-08-03T07:36:38+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
