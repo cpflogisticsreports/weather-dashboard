@@ -1,73 +1,73 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 2",
-    "issued_at": "2026-08-02T05:00:00+08:00",
-    "valid_until": "2026-08-02T11:00:00+08:00",
-    "next_update": "2026-08-02T11:00:00+08:00",
-    "generated_at": "2026-08-02T07:17:55+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 3",
+    "issued_at": "2026-08-02T11:00:00+08:00",
+    "valid_until": "2026-08-02T17:00:00+08:00",
+    "next_update": "2026-08-02T17:00:00+08:00",
+    "generated_at": "2026-08-02T15:52:01+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "typhoon",
+    "mode": "tropical_depression",
     "has_active_tc": true,
-    "storm_name_local": "DOLPHIN",
+    "storm_name_local": "LUIS",
     "storm_name_intl": null,
-    "category": "Super Typhoon",
+    "category": "Tropical Depression",
     "severity": "",
     "headline_override": ""
   },
   "cyclone": {
     "center_text": "",
-    "lat": 14.4,
-    "lon": 125.7,
+    "lat": 15.0,
+    "lon": 125.4,
     "max_sustained_winds_kph": 55,
     "gustiness_kph": 70,
     "central_pressure_hpa": "",
-    "movement": "",
+    "movement": "Northwestward at 15 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 14.4,
-        "lon": 125.7,
-        "category": "Super Typhoon",
+        "lat": 15.0,
+        "lon": 125.4,
+        "category": "Tropical Depression",
         "winds_kph": 55
       },
       {
-        "label": "Aug 02 2PM",
-        "lat": 14.1,
-        "lon": 125.31,
-        "category": "Super Typhoon",
+        "label": "Aug 02 8PM",
+        "lat": 15.74,
+        "lon": 124.18,
+        "category": "Tropical Depression",
         "winds_kph": 55
       },
       {
-        "label": "Aug 03 2AM",
-        "lat": 14.73,
-        "lon": 124.49,
-        "category": "Super Typhoon",
-        "winds_kph": 55
-      },
-      {
-        "label": "Aug 03 2PM",
-        "lat": 14.74,
-        "lon": 123.88,
-        "category": "Super Typhoon",
-        "winds_kph": 55
-      },
-      {
-        "label": "Aug 04 2AM",
-        "lat": 14.98,
-        "lon": 123.5,
-        "category": "Super Typhoon",
-        "winds_kph": 55
-      },
-      {
-        "label": "Aug 04 2PM",
+        "label": "Aug 03 8AM",
         "lat": 15.75,
-        "lon": 123.85,
-        "category": "Super Typhoon",
+        "lon": 123.62,
+        "category": "Tropical Depression",
+        "winds_kph": 55
+      },
+      {
+        "label": "Aug 03 8PM",
+        "lat": 16.27,
+        "lon": 123.9,
+        "category": "Tropical Depression",
+        "winds_kph": 55
+      },
+      {
+        "label": "Aug 04 8AM",
+        "lat": 16.27,
+        "lon": 124.42,
+        "category": "Tropical Depression",
+        "winds_kph": 55
+      },
+      {
+        "label": "Aug 05 8AM",
+        "lat": 17.5,
+        "lon": 128.28,
+        "category": "Tropical Depression",
         "winds_kph": 55
       }
     ]
@@ -86,7 +86,7 @@
     }
   ],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 2 issued at 5:00 AM today for the heavy rainfall outlook due to TC LUIS and the Southwest Monsoon. Severe Winds",
+    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 3 issued at 11:00 AM today for the heavy rainfall outlook due to TC LUIS and the Southwest Monsoon. Severe Winds",
     "warning_level": "Heavy",
     "habagat_affected": [],
     "areas": []
@@ -143,7 +143,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Super Typhoon “DOLPHIN” is being tracked by PAGASA. No CPF hub currently under a wind signal; continue monitoring.",
+    "executive_summary": "Tropical Depression “LUIS” is being tracked by PAGASA. No CPF hub currently under a wind signal; continue monitoring.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
@@ -216,8 +216,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-02T07:17:55+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-08-02T07:17:55+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-08-02T15:52:01+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-08-02T15:52:01+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
