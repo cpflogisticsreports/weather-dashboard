@@ -1,75 +1,45 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 12",
-    "issued_at": "2026-08-03T20:00:00+08:00",
-    "valid_until": "2026-08-03T23:00:00+08:00",
-    "next_update": "2026-08-03T23:00:00+08:00",
-    "generated_at": "2026-08-03T20:38:09+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 13",
+    "issued_at": "2026-08-03T23:00:00+08:00",
+    "valid_until": "",
+    "next_update": "",
+    "generated_at": "2026-08-04T02:59:15+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "tropical_depression",
-    "has_active_tc": true,
+    "mode": "lpa",
+    "has_active_tc": false,
     "storm_name_local": "LUIS",
     "storm_name_intl": null,
-    "category": "Tropical Depression",
+    "category": "Low Pressure Area",
     "severity": "",
     "headline_override": ""
   },
   "cyclone": {
     "center_text": "",
-    "lat": 17.5,
-    "lon": 122.1,
-    "max_sustained_winds_kph": 45,
-    "gustiness_kph": 75,
+    "lat": 17.6,
+    "lon": 122.0,
+    "max_sustained_winds_kph": "",
+    "gustiness_kph": "",
     "central_pressure_hpa": "",
-    "movement": "West Northwestward at 20 km/h",
+    "movement": "",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 17.5,
-        "lon": 122.1,
-        "category": "Tropical Depression",
-        "winds_kph": 45
-      },
-      {
-        "label": "Aug 04 5AM",
-        "lat": 17.61,
-        "lon": 122.77,
-        "category": "Tropical Depression",
-        "winds_kph": 45
-      },
-      {
-        "label": "Aug 04 5PM",
         "lat": 17.6,
-        "lon": 123.71,
-        "category": "Tropical Depression",
-        "winds_kph": 45
+        "lon": 122.0,
+        "category": "Low Pressure Area",
+        "winds_kph": ""
       }
     ]
   },
-  "tcws": [
-    {
-      "signal": 1,
-      "wind_range": "",
-      "lead_time": "",
-      "areas": [
-        "Cagayan",
-        "Rizal",
-        "Camiguin",
-        "Isabela",
-        "Apayao",
-        "Kalinga",
-        "Mountain Province",
-        "Ifugao"
-      ]
-    }
-  ],
+  "tcws": [],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 8 issued at 05:00 PM today for the heavy rainfall outlook due to TC LUIS and the Southwest Monsoon. Severe Winds",
+    "outlook": "heavy rainfall warnings, thunderstorm/rainfall advisories, and other severe weather information specific to your area, please monitor products issued by your local PAGASA Regional Services Division.",
     "warning_level": "Heavy",
     "habagat_affected": [],
     "areas": []
@@ -115,31 +85,16 @@
         "areas": "Most of the country"
       }
     ],
-    "wind_hazard": "Strong winds",
+    "wind_hazard": "Strong to gale-force gusts",
     "conditions": []
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Tropical Depression “LUIS” is being tracked by PAGASA. Route validation required for: Cagayan Valley (Isabela).",
-    "priority_routes": [
-      {
-        "route": "Trips to Cagayan Valley (Isabela)",
-        "risk": "High",
-        "note": "Auto-flagged from PAGASA affected areas"
-      }
-    ],
-    "risk_matrix": [
-      {
-        "area": "Cagayan Valley (Isabela)",
-        "hazard": "Wind Signal / heavy rain",
-        "likelihood": "High",
-        "impact": "Medium",
-        "level": "High",
-        "action": "Require route validation before dispatch"
-      }
-    ],
-    "contractor_advisory": "Validate route passability and receiving-site readiness before releasing trips to Cagayan Valley (Isabela). Report driver location and any road closures to Logistics Control immediately.",
+    "executive_summary": "Low Pressure Area “LUIS” is being tracked by PAGASA. No CPF hub currently under a wind signal; continue monitoring.",
+    "priority_routes": [],
+    "risk_matrix": [],
+    "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
     "affected_deliveries_note": "",
     "hubs": [
       {
@@ -156,7 +111,7 @@
         "type": "Feedmill",
         "lat": 17.1227406,
         "lon": 121.851358,
-        "status": "Route Validation"
+        "status": "Normal"
       },
       {
         "name": "Samal Feedmill",
@@ -209,8 +164,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-03T20:38:09+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-08-03T20:38:09+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-08-04T02:59:15+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-08-04T02:59:15+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
