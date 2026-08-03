@@ -186,8 +186,8 @@ header.appbar{
 #staleStrip .ss-body{flex:1;min-width:0;font-size:12.5px;line-height:1.4}
 #staleStrip .ss-body b{color:#fff;font-weight:800}
 #staleStrip .ss-act{flex:none;display:flex;gap:8px}
-#staleStrip a.ss-btn{font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap;
-  background:#fff;color:#8a1515;padding:5px 11px;border-radius:6px}
+#staleStrip a.ss-btn,#staleStrip button.ss-btn{font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap;
+  background:#fff;color:#8a1515;padding:5px 11px;border-radius:6px;border:0;cursor:pointer;font-family:var(--sans)}
 #staleStrip a.ss-btn.ghost{background:transparent;color:#ffdede;border:1px solid rgba(255,255,255,.45)}
 @media (max-width:900px){ #staleStrip.show{padding:8px 14px;flex-wrap:wrap} #staleStrip .ss-body{font-size:11.5px} }
 /* Prominent full-width strip: tropical cyclone outside PAR */
@@ -623,7 +623,8 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
    ========================================================================= */
 
 const DATA_URL = "latest_pagasa_weather.json";
-const REFRESH_MS = 10 * 60 * 1000; // 10 minutes
+const REFRESH_MS = 10 * 60 * 1000; // 10 minutes (calm weather)
+const REFRESH_MS_ACTIVE = 3 * 60 * 1000; // during an active cyclone, poll the JSON faster
 const NA = "Not specified in latest PAGASA bulletin";
 function bulletinSourceLabel(s){
   s=s||{};
@@ -868,6 +869,7 @@ function render(d,isLive){
   LAST_URL=(d.meta||{}).bulletin_url||"";
   // during an active cyclone PAGASA issues bulletins every ~3h, so flag lag sooner
   STALE_MINS=((d.situation||{}).has_active_tc||((d.situation||{}).mode||"")==="lpa")?45:90;
+  tuneRefresh((d.situation||{}).has_active_tc||((d.situation||{}).mode||"")==="lpa");
   refreshAgeChip(); refreshStaleStrip();
 
   // banner
@@ -1713,7 +1715,15 @@ async function loadData(){
 }
 
 let LAST_GEN=null, LAST_LIVE=false, LAST_VALID=null, LAST_BULLETIN="", LAST_URL="", STALE_MINS=90;
-const ACTIONS_URL="https://github.com/cpflogisticsreports/weather-dashboard/actions";
+let REFRESH_TIMER=null, REFRESH_CUR=REFRESH_MS;
+/* Poll the JSON more often while a cyclone is active, so a freshly published
+   bulletin reaches the screen within minutes instead of up to ten. */
+function tuneRefresh(active){
+  const want = active ? REFRESH_MS_ACTIVE : REFRESH_MS;
+  if(want===REFRESH_CUR || !REFRESH_TIMER) { REFRESH_CUR=want; return; }
+  clearInterval(REFRESH_TIMER); REFRESH_CUR=want;
+  REFRESH_TIMER=setInterval(loadData,REFRESH_CUR);
+}
 function clockTick(){
   $("#clock").textContent=new Date().toLocaleTimeString("en-PH",{hour:"numeric",minute:"2-digit",second:"2-digit",hour12:true});
   refreshAgeChip();
@@ -1724,18 +1734,23 @@ function clockTick(){
 function refreshStaleStrip(){
   const strip=$("#staleStrip"); if(!strip) return;
   const due = LAST_VALID && !isNaN(new Date(LAST_VALID)) ? new Date(LAST_VALID) : null;
-  const expired = LAST_LIVE && due && Date.now() > due.getTime();
+  // PAGASA posts the next bulletin a little after its stated time, so allow a grace
+  // period before warning — otherwise this fires every cycle for a few harmless minutes.
+  const GRACE_MS = 25*60*1000;
+  const expired = LAST_LIVE && due && Date.now() > (due.getTime()+GRACE_MS);
   if(!expired){ if(strip.className){ strip.className=""; strip.innerHTML=""; } return; }
   if(strip.className==="show") return;   // already shown; don't rebuild every second
   const late=Math.round((Date.now()-due.getTime())/60000);
   const lateTxt = late<60 ? late+" min" : Math.floor(late/60)+"h "+(late%60)+"m";
   strip.innerHTML=`<span class="ss-ico">⏱</span>
-    <div class="ss-body"><b>This PAGASA advisory has expired.</b> ${esc(LAST_BULLETIN||"The shown bulletin")} was valid until ${fmtTime(LAST_VALID)} (${lateTxt} ago) — PAGASA has likely issued a newer bulletin. Refresh the data before using this for dispatch decisions.</div>
+    <div class="ss-body"><b>This PAGASA advisory has expired.</b> ${esc(LAST_BULLETIN||"The shown bulletin")} was valid until ${fmtTime(LAST_VALID)} (${lateTxt} ago) — PAGASA has likely issued a newer bulletin. Check the official source before using this for dispatch decisions.</div>
     <div class="ss-act">
-      <a class="ss-btn" href="${ACTIONS_URL}" target="_blank" rel="noopener">Refresh data ↗</a>
-      ${LAST_URL?`<a class="ss-btn ghost" href="${esc(LAST_URL)}" target="_blank" rel="noopener">PAGASA ↗</a>`:""}
+      <button class="ss-btn" id="staleReload" type="button">↻ Reload latest</button>
+      ${LAST_URL?`<a class="ss-btn ghost" href="${esc(LAST_URL)}" target="_blank" rel="noopener">View on PAGASA ↗</a>`:""}
     </div>`;
   strip.className="show";
+  const rb=$("#staleReload");
+  if(rb) rb.addEventListener("click",()=>{ rb.textContent="↻ Reloading…"; loadData(); });
 }
 function refreshAgeChip(){
   const ageChip=$("#ageChip"), ageTxt=$("#ageTxt"); if(!ageChip||!ageTxt) return;
@@ -1756,7 +1771,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   loadData();
   if(window.L && MAP){ initWeather(); }
   clockTick();setInterval(clockTick,1000);
-  setInterval(loadData,REFRESH_MS);
+  REFRESH_TIMER=setInterval(loadData,REFRESH_MS);
 
   $("#refreshBtn").addEventListener("click",()=>{ $("#refreshBtn").textContent="⟳ …"; loadData().finally(()=>$("#refreshBtn").innerHTML='⟳ <span class="lbl">Refresh</span>'); });
   $("#printBtn").addEventListener("click",()=>window.print());
