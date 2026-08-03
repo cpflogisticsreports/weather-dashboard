@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 7",
-    "issued_at": "2026-08-03T05:00:00+08:00",
-    "valid_until": "2026-08-03T08:00:00+08:00",
-    "next_update": "2026-08-03T08:00:00+08:00",
-    "generated_at": "2026-08-03T07:36:38+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 12",
+    "issued_at": "2026-08-03T20:00:00+08:00",
+    "valid_until": "2026-08-03T23:00:00+08:00",
+    "next_update": "2026-08-03T23:00:00+08:00",
+    "generated_at": "2026-08-03T20:38:09+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -20,34 +20,34 @@
   },
   "cyclone": {
     "center_text": "",
-    "lat": 15.9,
-    "lon": 123.3,
-    "max_sustained_winds_kph": 55,
-    "gustiness_kph": 70,
+    "lat": 17.5,
+    "lon": 122.1,
+    "max_sustained_winds_kph": 45,
+    "gustiness_kph": 75,
     "central_pressure_hpa": "",
-    "movement": "",
+    "movement": "West Northwestward at 20 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 15.9,
-        "lon": 123.3,
+        "lat": 17.5,
+        "lon": 122.1,
         "category": "Tropical Depression",
-        "winds_kph": 55
+        "winds_kph": 45
       },
       {
-        "label": "Aug 05 2AM",
+        "label": "Aug 04 5AM",
+        "lat": 17.61,
+        "lon": 122.77,
+        "category": "Tropical Depression",
+        "winds_kph": 45
+      },
+      {
+        "label": "Aug 04 5PM",
         "lat": 17.6,
-        "lon": 123.76,
+        "lon": 123.71,
         "category": "Tropical Depression",
-        "winds_kph": 55
-      },
-      {
-        "label": "Aug 05 2PM",
-        "lat": 17.57,
-        "lon": 125.69,
-        "category": "Tropical Depression",
-        "winds_kph": 55
+        "winds_kph": 45
       }
     ]
   },
@@ -59,20 +59,17 @@
       "areas": [
         "Cagayan",
         "Rizal",
+        "Camiguin",
         "Isabela",
-        "Quirino",
         "Apayao",
         "Kalinga",
         "Mountain Province",
-        "Ifugao",
-        "Aurora",
-        "Polillo",
-        "Camarines Norte"
+        "Ifugao"
       ]
     }
   ],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 6 issued at 5:00 AM today for the heavy rainfall outlook due to TC LUIS and the Southwest Monsoon. Severe Winds",
+    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 8 issued at 05:00 PM today for the heavy rainfall outlook due to TC LUIS and the Southwest Monsoon. Severe Winds",
     "warning_level": "Heavy",
     "habagat_affected": [],
     "areas": []
@@ -97,6 +94,7 @@
     "regions": [
       "Most of Luzon",
       "Visayas",
+      "Zamboanga del Norte",
       "Lanao del Norte",
       "Misamis Occidental",
       "Camiguin",
@@ -105,18 +103,16 @@
       "Sarangani",
       "Davao Occidental",
       "Davao Oriental",
-      "Zamboanga Peninsula",
-      "Northern Mindanao",
-      "Agusan del Norte"
+      "Most of the country"
     ],
     "wind_outlook": [
       {
         "when": "Tomorrow (04 August)",
-        "areas": "Most of Luzon and Visayas, Lanao del Norte, Misamis Occidental, Camiguin, Surigao del Norte, Dinagat Islands, Sarangani, Davao Occidental, and Davao Oriental"
+        "areas": "Most of Luzon and Visayas, Zamboanga del Norte, Lanao del Norte, Misamis Occidental, Camiguin, Surigao del Norte, Dinagat Islands, Sarangani, Davao Occidental, and Davao Oriental"
       },
       {
         "when": "Wednesday (05 August)",
-        "areas": "Most of Luzon and Visayas, Zamboanga Peninsula, Northern Mindanao, Dinagat Islands, Surigao del Norte, Agusan del Norte, Davao Occidental, and Davao Oriental"
+        "areas": "Most of the country"
       }
     ],
     "wind_hazard": "Strong winds",
@@ -213,8 +209,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-03T07:36:38+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-08-03T07:36:38+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-08-03T20:38:09+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-08-03T20:38:09+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
