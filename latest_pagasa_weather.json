@@ -1,43 +1,57 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 1",
-    "issued_at": "2026-08-04T23:00:00+08:00",
-    "valid_until": "2026-08-05T05:00:00+08:00",
-    "next_update": "2026-08-05T05:00:00+08:00",
-    "generated_at": "2026-08-05T00:23:10+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 3",
+    "issued_at": "2026-08-05T05:00:00+08:00",
+    "valid_until": "2026-08-05T17:00:00+08:00",
+    "next_update": "2026-08-05T17:00:00+08:00",
+    "generated_at": "2026-08-05T04:58:08+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "tropical_depression",
+    "mode": "tropical_storm",
     "has_active_tc": true,
     "storm_name_local": "MAYMAY",
     "storm_name_intl": null,
-    "category": "Tropical Depression",
+    "category": "Tropical Storm",
     "severity": "",
     "headline_override": ""
   },
   "cyclone": {
     "center_text": "",
-    "lat": 17.0,
-    "lon": 119.2,
-    "max_sustained_winds_kph": 55,
-    "gustiness_kph": 70,
+    "lat": 16.7,
+    "lon": 118.8,
+    "max_sustained_winds_kph": 65,
+    "gustiness_kph": 80,
     "central_pressure_hpa": "",
-    "movement": "East Northeastward at 10 km/h",
+    "movement": "",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 17.0,
-        "lon": 119.2,
-        "category": "Tropical Depression",
-        "winds_kph": 55
+        "lat": 16.7,
+        "lon": 118.8,
+        "category": "Tropical Storm",
+        "winds_kph": 65
       }
     ]
   },
   "tcws": [
+    {
+      "signal": 2,
+      "wind_range": "",
+      "lead_time": "",
+      "areas": [
+        "Ilocos Sur",
+        "Quirino",
+        "La Union",
+        "Pangasinan",
+        "Abra",
+        "Mountain Province",
+        "Benguet"
+      ]
+    },
     {
       "signal": 1,
       "wind_range": "",
@@ -47,27 +61,25 @@
         "Ilocos Sur",
         "La Union",
         "Pangasinan",
-        "Cagayan",
-        "Rizal",
         "Apayao",
         "Abra",
         "Kalinga",
         "Mountain Province",
         "Ifugao",
         "Benguet",
+        "Cagayan",
+        "Isabela",
+        "Quirino",
         "Nueva Vizcaya",
-        "Quezon",
-        "Nueva Ecija",
         "Zambales",
         "Tarlac",
-        "Isabela",
-        "Aurora",
-        "Quirino"
+        "Nueva Ecija",
+        "Aurora"
       ]
     }
   ],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 13 issued at 11:00 PM today for the heavy rainfall outlook due to TC MAYMAY and the Southwest Monsoon. Severe Winds",
+    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 14 issued at 5:00 AM today for the heavy rainfall outlook due to TC MAYMAY and the Southwest Monsoon. Severe Winds",
     "warning_level": "Heavy",
     "habagat_affected": [],
     "areas": []
@@ -99,16 +111,16 @@
       "Lanao del Norte",
       "Sarangani",
       "Davao Occidental",
-      "Davao Oriental",
+      "Davao Oriental. Tomorrow (06 August)",
       "Most of the country"
     ],
     "wind_outlook": [
       {
-        "when": "tomorrow (05 August)",
-        "areas": "Most of Luzon and Visayas, Surigao del Norte, Dinagat Islands, Misamis Occidental, Camiguin, Lanao del Norte, Sarangani, Davao Occidental, and Davao Oriental"
+        "when": "Today",
+        "areas": "Most of Luzon and Visayas, Surigao del Norte, Dinagat Islands, Misamis Occidental, Camiguin, Lanao del Norte, Sarangani, Davao Occidental, and Davao Oriental. Tomorrow (06 August) and"
       },
       {
-        "when": "Thursday (06 August)",
+        "when": "Friday (07 August)",
         "areas": "Most of the country"
       }
     ],
@@ -118,7 +130,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Tropical Depression “MAYMAY” is being tracked by PAGASA. Route validation required for: Central Luzon (Tarlac), Cagayan Valley (Isabela).",
+    "executive_summary": "Tropical Storm “MAYMAY” is being tracked by PAGASA. Route validation required for: Central Luzon (Tarlac), Cagayan Valley (Isabela).",
     "priority_routes": [
       {
         "route": "Trips to Central Luzon (Tarlac)",
@@ -219,8 +231,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-05T00:23:10+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-08-05T00:23:10+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-08-05T04:58:08+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-08-05T04:58:08+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
