@@ -1,52 +1,36 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 13",
-    "issued_at": "2026-08-03T23:00:00+08:00",
+    "bulletin_title": "PAGASA Daily Weather Forecast",
+    "issued_at": "2026-08-04T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-08-04T06:37:26+08:00",
-    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
+    "generated_at": "2026-08-04T16:08:27+08:00",
+    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "lpa",
+    "mode": "advisory",
     "has_active_tc": false,
-    "storm_name_local": "LUIS",
-    "storm_name_intl": null,
-    "category": "Low Pressure Area",
+    "storm_name_local": "",
+    "storm_name_intl": "",
+    "category": "",
     "severity": "",
     "headline_override": ""
   },
-  "cyclone": {
-    "center_text": "",
-    "lat": 17.6,
-    "lon": 122.0,
-    "max_sustained_winds_kph": "",
-    "gustiness_kph": "",
-    "central_pressure_hpa": "",
-    "movement": "",
-    "wind_extent_km": "",
-    "forecast_track": [
-      {
-        "label": "Now",
-        "lat": 17.6,
-        "lon": 122.0,
-        "category": "Low Pressure Area",
-        "winds_kph": ""
-      }
-    ]
-  },
+  "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "heavy rainfall warnings, thunderstorm/rainfall advisories, and other severe weather information specific to your area, please monitor products issued by your local PAGASA Regional Services Division.",
+    "outlook": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 180 km West of Bacnotan, La Union (16.8°N, 118.7°E). Southwest Monsoon affecting Southern Luzon and the western section of Visayas.",
     "warning_level": "Heavy",
-    "habagat_affected": [],
+    "habagat_affected": [
+      "Southwest Monsoon areas"
+    ],
     "areas": []
   },
   "thunderstorm": {
-    "active": false,
-    "advisory": "",
+    "active": true,
+    "advisory": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 180 km West of Bacnotan, La Union (16.8°N, 118.7°E). Southwest Monsoon affecting Southern Luzon and the western section of Visayas.",
     "areas": []
   },
   "gale_warning": {
@@ -60,41 +44,59 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "",
+    "synopsis": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 180 km West of Bacnotan, La Union (16.8°N, 118.7°E). Southwest Monsoon affecting Southern Luzon and the western section of Visayas.",
     "regions": [
-      "Most of Luzon",
-      "Visayas",
-      "Zamboanga del Norte",
-      "Lanao del Norte",
-      "Misamis Occidental",
-      "Camiguin",
-      "Surigao del Norte",
-      "Dinagat Islands",
-      "Sarangani",
-      "Davao Occidental",
-      "Davao Oriental",
-      "Most of the country"
+      "Metro Manila, Rizal, Cavite, Batangas, and Occidental Mindoro",
+      "Ilocos Region, Cordillera Administrative Region, Cagayan Valley, and Central Luzon",
+      "The rest of CALABARZON and MIMAROPA, Antique, Iloilo, and Guimaras",
+      "The rest of the country"
     ],
-    "wind_outlook": [
+    "wind_outlook": [],
+    "wind_hazard": "",
+    "conditions": [
       {
-        "when": "Tomorrow (04 August)",
-        "areas": "Most of Luzon and Visayas, Zamboanga del Norte, Lanao del Norte, Misamis Occidental, Camiguin, Surigao del Norte, Dinagat Islands, Sarangani, Davao Occidental, and Davao Oriental"
+        "place": "Metro Manila, Rizal, Cavite, Batangas, and Occidental Mindoro",
+        "condition": "Occasional Rains",
+        "cause": "Southwest Monsoon",
+        "impact": "Possible flash floods or landslides due to moderate to heavy rains"
       },
       {
-        "when": "Wednesday (05 August)",
-        "areas": "Most of the country"
+        "place": "Ilocos Region, Cordillera Administrative Region, Cagayan Valley, and Central Luzon",
+        "condition": "Cloudy skies with scattered rains and thunderstorms",
+        "cause": "LPA",
+        "impact": "Possible flash floods or landslides due to moderate to heavy rains"
+      },
+      {
+        "place": "The rest of CALABARZON and MIMAROPA, Antique, Iloilo, and Guimaras",
+        "condition": "Cloudy skies with scattered rains and thunderstorms",
+        "cause": "Southwest Monsoon",
+        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
+      },
+      {
+        "place": "The rest of the country",
+        "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
+        "cause": "Localized Thunderstorms",
+        "impact": "Possible flash floods or landslides during severe thunderstorms"
       }
-    ],
-    "wind_hazard": "Strong to gale-force gusts",
-    "conditions": []
+    ]
+  },
+  "tc_outside_par": {
+    "present": true,
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
+    "category": "Typhoon",
+    "location": "2,095 KM EAST NORTHEAST OF EXTREME NORTHERN LUZON",
+    "lat": 25.4,
+    "lon": 141.7,
+    "winds_kph": "155",
+    "gustiness_kph": "190"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Low Pressure Area “LUIS” is being tracked by PAGASA. No CPF hub currently under a wind signal; continue monitoring.",
+    "executive_summary": "Weather advisory in effect. At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 180 km West of Bacnotan, La Union (16.8°N, 118.7°E). Southwest Monsoon affecting Southern Luzon and the western section of Visayas. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
-    "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
+    "contractor_advisory": "",
     "affected_deliveries_note": "",
     "hubs": [
       {
@@ -164,8 +166,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-04T06:37:26+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-08-04T06:37:26+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-08-04T16:08:27+08:00",
+        "entry": "Auto-check at 2026-08-04T16:08:27+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
