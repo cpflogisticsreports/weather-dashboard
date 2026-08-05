@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 10",
-    "issued_at": "2026-08-06T02:00:00+08:00",
-    "valid_until": "2026-08-06T05:00:00+08:00",
-    "next_update": "2026-08-06T05:00:00+08:00",
-    "generated_at": "2026-08-06T02:08:56+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 11",
+    "issued_at": "2026-08-06T05:00:00+08:00",
+    "valid_until": "2026-08-06T08:00:00+08:00",
+    "next_update": "2026-08-06T08:00:00+08:00",
+    "generated_at": "2026-08-06T06:31:11+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,9 +21,9 @@
   "cyclone": {
     "center_text": "",
     "lat": 17.7,
-    "lon": 120.3,
-    "max_sustained_winds_kph": 75,
-    "gustiness_kph": 105,
+    "lon": 120.5,
+    "max_sustained_winds_kph": 65,
+    "gustiness_kph": 110,
     "central_pressure_hpa": "",
     "movement": "Eastward at 10 km/h",
     "wind_extent_km": "",
@@ -31,16 +31,16 @@
       {
         "label": "Now",
         "lat": 17.7,
-        "lon": 120.3,
+        "lon": 120.5,
         "category": "Tropical Storm",
-        "winds_kph": 75
+        "winds_kph": 65
       },
       {
-        "label": "Aug 06 11PM",
+        "label": "Aug 07 2AM",
         "lat": 16.26,
-        "lon": 124.88,
+        "lon": 125.31,
         "category": "Tropical Storm",
-        "winds_kph": 75
+        "winds_kph": 65
       }
     ]
   },
@@ -52,14 +52,11 @@
       "areas": [
         "Ilocos Norte",
         "Ilocos Sur",
-        "La Union",
-        "Pangasinan",
+        "Quirino",
         "Apayao",
         "Abra",
         "Kalinga",
-        "Mountain Province",
-        "Benguet",
-        "Cagayan"
+        "Mountain Province"
       ]
     },
     {
@@ -67,6 +64,7 @@
       "wind_range": "",
       "lead_time": "",
       "areas": [
+        "Ilocos Sur",
         "La Union",
         "Pangasinan",
         "Apayao",
@@ -79,17 +77,12 @@
         "Isabela",
         "Quirino",
         "Nueva Vizcaya",
-        "Zambales",
-        "Tarlac",
-        "Nueva Ecija",
-        "Rizal",
-        "Quezon",
         "Aurora"
       ]
     }
   ],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 17 issued at 11:00 PM yesterday for the heavy rainfall outlook due to TC MAYMAY and the Southwest Monsoon. Severe Winds",
+    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 18 issued at 5:00 AM today for the heavy rainfall outlook due to TC MAYMAY and the Southwest Monsoon. Severe Winds",
     "warning_level": "Heavy",
     "habagat_affected": [],
     "areas": []
@@ -126,13 +119,8 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Tropical Storm “MAYMAY” is being tracked by PAGASA. Route validation required for: Central Luzon (Tarlac), Cagayan Valley (Isabela).",
+    "executive_summary": "Tropical Storm “MAYMAY” is being tracked by PAGASA. Route validation required for: Cagayan Valley (Isabela).",
     "priority_routes": [
-      {
-        "route": "Trips to Central Luzon (Tarlac)",
-        "risk": "High",
-        "note": "Auto-flagged from PAGASA affected areas"
-      },
       {
         "route": "Trips to Cagayan Valley (Isabela)",
         "risk": "High",
@@ -140,14 +128,6 @@
       }
     ],
     "risk_matrix": [
-      {
-        "area": "Central Luzon (Tarlac)",
-        "hazard": "Wind Signal / heavy rain",
-        "likelihood": "High",
-        "impact": "Medium",
-        "level": "High",
-        "action": "Require route validation before dispatch"
-      },
       {
         "area": "Cagayan Valley (Isabela)",
         "hazard": "Wind Signal / heavy rain",
@@ -157,7 +137,7 @@
         "action": "Require route validation before dispatch"
       }
     ],
-    "contractor_advisory": "Validate route passability and receiving-site readiness before releasing trips to Central Luzon (Tarlac), Cagayan Valley (Isabela). Report driver location and any road closures to Logistics Control immediately.",
+    "contractor_advisory": "Validate route passability and receiving-site readiness before releasing trips to Cagayan Valley (Isabela). Report driver location and any road closures to Logistics Control immediately.",
     "affected_deliveries_note": "",
     "hubs": [
       {
@@ -166,7 +146,7 @@
         "type": "Feedmill",
         "lat": 15.6344949,
         "lon": 120.5933201,
-        "status": "Route Validation"
+        "status": "Normal"
       },
       {
         "name": "Ilagan Feedmill",
@@ -227,8 +207,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-06T02:08:56+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-08-06T02:08:56+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-08-06T06:31:11+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-08-06T06:31:11+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
