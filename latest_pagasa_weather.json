@@ -1,78 +1,65 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 11",
-    "issued_at": "2026-08-06T05:00:00+08:00",
-    "valid_until": "2026-08-06T08:00:00+08:00",
-    "next_update": "2026-08-06T08:00:00+08:00",
-    "generated_at": "2026-08-06T06:31:11+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 14",
+    "issued_at": "2026-08-06T14:00:00+08:00",
+    "valid_until": "2026-08-06T17:00:00+08:00",
+    "next_update": "2026-08-06T17:00:00+08:00",
+    "generated_at": "2026-08-06T16:03:42+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "tropical_storm",
+    "mode": "tropical_depression",
     "has_active_tc": true,
     "storm_name_local": "MAYMAY",
     "storm_name_intl": null,
-    "category": "Tropical Storm",
+    "category": "Tropical Depression",
     "severity": "",
     "headline_override": ""
   },
   "cyclone": {
     "center_text": "",
-    "lat": 17.7,
-    "lon": 120.5,
-    "max_sustained_winds_kph": 65,
-    "gustiness_kph": 110,
+    "lat": 17.1,
+    "lon": 121.8,
+    "max_sustained_winds_kph": 45,
+    "gustiness_kph": 75,
     "central_pressure_hpa": "",
-    "movement": "Eastward at 10 km/h",
+    "movement": "East Southeastward at 20 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 17.7,
-        "lon": 120.5,
-        "category": "Tropical Storm",
-        "winds_kph": 65
+        "lat": 17.1,
+        "lon": 121.8,
+        "category": "Tropical Depression",
+        "winds_kph": 45
       },
       {
-        "label": "Aug 07 2AM",
+        "label": "Aug 06 11PM",
         "lat": 16.26,
-        "lon": 125.31,
-        "category": "Tropical Storm",
-        "winds_kph": 65
+        "lon": 124.7,
+        "category": "Tropical Depression",
+        "winds_kph": 45
       }
     ]
   },
   "tcws": [
     {
-      "signal": 2,
+      "signal": 1,
       "wind_range": "",
       "lead_time": "",
       "areas": [
         "Ilocos Norte",
         "Ilocos Sur",
-        "Quirino",
-        "Apayao",
-        "Abra",
-        "Kalinga",
-        "Mountain Province"
-      ]
-    },
-    {
-      "signal": 1,
-      "wind_range": "",
-      "lead_time": "",
-      "areas": [
-        "Ilocos Sur",
         "La Union",
         "Pangasinan",
         "Apayao",
+        "Abra",
         "Kalinga",
         "Mountain Province",
         "Ifugao",
         "Benguet",
-        "Camiguin",
         "Cagayan",
         "Isabela",
         "Quirino",
@@ -82,7 +69,7 @@
     }
   ],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 18 issued at 5:00 AM today for the heavy rainfall outlook due to TC MAYMAY and the Southwest Monsoon. Severe Winds",
+    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 19 issued at 11:00 AM today for the heavy rainfall outlook due to TC MAYMAY and the Southwest Monsoon. Severe Winds",
     "warning_level": "Heavy",
     "habagat_affected": [],
     "areas": []
@@ -119,7 +106,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Tropical Storm “MAYMAY” is being tracked by PAGASA. Route validation required for: Cagayan Valley (Isabela).",
+    "executive_summary": "Tropical Depression “MAYMAY” is being tracked by PAGASA. Route validation required for: Cagayan Valley (Isabela).",
     "priority_routes": [
       {
         "route": "Trips to Cagayan Valley (Isabela)",
@@ -207,8 +194,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-06T06:31:11+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-08-06T06:31:11+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-08-06T16:03:42+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-08-06T16:03:42+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
