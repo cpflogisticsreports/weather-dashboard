@@ -1,75 +1,45 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 14",
-    "issued_at": "2026-08-06T14:00:00+08:00",
-    "valid_until": "2026-08-06T17:00:00+08:00",
-    "next_update": "2026-08-06T17:00:00+08:00",
-    "generated_at": "2026-08-06T16:03:42+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 17",
+    "issued_at": "2026-08-07T05:00:00+08:00",
+    "valid_until": "",
+    "next_update": "",
+    "generated_at": "2026-08-07T09:43:57+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "tropical_depression",
-    "has_active_tc": true,
+    "mode": "lpa",
+    "has_active_tc": false,
     "storm_name_local": "MAYMAY",
     "storm_name_intl": null,
-    "category": "Tropical Depression",
+    "category": "Low Pressure Area",
     "severity": "",
     "headline_override": ""
   },
   "cyclone": {
-    "center_text": "",
-    "lat": 17.1,
-    "lon": 121.8,
-    "max_sustained_winds_kph": 45,
-    "gustiness_kph": 75,
+    "center_text": "620 km East of Echague, Isabela",
+    "lat": 16.7,
+    "lon": 127.5,
+    "max_sustained_winds_kph": "",
+    "gustiness_kph": "",
     "central_pressure_hpa": "",
-    "movement": "East Southeastward at 20 km/h",
+    "movement": "",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 17.1,
-        "lon": 121.8,
-        "category": "Tropical Depression",
-        "winds_kph": 45
-      },
-      {
-        "label": "Aug 06 11PM",
-        "lat": 16.26,
-        "lon": 124.7,
-        "category": "Tropical Depression",
-        "winds_kph": 45
+        "lat": 16.7,
+        "lon": 127.5,
+        "category": "Low Pressure Area",
+        "winds_kph": ""
       }
     ]
   },
-  "tcws": [
-    {
-      "signal": 1,
-      "wind_range": "",
-      "lead_time": "",
-      "areas": [
-        "Ilocos Norte",
-        "Ilocos Sur",
-        "La Union",
-        "Pangasinan",
-        "Apayao",
-        "Abra",
-        "Kalinga",
-        "Mountain Province",
-        "Ifugao",
-        "Benguet",
-        "Cagayan",
-        "Isabela",
-        "Quirino",
-        "Nueva Vizcaya",
-        "Aurora"
-      ]
-    }
-  ],
+  "tcws": [],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 19 issued at 11:00 AM today for the heavy rainfall outlook due to TC MAYMAY and the Southwest Monsoon. Severe Winds",
+    "outlook": "heavy rainfall warnings, thunderstorm/rainfall advisories, and other severe weather information specific to your area, please monitor products issued by your local PAGASA Regional Services Division.",
     "warning_level": "Heavy",
     "habagat_affected": [],
     "areas": []
@@ -96,35 +66,20 @@
     ],
     "wind_outlook": [
       {
-        "when": "Saturday (06 to 08 August)",
+        "when": "Monday (07 to 09 August)",
         "areas": "Most of the country"
       }
     ],
-    "wind_hazard": "Strong winds",
+    "wind_hazard": "Strong to gale-force gusts",
     "conditions": []
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Tropical Depression “MAYMAY” is being tracked by PAGASA. Route validation required for: Cagayan Valley (Isabela).",
-    "priority_routes": [
-      {
-        "route": "Trips to Cagayan Valley (Isabela)",
-        "risk": "High",
-        "note": "Auto-flagged from PAGASA affected areas"
-      }
-    ],
-    "risk_matrix": [
-      {
-        "area": "Cagayan Valley (Isabela)",
-        "hazard": "Wind Signal / heavy rain",
-        "likelihood": "High",
-        "impact": "Medium",
-        "level": "High",
-        "action": "Require route validation before dispatch"
-      }
-    ],
-    "contractor_advisory": "Validate route passability and receiving-site readiness before releasing trips to Cagayan Valley (Isabela). Report driver location and any road closures to Logistics Control immediately.",
+    "executive_summary": "Low Pressure Area “MAYMAY” is being tracked by PAGASA. Center: 620 km East of Echague, Isabela. No CPF hub currently under a wind signal; continue monitoring.",
+    "priority_routes": [],
+    "risk_matrix": [],
+    "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
     "affected_deliveries_note": "",
     "hubs": [
       {
@@ -141,7 +96,7 @@
         "type": "Feedmill",
         "lat": 17.1227406,
         "lon": 121.851358,
-        "status": "Route Validation"
+        "status": "Normal"
       },
       {
         "name": "Samal Feedmill",
@@ -194,8 +149,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-06T16:03:42+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-08-06T16:03:42+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-08-07T09:43:57+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-08-07T09:43:57+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
