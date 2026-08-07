@@ -1,52 +1,36 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 17",
-    "issued_at": "2026-08-07T05:00:00+08:00",
+    "bulletin_title": "PAGASA Daily Weather Forecast",
+    "issued_at": "2026-08-07T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-08-07T17:38:05+08:00",
-    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
+    "generated_at": "2026-08-07T20:03:03+08:00",
+    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "lpa",
+    "mode": "advisory",
     "has_active_tc": false,
-    "storm_name_local": "MAYMAY",
-    "storm_name_intl": null,
-    "category": "Low Pressure Area",
+    "storm_name_local": "",
+    "storm_name_intl": "",
+    "category": "",
     "severity": "",
     "headline_override": ""
   },
-  "cyclone": {
-    "center_text": "620 km East of Echague, Isabela",
-    "lat": 16.7,
-    "lon": 127.5,
-    "max_sustained_winds_kph": "",
-    "gustiness_kph": "",
-    "central_pressure_hpa": "",
-    "movement": "",
-    "wind_extent_km": "",
-    "forecast_track": [
-      {
-        "label": "Now",
-        "lat": 16.7,
-        "lon": 127.5,
-        "category": "Low Pressure Area",
-        "winds_kph": ""
-      }
-    ]
-  },
+  "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "heavy rainfall warnings, thunderstorm/rainfall advisories, and other severe weather information specific to your area, please monitor products issued by your local PAGASA Regional Services Division.",
+    "outlook": "Southwest Monsoon affecting Luzon and Visayas.",
     "warning_level": "Heavy",
-    "habagat_affected": [],
+    "habagat_affected": [
+      "Southwest Monsoon areas"
+    ],
     "areas": []
   },
   "thunderstorm": {
-    "active": false,
-    "advisory": "",
+    "active": true,
+    "advisory": "Southwest Monsoon affecting Luzon and Visayas.",
     "areas": []
   },
   "gale_warning": {
@@ -60,26 +44,66 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "",
+    "synopsis": "Southwest Monsoon affecting Luzon and Visayas.",
     "regions": [
-      "Most of the country"
+      "Occidental Mindoro, Zambales, and Bataan",
+      "Metro Manila, Ilocos Sur, La Union, Pangasinan, Abra, Benguet, Tarlac, Pampanga, Bulacan, Rizal, Cavite, Laguna, Batangas, Oriental Mindoro, and Antique",
+      "Batanes and Babuyan Islands",
+      "The rest of Luzon and Visayas",
+      "Mindanao"
     ],
-    "wind_outlook": [
+    "wind_outlook": [],
+    "wind_hazard": "",
+    "conditions": [
       {
-        "when": "Monday (07 to 09 August)",
-        "areas": "Most of the country"
+        "place": "Occidental Mindoro, Zambales, and Bataan",
+        "condition": "Monsoon rains",
+        "cause": "Southwest Monsoon",
+        "impact": "Possible flash floods or landslides due to moderate to heavy with at times intense rains"
+      },
+      {
+        "place": "Metro Manila, Ilocos Sur, La Union, Pangasinan, Abra, Benguet, Tarlac, Pampanga, Bulacan, Rizal, Cavite, Laguna, Batangas, Oriental Mindoro, and Antique",
+        "condition": "Occasional rains",
+        "cause": "Southwest Monsoon",
+        "impact": "Possible flash floods or landslides due to moderate to heavy rains"
+      },
+      {
+        "place": "Batanes and Babuyan Islands",
+        "condition": "Cloudy skies with scattered rains and thunderstorms",
+        "cause": "Trough of TC Dolphin",
+        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
+      },
+      {
+        "place": "The rest of Luzon and Visayas",
+        "condition": "Cloudy skies with scattered rains and thunderstorms",
+        "cause": "Southwest Monsoon",
+        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
+      },
+      {
+        "place": "Mindanao",
+        "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
+        "cause": "Localized Thunderstorms",
+        "impact": "Possible flash floods or landslides during severe thunderstorms"
       }
-    ],
-    "wind_hazard": "Strong to gale-force gusts",
-    "conditions": []
+    ]
+  },
+  "tc_outside_par": {
+    "present": true,
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
+    "category": "Typhoon",
+    "location": "915 KM NORTHEAST OF EXTREME NORTHERN LUZON",
+    "lat": 26.8,
+    "lon": 128.0,
+    "winds_kph": "155",
+    "gustiness_kph": "190"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Low Pressure Area “MAYMAY” is being tracked by PAGASA. Center: 620 km East of Echague, Isabela. No CPF hub currently under a wind signal; continue monitoring.",
+    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting Luzon and Visayas. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
-    "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
+    "contractor_advisory": "",
     "affected_deliveries_note": "",
     "hubs": [
       {
@@ -149,8 +173,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-07T17:38:05+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-08-07T17:38:05+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-08-07T20:03:03+08:00",
+        "entry": "Auto-check at 2026-08-07T20:03:03+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
