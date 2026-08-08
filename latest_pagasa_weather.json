@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-08-08T16:00:00+08:00",
+    "issued_at": "2026-08-09T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-08-09T04:03:04+08:00",
+    "generated_at": "2026-08-09T04:48:50+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -47,10 +47,10 @@
     "synopsis": "Southwest Monsoon affecting Luzon and Visayas.",
     "regions": [
       "Ilocos Sur, La Union, Abra, Benguet, Zambales, Bataan, and Occidental Mindoro",
-      "Ilocos Norte, Pangasinan, Apayao, Kalinga, Mountain Province, Ifugao, Nueva Vizcaya, Tarlac, Nueva Ecija, Pampanga, Bulacan, Metro Manila, Rizal, Cavite, Batangas, Oriental Mindoro, and Antique",
-      "Batanes and Babuyan Islands",
-      "Zamboanga Peninsula, the rest of Luzon, the rest of Visayas, Misamis Occidental, Lanao del Norte, and Lanao del Sur",
-      "The rest of Mindanao"
+      "Metro Manila, the rest of Ilocos Region, the rest of Cordillera Administrative Region, Nueva Vizcaya, Tarlac, Nueva Ecija, Pampanga, Bulacan, Rizal, Cavite, Batangas, Oriental Mindoro, and Antique",
+      "Batanes",
+      "Negros Island Region, Central Visayas, the rest of Luzon, the rest of Western Visayas, Leyte, and Southern Leyte",
+      "The rest of the country"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
@@ -59,28 +59,28 @@
         "place": "Ilocos Sur, La Union, Abra, Benguet, Zambales, Bataan, and Occidental Mindoro",
         "condition": "Monsoon rains",
         "cause": "Southwest Monsoon",
-        "impact": "Possible flash floods or landslides due to moderate to heavy to intense rains"
+        "impact": "Possible flash floods or landslides due to moderate to heavy with at times intense rains"
       },
       {
-        "place": "Ilocos Norte, Pangasinan, Apayao, Kalinga, Mountain Province, Ifugao, Nueva Vizcaya, Tarlac, Nueva Ecija, Pampanga, Bulacan, Metro Manila, Rizal, Cavite, Batangas, Oriental Mindoro, and Antique",
+        "place": "Metro Manila, the rest of Ilocos Region, the rest of Cordillera Administrative Region, Nueva Vizcaya, Tarlac, Nueva Ecija, Pampanga, Bulacan, Rizal, Cavite, Batangas, Oriental Mindoro, and Antique",
         "condition": "Occasional rains",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to heavy rains"
       },
       {
-        "place": "Batanes and Babuyan Islands",
+        "place": "Batanes",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Trough of TC Dolphin",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Zamboanga Peninsula, the rest of Luzon, the rest of Visayas, Misamis Occidental, Lanao del Norte, and Lanao del Sur",
+        "place": "Negros Island Region, Central Visayas, the rest of Luzon, the rest of Western Visayas, Leyte, and Southern Leyte",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "The rest of Mindanao",
+        "place": "The rest of the country",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Localized Thunderstorms",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -89,13 +89,13 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
     "category": "Tropical Depression",
-    "location": "825 KM NORTH NORTHEAST OF EXTREME NORTHERN LUZON",
-    "lat": 26.9,
-    "lon": 125.2,
-    "winds_kph": "150",
-    "gustiness_kph": "185"
+    "location": "755 KM NORTH NORTHEAST OF ITBAYAT, BATANES",
+    "lat": 27.3,
+    "lon": 123.9,
+    "winds_kph": "130",
+    "gustiness_kph": "160"
   },
   "cpf": {
     "operational_status": "",
@@ -173,8 +173,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-09T04:03:04+08:00",
-        "entry": "Auto-check at 2026-08-09T04:03:04+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-08-09T04:48:50+08:00",
+        "entry": "Auto-check at 2026-08-09T04:48:50+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
