@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-08-08T04:00:00+08:00",
+    "issued_at": "2026-08-08T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-08-08T16:03:34+08:00",
+    "generated_at": "2026-08-08T17:01:29+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -46,8 +46,8 @@
   "forecast": {
     "synopsis": "Southwest Monsoon affecting Luzon and Visayas.",
     "regions": [
-      "Occidental Mindoro, Zambales, and Bataan",
-      "Metro Manila, Ilocos Region, Abra, Benguet, Tarlac, Pampanga, Bulacan, Rizal, Cavite, Laguna, Batangas, Oriental Mindoro, and Antique",
+      "Ilocos Sur, La Union, Abra, Benguet, Zambales, Bataan, and Occidental Mindoro",
+      "Ilocos Norte, Pangasinan, Apayao, Kalinga, Mountain Province, Ifugao, Nueva Vizcaya, Tarlac, Nueva Ecija, Pampanga, Bulacan, Metro Manila, Rizal, Cavite, Batangas, Oriental Mindoro, and Antique",
       "Batanes and Babuyan Islands",
       "Zamboanga Peninsula, the rest of Luzon, the rest of Visayas, Misamis Occidental, Lanao del Norte, and Lanao del Sur",
       "The rest of Mindanao"
@@ -56,13 +56,13 @@
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Occidental Mindoro, Zambales, and Bataan",
+        "place": "Ilocos Sur, La Union, Abra, Benguet, Zambales, Bataan, and Occidental Mindoro",
         "condition": "Monsoon rains",
         "cause": "Southwest Monsoon",
-        "impact": "Possible flash floods or landslides due to moderate to heavy with at times intense rains"
+        "impact": "Possible flash floods or landslides due to moderate to heavy to intense rains"
       },
       {
-        "place": "Metro Manila, Ilocos Region, Abra, Benguet, Tarlac, Pampanga, Bulacan, Rizal, Cavite, Laguna, Batangas, Oriental Mindoro, and Antique",
+        "place": "Ilocos Norte, Pangasinan, Apayao, Kalinga, Mountain Province, Ifugao, Nueva Vizcaya, Tarlac, Nueva Ecija, Pampanga, Bulacan, Metro Manila, Rizal, Cavite, Batangas, Oriental Mindoro, and Antique",
         "condition": "Occasional rains",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to heavy rains"
@@ -89,13 +89,13 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
-    "category": "Typhoon",
-    "location": "810 KM NORTHEAST OF EXTREME NORTHERN LUZON",
-    "lat": 26.6,
-    "lon": 126.5,
-    "winds_kph": "155",
-    "gustiness_kph": "190"
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
+    "category": "Tropical Depression",
+    "location": "825 KM NORTHEAST OF EXTREME NORTHERN LUZON",
+    "lat": 26.9,
+    "lon": 125.2,
+    "winds_kph": "150",
+    "gustiness_kph": "185"
   },
   "cpf": {
     "operational_status": "",
@@ -173,8 +173,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-08T16:03:34+08:00",
-        "entry": "Auto-check at 2026-08-08T16:03:34+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-08-08T17:01:29+08:00",
+        "entry": "Auto-check at 2026-08-08T17:01:29+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
