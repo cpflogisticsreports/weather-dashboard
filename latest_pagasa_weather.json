@@ -5,7 +5,7 @@
     "issued_at": "2026-08-08T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-08-08T17:01:29+08:00",
+    "generated_at": "2026-08-08T17:49:11+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -91,7 +91,7 @@
     "present": true,
     "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
     "category": "Tropical Depression",
-    "location": "825 KM NORTHEAST OF EXTREME NORTHERN LUZON",
+    "location": "825 KM NORTH NORTHEAST OF EXTREME NORTHERN LUZON",
     "lat": 26.9,
     "lon": 125.2,
     "winds_kph": "150",
@@ -173,8 +173,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-08T17:01:29+08:00",
-        "entry": "Auto-check at 2026-08-08T17:01:29+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-08-08T17:49:11+08:00",
+        "entry": "Auto-check at 2026-08-08T17:49:11+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
