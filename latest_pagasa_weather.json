@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-08-11T16:00:00+08:00",
+    "issued_at": "2026-08-12T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-08-12T03:47:23+08:00",
+    "generated_at": "2026-08-12T04:49:18+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -46,7 +46,7 @@
   "forecast": {
     "synopsis": "Southwest Monsoon affecting Luzon.",
     "regions": [
-      "Metro Manila, Ilocos Region, Benguet, Abra, CALABARZON, Zambales, Bataan, Tarlac, Pampanga, Nueva Ecija, Bulacan, Marinduque, Occidental Mindoro, and Oriental Mindoro",
+      "Metro Manila, Ilocos Region, Benguet, Abra, Zambales, Bataan, Tarlac, Pampanga, Nueva Ecija, Bulacan, Cavite, Laguna, Batangas, Palawan, Marinduque, Occidental Mindoro, and Oriental Mindoro",
       "The rest of Luzon",
       "Visayas and Mindanao"
     ],
@@ -54,7 +54,7 @@
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Metro Manila, Ilocos Region, Benguet, Abra, CALABARZON, Zambales, Bataan, Tarlac, Pampanga, Nueva Ecija, Bulacan, Marinduque, Occidental Mindoro, and Oriental Mindoro",
+        "place": "Metro Manila, Ilocos Region, Benguet, Abra, Zambales, Bataan, Tarlac, Pampanga, Nueva Ecija, Bulacan, Cavite, Laguna, Batangas, Palawan, Marinduque, Occidental Mindoro, and Oriental Mindoro",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
@@ -74,7 +74,14 @@
     ]
   },
   "tc_outside_par": {
-    "present": false
+    "present": true,
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
+    "category": "Tropical Depression",
+    "location": "1,990 KM EAST OF EXTREME NORTHERN LUZON",
+    "lat": 22.0,
+    "lon": 141.0,
+    "winds_kph": "55",
+    "gustiness_kph": "70"
   },
   "cpf": {
     "operational_status": "",
@@ -152,8 +159,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-12T03:47:23+08:00",
-        "entry": "Auto-check at 2026-08-12T03:47:23+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-08-12T04:49:18+08:00",
+        "entry": "Auto-check at 2026-08-12T04:49:18+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
