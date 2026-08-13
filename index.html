@@ -201,6 +201,19 @@ header.appbar{
   text-transform:uppercase;background:#E8A800;color:#3a2600;padding:4px 11px;border-radius:999px;white-space:nowrap}
 @media (max-width:900px){ #tcParStrip.show{padding:8px 14px} #tcParStrip .tcs-body{font-size:11.5px} }
 .tcpar{margin-top:12px;border:1px solid #f0d9a8;background:#fffaf0;border-radius:10px;padding:9px 11px}
+/* 3-hour rainfall warnings (Yellow/Orange/Red) */
+.rw-block{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+.rw-h{font-family:var(--display);font-size:11px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--navy-soft);margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.rw-note{font-family:var(--sans);text-transform:none;letter-spacing:0;font-weight:600;color:#9aa7b6;font-size:10px}
+.rw-row{display:flex;border-radius:8px;overflow:hidden;border:1px solid var(--line);margin-bottom:7px}
+.rw-band{flex:none;width:72px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-family:var(--display);font-size:11px;letter-spacing:.5px;padding:8px 4px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.rw-red .rw-band{background:#D32F2F}
+.rw-orange .rw-band{background:#EA6D0A}
+.rw-yellow .rw-band{background:#E8A800}
+.rw-body{flex:1;min-width:0;padding:7px 10px}
+.rw-areas{font-size:12.5px;color:var(--navy-2);font-weight:600;line-height:1.4}
+.rw-cpf{font-size:11.5px;color:var(--navy-soft);margin-top:4px;line-height:1.4}
+.rw-hub{color:#a31515;font-weight:700}
 .tcpar-h{font-family:var(--display);font-size:11px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;color:#a34a00}
 .tcpar-b{font-size:12.5px;color:var(--navy-2);margin-top:4px;line-height:1.45}
 .tcpar-n{font-size:11px;color:var(--navy-soft);margin-top:5px}
@@ -635,6 +648,38 @@ function bulletinSourceLabel(s){
   return "PAGASA Daily Weather Forecast";
 }
 
+/* 3-hour Regional Rainfall Advisory — colour-coded Yellow/Orange/Red with CPF impact */
+const RAINWARN={
+  red:   {label:"RED",    meaning:"Serious flooding expected in low-lying and mountainous areas.", cpf:"Suspend or hold dispatch in affected areas."},
+  orange:{label:"ORANGE", meaning:"Flooding is threatening — heavy to intense rains.", cpf:"Validate routes; expect road closures and major delays."},
+  yellow:{label:"YELLOW", meaning:"Flooding is possible in low-lying areas — heavy rains.", cpf:"Monitor; caution on rain-prone routes; minor delays possible."}
+};
+const RAINWARN_ORDER=["red","orange","yellow"];
+function hubProvince(h){ const m=(h.region||"").match(/\(([^)]+)\)/); return (m?m[1]:(h.region||"")).toLowerCase(); }
+function rainfallWarningsBlock(d){
+  const warns=arr((d.rainfall||{}).warnings).filter(w=>w&&w.level&&arr(w.areas).length);
+  if(!warns.length) return "";
+  const hubs=arr((d.cpf||{}).hubs).length?arr((d.cpf||{}).hubs):(typeof DEFAULT_HUBS!=="undefined"?DEFAULT_HUBS:[]);
+  const byLevel={};
+  warns.forEach(w=>{ const k=(w.level||"").toLowerCase(); if(RAINWARN[k]) (byLevel[k]=byLevel[k]||[]).push(...arr(w.areas)); });
+  let rows="";
+  RAINWARN_ORDER.forEach(k=>{
+    if(!byLevel[k]) return;
+    const meta=RAINWARN[k];
+    const areas=[...new Set(byLevel[k].map(a=>String(a).trim()).filter(Boolean))];
+    const areasLC=" "+areas.map(a=>a.toLowerCase()).join(" | ")+" ";
+    const affected=hubs.filter(h=>{ const p=hubProvince(h); return p && areasLC.includes(p); }).map(h=>h.name);
+    rows+=`<div class="rw-row rw-${k}" title="${esc(meta.meaning)}">
+      <div class="rw-band"><span class="rw-lvl">${meta.label}</span></div>
+      <div class="rw-body">
+        <div class="rw-areas">${areas.map(esc).join(", ")}</div>
+        <div class="rw-cpf"><b>CPF:</b> ${esc(meta.cpf)}${affected.length?` <span class="rw-hub">⚠ In zone: ${affected.map(esc).join(", ")}</span>`:""}</div>
+      </div>
+    </div>`;
+  });
+  return `<div class="rw-block"><div class="rw-h">Rainfall warnings · 3-hour <span class="rw-note">Yellow → Orange → Red</span></div>${rows}</div>`;
+}
+
 /* Tropical cyclone OUTSIDE PAR (noted on the Daily Forecast even with nothing inside PAR) */
 function updateTcParStrip(d){
   const strip=$("#tcParStrip"); if(!strip) return;
@@ -1057,6 +1102,7 @@ function buildSections(d,hl,status,isLive){
   wrap.appendChild(card(8,"Rainfall / Habagat Impact",rainAcc((rf.warning_level||"")),
     el("div",null,
       kv("Warning level",has(rf.warning_level)?`<span class="tag t-${(rf.warning_level||"").toLowerCase()}">${esc(rf.warning_level)}</span>`:`<span class="muted">${NA}</span>`)+
+      rainfallWarningsBlock(d)+
       `<div class="para" style="margin:8px 0">${rfOut}</div>`+
       (arr(rf.habagat_affected).length?`<div style="font-weight:700;font-size:12px;color:var(--navy-soft);margin-top:6px">HABAGAT-AFFECTED</div><div class="para">${arr(rf.habagat_affected).map(esc).join(", ")}</div>`:""))));
 
