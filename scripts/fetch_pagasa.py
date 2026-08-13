@@ -487,6 +487,7 @@ def assemble(facts, source_url):
         "rainfall": {
             "outlook": facts.get("rain_text",""),
             "warning_level": "Heavy" if facts.get("rain_text") and re.search(r"intense|heavy", facts["rain_text"], re.I) else "",
+            "warnings": facts.get("rain_warnings", []),
             "habagat_affected": [], "areas": [
                 {"name": p, "lat": CENTROIDS.get(p.lower(),[None,None])[0], "lon": CENTROIDS.get(p.lower(),[None,None])[1], "level": "Heavy"}
                 for p in rain_provs if p.lower() in CENTROIDS
@@ -601,6 +602,26 @@ def parse_daily_conditions(raw):
     return []
 
 
+def parse_rainfall_warnings(text):
+    """Best-effort parse of a PAGASA colour-coded rainfall warning (Yellow/Orange/Red),
+    IF present in the fetched text. These 3-hour Regional Rainfall Advisories are a
+    separate PAGASA product and usually are NOT on the daily/bulletin page, so this
+    returns [] most of the time; the field can also be populated manually."""
+    out = []
+    for level, pat in [("Red", r"RED"), ("Orange", r"ORANGE"), ("Yellow", r"YELLOW")]:
+        m = re.search(pat + r"\s+(?:RAINFALL\s+)?WARNING[^:]*:\s*(.*?)"
+                      r"(?=(?:RED|ORANGE|YELLOW)\s+(?:RAINFALL\s+)?WARNING|Issued|Valid|PAGASA|$)",
+                      text, re.I | re.S)
+        if not m:
+            continue
+        seg = re.sub(r"\s+", " ", m.group(1)).strip(" .;:")
+        areas = [a.strip(" .;·") for a in re.split(r",|;|\band\b", seg)
+                 if a.strip() and 1 < len(a.strip()) < 50][:24]
+        if areas:
+            out.append({"level": level, "areas": areas})
+    return out
+
+
 def parse_tc_information(text):
     """From the Daily Forecast 'TC Information' block, capture a tropical cyclone
     OUTSIDE (or entering) PAR. PAGASA notes these even when nothing is inside PAR."""
@@ -689,6 +710,7 @@ def assemble_clear(daily, source_url):
                       "storm_name_intl":"","category":"","severity":"","headline_override":""},
         "cyclone": {}, "tcws": [],
         "rainfall": {"outlook": (synopsis if rain_level else ""), "warning_level": rain_level,
+                     "warnings": daily.get("rain_warnings", []),
                      "habagat_affected": (["Southwest Monsoon areas"] if daily.get("monsoon") else []), "areas": []},
         "thunderstorm": {"active": tstorm, "advisory": (synopsis if tstorm else ""), "areas": []},
         "gale_warning": {"active":False,"seaboards":[],"areas":[]},
@@ -747,6 +769,7 @@ def main():
     if facts and facts.get("signals") is not None:
         print(f"[ok] active cyclone: {facts['category']} {facts.get('name')} "
               f"({len(facts.get('signals',[]))} signal levels)")
+        facts["rain_warnings"] = parse_rainfall_warnings(strip_tags(bulletin_raw))
         data = assemble(facts, bulletin_src)
     else:
         # No active cyclone -> parse the daily forecast so calm days are still useful.
@@ -757,6 +780,7 @@ def main():
                 daily = parse_daily(strip_tags(raw_daily))
                 daily["conditions"] = parse_daily_conditions(raw_daily)
                 daily["tc_information"] = parse_tc_information(strip_tags(raw_daily))
+                daily["rain_warnings"] = parse_rainfall_warnings(strip_tags(raw_daily))
                 if daily.get("synopsis"): break
             except Exception:
                 continue
