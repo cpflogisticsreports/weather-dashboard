@@ -996,6 +996,7 @@ function buildPrintSummary(d,hl,status){
       <span><b>Valid until:</b> ${has(met.valid_until)?fmtTime(met.valid_until):(has(met.next_update)?fmtTime(met.next_update):"—")}</span>
     </div>
     ${affectedRegionsBlock(d)}
+    ${rainfallWarningsBlock(d)}
     ${tcOutsidePARBlock(d)}
     <div class="ps-grid2">
       <div class="ps-box"><div class="ps-h">Priority routes</div>${routesHTML}</div>
