@@ -172,6 +172,7 @@ header.appbar{
 .card.dormant .card-head{cursor:default}
 .card.dormant .card-head h3{color:var(--navy-soft);font-weight:600}
 .card.dormant .cnum{background:#c7d0db;color:#fff}
+.card.dormant .card-head{border-radius:var(--radius);padding-top:11px;padding-bottom:11px}
 .card.dormant .dorm-tag{margin-left:auto;font-family:var(--sans);font-size:9.5px;font-weight:700;letter-spacing:.5px;
   text-transform:uppercase;color:#8a97a8;background:#eef1f5;border:1px solid var(--line);padding:2px 9px;border-radius:999px}
 .card.dormant .card-body .para{margin:0;font-size:12px}
@@ -1058,12 +1059,9 @@ function card(num,title,acc,bodyNodes,collapsed){
 
 /* Slim muted placeholder so a topic keeps its fixed number when it has no data
    (e.g. TC-only cards on a calm day) — keeps the section map stable for viewers. */
-function dormantCard(num,title,note){
+function dormantCard(num,title){
   const c=el("div","card dormant acc-muted");
-  c.append(
-    el("div","card-head",`<span class="cnum">${num}</span><h3>${title}</h3><span class="dorm-tag">Inactive</span>`),
-    el("div","card-body",el("div","para muted",esc(note)))
-  );
+  c.append(el("div","card-head",`<span class="cnum">${num}</span><h3>${title}</h3><span class="dorm-tag">Inactive</span>`));
   return c;
 }
 
@@ -1136,7 +1134,7 @@ function buildSections(d,hl,status,isLive){
         (track.length?`<div style="margin-top:10px;font-weight:700;font-size:12px;color:var(--navy-soft)">FORECAST TRACK</div>`+
           track.map(p=>`<div class="kv"><span class="k">${esc(p.label||p.time||"")}</span><span class="v">${has(p.category)?esc(p.category):""}${has(p.winds_kph)?` · ${esc(p.winds_kph)} km/h`:""}</span></div>`).join(""):""))));
   } else {
-    wrap.appendChild(dormantCard(6,"Forecast Track & Intensity","Appears when a tropical cyclone is active inside or near PAR."));
+    wrap.appendChild(dormantCard(6,"Forecast Track & Intensity"));
   }
 
   /* 7. Wind Signal Areas */
@@ -1149,7 +1147,7 @@ function buildSections(d,hl,status,isLive){
          <div class="para" style="margin:0 0 10px">${arr(t.areas).length?arr(t.areas).map(esc).join(", "):`<span class="muted">${NA}</span>`}</div>`).join("")):
       emptyNode("No tropical cyclone wind signals are in effect.")));
   } else {
-    wrap.appendChild(dormantCard(7,"Wind Signal Areas (TCWS)","Appears when PAGASA raises tropical cyclone wind signals."));
+    wrap.appendChild(dormantCard(7,"Wind Signal Areas (TCWS)"));
   }
 
   /* 8. Rainfall / Habagat Impact */
