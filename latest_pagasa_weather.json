@@ -5,7 +5,7 @@
     "issued_at": "2026-08-15T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-08-15T05:10:29+08:00",
+    "generated_at": "2026-08-15T05:41:45+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -48,8 +48,8 @@
     "synopsis": "Southwest Monsoon affecting Luzon and the western section of Visayas.",
     "regions": [
       "Metro Manila, Ilocos Region, Cordillera Administrative Region, Cagayan Valley, Central Luzon, CALABARZON, Occidental Mindoro, and Oriental Mindoro",
-      "The rest of Luzon and the rest of Visayas",
-      "The rest of the country"
+      "Visayas and the rest of Luzon",
+      "Mindanao"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
@@ -61,13 +61,13 @@
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "The rest of Luzon and the rest of Visayas",
+        "place": "Visayas and the rest of Luzon",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
       },
       {
-        "place": "The rest of the country",
+        "place": "Mindanao",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Localized Thunderstorms",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -153,8 +153,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-15T05:10:29+08:00",
-        "entry": "Auto-check at 2026-08-15T05:10:29+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-08-15T05:41:45+08:00",
+        "entry": "Auto-check at 2026-08-15T05:41:45+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
