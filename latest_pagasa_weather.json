@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-08-14T04:00:00+08:00",
+    "issued_at": "2026-08-14T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-08-14T15:43:26+08:00",
+    "generated_at": "2026-08-14T16:48:35+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -49,7 +49,7 @@
     "regions": [
       "Zambales and Bataan",
       "Metro Manila, Ilocos Region, Cordillera Administrative Region, Cagayan Valley, CALABARZON, MIMAROPA, the rest of Central Luzon, and Antique",
-      "The rest of Luzon, Aklan, and Capiz",
+      "The rest of Luzon and the rest of Visayas",
       "The rest of the country"
     ],
     "wind_outlook": [],
@@ -68,7 +68,7 @@
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "The rest of Luzon, Aklan, and Capiz",
+        "place": "The rest of Luzon and the rest of Visayas",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -160,8 +160,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-14T15:43:26+08:00",
-        "entry": "Auto-check at 2026-08-14T15:43:26+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-08-14T16:48:35+08:00",
+        "entry": "Auto-check at 2026-08-14T16:48:35+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
