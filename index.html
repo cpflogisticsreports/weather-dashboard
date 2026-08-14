@@ -237,6 +237,9 @@ header.appbar{
 .areas-tbl th{text-align:left;background:#f3f6f9;color:var(--navy-soft);font-weight:700;font-size:10.5px;
   text-transform:uppercase;letter-spacing:.3px;padding:6px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
 .areas-tbl td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--navy-2)}
+.areas-tbl td.imp-red{background:#fdecea;color:#a31515;font-weight:600;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.areas-tbl td.imp-orange{background:#fff2e6;color:#a34a00;font-weight:600;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.areas-tbl td.imp-yellow{background:#fff8e1;color:#8a6d00;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .areas-tbl tr:last-child td{border-bottom:0}
 .areas-when{font-weight:700;color:var(--cpf-green-dark);white-space:nowrap}
 .areas-note{font-size:10.5px;color:var(--navy-soft);padding:6px 10px;background:#fafcfd}
@@ -721,13 +724,24 @@ function tcOutsidePARBlock(d){
 }
 
 /* Regions affected — shaped by whichever PAGASA source is live */
+/* Shade a Daily-Forecast impact cell by its flood-risk wording (a reading aid only —
+   NOT a formal PAGASA Yellow/Orange/Red warning, which lives in Card 8). */
+function impactTint(txt){
+  const t=(txt||"").toLowerCase();
+  if(!t) return "";
+  if(/serious|severe and widespread|widespread flooding|significant flooding|life-threat|torrential|major flooding/.test(t)) return "imp-red";
+  if(/flash flood|landslide|inundat|flooding/.test(t)) return "imp-orange";
+  if(/rain|shower|thunderstorm|gust|strong wind/.test(t)) return "imp-yellow";
+  return "";
+}
 function affectedRegionsBlock(d){
   const f=d.forecast||{};
   const conditions=arr(f.conditions), outlook=arr(f.wind_outlook);
   if(conditions.length){
-    const rows=conditions.map(c=>`<tr><td>${esc(c.place||"")}</td><td>${esc(c.condition||"")}</td><td>${esc(c.cause||"")}</td><td class="pf-hazard">${esc(c.impact||"")}</td></tr>`).join("");
+    const rows=conditions.map(c=>`<tr><td>${esc(c.place||"")}</td><td>${esc(c.condition||"")}</td><td>${esc(c.cause||"")}</td><td class="pf-hazard ${impactTint(c.impact)}">${esc(c.impact||"")}</td></tr>`).join("");
     return `<div class="areas-block"><div class="areas-h">Regions affected · Daily Weather Forecast</div>
-      <div class="areas-tblwrap"><table class="areas-tbl"><thead><tr><th>Area</th><th>Weather</th><th>Cause</th><th>Impact</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
+      <div class="areas-tblwrap"><table class="areas-tbl"><thead><tr><th>Area</th><th>Weather</th><th>Cause</th><th>Impact</th></tr></thead><tbody>${rows}</tbody></table></div>
+      <div class="areas-note">Impact cells are shaded by the forecast's flood-risk wording — a reading aid, not a formal PAGASA rainfall warning (see Card 8 for Yellow/Orange/Red advisories).</div></div>`;
   }
   if(outlook.length){
     const haz=has(f.wind_hazard)?`<span class="areas-haz">${esc(f.wind_hazard)}</span>`:"";
