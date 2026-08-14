@@ -118,6 +118,22 @@ header.appbar{
 }
 .panel::-webkit-scrollbar{width:9px}
 .panel::-webkit-scrollbar-thumb{background:#cdd7e6;border-radius:6px}
+.panel-resize{display:none}
+
+/* Desktop: panel floats over a full-width map; drag its left edge to resize. */
+@media (min-width:901px){
+  .layout{position:relative}
+  .mapwrap{flex:1 1 100%}
+  .panel{position:absolute;top:0;right:0;bottom:0;width:var(--panel-w);z-index:500;
+    box-shadow:-8px 0 26px rgba(16,32,58,.20);border-left:1px solid #d5deea}
+  .panel-resize{display:block;position:absolute;top:0;bottom:0;right:var(--panel-w);width:10px;
+    z-index:600;cursor:ew-resize;transition:right .02s linear}
+  .panel-resize::before{content:"";position:absolute;left:3px;top:50%;transform:translateY(-50%);
+    width:4px;height:48px;border-radius:4px;background:#c7d0db;box-shadow:0 0 0 1px rgba(255,255,255,.65),0 1px 3px rgba(0,0,0,.25)}
+  .panel-resize:hover::before,body.resizing-panel .panel-resize::before{background:var(--cpf-green);height:74px}
+  body.resizing-panel{cursor:ew-resize;user-select:none}
+  body.resizing-panel .panel-resize{transition:none}
+}
 
 /* ---------- Panel controls ---------- */
 .panel-tools{display:flex;gap:8px;margin-bottom:12px}
@@ -601,6 +617,8 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:12px;width:6px;hei
 </div>
 
 <div class="layout">
+  <!-- Drag handle to widen/narrow the floating panel (desktop only) -->
+  <div class="panel-resize" id="panelResize" title="Drag to resize the panel" role="separator" aria-orientation="vertical"></div>
   <!-- LEFT: Map -->
   <div class="mapwrap">
     <div class="maptitle" id="mapTitle">Philippine Area of Responsibility</div>
@@ -1867,7 +1885,29 @@ document.addEventListener("DOMContentLoaded",()=>{
   window.addEventListener("resize",()=>MAP&&MAP.invalidateSize());
 
   wirePlayPause();
+  wirePanelResize();
 });
+
+/* Drag the floating panel's left edge to resize it (desktop). Width resets each
+   visit by design — no persistence. Map stays full-width underneath. */
+function wirePanelResize(){
+  const rz=document.getElementById("panelResize"); if(!rz) return;
+  const MINW=320;
+  let dragging=false;
+  const maxW=()=>Math.min(window.innerWidth*0.72, 820);
+  const setW=(px)=>{ const w=Math.max(MINW, Math.min(px, maxW())); document.documentElement.style.setProperty("--panel-w", w+"px"); };
+  const start=()=>{ dragging=true; document.body.classList.add("resizing-panel"); };
+  const end=()=>{ if(dragging){ dragging=false; document.body.classList.remove("resizing-panel"); if(MAP&&MAP.invalidateSize) MAP.invalidateSize(); } };
+  const move=(clientX)=>{ if(dragging) setW(window.innerWidth - clientX); };
+  rz.addEventListener("mousedown",e=>{ start(); e.preventDefault(); });
+  window.addEventListener("mousemove",e=>move(e.clientX));
+  window.addEventListener("mouseup",end);
+  rz.addEventListener("touchstart",()=>start(),{passive:true});
+  window.addEventListener("touchmove",e=>{ if(e.touches[0]) move(e.touches[0].clientX); },{passive:true});
+  window.addEventListener("touchend",end);
+  // double-click the handle to snap back to the default width
+  rz.addEventListener("dblclick",()=>{ document.documentElement.style.setProperty("--panel-w","430px"); if(MAP&&MAP.invalidateSize) MAP.invalidateSize(); });
+}
 </script>
 </body>
 </html>
