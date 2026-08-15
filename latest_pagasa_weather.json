@@ -5,7 +5,7 @@
     "issued_at": "2026-08-15T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-08-15T16:58:10+08:00",
+    "generated_at": "2026-08-15T17:30:41+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -75,7 +75,14 @@
     ]
   },
   "tc_outside_par": {
-    "present": false
+    "present": true,
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
+    "category": "Tropical Depression",
+    "location": "3,105 KM EAST OF NORTHEASTERN MINDANAO",
+    "lat": 10.4,
+    "lon": 153.8,
+    "winds_kph": "45",
+    "gustiness_kph": "55"
   },
   "cpf": {
     "operational_status": "",
@@ -153,8 +160,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-15T16:58:10+08:00",
-        "entry": "Auto-check at 2026-08-15T16:58:10+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-08-15T17:30:41+08:00",
+        "entry": "Auto-check at 2026-08-15T17:30:41+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
