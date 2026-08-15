@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-08-15T04:00:00+08:00",
+    "issued_at": "2026-08-15T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-08-15T15:16:53+08:00",
+    "generated_at": "2026-08-15T15:47:15+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -47,7 +47,7 @@
   "forecast": {
     "synopsis": "Southwest Monsoon affecting Luzon and the western section of Visayas.",
     "regions": [
-      "Metro Manila, Ilocos Region, Cordillera Administrative Region, Cagayan Valley, Central Luzon, CALABARZON, Occidental Mindoro, and Oriental Mindoro",
+      "Ilocos Region, Abra, Benguet, Zambales, Bataan, Nueva Ecija, Tarlac, and Occidental Mindoro",
       "Visayas and the rest of Luzon",
       "Mindanao"
     ],
@@ -55,7 +55,7 @@
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Metro Manila, Ilocos Region, Cordillera Administrative Region, Cagayan Valley, Central Luzon, CALABARZON, Occidental Mindoro, and Oriental Mindoro",
+        "place": "Ilocos Region, Abra, Benguet, Zambales, Bataan, Nueva Ecija, Tarlac, and Occidental Mindoro",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
@@ -153,8 +153,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-15T15:16:53+08:00",
-        "entry": "Auto-check at 2026-08-15T15:16:53+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-08-15T15:47:15+08:00",
+        "entry": "Auto-check at 2026-08-15T15:47:15+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
