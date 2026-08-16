@@ -5,7 +5,7 @@
     "issued_at": "2026-08-16T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-08-16T16:40:18+08:00",
+    "generated_at": "2026-08-16T17:04:01+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -63,7 +63,7 @@
       },
       {
         "place": "Metro Manila, Cordillera Administrative Region, Ilocos Norte, Batanes, Cagayan, Nueva Vizcaya, Nueva Ecija, Tarlac, Pampanga, Bulacan, Cavite, Laguna, Batangas, Rizal, and Occidental Mindoro",
-        "condition": "Cloudy skies with scattered rains and thunderstorms and thunderstorms",
+        "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
@@ -160,8 +160,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-16T16:40:18+08:00",
-        "entry": "Auto-check at 2026-08-16T16:40:18+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-08-16T17:04:01+08:00",
+        "entry": "Auto-check at 2026-08-16T17:04:01+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
