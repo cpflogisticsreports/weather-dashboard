@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 1",
-    "issued_at": "2026-08-18T17:00:00+08:00",
-    "valid_until": "2026-08-18T23:00:00+08:00",
-    "next_update": "2026-08-18T23:00:00+08:00",
-    "generated_at": "2026-08-18T22:17:29+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 2",
+    "issued_at": "2026-08-18T23:00:00+08:00",
+    "valid_until": "2026-08-19T05:00:00+08:00",
+    "next_update": "2026-08-19T05:00:00+08:00",
+    "generated_at": "2026-08-18T23:02:30+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -20,45 +20,38 @@
   },
   "cyclone": {
     "center_text": "",
-    "lat": 20.4,
-    "lon": 131.8,
+    "lat": 21.0,
+    "lon": 129.0,
     "max_sustained_winds_kph": 45,
     "gustiness_kph": 55,
     "central_pressure_hpa": "",
-    "movement": "Northwestward at 20 km/h",
+    "movement": "Westward at 25 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 20.4,
-        "lon": 131.8,
+        "lat": 21.0,
+        "lon": 129.0,
         "category": "Tropical Depression",
         "winds_kph": 45
       },
       {
-        "label": "Aug 19 2AM",
-        "lat": 22.85,
-        "lon": 128.6,
+        "label": "Aug 19 8AM",
+        "lat": 22.43,
+        "lon": 126.3,
         "category": "Tropical Depression",
         "winds_kph": 45
       },
       {
-        "label": "Aug 19 2PM",
-        "lat": 22.55,
-        "lon": 126.66,
+        "label": "Aug 19 8PM",
+        "lat": 23.85,
+        "lon": 123.24,
         "category": "Tropical Depression",
         "winds_kph": 45
       },
       {
-        "label": "Aug 20 2AM",
-        "lat": 24.22,
-        "lon": 123.42,
-        "category": "Tropical Depression",
-        "winds_kph": 45
-      },
-      {
-        "label": "Aug 20 2PM",
-        "lat": 24.83,
+        "label": "Aug 20 8AM",
+        "lat": 24.38,
         "lon": 121.85,
         "category": "Tropical Depression",
         "winds_kph": 45
@@ -91,7 +84,7 @@
   "forecast": {
     "synopsis": "",
     "regions": [
-      "Most of the country",
+      "Most of the country. Tomorrow (19 August) until",
       "Most of Luzon",
       "Visayas",
       "Zamboanga Peninsula",
@@ -100,12 +93,8 @@
     ],
     "wind_outlook": [
       {
-        "when": "Today (18 August)",
-        "areas": "Most of the country"
-      },
-      {
-        "when": "Tomorrow (19 August)",
-        "areas": "Most of Luzon and Visayas, Zamboanga Peninsula, Northern Mindanao, and Davao Region"
+        "when": "Today",
+        "areas": "Most of the country. Tomorrow (19 August) until"
       },
       {
         "when": "Thursday (20 August)",
@@ -191,8 +180,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-18T22:17:29+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-08-18T22:17:29+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-08-18T23:02:30+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-08-18T23:02:30+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
