@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 5",
-    "issued_at": "2026-08-19T17:00:00+08:00",
-    "valid_until": "2026-08-19T23:00:00+08:00",
-    "next_update": "2026-08-19T23:00:00+08:00",
-    "generated_at": "2026-08-19T22:18:42+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 6",
+    "issued_at": "2026-08-19T23:00:00+08:00",
+    "valid_until": "2026-08-20T05:00:00+08:00",
+    "next_update": "2026-08-20T05:00:00+08:00",
+    "generated_at": "2026-08-19T23:02:56+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -19,40 +19,33 @@
     "headline_override": ""
   },
   "cyclone": {
-    "center_text": "375 km Northeast of Itbayat, Batanes",
-    "lat": 23.2,
-    "lon": 124.4,
+    "center_text": "",
+    "lat": 23.3,
+    "lon": 124.1,
     "max_sustained_winds_kph": 45,
     "gustiness_kph": 55,
     "central_pressure_hpa": "",
-    "movement": "West Northwestward at 35 km/h",
+    "movement": "West Northwestward at 15 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 23.2,
-        "lon": 124.4,
+        "lat": 23.3,
+        "lon": 124.1,
         "category": "Tropical Depression",
         "winds_kph": 45
       },
       {
-        "label": "Aug 20 2AM",
-        "lat": 24.14,
-        "lon": 123.38,
+        "label": "Aug 20 8AM",
+        "lat": 23.93,
+        "lon": 123.28,
         "category": "Tropical Depression",
         "winds_kph": 45
       },
       {
-        "label": "Aug 20 2PM",
-        "lat": 24.74,
-        "lon": 121.85,
-        "category": "Tropical Depression",
-        "winds_kph": 45
-      },
-      {
-        "label": "Aug 21 2AM",
-        "lat": 25.19,
-        "lon": 121.85,
+        "label": "Aug 20 8PM",
+        "lat": 24.76,
+        "lon": 123.67,
         "category": "Tropical Depression",
         "winds_kph": 45
       }
@@ -110,7 +103,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Tropical Depression “NENENG” is being tracked by PAGASA. Center: 375 km Northeast of Itbayat, Batanes. No CPF hub currently under a wind signal; continue monitoring.",
+    "executive_summary": "Tropical Depression “NENENG” is being tracked by PAGASA. No CPF hub currently under a wind signal; continue monitoring.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
@@ -183,8 +176,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-19T22:18:42+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-08-19T22:18:42+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-08-19T23:02:56+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-08-19T23:02:56+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
