@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 7",
-    "issued_at": "2026-08-20T05:00:00+08:00",
-    "valid_until": "2026-08-20T11:00:00+08:00",
-    "next_update": "2026-08-20T11:00:00+08:00",
-    "generated_at": "2026-08-20T10:38:39+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 8",
+    "issued_at": "2026-08-20T11:00:00+08:00",
+    "valid_until": "2026-08-20T17:00:00+08:00",
+    "next_update": "2026-08-20T17:00:00+08:00",
+    "generated_at": "2026-08-20T11:30:24+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -20,24 +20,24 @@
   },
   "cyclone": {
     "center_text": "",
-    "lat": 24.3,
-    "lon": 121.9,
+    "lat": 24.8,
+    "lon": 122.2,
     "max_sustained_winds_kph": 45,
     "gustiness_kph": 55,
     "central_pressure_hpa": "",
-    "movement": "West Northwestward at 30 km/h",
+    "movement": "",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 24.3,
-        "lon": 121.9,
+        "lat": 24.8,
+        "lon": 122.2,
         "category": "Tropical Depression",
         "winds_kph": 45
       },
       {
-        "label": "Aug 20 2PM",
-        "lat": 25.28,
+        "label": "Aug 20 8PM",
+        "lat": 25.64,
         "lon": 121.85,
         "category": "Tropical Depression",
         "winds_kph": 45
@@ -72,26 +72,14 @@
     "regions": [
       "Most of Luzon",
       "Visayas",
-      "Zamboanga Peninsula",
-      "Northern Mindanao",
       "Davao Region",
-      "Panay Island",
-      "Negros Occidental",
-      "Northern Samar",
-      "Davao Oriental"
+      "Northern Mindanao",
+      "Zamboanga del Norte"
     ],
     "wind_outlook": [
       {
-        "when": "Today",
-        "areas": "Most of Luzon and Visayas, Zamboanga Peninsula, Northern Mindanao, and Davao Region"
-      },
-      {
-        "when": "Friday (21 August)",
-        "areas": "Most of Luzon, Panay Island, Negros Occidental, Northern Samar, and Davao Oriental"
-      },
-      {
         "when": "Saturday (22 August)",
-        "areas": "Most of Luzon and Visayas, and Davao Oriental"
+        "areas": "Most of Luzon and Visayas, Davao Region, Northern Mindanao, and Zamboanga del Norte"
       }
     ],
     "wind_hazard": "Strong to gale-force gusts",
@@ -173,8 +161,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-20T10:38:39+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-08-20T10:38:39+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-08-20T11:30:24+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-08-20T11:30:24+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
