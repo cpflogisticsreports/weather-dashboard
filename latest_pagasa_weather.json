@@ -1,53 +1,37 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 9F",
-    "issued_at": "2026-08-20T17:00:00+08:00",
+    "bulletin_title": "PAGASA Daily Weather Forecast",
+    "issued_at": "2026-08-21T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-08-21T05:55:50+08:00",
-    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
+    "generated_at": "2026-08-21T06:30:13+08:00",
+    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "lpa",
+    "mode": "advisory",
     "has_active_tc": false,
-    "storm_name_local": "NENENG",
-    "storm_name_intl": null,
-    "category": "Low Pressure Area",
+    "storm_name_local": "",
+    "storm_name_intl": "",
+    "category": "",
     "severity": "",
     "headline_override": ""
   },
-  "cyclone": {
-    "center_text": "480 km North of Itbayat, Batanes (OUTSIDE PAR)",
-    "lat": 25.1,
-    "lon": 122.3,
-    "max_sustained_winds_kph": "",
-    "gustiness_kph": "",
-    "central_pressure_hpa": "",
-    "movement": "",
-    "wind_extent_km": "",
-    "forecast_track": [
-      {
-        "label": "Now",
-        "lat": 25.1,
-        "lon": 122.3,
-        "category": "Low Pressure Area",
-        "winds_kph": ""
-      }
-    ]
-  },
+  "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "heavy rainfall warnings, thunderstorm/rainfall advisories, and other severe weather information specific to your area, please monitor products issued by your local PAGASA Regional Services Division.",
+    "outlook": "Southwest Monsoon affecting Luzon.",
     "warning_level": "Heavy",
     "warnings": [],
-    "habagat_affected": [],
+    "habagat_affected": [
+      "Southwest Monsoon areas"
+    ],
     "areas": []
   },
   "thunderstorm": {
-    "active": false,
-    "advisory": "",
+    "active": true,
+    "advisory": "Southwest Monsoon affecting Luzon.",
     "areas": []
   },
   "gale_warning": {
@@ -61,30 +45,52 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "",
+    "synopsis": "Southwest Monsoon affecting Luzon.",
     "regions": [
-      "Most of Luzon",
-      "Visayas",
-      "Davao Region",
-      "Northern Mindanao",
-      "Zamboanga del Norte"
+      "Ilocos Norte, Ilocos Sur, Apayao, Abra, Batanes, and Cagayan",
+      "Metro Manila and the rest of Luzon",
+      "The rest of the country"
     ],
-    "wind_outlook": [
+    "wind_outlook": [],
+    "wind_hazard": "",
+    "conditions": [
       {
-        "when": "Saturday (22 August)",
-        "areas": "Most of Luzon and Visayas, Davao Region, Northern Mindanao, and Zamboanga del Norte"
+        "place": "Ilocos Norte, Ilocos Sur, Apayao, Abra, Batanes, and Cagayan",
+        "condition": "Cloudy skies with scattered rains and thunderstorms",
+        "cause": "Southwest Monsoon",
+        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
+      },
+      {
+        "place": "Metro Manila and the rest of Luzon",
+        "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
+        "cause": "Southwest Monsoon",
+        "impact": "Possible flash floods or landslides during severe thunderstorms"
+      },
+      {
+        "place": "The rest of the country",
+        "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
+        "cause": "Localized Thunderstorms",
+        "impact": "Possible flash floods or landslides during severe thunderstorms"
       }
-    ],
-    "wind_hazard": "Strong to gale-force gusts",
-    "conditions": []
+    ]
+  },
+  "tc_outside_par": {
+    "present": true,
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
+    "category": "Severe Tropical Storm",
+    "location": "2,735 KM EAST OF SOUTHEASTERN LUZON",
+    "lat": 13.9,
+    "lon": 149.5,
+    "winds_kph": "95",
+    "gustiness_kph": "115"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Low Pressure Area “NENENG” is being tracked by PAGASA. Center: 480 km North of Itbayat, Batanes (OUTSIDE PAR). No CPF hub currently under a wind signal; continue monitoring.",
+    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
-    "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
+    "contractor_advisory": "",
     "affected_deliveries_note": "",
     "hubs": [
       {
@@ -154,8 +160,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-21T05:55:50+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-08-21T05:55:50+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-08-21T06:30:13+08:00",
+        "entry": "Auto-check at 2026-08-21T06:30:13+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
