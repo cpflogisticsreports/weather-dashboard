@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-08-21T04:00:00+08:00",
+    "issued_at": "2026-08-21T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-08-21T15:45:10+08:00",
+    "generated_at": "2026-08-21T16:20:31+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Southwest Monsoon affecting Luzon.",
+    "outlook": "Southwest Monsoon affecting Northern and Central Luzon.",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [
@@ -31,7 +31,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Southwest Monsoon affecting Luzon.",
+    "advisory": "Southwest Monsoon affecting Northern and Central Luzon.",
     "areas": []
   },
   "gale_warning": {
@@ -45,23 +45,23 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Southwest Monsoon affecting Luzon.",
+    "synopsis": "Southwest Monsoon affecting Northern and Central Luzon.",
     "regions": [
-      "Ilocos Norte, Ilocos Sur, Apayao, Abra, Batanes, and Cagayan",
-      "Metro Manila and the rest of Luzon",
+      "Ilocos Region, Apayao, Abra, Benguet, Batanes, and Cagayan",
+      "Metro Manila, the rest of Cordillera Administrative Region, the rest of Cagayan Valley, Central Luzon, and CALABARZON",
       "The rest of the country"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Ilocos Norte, Ilocos Sur, Apayao, Abra, Batanes, and Cagayan",
+        "place": "Ilocos Region, Apayao, Abra, Benguet, Batanes, and Cagayan",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Metro Manila and the rest of Luzon",
+        "place": "Metro Manila, the rest of Cordillera Administrative Region, the rest of Cagayan Valley, Central Luzon, and CALABARZON",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -76,18 +76,18 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
     "category": "Severe Tropical Storm",
-    "location": "2,735 KM EAST OF SOUTHEASTERN LUZON",
-    "lat": 13.9,
-    "lon": 149.5,
-    "winds_kph": "95",
-    "gustiness_kph": "115"
+    "location": "2,635 KM EAST OF SOUTHEASTERN LUZON",
+    "lat": 15.1,
+    "lon": 148.6,
+    "winds_kph": "110",
+    "gustiness_kph": "135"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting Northern and Central Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -160,8 +160,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-21T15:45:10+08:00",
-        "entry": "Auto-check at 2026-08-21T15:45:10+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-08-21T16:20:31+08:00",
+        "entry": "Auto-check at 2026-08-21T16:20:31+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
