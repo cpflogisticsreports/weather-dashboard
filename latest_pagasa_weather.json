@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-08-22T16:00:00+08:00",
+    "issued_at": "2026-08-23T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-08-23T03:57:41+08:00",
+    "generated_at": "2026-08-23T04:27:35+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -47,21 +47,28 @@
   "forecast": {
     "synopsis": "Southwest Monsoon affecting Luzon.",
     "regions": [
-      "Ilocos Region, Cordillera Administrative Region, Batanes, Cagayan, Zambales, Bataan, Nueva Ecija, Bulacan, Tarlac, and Pampanga",
-      "Metro Manila and the rest of Luzon",
+      "Batanes",
+      "Metro Manila, Ilocos Region, Cordillera Administrative Region, Central Luzon, Rizal, Cavite, Batangas, Occidental Mindoro, and the rest of Cagayan Valley",
+      "The rest of Luzon",
       "The rest of the country"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Ilocos Region, Cordillera Administrative Region, Batanes, Cagayan, Zambales, Bataan, Nueva Ecija, Bulacan, Tarlac, and Pampanga",
+        "place": "Batanes",
+        "condition": "Occasional Rains",
+        "cause": "Southwest Monsoon",
+        "impact": "Possible flash floods or landslides due to moderate to heavy rains"
+      },
+      {
+        "place": "Metro Manila, Ilocos Region, Cordillera Administrative Region, Central Luzon, Rizal, Cavite, Batangas, Occidental Mindoro, and the rest of Cagayan Valley",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Metro Manila and the rest of Luzon",
+        "place": "The rest of Luzon",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -78,11 +85,11 @@
     "present": true,
     "headline": "",
     "category": "Typhoon",
-    "location": "2,555 KM EAST OF NORTHERN LUZON",
-    "lat": 18.8,
-    "lon": 145.9,
-    "winds_kph": "150",
-    "gustiness_kph": "185"
+    "location": "2,245 KM EAST OF EXTREME NORTHERN LUZON",
+    "lat": 20.6,
+    "lon": 143.4,
+    "winds_kph": "175",
+    "gustiness_kph": "215"
   },
   "cpf": {
     "operational_status": "",
@@ -160,8 +167,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-23T03:57:41+08:00",
-        "entry": "Auto-check at 2026-08-23T03:57:41+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-08-23T04:27:35+08:00",
+        "entry": "Auto-check at 2026-08-23T04:27:35+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
