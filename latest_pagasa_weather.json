@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-08-22T04:00:00+08:00",
+    "issued_at": "2026-08-22T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-08-22T15:19:36+08:00",
+    "generated_at": "2026-08-22T15:55:20+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Southwest Monsoon affecting Northern and Central Luzon.",
+    "outlook": "Southwest Monsoon affecting Luzon.",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [
@@ -31,7 +31,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Southwest Monsoon affecting Northern and Central Luzon.",
+    "advisory": "Southwest Monsoon affecting Luzon.",
     "areas": []
   },
   "gale_warning": {
@@ -45,23 +45,23 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Southwest Monsoon affecting Northern and Central Luzon.",
+    "synopsis": "Southwest Monsoon affecting Luzon.",
     "regions": [
-      "Ilocos Region, Cordillera Administrative Region, Batanes, Cagayan, Zambales, Bataan, Tarlac, and Pampanga",
-      "Metro Manila, CALABARZON, the rest of Cagayan Valley, and the rest of Central Luzon",
+      "Ilocos Region, Cordillera Administrative Region, Batanes, Cagayan, Zambales, Bataan, Nueva Ecija, Bulacan, Tarlac, and Pampanga",
+      "Metro Manila and the rest of Luzon",
       "The rest of the country"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Ilocos Region, Cordillera Administrative Region, Batanes, Cagayan, Zambales, Bataan, Tarlac, and Pampanga",
+        "place": "Ilocos Region, Cordillera Administrative Region, Batanes, Cagayan, Zambales, Bataan, Nueva Ecija, Bulacan, Tarlac, and Pampanga",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Metro Manila, CALABARZON, the rest of Cagayan Valley, and the rest of Central Luzon",
+        "place": "Metro Manila and the rest of Luzon",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -78,16 +78,16 @@
     "present": true,
     "headline": "",
     "category": "Typhoon",
-    "location": "2,710 KM EAST OF NORTHERN LUZON",
-    "lat": 17.3,
-    "lon": 147.3,
-    "winds_kph": "130",
-    "gustiness_kph": "160"
+    "location": "2,555 KM EAST OF NORTHERN LUZON",
+    "lat": 18.8,
+    "lon": 145.9,
+    "winds_kph": "150",
+    "gustiness_kph": "185"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting Northern and Central Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -160,8 +160,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-22T15:19:36+08:00",
-        "entry": "Auto-check at 2026-08-22T15:19:36+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-08-22T15:55:20+08:00",
+        "entry": "Auto-check at 2026-08-22T15:55:20+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
