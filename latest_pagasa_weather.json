@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-08-23T16:00:00+08:00",
+    "issued_at": "2026-08-24T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-08-24T03:57:19+08:00",
+    "generated_at": "2026-08-24T04:26:50+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Southwest Monsoon affecting Luzon.",
+    "outlook": "Southwest Monsoon affecting Northern and Central Luzon.",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [
@@ -31,7 +31,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Southwest Monsoon affecting Luzon.",
+    "advisory": "Southwest Monsoon affecting Northern and Central Luzon.",
     "areas": []
   },
   "gale_warning": {
@@ -45,11 +45,10 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Southwest Monsoon affecting Luzon.",
+    "synopsis": "Southwest Monsoon affecting Northern and Central Luzon.",
     "regions": [
       "Batanes",
-      "Metro Manila, Ilocos Region, Cordillera Administrative Region, Central Luzon, the rest of Cagayan Valley, Rizal, Cavite, Batangas, and Occidental Mindoro",
-      "The rest of Luzon",
+      "Metro Manila, Ilocos Region, Cordillera Administrative Region, Central Luzon, the rest of Cagayan Valley, Cavite, Batangas, and Rizal",
       "The rest of the country"
     ],
     "wind_outlook": [],
@@ -57,21 +56,15 @@
     "conditions": [
       {
         "place": "Batanes",
-        "condition": "Occasional Rains",
+        "condition": "Occasional rains",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to heavy rains"
       },
       {
-        "place": "Metro Manila, Ilocos Region, Cordillera Administrative Region, Central Luzon, the rest of Cagayan Valley, Rizal, Cavite, Batangas, and Occidental Mindoro",
+        "place": "Metro Manila, Ilocos Region, Cordillera Administrative Region, Central Luzon, the rest of Cagayan Valley, Cavite, Batangas, and Rizal",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
-      },
-      {
-        "place": "The rest of Luzon",
-        "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
-        "cause": "Southwest Monsoon",
-        "impact": "Possible flash floods or landslides during severe thunderstorms"
       },
       {
         "place": "The rest of the country",
@@ -85,16 +78,16 @@
     "present": true,
     "headline": "",
     "category": "Typhoon",
-    "location": "1,950 KM EAST OF EXTREME NORTHERN LUZON",
-    "lat": 22.0,
-    "lon": 140.7,
-    "winds_kph": "165",
-    "gustiness_kph": "205"
+    "location": "1,660 KM EAST NORTHEAST OF EXTREME NORTHERN LUZON",
+    "lat": 23.3,
+    "lon": 137.7,
+    "winds_kph": "175",
+    "gustiness_kph": "215"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting Northern and Central Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -167,8 +160,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-24T03:57:19+08:00",
-        "entry": "Auto-check at 2026-08-24T03:57:19+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-08-24T04:26:50+08:00",
+        "entry": "Auto-check at 2026-08-24T04:26:50+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
