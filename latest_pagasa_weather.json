@@ -1,37 +1,109 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-08-24T16:00:00+08:00",
-    "valid_until": "",
-    "next_update": "",
-    "generated_at": "2026-08-24T17:05:26+08:00",
-    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 1",
+    "issued_at": "2026-08-24T17:00:00+08:00",
+    "valid_until": "2026-08-24T23:00:00+08:00",
+    "next_update": "2026-08-24T23:00:00+08:00",
+    "generated_at": "2026-08-24T18:04:48+08:00",
+    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "advisory",
-    "has_active_tc": false,
-    "storm_name_local": "",
-    "storm_name_intl": "",
-    "category": "",
+    "mode": "typhoon",
+    "has_active_tc": true,
+    "storm_name_local": "OBET",
+    "storm_name_intl": null,
+    "category": "Typhoon",
     "severity": "",
     "headline_override": ""
   },
-  "cyclone": {},
+  "cyclone": {
+    "center_text": "",
+    "lat": 24.6,
+    "lon": 134.3,
+    "max_sustained_winds_kph": 165,
+    "gustiness_kph": 205,
+    "central_pressure_hpa": "",
+    "movement": "West Northwestward at 30 km/h",
+    "wind_extent_km": "",
+    "forecast_track": [
+      {
+        "label": "Now",
+        "lat": 24.6,
+        "lon": 134.3,
+        "category": "Typhoon",
+        "winds_kph": 165
+      },
+      {
+        "label": "Aug 25 2AM",
+        "lat": 22.37,
+        "lon": 132.15,
+        "category": "Typhoon",
+        "winds_kph": 165
+      },
+      {
+        "label": "Aug 25 2PM",
+        "lat": 25.0,
+        "lon": 128.71,
+        "category": "Typhoon",
+        "winds_kph": 165
+      },
+      {
+        "label": "Aug 26 2AM",
+        "lat": 24.43,
+        "lon": 128.02,
+        "category": "Typhoon",
+        "winds_kph": 165
+      },
+      {
+        "label": "Aug 26 2PM",
+        "lat": 25.88,
+        "lon": 124.86,
+        "category": "Typhoon",
+        "winds_kph": 165
+      },
+      {
+        "label": "Aug 27 2AM",
+        "lat": 27.32,
+        "lon": 124.9,
+        "category": "Typhoon",
+        "winds_kph": 165
+      },
+      {
+        "label": "Aug 27 2PM",
+        "lat": 27.35,
+        "lon": 121.85,
+        "category": "Typhoon",
+        "winds_kph": 165
+      },
+      {
+        "label": "Aug 28 2PM",
+        "lat": 26.99,
+        "lon": 118.96,
+        "category": "Typhoon",
+        "winds_kph": 165
+      },
+      {
+        "label": "Aug 29 2PM",
+        "lat": 24.21,
+        "lon": 115.23,
+        "category": "Typhoon",
+        "winds_kph": 165
+      }
+    ]
+  },
   "tcws": [],
   "rainfall": {
-    "outlook": "At 3:00 PM today, the center of the eye of Typhoon \"OBET\" {SAUDEL} was estimated based on all available data at 1,375 km East Northeast of Extreme Northern Luzon (24.5°N, 134.6°E) with maximum sustained winds of 165 km/h near the center and gustiness of up to 205 km/h. It is moving West Northwestward at 30 km/h. Southw",
+    "outlook": "heavy rainfall warnings, thunderstorm/rainfall advisories, and other severe weather information specific to your area, please monitor products issued by your local PAGASA Regional Services Division.",
     "warning_level": "Heavy",
     "warnings": [],
-    "habagat_affected": [
-      "Southwest Monsoon areas"
-    ],
+    "habagat_affected": [],
     "areas": []
   },
   "thunderstorm": {
-    "active": true,
-    "advisory": "At 3:00 PM today, the center of the eye of Typhoon \"OBET\" {SAUDEL} was estimated based on all available data at 1,375 km East Northeast of Extreme Northern Luzon (24.5°N, 134.6°E) with maximum sustained winds of 165 km/h near the center and gustiness of up to 205 km/h. It is moving West Northwestward at 30 km/h. Southw",
+    "active": false,
+    "advisory": "",
     "areas": []
   },
   "gale_warning": {
@@ -45,45 +117,51 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "At 3:00 PM today, the center of the eye of Typhoon \"OBET\" {SAUDEL} was estimated based on all available data at 1,375 km East Northeast of Extreme Northern Luzon (24.5°N, 134.6°E) with maximum sustained winds of 165 km/h near the center and gustiness of up to 205 km/h. It is moving West Northwestward at 30 km/h. Southw",
+    "synopsis": "",
     "regions": [
-      "Metro Manila, Ilocos Region, Cordillera Administrative Region, Cagayan Valley, Central Luzon, Cavite, Batangas, and Rizal",
-      "Western Visayas, Negros Island Region, and the rest of Luzon",
-      "The rest of the country"
+      "Most of Luzon",
+      "Visayas",
+      "Northern Mindanao",
+      "Dinagat Islands",
+      "Agusan del Norte",
+      "Surigao del Norte",
+      "Davao Occidental",
+      "Davao Oriental",
+      "Zamboanga del Norte",
+      "Misamis Occidental",
+      "Misamis Oriental",
+      "Basilan",
+      "Sulu",
+      "Tawi Tawi",
+      "Lanao del Norte",
+      "Lanao del Sur",
+      "Maguindanao del Norte",
+      "Sultan Kudarat"
     ],
-    "wind_outlook": [],
-    "wind_hazard": "",
-    "conditions": [
+    "wind_outlook": [
       {
-        "place": "Metro Manila, Ilocos Region, Cordillera Administrative Region, Cagayan Valley, Central Luzon, Cavite, Batangas, and Rizal",
-        "condition": "Cloudy skies with scattered rains and thunderstorms",
-        "cause": "Southwest Monsoon",
-        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
+        "when": "Today (24 August)",
+        "areas": "Most of Luzon and Visayas, Northern Mindanao, Dinagat Islands, Agusan del Norte, Surigao del Norte, Davao Occidental, and Davao Oriental"
       },
       {
-        "place": "Western Visayas, Negros Island Region, and the rest of Luzon",
-        "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
-        "cause": "Southwest Monsoon",
-        "impact": "Possible flash floods or landslides during severe thunderstorms"
+        "when": "Tomorrow (25 August)",
+        "areas": "Most of Luzon and Visayas, Zamboanga del Norte, Misamis Occidental, Misamis Oriental, Agusan del Norte, Surigao del Norte, Dinagat Islands, Basilan, Sulu, Tawi Tawi, Lanao del Norte, Lanao del Sur, Maguindanao del Norte, Sultan Kudarat, Davao Occidental, and Davao Oriental"
       },
       {
-        "place": "The rest of the country",
-        "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
-        "cause": "Localized Thunderstorms",
-        "impact": "Possible flash floods or landslides during severe thunderstorms"
+        "when": "Wednesday (26 August)",
+        "areas": "Most of Luzon and Visayas, Zamboanga del Norte, Misamis Occidental, Misamis Oriental, Agusan del Norte, Surigao del Norte, Dinagat Islands, Basilan, Sulu, Tawi Tawi, Lanao del Norte, Davao Occidental, and Davao Oriental"
       }
-    ]
-  },
-  "tc_outside_par": {
-    "present": false
+    ],
+    "wind_hazard": "Strong to gale-force gusts",
+    "conditions": []
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. At 3:00 PM today, the center of the eye of Typhoon \"OBET\" {SAUDEL} was estimated based on all available data at 1,375 km East Northeast of Extreme Northern Luzon (24.5°N, 134.6°E) with maximum sustained winds of 165 km/h near the center and gustiness of up to 205 km/h. It is moving West Northwestward at 30 km/h. Southw Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Typhoon “OBET” is being tracked by PAGASA. No CPF hub currently under a wind signal; continue monitoring.",
     "priority_routes": [],
     "risk_matrix": [],
-    "contractor_advisory": "",
+    "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
     "affected_deliveries_note": "",
     "hubs": [
       {
@@ -153,8 +231,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-24T17:05:26+08:00",
-        "entry": "Auto-check at 2026-08-24T17:05:26+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-08-24T18:04:48+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-08-24T18:04:48+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
