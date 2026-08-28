@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-08-28T16:00:00+08:00",
+    "issued_at": "2026-08-29T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-08-28T18:17:39+08:00",
+    "generated_at": "2026-08-29T05:13:02+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 560 km East Northeast of Itbayat, Batanes (22.6°N, 126.9°E). Southwest Monsoon affecting Luzon and Visayas.",
+    "outlook": "At 3:00 AM today, the Low Pressure Area (LPA) was estimated based on all available data at 520 km North Northeast of Itbayat, Batanes (24.8°N, 124.4°E). Southwest Monsoon affecting Luzon and Visayas.",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [
@@ -31,7 +31,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 560 km East Northeast of Itbayat, Batanes (22.6°N, 126.9°E). Southwest Monsoon affecting Luzon and Visayas.",
+    "advisory": "At 3:00 AM today, the Low Pressure Area (LPA) was estimated based on all available data at 520 km North Northeast of Itbayat, Batanes (24.8°N, 124.4°E). Southwest Monsoon affecting Luzon and Visayas.",
     "areas": []
   },
   "gale_warning": {
@@ -45,36 +45,36 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 560 km East Northeast of Itbayat, Batanes (22.6°N, 126.9°E). Southwest Monsoon affecting Luzon and Visayas.",
+    "synopsis": "At 3:00 AM today, the Low Pressure Area (LPA) was estimated based on all available data at 520 km North Northeast of Itbayat, Batanes (24.8°N, 124.4°E). Southwest Monsoon affecting Luzon and Visayas.",
     "regions": [
-      "Pangasinan, La Union, Benguet, Bataan, Zambales, Tarlac, and Occidental Mindoro",
-      "Metro Manila, Ilocos Norte, Ilocos Sur, Abra, Nueva Ecija, Pampanga, Bulacan, Rizal, Cavite, Laguna, Batangas, and Oriental Mindoro",
-      "Visayas and the rest of Luzon",
-      "Mindanao"
+      "Ilocos Sur, Pangasinan, La Union, Benguet, Bataan, Zambales, Tarlac, and Pampanga",
+      "Metro Manila, Ilocos Norte, Abra, Ifugao, Mountain Province, Nueva Vizcaya, Nueva Ecija, Bulacan, Rizal, Cavite, Laguna, Batangas, Occidental Mindoro, and Oriental Mindoro",
+      "The rest of Luzon, Western Visayas, and Negros Island Region",
+      "The rest of the country"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Pangasinan, La Union, Benguet, Bataan, Zambales, Tarlac, and Occidental Mindoro",
+        "place": "Ilocos Sur, Pangasinan, La Union, Benguet, Bataan, Zambales, Tarlac, and Pampanga",
         "condition": "Monsoon rains",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to heavy to intense rains"
       },
       {
-        "place": "Metro Manila, Ilocos Norte, Ilocos Sur, Abra, Nueva Ecija, Pampanga, Bulacan, Rizal, Cavite, Laguna, Batangas, and Oriental Mindoro",
+        "place": "Metro Manila, Ilocos Norte, Abra, Ifugao, Mountain Province, Nueva Vizcaya, Nueva Ecija, Bulacan, Rizal, Cavite, Laguna, Batangas, Occidental Mindoro, and Oriental Mindoro",
         "condition": "Occasional rains",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to heavy rains"
       },
       {
-        "place": "Visayas and the rest of Luzon",
+        "place": "The rest of Luzon, Western Visayas, and Negros Island Region",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Mindanao",
+        "place": "The rest of the country",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Localized Thunderstorms",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -87,7 +87,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 560 km East Northeast of Itbayat, Batanes (22.6°N, 126.9°E). Southwest Monsoon affecting Luzon and Visayas. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. At 3:00 AM today, the Low Pressure Area (LPA) was estimated based on all available data at 520 km North Northeast of Itbayat, Batanes (24.8°N, 124.4°E). Southwest Monsoon affecting Luzon and Visayas. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -160,8 +160,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-28T18:17:39+08:00",
-        "entry": "Auto-check at 2026-08-28T18:17:39+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-08-29T05:13:02+08:00",
+        "entry": "Auto-check at 2026-08-29T05:13:02+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
