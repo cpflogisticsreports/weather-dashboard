@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-08-29T16:00:00+08:00",
+    "issued_at": "2026-08-30T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-08-30T02:31:41+08:00",
+    "generated_at": "2026-08-30T05:08:18+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "SYNOPSIS:Southwest Monsoon affecting Luzon and Visayas.",
+    "outlook": "SYNOPSIS:At 3:00 AM today, a Low Pressure Area (LPA) was estimated based on all available data at 1,340 km East of Extreme Northern Luzon (20.7°N, 134.7°E). Southwest Monsoon affecting Luzon and Visayas.",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [
@@ -31,7 +31,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "SYNOPSIS:Southwest Monsoon affecting Luzon and Visayas.",
+    "advisory": "SYNOPSIS:At 3:00 AM today, a Low Pressure Area (LPA) was estimated based on all available data at 1,340 km East of Extreme Northern Luzon (20.7°N, 134.7°E). Southwest Monsoon affecting Luzon and Visayas.",
     "areas": []
   },
   "gale_warning": {
@@ -45,10 +45,10 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "SYNOPSIS:Southwest Monsoon affecting Luzon and Visayas.",
+    "synopsis": "SYNOPSIS:At 3:00 AM today, a Low Pressure Area (LPA) was estimated based on all available data at 1,340 km East of Extreme Northern Luzon (20.7°N, 134.7°E). Southwest Monsoon affecting Luzon and Visayas.",
     "regions": [
-      "Metro Manila, Ilocos Sur, Pangasinan, La Union, Benguet, Bataan, Zambales, Tarlac, Pampanga, Bulacan, Rizal, and Cavite",
-      "Ilocos Norte, Abra, Apayao, Kalinga, Ifugao, Mountain Province, Nueva Vizcaya, Nueva Ecija, Laguna, Batangas, Occidental Mindoro, and Oriental Mindoro",
+      "Ilocos Sur, Pangasinan, La Union, Benguet, Bataan, Zambales, Tarlac, and Pampanga",
+      "Metro Manila, Ilocos Norte, the rest of Cordillera Administrative Region, Nueva Vizcaya, Nueva Ecija, Bulacan, Rizal, Cavite, Laguna, Batangas, and Occidental Mindoro",
       "The rest of Luzon, Western Visayas, and Negros Island Region",
       "The rest of Visayas",
       "Mindanao"
@@ -57,13 +57,13 @@
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Metro Manila, Ilocos Sur, Pangasinan, La Union, Benguet, Bataan, Zambales, Tarlac, Pampanga, Bulacan, Rizal, and Cavite",
+        "place": "Ilocos Sur, Pangasinan, La Union, Benguet, Bataan, Zambales, Tarlac, and Pampanga",
         "condition": "Monsoon rains",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to heavy to intense rains"
       },
       {
-        "place": "Ilocos Norte, Abra, Apayao, Kalinga, Ifugao, Mountain Province, Nueva Vizcaya, Nueva Ecija, Laguna, Batangas, Occidental Mindoro, and Oriental Mindoro",
+        "place": "Metro Manila, Ilocos Norte, the rest of Cordillera Administrative Region, Nueva Vizcaya, Nueva Ecija, Bulacan, Rizal, Cavite, Laguna, Batangas, and Occidental Mindoro",
         "condition": "Occasional rains",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to heavy rains"
@@ -89,12 +89,19 @@
     ]
   },
   "tc_outside_par": {
-    "present": false
+    "present": true,
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
+    "category": "Tropical Depression",
+    "location": "1,105 KM WEST NORTHWEST OF EXTREME NORTHERN LUZON",
+    "lat": 25.0,
+    "lon": 112.2,
+    "winds_kph": "45",
+    "gustiness_kph": "75"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. SYNOPSIS:Southwest Monsoon affecting Luzon and Visayas. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. SYNOPSIS:At 3:00 AM today, a Low Pressure Area (LPA) was estimated based on all available data at 1,340 km East of Extreme Northern Luzon (20.7°N, 134.7°E). Southwest Monsoon affecting Luzon and Visayas. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -167,8 +174,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-30T02:31:41+08:00",
-        "entry": "Auto-check at 2026-08-30T02:31:41+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-08-30T05:08:18+08:00",
+        "entry": "Auto-check at 2026-08-30T05:08:18+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
