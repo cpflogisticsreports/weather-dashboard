@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 1",
-    "issued_at": "2026-08-30T11:00:00+08:00",
-    "valid_until": "2026-08-30T17:00:00+08:00",
-    "next_update": "2026-08-30T17:00:00+08:00",
-    "generated_at": "2026-08-30T15:17:52+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 2",
+    "issued_at": "2026-08-30T17:00:00+08:00",
+    "valid_until": "2026-08-30T23:00:00+08:00",
+    "next_update": "2026-08-30T23:00:00+08:00",
+    "generated_at": "2026-08-30T21:10:13+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,24 +21,24 @@
   "cyclone": {
     "center_text": "",
     "lat": 20.8,
-    "lon": 133.6,
+    "lon": 133.3,
     "max_sustained_winds_kph": 45,
     "gustiness_kph": 55,
     "central_pressure_hpa": "",
-    "movement": "West Northwestward at 15 km/h",
+    "movement": "",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
         "lat": 20.8,
-        "lon": 133.6,
+        "lon": 133.3,
         "category": "Tropical Depression",
         "winds_kph": 45
       },
       {
-        "label": "Sep 01 8AM",
-        "lat": 21.48,
-        "lon": 129.4,
+        "label": "Sep 01 2AM",
+        "lat": 21.34,
+        "lon": 128.99,
         "category": "Tropical Depression",
         "winds_kph": 45
       }
@@ -175,8 +175,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-30T15:17:52+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-08-30T15:17:52+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-08-30T21:10:13+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-08-30T21:10:13+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
