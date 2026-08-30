@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 3",
-    "issued_at": "2026-08-30T23:00:00+08:00",
-    "valid_until": "2026-08-31T05:00:00+08:00",
-    "next_update": "2026-08-31T05:00:00+08:00",
-    "generated_at": "2026-08-31T03:59:47+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 4",
+    "issued_at": "2026-08-31T05:00:00+08:00",
+    "valid_until": "2026-08-31T11:00:00+08:00",
+    "next_update": "2026-08-31T11:00:00+08:00",
+    "generated_at": "2026-08-31T06:38:46+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,26 +21,33 @@
   "cyclone": {
     "center_text": "",
     "lat": 20.7,
-    "lon": 132.5,
-    "max_sustained_winds_kph": 45,
-    "gustiness_kph": 55,
+    "lon": 132.8,
+    "max_sustained_winds_kph": 55,
+    "gustiness_kph": 70,
     "central_pressure_hpa": "",
-    "movement": "West Northwestward at 10 km/h",
+    "movement": "",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
         "lat": 20.7,
-        "lon": 132.5,
+        "lon": 132.8,
         "category": "Tropical Depression",
-        "winds_kph": 45
+        "winds_kph": 55
       },
       {
-        "label": "Sep 01 8AM",
-        "lat": 21.31,
-        "lon": 128.9,
+        "label": "Sep 03 2AM",
+        "lat": 24.52,
+        "lon": 128.13,
         "category": "Tropical Depression",
-        "winds_kph": 45
+        "winds_kph": 55
+      },
+      {
+        "label": "Sep 04 2AM",
+        "lat": 25.43,
+        "lon": 129.23,
+        "category": "Tropical Depression",
+        "winds_kph": 55
       }
     ]
   },
@@ -70,6 +77,7 @@
   "forecast": {
     "synopsis": "",
     "regions": [
+      "Most of the country. Tomorrow (01 September) until",
       "Most of Luzon",
       "Visayas",
       "Zamboanga del Norte",
@@ -79,20 +87,15 @@
       "Camiguin",
       "Dinagat Islands",
       "Davao Occidental",
-      "Davao Oriental",
-      "Most of the country"
+      "Davao Oriental"
     ],
     "wind_outlook": [
       {
-        "when": "Today (30 August)",
-        "areas": "Most of Luzon and Visayas, Zamboanga del Norte, Misamis Occidental, Lanao del Norte, Misamis Oriental, Camiguin, Dinagat Islands, Davao Occidental, and Davao Oriental"
+        "when": "Today (31 August)",
+        "areas": "Most of the country. Tomorrow (01 September) until"
       },
       {
-        "when": "Tomorrow (31 August)",
-        "areas": "Most of the country"
-      },
-      {
-        "when": "Tuesday (01 September)",
+        "when": "Wednesday (02 September)",
         "areas": "Most of Luzon and Visayas, Zamboanga del Norte, Misamis Occidental, Lanao del Norte, Misamis Oriental, Camiguin, Dinagat Islands, Davao Occidental, and Davao Oriental"
       }
     ],
@@ -175,8 +178,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-31T03:59:47+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-08-31T03:59:47+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-08-31T06:38:46+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-08-31T06:38:46+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
