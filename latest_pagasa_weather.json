@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 4",
-    "issued_at": "2026-08-31T05:00:00+08:00",
-    "valid_until": "2026-08-31T11:00:00+08:00",
-    "next_update": "2026-08-31T11:00:00+08:00",
-    "generated_at": "2026-08-31T08:52:28+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 5",
+    "issued_at": "2026-08-31T11:00:00+08:00",
+    "valid_until": "2026-08-31T17:00:00+08:00",
+    "next_update": "2026-08-31T17:00:00+08:00",
+    "generated_at": "2026-08-31T14:47:41+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -20,8 +20,8 @@
   },
   "cyclone": {
     "center_text": "",
-    "lat": 20.7,
-    "lon": 132.8,
+    "lat": 21.1,
+    "lon": 133.1,
     "max_sustained_winds_kph": 55,
     "gustiness_kph": 70,
     "central_pressure_hpa": "",
@@ -30,22 +30,22 @@
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 20.7,
-        "lon": 132.8,
+        "lat": 21.1,
+        "lon": 133.1,
         "category": "Tropical Depression",
         "winds_kph": 55
       },
       {
-        "label": "Sep 03 2AM",
-        "lat": 24.52,
-        "lon": 128.13,
+        "label": "Sep 02 8PM",
+        "lat": 25.28,
+        "lon": 129.05,
         "category": "Tropical Depression",
         "winds_kph": 55
       },
       {
-        "label": "Sep 04 2AM",
-        "lat": 25.43,
-        "lon": 129.23,
+        "label": "Sep 03 8AM",
+        "lat": 25.61,
+        "lon": 129.45,
         "category": "Tropical Depression",
         "winds_kph": 55
       }
@@ -178,8 +178,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-08-31T08:52:28+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-08-31T08:52:28+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-08-31T14:47:41+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-08-31T14:47:41+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
