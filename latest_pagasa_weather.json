@@ -1,53 +1,53 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 8",
-    "issued_at": "2026-09-01T05:00:00+08:00",
-    "valid_until": "2026-09-01T11:00:00+08:00",
-    "next_update": "2026-09-01T11:00:00+08:00",
-    "generated_at": "2026-09-01T08:05:25+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 9",
+    "issued_at": "2026-09-01T11:00:00+08:00",
+    "valid_until": "2026-09-01T17:00:00+08:00",
+    "next_update": "2026-09-01T17:00:00+08:00",
+    "generated_at": "2026-09-01T13:11:18+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "tropical_depression",
+    "mode": "tropical_storm",
     "has_active_tc": true,
     "storm_name_local": "PILANDOK",
     "storm_name_intl": null,
-    "category": "Tropical Depression",
+    "category": "Tropical Storm",
     "severity": "",
     "headline_override": ""
   },
   "cyclone": {
     "center_text": "",
     "lat": 22.0,
-    "lon": 131.9,
-    "max_sustained_winds_kph": 55,
-    "gustiness_kph": 70,
+    "lon": 132.0,
+    "max_sustained_winds_kph": 65,
+    "gustiness_kph": 80,
     "central_pressure_hpa": "",
-    "movement": "West Northwestward at 10 km/h",
+    "movement": "",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
         "lat": 22.0,
-        "lon": 131.9,
-        "category": "Tropical Depression",
-        "winds_kph": 55
+        "lon": 132.0,
+        "category": "Tropical Storm",
+        "winds_kph": 65
       },
       {
-        "label": "Sep 03 2AM",
-        "lat": 21.88,
-        "lon": 130.63,
-        "category": "Tropical Depression",
-        "winds_kph": 55
+        "label": "Sep 03 8AM",
+        "lat": 25.03,
+        "lon": 128.75,
+        "category": "Tropical Storm",
+        "winds_kph": 65
       },
       {
-        "label": "Sep 03 2PM",
-        "lat": 25.25,
-        "lon": 129.01,
-        "category": "Tropical Depression",
-        "winds_kph": 55
+        "label": "Sep 03 8PM",
+        "lat": 25.4,
+        "lon": 129.19,
+        "category": "Tropical Storm",
+        "winds_kph": 65
       }
     ]
   },
@@ -100,7 +100,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Tropical Depression “PILANDOK” is being tracked by PAGASA. No CPF hub currently under a wind signal; continue monitoring.",
+    "executive_summary": "Tropical Storm “PILANDOK” is being tracked by PAGASA. No CPF hub currently under a wind signal; continue monitoring.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
@@ -173,8 +173,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-01T08:05:25+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-09-01T08:05:25+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-09-01T13:11:18+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-09-01T13:11:18+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
