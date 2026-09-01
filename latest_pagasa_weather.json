@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 7",
-    "issued_at": "2026-08-31T23:00:00+08:00",
-    "valid_until": "2026-09-01T05:00:00+08:00",
-    "next_update": "2026-09-01T05:00:00+08:00",
-    "generated_at": "2026-09-01T04:42:17+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 8",
+    "issued_at": "2026-09-01T05:00:00+08:00",
+    "valid_until": "2026-09-01T11:00:00+08:00",
+    "next_update": "2026-09-01T11:00:00+08:00",
+    "generated_at": "2026-09-01T08:05:25+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,31 +21,31 @@
   "cyclone": {
     "center_text": "",
     "lat": 22.0,
-    "lon": 132.0,
+    "lon": 131.9,
     "max_sustained_winds_kph": 55,
     "gustiness_kph": 70,
     "central_pressure_hpa": "",
-    "movement": "Northwestward at 10 km/h",
+    "movement": "West Northwestward at 10 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
         "lat": 22.0,
-        "lon": 132.0,
+        "lon": 131.9,
         "category": "Tropical Depression",
         "winds_kph": 55
       },
       {
-        "label": "Sep 03 8AM",
-        "lat": 25.0,
-        "lon": 128.71,
+        "label": "Sep 03 2AM",
+        "lat": 21.88,
+        "lon": 130.63,
         "category": "Tropical Depression",
         "winds_kph": 55
       },
       {
-        "label": "Sep 03 8PM",
-        "lat": 25.61,
-        "lon": 129.45,
+        "label": "Sep 03 2PM",
+        "lat": 25.25,
+        "lon": 129.01,
         "category": "Tropical Depression",
         "winds_kph": 55
       }
@@ -77,7 +77,6 @@
   "forecast": {
     "synopsis": "",
     "regions": [
-      "Most of the country. Tomorrow (01 September) until",
       "Most of Luzon",
       "Visayas",
       "Zamboanga del Norte",
@@ -91,11 +90,7 @@
     ],
     "wind_outlook": [
       {
-        "when": "Today (31 August)",
-        "areas": "Most of the country. Tomorrow (01 September) until"
-      },
-      {
-        "when": "Wednesday (02 September)",
+        "when": "Thursday (03 September)",
         "areas": "Most of Luzon and Visayas, Zamboanga del Norte, Misamis Occidental, Lanao del Norte, Misamis Oriental, Camiguin, Dinagat Islands, Davao Occidental, and Davao Oriental"
       }
     ],
@@ -178,8 +173,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-01T04:42:17+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-09-01T04:42:17+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-09-01T08:05:25+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-09-01T08:05:25+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
