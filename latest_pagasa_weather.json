@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 12",
-    "issued_at": "2026-09-02T05:00:00+08:00",
-    "valid_until": "2026-09-02T11:00:00+08:00",
-    "next_update": "2026-09-02T11:00:00+08:00",
-    "generated_at": "2026-09-02T09:15:51+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 13",
+    "issued_at": "2026-09-02T11:00:00+08:00",
+    "valid_until": "2026-09-02T17:00:00+08:00",
+    "next_update": "2026-09-02T17:00:00+08:00",
+    "generated_at": "2026-09-02T13:53:50+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -25,7 +25,7 @@
     "max_sustained_winds_kph": 65,
     "gustiness_kph": 80,
     "central_pressure_hpa": "",
-    "movement": "East Northeastward at 10 km/h",
+    "movement": "Northwestward at 10 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
@@ -36,16 +36,16 @@
         "winds_kph": 65
       },
       {
-        "label": "Sep 03 2AM",
-        "lat": 21.91,
-        "lon": 130.72,
+        "label": "Sep 03 8AM",
+        "lat": 24.82,
+        "lon": 128.5,
         "category": "Tropical Storm",
         "winds_kph": 65
       },
       {
-        "label": "Sep 03 2PM",
-        "lat": 24.88,
-        "lon": 128.57,
+        "label": "Sep 03 8PM",
+        "lat": 24.94,
+        "lon": 128.64,
         "category": "Tropical Storm",
         "winds_kph": 65
       }
@@ -173,8 +173,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-02T09:15:51+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-09-02T09:15:51+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-09-02T13:53:50+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-09-02T13:53:50+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
