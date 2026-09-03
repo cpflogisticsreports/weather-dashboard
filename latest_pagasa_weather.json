@@ -1,102 +1,37 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 17F",
-    "issued_at": "2026-09-03T11:00:00+08:00",
+    "bulletin_title": "PAGASA Daily Weather Forecast",
+    "issued_at": "2026-09-03T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-09-03T23:07:47+08:00",
-    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
+    "generated_at": "2026-09-04T02:41:26+08:00",
+    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "tropical_storm",
-    "has_active_tc": true,
-    "storm_name_local": "PILANDOK",
-    "storm_name_intl": null,
-    "category": "Tropical Storm",
+    "mode": "advisory",
+    "has_active_tc": false,
+    "storm_name_local": "",
+    "storm_name_intl": "",
+    "category": "",
     "severity": "",
     "headline_override": ""
   },
-  "cyclone": {
-    "center_text": "",
-    "lat": 26.8,
-    "lon": 129.8,
-    "max_sustained_winds_kph": 85,
-    "gustiness_kph": 105,
-    "central_pressure_hpa": "",
-    "movement": "Northward at 30 km/h",
-    "wind_extent_km": "",
-    "forecast_track": [
-      {
-        "label": "Now",
-        "lat": 26.8,
-        "lon": 129.8,
-        "category": "Tropical Storm",
-        "winds_kph": 85
-      },
-      {
-        "label": "Sep 03 8PM",
-        "lat": 25.12,
-        "lon": 128.86,
-        "category": "Tropical Storm",
-        "winds_kph": 85
-      },
-      {
-        "label": "Sep 04 8AM",
-        "lat": 27.56,
-        "lon": 125.7,
-        "category": "Tropical Storm",
-        "winds_kph": 85
-      },
-      {
-        "label": "Sep 04 8PM",
-        "lat": 27.15,
-        "lon": 125.49,
-        "category": "Tropical Storm",
-        "winds_kph": 85
-      },
-      {
-        "label": "Sep 05 8AM",
-        "lat": 24.43,
-        "lon": 128.02,
-        "category": "Tropical Storm",
-        "winds_kph": 85
-      },
-      {
-        "label": "Sep 05 8PM",
-        "lat": 24.06,
-        "lon": 127.59,
-        "category": "Tropical Storm",
-        "winds_kph": 85
-      },
-      {
-        "label": "Sep 07 8AM",
-        "lat": 21.73,
-        "lon": 130.18,
-        "category": "Tropical Storm",
-        "winds_kph": 85
-      },
-      {
-        "label": "Sep 08 8AM",
-        "lat": 25.46,
-        "lon": 129.27,
-        "category": "Tropical Storm",
-        "winds_kph": 85
-      }
-    ]
-  },
+  "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "heavy rainfall warnings, thunderstorm/rainfall advisories, and other severe weather information specific to your area, please monitor products issued by your local PAGASA Regional Services Division.",
+    "outlook": "Southwest Monsoon affecting Luzon and Visayas.",
     "warning_level": "Heavy",
     "warnings": [],
-    "habagat_affected": [],
+    "habagat_affected": [
+      "Southwest Monsoon areas"
+    ],
     "areas": []
   },
   "thunderstorm": {
-    "active": false,
-    "advisory": "",
+    "active": true,
+    "advisory": "Southwest Monsoon affecting Luzon and Visayas.",
     "areas": []
   },
   "gale_warning": {
@@ -110,35 +45,59 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "",
+    "synopsis": "Southwest Monsoon affecting Luzon and Visayas.",
     "regions": [
-      "Most of Luzon",
-      "Visayas",
-      "Zamboanga del Norte",
-      "Misamis Occidental",
-      "Lanao del Norte",
-      "Misamis Oriental",
-      "Camiguin",
-      "Dinagat Islands",
-      "Davao Occidental",
-      "Davao Oriental"
+      "Ilocos Region, Abra, Benguet, Zambales, Bataan, and Occidental Mindoro",
+      "Metro Manila, Cagayan Valley, the rest of Cordillera Administrative Region, the rest of Central Luzon, Cavite, Batangas, Rizal, Laguna, and Oriental Mindoro",
+      "Visayas and the rest of Luzon",
+      "Mindanao"
     ],
-    "wind_outlook": [
+    "wind_outlook": [],
+    "wind_hazard": "",
+    "conditions": [
       {
-        "when": "Saturday (05 September)",
-        "areas": "Most of Luzon and Visayas, Zamboanga del Norte, Misamis Occidental, Lanao del Norte, Misamis Oriental, Camiguin, Dinagat Islands, Davao Occidental, and Davao Oriental"
+        "place": "Ilocos Region, Abra, Benguet, Zambales, Bataan, and Occidental Mindoro",
+        "condition": "Occasional rains",
+        "cause": "Southwest Monsoon",
+        "impact": "Possible flash floods or landslides due to moderate to heavy rains"
+      },
+      {
+        "place": "Metro Manila, Cagayan Valley, the rest of Cordillera Administrative Region, the rest of Central Luzon, Cavite, Batangas, Rizal, Laguna, and Oriental Mindoro",
+        "condition": "Cloudy skies with scattered rains and thunderstorms",
+        "cause": "Southwest Monsoon",
+        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
+      },
+      {
+        "place": "Visayas and the rest of Luzon",
+        "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
+        "cause": "Southwest Monsoon",
+        "impact": "Possible flash floods or landslides during severe thunderstorms"
+      },
+      {
+        "place": "Mindanao",
+        "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
+        "cause": "Localized Thunderstorms",
+        "impact": "Possible flash floods or landslides during severe thunderstorms"
       }
-    ],
-    "wind_hazard": "Strong to gale-force gusts",
-    "conditions": []
+    ]
+  },
+  "tc_outside_par": {
+    "present": true,
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
+    "category": "Tropical Storm",
+    "location": "715 KM NORTHWEST OF ITBAYAT, BATANES",
+    "lat": 24.6,
+    "lon": 116.2,
+    "winds_kph": "65",
+    "gustiness_kph": "110"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Tropical Storm “PILANDOK” is being tracked by PAGASA. No CPF hub currently under a wind signal; continue monitoring.",
+    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting Luzon and Visayas. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
-    "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
+    "contractor_advisory": "",
     "affected_deliveries_note": "",
     "hubs": [
       {
@@ -208,8 +167,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-03T23:07:47+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-09-03T23:07:47+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-09-04T02:41:26+08:00",
+        "entry": "Auto-check at 2026-09-04T02:41:26+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
