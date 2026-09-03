@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 16",
-    "issued_at": "2026-09-03T05:00:00+08:00",
-    "valid_until": "2026-09-03T11:00:00+08:00",
-    "next_update": "2026-09-03T11:00:00+08:00",
-    "generated_at": "2026-09-03T09:22:45+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 17F",
+    "issued_at": "2026-09-03T11:00:00+08:00",
+    "valid_until": "",
+    "next_update": "",
+    "generated_at": "2026-09-03T14:17:02+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -20,82 +20,75 @@
   },
   "cyclone": {
     "center_text": "",
-    "lat": 25.0,
-    "lon": 130.8,
-    "max_sustained_winds_kph": 75,
-    "gustiness_kph": 90,
+    "lat": 26.8,
+    "lon": 129.8,
+    "max_sustained_winds_kph": 85,
+    "gustiness_kph": 105,
     "central_pressure_hpa": "",
-    "movement": "Northwestward at 20 km/h",
+    "movement": "Northward at 30 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 25.0,
-        "lon": 130.8,
+        "lat": 26.8,
+        "lon": 129.8,
         "category": "Tropical Storm",
-        "winds_kph": 75
+        "winds_kph": 85
       },
       {
-        "label": "Sep 03 2PM",
-        "lat": 24.97,
-        "lon": 128.68,
+        "label": "Sep 03 8PM",
+        "lat": 25.12,
+        "lon": 128.86,
         "category": "Tropical Storm",
-        "winds_kph": 75
+        "winds_kph": 85
       },
       {
-        "label": "Sep 04 2AM",
-        "lat": 25.15,
-        "lon": 128.9,
+        "label": "Sep 04 8AM",
+        "lat": 27.56,
+        "lon": 125.7,
         "category": "Tropical Storm",
-        "winds_kph": 75
+        "winds_kph": 85
       },
       {
-        "label": "Sep 04 2PM",
-        "lat": 27.2,
-        "lon": 125.51,
+        "label": "Sep 04 8PM",
+        "lat": 27.15,
+        "lon": 125.49,
         "category": "Tropical Storm",
-        "winds_kph": 75
+        "winds_kph": 85
       },
       {
-        "label": "Sep 05 2AM",
-        "lat": 24.91,
-        "lon": 128.6,
+        "label": "Sep 05 8AM",
+        "lat": 24.43,
+        "lon": 128.02,
         "category": "Tropical Storm",
-        "winds_kph": 75
+        "winds_kph": 85
       },
       {
-        "label": "Sep 05 2PM",
-        "lat": 24.58,
-        "lon": 128.2,
+        "label": "Sep 05 8PM",
+        "lat": 24.06,
+        "lon": 127.59,
         "category": "Tropical Storm",
-        "winds_kph": 75
+        "winds_kph": 85
       },
       {
-        "label": "Sep 06 2AM",
-        "lat": 24.24,
-        "lon": 127.8,
+        "label": "Sep 07 8AM",
+        "lat": 21.73,
+        "lon": 130.18,
         "category": "Tropical Storm",
-        "winds_kph": 75
+        "winds_kph": 85
       },
       {
-        "label": "Sep 07 2AM",
-        "lat": 24.58,
-        "lon": 128.2,
+        "label": "Sep 08 8AM",
+        "lat": 25.46,
+        "lon": 129.27,
         "category": "Tropical Storm",
-        "winds_kph": 75
-      },
-      {
-        "label": "Sep 08 2AM",
-        "lat": 25.22,
-        "lon": 128.97,
-        "category": "Tropical Storm",
-        "winds_kph": 75
+        "winds_kph": 85
       }
     ]
   },
   "tcws": [],
   "rainfall": {
-    "outlook": "heavy rainfall and severe winds may still be experienced in localities outside the landfall point and the forecast confidence cone. Refer to “Other Hazards affecting Land Areas” for more details. Furthermore, the",
+    "outlook": "heavy rainfall warnings, thunderstorm/rainfall advisories, and other severe weather information specific to your area, please monitor products issued by your local PAGASA Regional Services Division.",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [],
@@ -215,8 +208,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-03T09:22:45+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-09-03T09:22:45+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-09-03T14:17:02+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-09-03T14:17:02+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
