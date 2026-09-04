@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-09-04T04:00:00+08:00",
+    "issued_at": "2026-09-04T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-09-04T13:55:18+08:00",
+    "generated_at": "2026-09-04T18:52:48+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -48,9 +48,9 @@
     "synopsis": "Southwest Monsoon affecting Luzon and Visayas.",
     "regions": [
       "Zambales and Bataan",
-      "Metro Manila, Pangasinan, Pampanga, Tarlac, Bulacan, Rizal, Cavite, Batangas, and Occidental Mindoro",
-      "Cagayan Valley, Cordillera Administrative Region, the rest of Ilocos Region, the rest of Central Luzon, the rest of CALABARZON, the rest of MIMAROPA, Antique, Iloilo, and Guimaras",
-      "The rest of Luzon and Visayas",
+      "Metro Manila, Tarlac, Pampanga, Bulacan, Rizal, Cavite, Laguna, Batangas, Occidental Mindoro, and Oriental Mindoro",
+      "Ilocos Region, Cordillera Administrative Region, Cagayan Valley, the rest of Central Luzon, the rest of CALABARZON, the rest of MIMAROPA, Antique, Iloilo, and Guimaras",
+      "The rest of Luzon and the rest of Visayas",
       "Mindanao"
     ],
     "wind_outlook": [],
@@ -63,19 +63,19 @@
         "impact": "Possible flash floods or landslides due to heavy to intense rains"
       },
       {
-        "place": "Metro Manila, Pangasinan, Pampanga, Tarlac, Bulacan, Rizal, Cavite, Batangas, and Occidental Mindoro",
+        "place": "Metro Manila, Tarlac, Pampanga, Bulacan, Rizal, Cavite, Laguna, Batangas, Occidental Mindoro, and Oriental Mindoro",
         "condition": "Occasional rains",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to heavy rains"
       },
       {
-        "place": "Cagayan Valley, Cordillera Administrative Region, the rest of Ilocos Region, the rest of Central Luzon, the rest of CALABARZON, the rest of MIMAROPA, Antique, Iloilo, and Guimaras",
+        "place": "Ilocos Region, Cordillera Administrative Region, Cagayan Valley, the rest of Central Luzon, the rest of CALABARZON, the rest of MIMAROPA, Antique, Iloilo, and Guimaras",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "The rest of Luzon and Visayas",
+        "place": "The rest of Luzon and the rest of Visayas",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -90,10 +90,10 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
     "category": "Tropical Depression",
-    "location": "1,770 KM EAST OF EXTREME NORTHERN LUZON",
-    "lat": 19.0,
+    "location": "1,700 KM EAST OF EXTREME NORTHERN LUZON",
+    "lat": 20.8,
     "lon": 138.3,
     "winds_kph": "45",
     "gustiness_kph": "55"
@@ -174,8 +174,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-04T13:55:18+08:00",
-        "entry": "Auto-check at 2026-09-04T13:55:18+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-09-04T18:52:48+08:00",
+        "entry": "Auto-check at 2026-09-04T18:52:48+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
