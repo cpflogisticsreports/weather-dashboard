@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-09-04T16:00:00+08:00",
+    "issued_at": "2026-09-05T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-09-05T02:11:26+08:00",
+    "generated_at": "2026-09-05T04:46:46+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -47,35 +47,35 @@
   "forecast": {
     "synopsis": "Southwest Monsoon affecting Luzon and Visayas.",
     "regions": [
-      "Zambales and Bataan",
-      "Metro Manila, Tarlac, Pampanga, Bulacan, Rizal, Cavite, Laguna, Batangas, Occidental Mindoro, and Oriental Mindoro",
-      "Ilocos Region, Cordillera Administrative Region, Cagayan Valley, the rest of Central Luzon, the rest of CALABARZON, the rest of MIMAROPA, Antique, Iloilo, and Guimaras",
-      "The rest of Luzon and the rest of Visayas",
+      "Occidental Mindoro",
+      "Metro Manila, Zambales, Bataan, Tarlac, Pampanga, Bulacan, Rizal, Cavite, Laguna, Batangas, Oriental Mindoro, and Antique",
+      "Ilocos Region, Bicol Region, the rest of Central Luzon, the rest of CALABARZON, the rest of MIMAROPA, the rest of Western Visayas, Abra, Benguet, and Northern Samar",
+      "The rest of Luzon and Visayas",
       "Mindanao"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Zambales and Bataan",
+        "place": "Occidental Mindoro",
         "condition": "Monsoon rains",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to heavy to intense rains"
       },
       {
-        "place": "Metro Manila, Tarlac, Pampanga, Bulacan, Rizal, Cavite, Laguna, Batangas, Occidental Mindoro, and Oriental Mindoro",
+        "place": "Metro Manila, Zambales, Bataan, Tarlac, Pampanga, Bulacan, Rizal, Cavite, Laguna, Batangas, Oriental Mindoro, and Antique",
         "condition": "Occasional rains",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to heavy rains"
       },
       {
-        "place": "Ilocos Region, Cordillera Administrative Region, Cagayan Valley, the rest of Central Luzon, the rest of CALABARZON, the rest of MIMAROPA, Antique, Iloilo, and Guimaras",
+        "place": "Ilocos Region, Bicol Region, the rest of Central Luzon, the rest of CALABARZON, the rest of MIMAROPA, the rest of Western Visayas, Abra, Benguet, and Northern Samar",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "The rest of Luzon and the rest of Visayas",
+        "place": "The rest of Luzon and Visayas",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -90,13 +90,13 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
     "category": "Tropical Depression",
-    "location": "1,700 KM EAST OF EXTREME NORTHERN LUZON",
-    "lat": 20.8,
-    "lon": 138.3,
-    "winds_kph": "45",
-    "gustiness_kph": "55"
+    "location": "1,685 KM EAST NORTHEAST OF EXTREME NORTHERN LUZON",
+    "lat": 24.7,
+    "lon": 137.7,
+    "winds_kph": "55",
+    "gustiness_kph": "70"
   },
   "cpf": {
     "operational_status": "",
@@ -174,8 +174,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-05T02:11:26+08:00",
-        "entry": "Auto-check at 2026-09-05T02:11:26+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-09-05T04:46:46+08:00",
+        "entry": "Auto-check at 2026-09-05T04:46:46+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
