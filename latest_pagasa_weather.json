@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-09-06T04:00:00+08:00",
+    "issued_at": "2026-09-06T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-09-06T14:01:28+08:00",
+    "generated_at": "2026-09-06T18:48:08+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -47,8 +47,8 @@
   "forecast": {
     "synopsis": "Southwest Monsoon affecting Luzon and Visayas.",
     "regions": [
-      "Zambales, Bataan, Cavite, Batangas, and Occidental Mindoro",
-      "Metro Manila, Ilocos Region, Cordillera Administrative Region, Western Visayas, the rest of Central Luzon, the rest of MIMAROPA, Rizal, and Laguna",
+      "Zambales, Bataan, Batangas, and Occidental Mindoro",
+      "Metro Manila, Ilocos Region, Abra, Benguet, Antique, and the rest of Central Luzon, CALABARZON, and MIMAROPA",
       "The rest of Luzon and Visayas",
       "Mindanao"
     ],
@@ -56,13 +56,13 @@
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Zambales, Bataan, Cavite, Batangas, and Occidental Mindoro",
+        "place": "Zambales, Bataan, Batangas, and Occidental Mindoro",
         "condition": "Occasional rains",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to heavy rains"
       },
       {
-        "place": "Metro Manila, Ilocos Region, Cordillera Administrative Region, Western Visayas, the rest of Central Luzon, the rest of MIMAROPA, Rizal, and Laguna",
+        "place": "Metro Manila, Ilocos Region, Abra, Benguet, Antique, and the rest of Central Luzon, CALABARZON, and MIMAROPA",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
@@ -83,11 +83,11 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
     "category": "Tropical Storm",
-    "location": "875 KM NORTHEAST OF EXTREME NORTHERN LUZON",
-    "lat": 25.5,
-    "lon": 128.7,
+    "location": "1,035 KM EAST NORTHEAST OF EXTREME NORTHERN LUZON",
+    "lat": 25.6,
+    "lon": 130.5,
     "winds_kph": "65",
     "gustiness_kph": "80"
   },
@@ -167,8 +167,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-06T14:01:28+08:00",
-        "entry": "Auto-check at 2026-09-06T14:01:28+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-09-06T18:48:08+08:00",
+        "entry": "Auto-check at 2026-09-06T18:48:08+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
