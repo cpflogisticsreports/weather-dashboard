@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-09-07T04:00:00+08:00",
+    "issued_at": "2026-09-07T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-09-07T13:16:32+08:00",
+    "generated_at": "2026-09-07T18:27:43+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -47,28 +47,35 @@
   "forecast": {
     "synopsis": "Southwest Monsoon affecting Luzon and Visayas.",
     "regions": [
-      "Zambales, Bataan, Batangas, and Occidental Mindoro",
-      "Metro Manila, Ilocos Region, Abra, Benguet, Antique, and the rest of Central Luzon, CALABARZON, and MIMAROPA",
-      "The rest of Luzon and Visayas",
+      "Zambales",
+      "Pangasinan, Tarlac, Pampanga, Bataan, Cavite, Batangas, Occidental Mindoro, and Antique",
+      "Metro Manila, the rest of Luzon, and the rest of Western Visayas",
+      "The rest of Visayas",
       "Mindanao"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Zambales, Bataan, Batangas, and Occidental Mindoro",
+        "place": "Zambales",
+        "condition": "Monsoon Rains",
+        "cause": "Southwest Monsoon",
+        "impact": "Possible flash floods or landslides due to moderate to heavy with at times intense rains"
+      },
+      {
+        "place": "Pangasinan, Tarlac, Pampanga, Bataan, Cavite, Batangas, Occidental Mindoro, and Antique",
         "condition": "Occasional rains",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to heavy rains"
       },
       {
-        "place": "Metro Manila, Ilocos Region, Abra, Benguet, Antique, and the rest of Central Luzon, CALABARZON, and MIMAROPA",
+        "place": "Metro Manila, the rest of Luzon, and the rest of Western Visayas",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "The rest of Luzon and Visayas",
+        "place": "The rest of Visayas",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -82,14 +89,7 @@
     ]
   },
   "tc_outside_par": {
-    "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
-    "category": "Tropical Storm",
-    "location": "1,155 KM EAST NORTHEAST OF EXTREME NORTHERN LUZON",
-    "lat": 25.9,
-    "lon": 131.7,
-    "winds_kph": "65",
-    "gustiness_kph": "80"
+    "present": false
   },
   "cpf": {
     "operational_status": "",
@@ -167,8 +167,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-07T13:16:32+08:00",
-        "entry": "Auto-check at 2026-09-07T13:16:32+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-09-07T18:27:43+08:00",
+        "entry": "Auto-check at 2026-09-07T18:27:43+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
