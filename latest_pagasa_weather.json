@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-09-07T16:00:00+08:00",
+    "issued_at": "2026-09-08T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-09-08T03:50:39+08:00",
+    "generated_at": "2026-09-08T06:37:24+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -47,9 +47,9 @@
   "forecast": {
     "synopsis": "Southwest Monsoon affecting Luzon and Visayas.",
     "regions": [
-      "Zambales",
-      "Pangasinan, Tarlac, Pampanga, Bataan, Cavite, Batangas, Occidental Mindoro, and Antique",
-      "Metro Manila, the rest of Luzon, and the rest of Western Visayas",
+      "Zambales and Bataan",
+      "Pangasinan, Tarlac, Pampanga, Cavite, Batangas, and Occidental Mindoro",
+      "Metro Manila, the rest of Luzon, and Western Visayas",
       "The rest of Visayas",
       "Mindanao"
     ],
@@ -57,19 +57,19 @@
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Zambales",
-        "condition": "Monsoon Rains",
+        "place": "Zambales and Bataan",
+        "condition": "Monsoon rains",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to heavy with at times intense rains"
       },
       {
-        "place": "Pangasinan, Tarlac, Pampanga, Bataan, Cavite, Batangas, Occidental Mindoro, and Antique",
+        "place": "Pangasinan, Tarlac, Pampanga, Cavite, Batangas, and Occidental Mindoro",
         "condition": "Occasional rains",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to heavy rains"
       },
       {
-        "place": "Metro Manila, the rest of Luzon, and the rest of Western Visayas",
+        "place": "Metro Manila, the rest of Luzon, and Western Visayas",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
@@ -167,8 +167,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-08T03:50:39+08:00",
-        "entry": "Auto-check at 2026-09-08T03:50:39+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-09-08T06:37:24+08:00",
+        "entry": "Auto-check at 2026-09-08T06:37:24+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
