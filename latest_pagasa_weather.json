@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-09-08T04:00:00+08:00",
+    "issued_at": "2026-09-08T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-09-08T13:17:51+08:00",
+    "generated_at": "2026-09-08T17:58:31+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -47,9 +47,9 @@
   "forecast": {
     "synopsis": "Southwest Monsoon affecting Luzon and Visayas.",
     "regions": [
-      "Zambales and Bataan",
-      "Pangasinan, Tarlac, Pampanga, Cavite, Batangas, and Occidental Mindoro",
-      "Metro Manila, the rest of Luzon, and Western Visayas",
+      "Zambales, Bataan, Pangasinan, Tarlac, Pampanga, Cavite, Batangas, and Occidental Mindoro",
+      "Cagayan Valley, Cordillera Administrative Region, and Aurora",
+      "Metro Manila, the rest of Luzon, Aklan, and Antique",
       "The rest of Visayas",
       "Mindanao"
     ],
@@ -57,19 +57,19 @@
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Zambales and Bataan",
-        "condition": "Monsoon rains",
-        "cause": "Southwest Monsoon",
-        "impact": "Possible flash floods or landslides due to moderate to heavy with at times intense rains"
-      },
-      {
-        "place": "Pangasinan, Tarlac, Pampanga, Cavite, Batangas, and Occidental Mindoro",
+        "place": "Zambales, Bataan, Pangasinan, Tarlac, Pampanga, Cavite, Batangas, and Occidental Mindoro",
         "condition": "Occasional rains",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to heavy rains"
       },
       {
-        "place": "Metro Manila, the rest of Luzon, and Western Visayas",
+        "place": "Cagayan Valley, Cordillera Administrative Region, and Aurora",
+        "condition": "Cloudy skies with scattered rains and thunderstorms",
+        "cause": "Trough of TC Krovanh",
+        "impact": "Possible flash floods or landslides due to moderate to heavy rains"
+      },
+      {
+        "place": "Metro Manila, the rest of Luzon, Aklan, and Antique",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
@@ -167,8 +167,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-08T13:17:51+08:00",
-        "entry": "Auto-check at 2026-09-08T13:17:51+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-09-08T17:58:31+08:00",
+        "entry": "Auto-check at 2026-09-08T17:58:31+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
