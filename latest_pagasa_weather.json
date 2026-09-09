@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-09-09T04:00:00+08:00",
+    "issued_at": "2026-09-09T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-09-09T14:28:43+08:00",
+    "generated_at": "2026-09-09T19:45:22+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Southwest Monsoon affecting Central Luzon, Southern Luzon, and Visayas. Trough of Tropical Depression \"KROVANH\" affecting Northern Luzon.",
+    "outlook": "Southwest Monsoon affecting Central Luzon, Southern Luzon, and Visayas.",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [
@@ -31,7 +31,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Southwest Monsoon affecting Central Luzon, Southern Luzon, and Visayas. Trough of Tropical Depression \"KROVANH\" affecting Northern Luzon.",
+    "advisory": "Southwest Monsoon affecting Central Luzon, Southern Luzon, and Visayas.",
     "areas": []
   },
   "gale_warning": {
@@ -45,43 +45,36 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Southwest Monsoon affecting Central Luzon, Southern Luzon, and Visayas. Trough of Tropical Depression \"KROVANH\" affecting Northern Luzon.",
+    "synopsis": "Southwest Monsoon affecting Central Luzon, Southern Luzon, and Visayas.",
     "regions": [
-      "Zambales, Bataan, Tarlac, Pampanga, Cavite, Batangas, and Occidental Mindoro",
-      "Ilocos Region, Cagayan Valley, Cordillera Administrative Region, and Aurora",
-      "Metro Manila, the rest of Luzon, Aklan, and Antique",
-      "The rest of Visayas",
-      "Mindanao"
+      "Occidental Mindoro",
+      "Metro Manila, Central Luzon, CALABARZON, rest of MIMAROPA, Pangasinan, La Union, Benguet, Nueva Vizcaya, Quirino, Camarines Norte, Camarines Sur, Albay, Catanduanes, Aklan, and Antique",
+      "The rest of Luzon, the rest of Visayas, Zamboanga Peninsula, and Northern Mindanao",
+      "The rest of Mindanao"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Zambales, Bataan, Tarlac, Pampanga, Cavite, Batangas, and Occidental Mindoro",
+        "place": "Occidental Mindoro",
+        "condition": "Monsoon rains",
+        "cause": "Southwest Monsoon",
+        "impact": "Possible flash floods or landslides due to heavy to intense rains"
+      },
+      {
+        "place": "Metro Manila, Central Luzon, CALABARZON, rest of MIMAROPA, Pangasinan, La Union, Benguet, Nueva Vizcaya, Quirino, Camarines Norte, Camarines Sur, Albay, Catanduanes, Aklan, and Antique",
         "condition": "Occasional rains",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to heavy rains"
       },
       {
-        "place": "Ilocos Region, Cagayan Valley, Cordillera Administrative Region, and Aurora",
-        "condition": "Cloudy skies with scattered rains and thunderstorms",
-        "cause": "Trough of TD Krovanh",
-        "impact": "Possible flash floods or landslides due to moderate to heavy rains"
-      },
-      {
-        "place": "Metro Manila, the rest of Luzon, Aklan, and Antique",
+        "place": "The rest of Luzon, the rest of Visayas, Zamboanga Peninsula, and Northern Mindanao",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "The rest of Visayas",
-        "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
-        "cause": "Southwest Monsoon",
-        "impact": "Possible flash floods or landslides during severe thunderstorms"
-      },
-      {
-        "place": "Mindanao",
+        "place": "The rest of Mindanao",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Localized Thunderstorms",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -94,7 +87,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting Central Luzon, Southern Luzon, and Visayas. Trough of Tropical Depression \"KROVANH\" affecting Northern Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting Central Luzon, Southern Luzon, and Visayas. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -167,8 +160,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-09T14:28:43+08:00",
-        "entry": "Auto-check at 2026-09-09T14:28:43+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-09-09T19:45:22+08:00",
+        "entry": "Auto-check at 2026-09-09T19:45:22+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
