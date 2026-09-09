@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-09-09T16:00:00+08:00",
+    "issued_at": "2026-09-10T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-09-10T02:47:47+08:00",
+    "generated_at": "2026-09-10T05:32:20+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -47,28 +47,28 @@
   "forecast": {
     "synopsis": "Southwest Monsoon affecting Central Luzon, Southern Luzon, and Visayas.",
     "regions": [
-      "Occidental Mindoro",
-      "Metro Manila, Central Luzon, CALABARZON, rest of MIMAROPA, Pangasinan, La Union, Benguet, Nueva Vizcaya, Quirino, Camarines Norte, Camarines Sur, Albay, Catanduanes, Aklan, and Antique",
-      "The rest of Luzon, the rest of Visayas, Zamboanga Peninsula, and Northern Mindanao",
+      "Zambales",
+      "Metro Manila, the rest of Central Luzon, Pangasinan, La Union, Benguet, Isabela, Nueva Vizcaya, Quirino, Rizal, Cavite, Batangas, Oriental Mindoro, and Occidental Mindoro",
+      "Visayas, the rest of Luzon, Zamboanga Peninsula, and Northern Mindanao",
       "The rest of Mindanao"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Occidental Mindoro",
+        "place": "Zambales",
         "condition": "Monsoon rains",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to heavy to intense rains"
       },
       {
-        "place": "Metro Manila, Central Luzon, CALABARZON, rest of MIMAROPA, Pangasinan, La Union, Benguet, Nueva Vizcaya, Quirino, Camarines Norte, Camarines Sur, Albay, Catanduanes, Aklan, and Antique",
+        "place": "Metro Manila, the rest of Central Luzon, Pangasinan, La Union, Benguet, Isabela, Nueva Vizcaya, Quirino, Rizal, Cavite, Batangas, Oriental Mindoro, and Occidental Mindoro",
         "condition": "Occasional rains",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to heavy rains"
       },
       {
-        "place": "The rest of Luzon, the rest of Visayas, Zamboanga Peninsula, and Northern Mindanao",
+        "place": "Visayas, the rest of Luzon, Zamboanga Peninsula, and Northern Mindanao",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
@@ -160,8 +160,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-10T02:47:47+08:00",
-        "entry": "Auto-check at 2026-09-10T02:47:47+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-09-10T05:32:20+08:00",
+        "entry": "Auto-check at 2026-09-10T05:32:20+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
