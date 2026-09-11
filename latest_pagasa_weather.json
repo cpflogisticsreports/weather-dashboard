@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-09-11T04:00:00+08:00",
+    "issued_at": "2026-09-11T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-09-11T14:01:47+08:00",
+    "generated_at": "2026-09-11T19:09:03+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Southwest Monsoon affecting Central Luzon, Southern Luzon, and Visayas.",
+    "outlook": "Southwest Monsoon affecting Central Luzon, Southern Luzon, and Western Visayas.",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [
@@ -31,7 +31,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Southwest Monsoon affecting Central Luzon, Southern Luzon, and Visayas.",
+    "advisory": "Southwest Monsoon affecting Central Luzon, Southern Luzon, and Western Visayas.",
     "areas": []
   },
   "gale_warning": {
@@ -45,9 +45,9 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Southwest Monsoon affecting Central Luzon, Southern Luzon, and Visayas.",
+    "synopsis": "Southwest Monsoon affecting Central Luzon, Southern Luzon, and Western Visayas.",
     "regions": [
-      "Pangasinan, La Union, Benguet, Zambales, and Bataan",
+      "Ilocos Region, Cordillera Administrative Region, and Cagayan Valley",
       "Metro Manila, the rest of Luzon, Western Visayas, and Northern Samar",
       "The rest of the country"
     ],
@@ -55,10 +55,10 @@
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Pangasinan, La Union, Benguet, Zambales, and Bataan",
-        "condition": "Occasional rains",
-        "cause": "Southwest Monsoon",
-        "impact": "Possible flash floods or landslides due to moderate to heavy rains"
+        "place": "Ilocos Region, Cordillera Administrative Region, and Cagayan Valley",
+        "condition": "Cloudy skies with scattered rains and thunderstorms",
+        "cause": "Trough of a Low Pressure Area",
+        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
         "place": "Metro Manila, the rest of Luzon, Western Visayas, and Northern Samar",
@@ -80,7 +80,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting Central Luzon, Southern Luzon, and Visayas. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting Central Luzon, Southern Luzon, and Western Visayas. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -153,8 +153,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-11T14:01:47+08:00",
-        "entry": "Auto-check at 2026-09-11T14:01:47+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-09-11T19:09:03+08:00",
+        "entry": "Auto-check at 2026-09-11T19:09:03+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
