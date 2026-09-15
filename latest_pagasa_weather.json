@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-09-15T04:00:00+08:00",
+    "issued_at": "2026-09-15T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-09-15T13:56:42+08:00",
+    "generated_at": "2026-09-15T19:21:25+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,15 +21,15 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Easterlies affecting Extreme Northern Luzon.",
-    "warning_level": "Moderate",
+    "outlook": "Intertropical Convergenze Zone (ITCZ) affecting Visayas and Mindanao.",
+    "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [],
     "areas": []
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Easterlies affecting Extreme Northern Luzon.",
+    "advisory": "Intertropical Convergenze Zone (ITCZ) affecting Visayas and Mindanao.",
     "areas": []
   },
   "gale_warning": {
@@ -43,22 +43,29 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Easterlies affecting Extreme Northern Luzon.",
+    "synopsis": "Intertropical Convergenze Zone (ITCZ) affecting Visayas and Mindanao.",
     "regions": [
-      "Batanes and Babuyan Islands",
-      "Metro Manila and the rest of the country"
+      "Negros Island Region, Central Visayas, Eastern Visayas, Zamboanga Peninsula, Northern Mindanao, Caraga, Masbate, Lanao del Sur, and Davao Oriental",
+      "The rest of Visayas and Mindanao",
+      "Metro Manila and the rest of Luzon"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Batanes and Babuyan Islands",
+        "place": "Negros Island Region, Central Visayas, Eastern Visayas, Zamboanga Peninsula, Northern Mindanao, Caraga, Masbate, Lanao del Sur, and Davao Oriental",
+        "condition": "Cloudy skies with scattered rains and thunderstorms",
+        "cause": "ITCZ",
+        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
+      },
+      {
+        "place": "The rest of Visayas and Mindanao",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
-        "cause": "Easterlies",
+        "cause": "ITCZ",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
       },
       {
-        "place": "Metro Manila and the rest of the country",
+        "place": "Metro Manila and the rest of Luzon",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Localized Thunderstorms",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -67,10 +74,10 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
     "category": "Tropical Depression",
-    "location": "2,675 KM EAST OF EASTERN VISAYAS",
-    "lat": 12.4,
+    "location": "2,785 KM EAST OF SOUTHEASTERN LUZON",
+    "lat": 14.8,
     "lon": 150.0,
     "winds_kph": "55",
     "gustiness_kph": "70"
@@ -78,7 +85,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Easterlies affecting Extreme Northern Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Intertropical Convergenze Zone (ITCZ) affecting Visayas and Mindanao. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -151,8 +158,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-15T13:56:42+08:00",
-        "entry": "Auto-check at 2026-09-15T13:56:42+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-09-15T19:21:25+08:00",
+        "entry": "Auto-check at 2026-09-15T19:21:25+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
