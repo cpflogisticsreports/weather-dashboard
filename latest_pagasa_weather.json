@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-09-15T16:00:00+08:00",
+    "issued_at": "2026-09-16T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-09-16T03:14:14+08:00",
+    "generated_at": "2026-09-16T06:17:03+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Intertropical Convergenze Zone (ITCZ) affecting Visayas and Mindanao.",
+    "outlook": "Intertropical Convergence Zone (ITCZ) affecting Visayas and Mindanao.",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [],
@@ -29,7 +29,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Intertropical Convergenze Zone (ITCZ) affecting Visayas and Mindanao.",
+    "advisory": "Intertropical Convergence Zone (ITCZ) affecting Visayas and Mindanao.",
     "areas": []
   },
   "gale_warning": {
@@ -43,7 +43,7 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Intertropical Convergenze Zone (ITCZ) affecting Visayas and Mindanao.",
+    "synopsis": "Intertropical Convergence Zone (ITCZ) affecting Visayas and Mindanao.",
     "regions": [
       "Negros Island Region, Central Visayas, Eastern Visayas, Zamboanga Peninsula, Northern Mindanao, Caraga, Masbate, Lanao del Sur, and Davao Oriental",
       "The rest of Visayas and Mindanao",
@@ -74,18 +74,18 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
     "category": "Tropical Depression",
-    "location": "2,785 KM EAST OF SOUTHEASTERN LUZON",
-    "lat": 14.8,
-    "lon": 150.0,
+    "location": "2,970 KM EAST OF SOUTHEASTERN LUZON",
+    "lat": 15.0,
+    "lon": 149.3,
     "winds_kph": "55",
     "gustiness_kph": "70"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Intertropical Convergenze Zone (ITCZ) affecting Visayas and Mindanao. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Intertropical Convergence Zone (ITCZ) affecting Visayas and Mindanao. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -158,8 +158,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-16T03:14:14+08:00",
-        "entry": "Auto-check at 2026-09-16T03:14:14+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-09-16T06:17:03+08:00",
+        "entry": "Auto-check at 2026-09-16T06:17:03+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
