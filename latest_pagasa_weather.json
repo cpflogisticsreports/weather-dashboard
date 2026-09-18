@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-09-18T04:00:00+08:00",
+    "issued_at": "2026-09-18T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-09-18T14:41:32+08:00",
+    "generated_at": "2026-09-18T19:51:21+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,15 +21,17 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "At 3:00 AM today, the Low Pressure Area (LPA) was estimated based on all available data over the coastal waters of Dumaran, Palawan (10.1°N, 120.0°E).",
+    "outlook": "Southwest Monsoon affecting the western sections of Southern Luzon and Visayas.",
     "warning_level": "Heavy",
     "warnings": [],
-    "habagat_affected": [],
+    "habagat_affected": [
+      "Southwest Monsoon areas"
+    ],
     "areas": []
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "At 3:00 AM today, the Low Pressure Area (LPA) was estimated based on all available data over the coastal waters of Dumaran, Palawan (10.1°N, 120.0°E).",
+    "advisory": "Southwest Monsoon affecting the western sections of Southern Luzon and Visayas.",
     "areas": []
   },
   "gale_warning": {
@@ -43,19 +45,26 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "At 3:00 AM today, the Low Pressure Area (LPA) was estimated based on all available data over the coastal waters of Dumaran, Palawan (10.1°N, 120.0°E).",
+    "synopsis": "Southwest Monsoon affecting the western sections of Southern Luzon and Visayas.",
     "regions": [
-      "Visayas, MIMAROPA, Bicol Region, Zamboanga Peninsula, Northern Mindanao, Batangas, and Quezon",
+      "Western Visayas, Occidental Mindoro, and Palawan",
+      "Negros Island Region and Zamboanga Peninsula",
       "Metro Manila and the rest of the country"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Visayas, MIMAROPA, Bicol Region, Zamboanga Peninsula, Northern Mindanao, Batangas, and Quezon",
+        "place": "Western Visayas, Occidental Mindoro, and Palawan",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
-        "cause": "LPA",
+        "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
+      },
+      {
+        "place": "Negros Island Region and Zamboanga Peninsula",
+        "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
+        "cause": "Southwest Monsoon",
+        "impact": "Possible flash floods or landslides during severe thunderstorms"
       },
       {
         "place": "Metro Manila and the rest of the country",
@@ -67,18 +76,18 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
     "category": "Severe Tropical Storm",
-    "location": "2,460 KM EAST NORTHEAST OF EXTREME NORTHERN LUZON",
-    "lat": 25.2,
-    "lon": 145.4,
+    "location": "2,190 KM EAST NORTHEAST OF EXTREME NORTHERN LUZON",
+    "lat": 25.7,
+    "lon": 142.6,
     "winds_kph": "110",
     "gustiness_kph": "135"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. At 3:00 AM today, the Low Pressure Area (LPA) was estimated based on all available data over the coastal waters of Dumaran, Palawan (10.1°N, 120.0°E). Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Southwest Monsoon affecting the western sections of Southern Luzon and Visayas. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -151,8 +160,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-18T14:41:32+08:00",
-        "entry": "Auto-check at 2026-09-18T14:41:32+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-09-18T19:51:21+08:00",
+        "entry": "Auto-check at 2026-09-18T19:51:21+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
