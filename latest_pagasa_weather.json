@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-09-19T04:00:00+08:00",
+    "issued_at": "2026-09-19T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-09-19T14:39:41+08:00",
+    "generated_at": "2026-09-19T19:35:03+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -48,7 +48,7 @@
     "synopsis": "Southwest Monsoon affecting the western sections of Southern Luzon and Visayas.",
     "regions": [
       "Western Visayas, Occidental Mindoro, Oriental Mindoro, and Palawan",
-      "Negros Island Region and Zamboanga Peninsula",
+      "Negros Island Region, Zamboanga Peninsula, and Romblon",
       "Metro Manila and the rest of the country"
     ],
     "wind_outlook": [],
@@ -61,7 +61,7 @@
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Negros Island Region and Zamboanga Peninsula",
+        "place": "Negros Island Region, Zamboanga Peninsula, and Romblon",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -75,14 +75,7 @@
     ]
   },
   "tc_outside_par": {
-    "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
-    "category": "Typhoon",
-    "location": "2,000 KM EAST NORTHEAST OF EXTREME NORTHERN LUZON",
-    "lat": 26.4,
-    "lon": 140.5,
-    "winds_kph": "120",
-    "gustiness_kph": "150"
+    "present": false
   },
   "cpf": {
     "operational_status": "",
@@ -160,8 +153,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-19T14:39:41+08:00",
-        "entry": "Auto-check at 2026-09-19T14:39:41+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-09-19T19:35:03+08:00",
+        "entry": "Auto-check at 2026-09-19T19:35:03+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
