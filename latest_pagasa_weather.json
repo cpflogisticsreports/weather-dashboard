@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-09-22T04:00:00+08:00",
+    "issued_at": "2026-09-22T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-09-22T14:18:30+08:00",
+    "generated_at": "2026-09-22T19:57:41+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Trough of Low Pressure Area (LPA) affecting the eastern section of Visayas.",
+    "outlook": "Trough of Tropical Depression (TD) affecting the eastern sections of Visayas and Mindanao.",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [
@@ -31,7 +31,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Trough of Low Pressure Area (LPA) affecting the eastern section of Visayas.",
+    "advisory": "Trough of Tropical Depression (TD) affecting the eastern sections of Visayas and Mindanao.",
     "areas": []
   },
   "gale_warning": {
@@ -45,23 +45,23 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Trough of Low Pressure Area (LPA) affecting the eastern section of Visayas.",
+    "synopsis": "Trough of Tropical Depression (TD) affecting the eastern sections of Visayas and Mindanao.",
     "regions": [
-      "Eastern Visayas, Caraga, Bohol, and Davao Oriental",
-      "Palawan, Occidental Mindoro, and Oriental Mindoro",
+      "Eastern Visayas, Central Visayas, Caraga, Davao Region, Sorsogon, Masbate, Misamis Oriental, Bukidnon, and Camiguin",
+      "Palawan",
       "Metro Manila and the rest of the country"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Eastern Visayas, Caraga, Bohol, and Davao Oriental",
+        "place": "Eastern Visayas, Central Visayas, Caraga, Davao Region, Sorsogon, Masbate, Misamis Oriental, Bukidnon, and Camiguin",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
-        "cause": "Trough of LPA",
+        "cause": "Trough of TD",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Palawan, Occidental Mindoro, and Oriental Mindoro",
+        "place": "Palawan",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Southwest Monsoon",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -75,12 +75,19 @@
     ]
   },
   "tc_outside_par": {
-    "present": false
+    "present": true,
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
+    "category": "Tropical Depression",
+    "location": "1,885 KM EAST OF SOUTHEASTERN LUZON",
+    "lat": 13.3,
+    "lon": 141.6,
+    "winds_kph": "45",
+    "gustiness_kph": "55"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Trough of Low Pressure Area (LPA) affecting the eastern section of Visayas. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Trough of Tropical Depression (TD) affecting the eastern sections of Visayas and Mindanao. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -153,8 +160,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-22T14:18:30+08:00",
-        "entry": "Auto-check at 2026-09-22T14:18:30+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-09-22T19:57:41+08:00",
+        "entry": "Auto-check at 2026-09-22T19:57:41+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
