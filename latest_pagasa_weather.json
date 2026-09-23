@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-09-23T16:00:00+08:00",
+    "issued_at": "2026-09-24T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-09-24T03:50:42+08:00",
+    "generated_at": "2026-09-24T06:49:21+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Trough of Tropical Depression (TD) affecting the eastern sections of Visayas and Mindanao.",
+    "outlook": "Trough of Tropical Storm \"SURIGAE\" affecting the eastern sections of Visayas and Mindanao.",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [],
@@ -29,7 +29,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Trough of Tropical Depression (TD) affecting the eastern sections of Visayas and Mindanao.",
+    "advisory": "Trough of Tropical Storm \"SURIGAE\" affecting the eastern sections of Visayas and Mindanao.",
     "areas": []
   },
   "gale_warning": {
@@ -43,19 +43,26 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Trough of Tropical Depression (TD) affecting the eastern sections of Visayas and Mindanao.",
+    "synopsis": "Trough of Tropical Storm \"SURIGAE\" affecting the eastern sections of Visayas and Mindanao.",
     "regions": [
-      "Eastern Visayas, Caraga, Davao Region, and Sarangani",
+      "Biliran, Leyte, Southern Leyte, Dinagat Islands, Surigao del Norte, and Surigao del Sur",
+      "Bicol Region and the rest of Eastern Visayas",
       "Metro Manila and the rest of the country"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Eastern Visayas, Caraga, Davao Region, and Sarangani",
+        "place": "Biliran, Leyte, Southern Leyte, Dinagat Islands, Surigao del Norte, and Surigao del Sur",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
-        "cause": "Trough of TD",
+        "cause": "Trough of TC SURIGAE",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
+      },
+      {
+        "place": "Bicol Region and the rest of Eastern Visayas",
+        "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
+        "cause": "Trough of TC SURIGAE",
+        "impact": "Possible flash floods or landslides during severe thunderstorms"
       },
       {
         "place": "Metro Manila and the rest of the country",
@@ -67,15 +74,18 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
-    "category": "Tropical Depression",
-    "winds_kph": "55",
-    "gustiness_kph": "70"
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
+    "category": "Tropical Storm",
+    "location": "1,500 KM EAST OF NORTHERN LUZON",
+    "lat": 17.4,
+    "lon": 135.9,
+    "winds_kph": "75",
+    "gustiness_kph": "90"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Trough of Tropical Depression (TD) affecting the eastern sections of Visayas and Mindanao. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Trough of Tropical Storm \"SURIGAE\" affecting the eastern sections of Visayas and Mindanao. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -148,8 +158,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-24T03:50:42+08:00",
-        "entry": "Auto-check at 2026-09-24T03:50:42+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-09-24T06:49:21+08:00",
+        "entry": "Auto-check at 2026-09-24T06:49:21+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
