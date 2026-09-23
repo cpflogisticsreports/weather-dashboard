@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-09-23T04:00:00+08:00",
+    "issued_at": "2026-09-23T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-09-23T14:26:36+08:00",
+    "generated_at": "2026-09-23T19:59:05+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -45,14 +45,14 @@
   "forecast": {
     "synopsis": "Trough of Tropical Depression (TD) affecting the eastern sections of Visayas and Mindanao.",
     "regions": [
-      "Eastern Visayas, Caraga, Davao Oriental, Misamis Oriental, and Camiguin",
+      "Eastern Visayas, Caraga, Davao Region, and Sarangani",
       "Metro Manila and the rest of the country"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Eastern Visayas, Caraga, Davao Oriental, Misamis Oriental, and Camiguin",
+        "place": "Eastern Visayas, Caraga, Davao Region, and Sarangani",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Trough of TD",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
@@ -67,11 +67,8 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
     "category": "Tropical Depression",
-    "location": "1,920 KM EAST OF SOUTHEASTERN LUZON",
-    "lat": 14.7,
-    "lon": 139.5,
     "winds_kph": "55",
     "gustiness_kph": "70"
   },
@@ -151,8 +148,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-23T14:26:36+08:00",
-        "entry": "Auto-check at 2026-09-23T14:26:36+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-09-23T19:59:05+08:00",
+        "entry": "Auto-check at 2026-09-23T19:59:05+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
