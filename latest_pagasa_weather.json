@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 1",
-    "issued_at": "2026-09-24T11:00:00+08:00",
-    "valid_until": "2026-09-24T17:00:00+08:00",
-    "next_update": "2026-09-24T17:00:00+08:00",
-    "generated_at": "2026-09-24T14:12:22+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 2",
+    "issued_at": "2026-09-24T17:00:00+08:00",
+    "valid_until": "2026-09-24T23:00:00+08:00",
+    "next_update": "2026-09-24T23:00:00+08:00",
+    "generated_at": "2026-09-24T19:48:26+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -20,60 +20,67 @@
   },
   "cyclone": {
     "center_text": "",
-    "lat": 17.8,
-    "lon": 134.1,
+    "lat": 18.6,
+    "lon": 133.1,
     "max_sustained_winds_kph": 75,
     "gustiness_kph": 90,
     "central_pressure_hpa": "",
-    "movement": "West Northwestward at 35 km/h",
+    "movement": "Northwestward at 25 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 17.8,
-        "lon": 134.1,
+        "lat": 18.6,
+        "lon": 133.1,
         "category": "Tropical Storm",
         "winds_kph": 75
       },
       {
-        "label": "Sep 25 8PM",
-        "lat": 20.32,
-        "lon": 128.73,
+        "label": "Sep 25 2PM",
+        "lat": 20.33,
+        "lon": 128.45,
         "category": "Tropical Storm",
         "winds_kph": 75
       },
       {
-        "label": "Sep 26 8AM",
+        "label": "Sep 26 2AM",
         "lat": 20.36,
-        "lon": 127.53,
+        "lon": 127.44,
         "category": "Tropical Storm",
         "winds_kph": 75
       },
       {
-        "label": "Sep 26 8PM",
+        "label": "Sep 26 2PM",
         "lat": 22.51,
         "lon": 126.53,
         "category": "Tropical Storm",
         "winds_kph": 75
       },
       {
-        "label": "Sep 27 8AM",
-        "lat": 22.54,
-        "lon": 126.62,
+        "label": "Sep 27 2AM",
+        "lat": 22.62,
+        "lon": 126.85,
         "category": "Tropical Storm",
         "winds_kph": 75
       },
       {
-        "label": "Sep 28 8AM",
-        "lat": 24.73,
-        "lon": 126.26,
+        "label": "Sep 27 2PM",
+        "lat": 24.7,
+        "lon": 126.22,
         "category": "Tropical Storm",
         "winds_kph": 75
       },
       {
-        "label": "Sep 29 8AM",
-        "lat": 25.71,
-        "lon": 127.42,
+        "label": "Sep 28 2PM",
+        "lat": 23.72,
+        "lon": 127.19,
+        "category": "Tropical Storm",
+        "winds_kph": 75
+      },
+      {
+        "label": "Sep 29 2PM",
+        "lat": 25.49,
+        "lon": 129.3,
         "category": "Tropical Storm",
         "winds_kph": 75
       }
@@ -105,18 +112,11 @@
   "forecast": {
     "synopsis": "",
     "regions": [
-      "Batanes",
-      "Babuyan Islands",
-      "Ilocos Norte. Tomorrow (25 September) until",
       "Davao Oriental",
       "Davao Occidental",
       "Sarangani"
     ],
     "wind_outlook": [
-      {
-        "when": "Today (24 September)",
-        "areas": "Batanes, Babuyan Islands, and Ilocos Norte. Tomorrow (25 September) until"
-      },
       {
         "when": "Saturday (26 September)",
         "areas": "Davao Oriental, Davao Occidental, and Sarangani"
@@ -201,8 +201,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-24T14:12:22+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-09-24T14:12:22+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-09-24T19:48:26+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-09-24T19:48:26+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
