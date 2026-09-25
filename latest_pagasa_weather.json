@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 4",
-    "issued_at": "2026-09-25T05:00:00+08:00",
-    "valid_until": "2026-09-25T11:00:00+08:00",
-    "next_update": "2026-09-25T11:00:00+08:00",
-    "generated_at": "2026-09-25T09:33:09+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 5",
+    "issued_at": "2026-09-25T11:00:00+08:00",
+    "valid_until": "2026-09-25T17:00:00+08:00",
+    "next_update": "2026-09-25T17:00:00+08:00",
+    "generated_at": "2026-09-25T14:39:34+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -20,67 +20,53 @@
   },
   "cyclone": {
     "center_text": "",
-    "lat": 19.6,
-    "lon": 131.6,
+    "lat": 20.0,
+    "lon": 130.2,
     "max_sustained_winds_kph": 75,
     "gustiness_kph": 90,
     "central_pressure_hpa": "",
-    "movement": "Northwestward at 20 km/h",
+    "movement": "West Northwestward at 25 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 19.6,
-        "lon": 131.6,
+        "lat": 20.0,
+        "lon": 130.2,
         "category": "Tropical Storm",
         "winds_kph": 75
       },
       {
-        "label": "Sep 25 2PM",
-        "lat": 20.29,
-        "lon": 129.5,
+        "label": "Sep 25 8PM",
+        "lat": 20.31,
+        "lon": 128.92,
         "category": "Tropical Storm",
         "winds_kph": 75
       },
       {
-        "label": "Sep 26 2AM",
-        "lat": 20.68,
-        "lon": 127.81,
+        "label": "Sep 26 8AM",
+        "lat": 22.79,
+        "lon": 127.35,
         "category": "Tropical Storm",
         "winds_kph": 75
       },
       {
-        "label": "Sep 26 2PM",
-        "lat": 22.71,
-        "lon": 127.12,
+        "label": "Sep 27 8AM",
+        "lat": 23.02,
+        "lon": 128.03,
         "category": "Tropical Storm",
         "winds_kph": 75
       },
       {
-        "label": "Sep 27 2AM",
-        "lat": 22.88,
-        "lon": 127.62,
+        "label": "Sep 28 8AM",
+        "lat": 24.61,
+        "lon": 128.24,
         "category": "Tropical Storm",
         "winds_kph": 75
       },
       {
-        "label": "Sep 27 2PM",
-        "lat": 25.59,
-        "lon": 127.27,
-        "category": "Tropical Storm",
-        "winds_kph": 75
-      },
-      {
-        "label": "Sep 28 2AM",
-        "lat": 24.31,
-        "lon": 127.88,
-        "category": "Tropical Storm",
-        "winds_kph": 75
-      },
-      {
-        "label": "Sep 29 2AM",
-        "lat": 26.18,
-        "lon": 130.16,
+        "label": "Sep 29 8AM",
+        "lat": 26.57,
+        "lon": 130.65,
         "category": "Tropical Storm",
         "winds_kph": 75
       }
@@ -192,8 +178,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-25T09:33:09+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-09-25T09:33:09+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-09-25T14:39:34+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-09-25T14:39:34+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
