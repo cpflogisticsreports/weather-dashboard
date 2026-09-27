@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 13",
-    "issued_at": "2026-09-27T11:00:00+08:00",
-    "valid_until": "2026-09-27T17:00:00+08:00",
-    "next_update": "2026-09-27T17:00:00+08:00",
-    "generated_at": "2026-09-27T13:49:57+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 14",
+    "issued_at": "2026-09-27T17:00:00+08:00",
+    "valid_until": "2026-09-28T05:00:00+08:00",
+    "next_update": "2026-09-28T05:00:00+08:00",
+    "generated_at": "2026-09-27T19:40:32+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -20,41 +20,34 @@
   },
   "cyclone": {
     "center_text": "",
-    "lat": 24.9,
-    "lon": 127.6,
-    "max_sustained_winds_kph": 150,
-    "gustiness_kph": 185,
+    "lat": 25.6,
+    "lon": 128.5,
+    "max_sustained_winds_kph": 155,
+    "gustiness_kph": 190,
     "central_pressure_hpa": "",
-    "movement": "North Northeastward at 10 km/h",
+    "movement": "Northwestward at 20 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 24.9,
-        "lon": 127.6,
+        "lat": 25.6,
+        "lon": 128.5,
         "category": "Typhoon",
-        "winds_kph": 150
+        "winds_kph": 155
       },
       {
-        "label": "Sep 27 8PM",
-        "lat": 24.37,
-        "lon": 127.95,
+        "label": "Sep 28 2AM",
+        "lat": 24.97,
+        "lon": 128.68,
         "category": "Typhoon",
-        "winds_kph": 150
+        "winds_kph": 155
       },
       {
-        "label": "Sep 28 8AM",
-        "lat": 25.61,
-        "lon": 129.45,
+        "label": "Sep 28 2PM",
+        "lat": 26.18,
+        "lon": 130.16,
         "category": "Typhoon",
-        "winds_kph": 150
-      },
-      {
-        "label": "Sep 28 8PM",
-        "lat": 27.04,
-        "lon": 131.25,
-        "category": "Typhoon",
-        "winds_kph": 150
+        "winds_kph": 155
       }
     ]
   },
@@ -164,8 +157,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-27T13:49:57+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-09-27T13:49:57+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-09-27T19:40:32+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-09-27T19:40:32+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
