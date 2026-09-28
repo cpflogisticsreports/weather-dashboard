@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-09-28T16:00:00+08:00",
+    "issued_at": "2026-09-29T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-09-28T23:08:51+08:00",
+    "generated_at": "2026-09-29T05:14:35+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -45,7 +45,7 @@
   "forecast": {
     "synopsis": "Intertropical Convergence Zone (ITCZ) affecting Palawan, Visayas and Mindanao.",
     "regions": [
-      "Central Visayas, Negros Island Region, Zamboanga Peninsula, Northern Mindanao, Caraga, and Palawan",
+      "Western Visayas, Negros Island Region, Central Visayas, Zamboanga Peninsula, Northern Mindanao, Caraga, and Palawan",
       "The rest of Visayas and the rest of Mindanao",
       "Metro Manila and the rest of Luzon"
     ],
@@ -53,7 +53,7 @@
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Central Visayas, Negros Island Region, Zamboanga Peninsula, Northern Mindanao, Caraga, and Palawan",
+        "place": "Western Visayas, Negros Island Region, Central Visayas, Zamboanga Peninsula, Northern Mindanao, Caraga, and Palawan",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "ITCZ",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
@@ -151,8 +151,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-09-28T23:08:51+08:00",
-        "entry": "Auto-check at 2026-09-28T23:08:51+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-09-29T05:14:35+08:00",
+        "entry": "Auto-check at 2026-09-29T05:14:35+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
