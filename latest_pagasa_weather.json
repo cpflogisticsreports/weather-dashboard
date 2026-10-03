@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-10-03T16:00:00+08:00",
+    "issued_at": "2026-10-04T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-10-04T03:28:22+08:00",
+    "generated_at": "2026-10-04T06:21:42+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -67,13 +67,13 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
     "category": "Typhoon",
-    "location": "2,580 KM EAST OF NORTHERN LUZON",
-    "lat": 19.6,
-    "lon": 146.1,
-    "winds_kph": "140",
-    "gustiness_kph": "170"
+    "location": "2,595 KM EAST OF EXTREME NORTHERN LUZON",
+    "lat": 20.9,
+    "lon": 146.8,
+    "winds_kph": "155",
+    "gustiness_kph": "190"
   },
   "cpf": {
     "operational_status": "",
@@ -151,8 +151,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-10-04T03:28:22+08:00",
-        "entry": "Auto-check at 2026-10-04T03:28:22+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-10-04T06:21:42+08:00",
+        "entry": "Auto-check at 2026-10-04T06:21:42+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
