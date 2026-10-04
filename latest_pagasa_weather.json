@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-10-04T16:00:00+08:00",
+    "issued_at": "2026-10-05T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-10-05T02:02:13+08:00",
+    "generated_at": "2026-10-05T05:15:35+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Trough of Typhoon {CHOI-WAN} affecting Visayas and Mindanao.",
+    "outlook": "Trough of Super Typhoon {CHOI-WAN} affecting Visayas and Mindanao.",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [],
@@ -29,7 +29,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Trough of Typhoon {CHOI-WAN} affecting Visayas and Mindanao.",
+    "advisory": "Trough of Super Typhoon {CHOI-WAN} affecting Visayas and Mindanao.",
     "areas": []
   },
   "gale_warning": {
@@ -43,7 +43,7 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Trough of Typhoon {CHOI-WAN} affecting Visayas and Mindanao.",
+    "synopsis": "Trough of Super Typhoon {CHOI-WAN} affecting Visayas and Mindanao.",
     "regions": [
       "Mindanao, Western Visayas, Negros Island Region, Central Visayas, Leyte, and Southern Leyte",
       "Metro Manila and the rest of the country"
@@ -67,18 +67,18 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
-    "category": "Typhoon",
-    "location": "2,610 KM EAST OF EXTREME NORTHERN LUZON",
-    "lat": 23.0,
-    "lon": 147.0,
-    "winds_kph": "175",
-    "gustiness_kph": "215"
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
+    "category": "Super Typhoon",
+    "location": "2,605 KM EAST NORTHEAST OF EXTREME NORTHERN LUZON",
+    "lat": 24.6,
+    "lon": 146.9,
+    "winds_kph": "195",
+    "gustiness_kph": "240"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Trough of Typhoon {CHOI-WAN} affecting Visayas and Mindanao. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Trough of Super Typhoon {CHOI-WAN} affecting Visayas and Mindanao. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -151,8 +151,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-10-05T02:02:13+08:00",
-        "entry": "Auto-check at 2026-10-05T02:02:13+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-10-05T05:15:35+08:00",
+        "entry": "Auto-check at 2026-10-05T05:15:35+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
