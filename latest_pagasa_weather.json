@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-10-07T04:00:00+08:00",
+    "issued_at": "2026-10-07T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-10-07T13:41:26+08:00",
+    "generated_at": "2026-10-07T20:01:21+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Intertropical Convergence Zone (ITCZ) affecting Visayas, Mindanao, and Palawan.",
+    "outlook": "Intertropical Convergence Zone (ITCZ) affecting Mindanao and Palawan. Northeasterly Windflow affecting Extreme Northern Luzon.",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [],
@@ -29,7 +29,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Intertropical Convergence Zone (ITCZ) affecting Visayas, Mindanao, and Palawan.",
+    "advisory": "Intertropical Convergence Zone (ITCZ) affecting Mindanao and Palawan. Northeasterly Windflow affecting Extreme Northern Luzon.",
     "areas": []
   },
   "gale_warning": {
@@ -43,29 +43,29 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Intertropical Convergence Zone (ITCZ) affecting Visayas, Mindanao, and Palawan.",
+    "synopsis": "Intertropical Convergence Zone (ITCZ) affecting Mindanao and Palawan. Northeasterly Windflow affecting Extreme Northern Luzon.",
     "regions": [
-      "Visayas, Mindanao, and Palawan",
-      "Batanes and Cagayan",
-      "Metro Manila and the rest of Luzon"
+      "Mindanao, Negros Island Region, Central Visayas, Palawan, and Southern Leyte",
+      "Batanes, Apayao, Cagayan, Isabela, and Aurora",
+      "Metro Manila and the rest of the country"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Visayas, Mindanao, and Palawan",
+        "place": "Mindanao, Negros Island Region, Central Visayas, Palawan, and Southern Leyte",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "ITCZ",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Batanes and Cagayan",
+        "place": "Batanes, Apayao, Cagayan, Isabela, and Aurora",
         "condition": "Cloudy skies with rains",
         "cause": "Northeasterly Windflow",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Metro Manila and the rest of Luzon",
+        "place": "Metro Manila and the rest of the country",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Localized Thunderstorms",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -78,7 +78,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Intertropical Convergence Zone (ITCZ) affecting Visayas, Mindanao, and Palawan. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Intertropical Convergence Zone (ITCZ) affecting Mindanao and Palawan. Northeasterly Windflow affecting Extreme Northern Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -151,8 +151,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-10-07T13:41:26+08:00",
-        "entry": "Auto-check at 2026-10-07T13:41:26+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-10-07T20:01:21+08:00",
+        "entry": "Auto-check at 2026-10-07T20:01:21+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
