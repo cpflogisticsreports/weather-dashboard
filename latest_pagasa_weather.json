@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-10-09T04:00:00+08:00",
+    "issued_at": "2026-10-09T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-10-09T10:26:02+08:00",
+    "generated_at": "2026-10-09T17:28:50+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Intertropical Convergence Zone (ITCZ) affecting Visayas, Mindanao, and Palawan. Northeasterly Windflow affecting the eastern sections of Northern and Central Luzon.",
+    "outlook": "At 3:00 PM today, a Low Pressure Area (LPA) was estimated based on all avilable data at 520 km East of Catarman, Northern Samar (12.6°N 129.4°E). It is embedded along the Intertropical Convergence Zone (ITCZ) affecting Visayas, Mindanao, and Palawan. Northeasterly Windflow affecting the eastern sections of Northern and",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [],
@@ -29,7 +29,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Intertropical Convergence Zone (ITCZ) affecting Visayas, Mindanao, and Palawan. Northeasterly Windflow affecting the eastern sections of Northern and Central Luzon.",
+    "advisory": "At 3:00 PM today, a Low Pressure Area (LPA) was estimated based on all avilable data at 520 km East of Catarman, Northern Samar (12.6°N 129.4°E). It is embedded along the Intertropical Convergence Zone (ITCZ) affecting Visayas, Mindanao, and Palawan. Northeasterly Windflow affecting the eastern sections of Northern and",
     "areas": []
   },
   "gale_warning": {
@@ -43,11 +43,11 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Intertropical Convergence Zone (ITCZ) affecting Visayas, Mindanao, and Palawan. Northeasterly Windflow affecting the eastern sections of Northern and Central Luzon.",
+    "synopsis": "At 3:00 PM today, a Low Pressure Area (LPA) was estimated based on all avilable data at 520 km East of Catarman, Northern Samar (12.6°N 129.4°E). It is embedded along the Intertropical Convergence Zone (ITCZ) affecting Visayas, Mindanao, and Palawan. Northeasterly Windflow affecting the eastern sections of Northern and",
     "regions": [
       "Bicol Region, Eastern Visayas, Quezon, Marinduque, and Romblon",
       "Mindanao, the rest of Visayas, and Palawan",
-      "Cagayan Valley, Apayao, Kalinga, Mountain Province, Ifugao, and Aurora",
+      "Cagayan Valley, Apayao, and Aurora",
       "Metro Manila and the rest of Luzon"
     ],
     "wind_outlook": [],
@@ -56,7 +56,7 @@
       {
         "place": "Bicol Region, Eastern Visayas, Quezon, Marinduque, and Romblon",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
-        "cause": "Trough of LPA",
+        "cause": "LPA",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
@@ -66,8 +66,8 @@
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Cagayan Valley, Apayao, Kalinga, Mountain Province, Ifugao, and Aurora",
-        "condition": "Cloudy skies with rains",
+        "place": "Cagayan Valley, Apayao, and Aurora",
+        "condition": "Cloudy skies with light rains",
         "cause": "Northeasterly Windflow",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
@@ -85,7 +85,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Intertropical Convergence Zone (ITCZ) affecting Visayas, Mindanao, and Palawan. Northeasterly Windflow affecting the eastern sections of Northern and Central Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. At 3:00 PM today, a Low Pressure Area (LPA) was estimated based on all avilable data at 520 km East of Catarman, Northern Samar (12.6°N 129.4°E). It is embedded along the Intertropical Convergence Zone (ITCZ) affecting Visayas, Mindanao, and Palawan. Northeasterly Windflow affecting the eastern sections of Northern and Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -158,8 +158,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-10-09T10:26:02+08:00",
-        "entry": "Auto-check at 2026-10-09T10:26:02+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-10-09T17:28:50+08:00",
+        "entry": "Auto-check at 2026-10-09T17:28:50+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
