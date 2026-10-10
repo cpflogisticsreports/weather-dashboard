@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-10-10T04:00:00+08:00",
+    "issued_at": "2026-10-10T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-10-10T14:47:15+08:00",
+    "generated_at": "2026-10-10T21:23:06+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "At 3:00 AM today, the Low Pressure Area (LPA) was estimated based on all available data at 410 km East of Catarman, Northern Samar (12.6°N 128.4°E). It is embedded along the Intertropical Convergence Zone (ITCZ) affecting Southern Luzon, Visayas, and Mindanao. Easterlies affecting the eastern sections of Northern and C",
+    "outlook": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 380 km East of Juban, Sorsogon (13.0°N 127.5°E). It is embedded along the Intertropical Convergence Zone (ITCZ) affecting Southern Luzon, Visayas, and Mindanao. Easterlies affecting the eastern sections of Northern and Central Lu",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [],
@@ -29,7 +29,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "At 3:00 AM today, the Low Pressure Area (LPA) was estimated based on all available data at 410 km East of Catarman, Northern Samar (12.6°N 128.4°E). It is embedded along the Intertropical Convergence Zone (ITCZ) affecting Southern Luzon, Visayas, and Mindanao. Easterlies affecting the eastern sections of Northern and C",
+    "advisory": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 380 km East of Juban, Sorsogon (13.0°N 127.5°E). It is embedded along the Intertropical Convergence Zone (ITCZ) affecting Southern Luzon, Visayas, and Mindanao. Easterlies affecting the eastern sections of Northern and Central Lu",
     "areas": []
   },
   "gale_warning": {
@@ -43,9 +43,10 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "At 3:00 AM today, the Low Pressure Area (LPA) was estimated based on all available data at 410 km East of Catarman, Northern Samar (12.6°N 128.4°E). It is embedded along the Intertropical Convergence Zone (ITCZ) affecting Southern Luzon, Visayas, and Mindanao. Easterlies affecting the eastern sections of Northern and C",
+    "synopsis": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 380 km East of Juban, Sorsogon (13.0°N 127.5°E). It is embedded along the Intertropical Convergence Zone (ITCZ) affecting Southern Luzon, Visayas, and Mindanao. Easterlies affecting the eastern sections of Northern and Central Lu",
     "regions": [
-      "Metro Manila, Visayas, Mindanao, Bicol Region, CALABARZON, and MIMAROPA",
+      "Metro Manila, Visayas, CALABARZON, Bicol Region, Marinduque, Romblon, Occidental Mindoro, and Oriental Mindoro",
+      "Mindanao and Palawan",
       "Batanes",
       "The rest of Cagayan Valley, Aurora, Nueva Ecija, and Bulacan",
       "The rest of Luzon"
@@ -54,16 +55,22 @@
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Metro Manila, Visayas, Mindanao, Bicol Region, CALABARZON, and MIMAROPA",
+        "place": "Metro Manila, Visayas, CALABARZON, Bicol Region, Marinduque, Romblon, Occidental Mindoro, and Oriental Mindoro",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
-        "cause": "LPA/ITCZ",
+        "cause": "LPA",
+        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
+      },
+      {
+        "place": "Mindanao and Palawan",
+        "condition": "Cloudy skies with scattered rains and thunderstorms",
+        "cause": "ITCZ",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
         "place": "Batanes",
-        "condition": "Cloudy skies with light rains",
+        "condition": "Cloudy skies with rains",
         "cause": "Northeasterly Windflow",
-        "impact": "No significant impact"
+        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
         "place": "The rest of Cagayan Valley, Aurora, Nueva Ecija, and Bulacan",
@@ -81,18 +88,18 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
     "category": "Typhoon",
-    "location": "3,200 KM EAST OF EXTREME NORTHERN LUZON",
-    "lat": 20.8,
-    "lon": 152.6,
-    "winds_kph": "155",
-    "gustiness_kph": "190"
+    "location": "2,960 KM EAST OF EXTREME NORTHERN LUZON",
+    "lat": 22.3,
+    "lon": 150.4,
+    "winds_kph": "175",
+    "gustiness_kph": "215"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. At 3:00 AM today, the Low Pressure Area (LPA) was estimated based on all available data at 410 km East of Catarman, Northern Samar (12.6°N 128.4°E). It is embedded along the Intertropical Convergence Zone (ITCZ) affecting Southern Luzon, Visayas, and Mindanao. Easterlies affecting the eastern sections of Northern and C Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 380 km East of Juban, Sorsogon (13.0°N 127.5°E). It is embedded along the Intertropical Convergence Zone (ITCZ) affecting Southern Luzon, Visayas, and Mindanao. Easterlies affecting the eastern sections of Northern and Central Lu Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -165,8 +172,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-10-10T14:47:15+08:00",
-        "entry": "Auto-check at 2026-10-10T14:47:15+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-10-10T21:23:06+08:00",
+        "entry": "Auto-check at 2026-10-10T21:23:06+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
