@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-10-11T16:00:00+08:00",
+    "issued_at": "2026-10-12T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-10-12T01:55:57+08:00",
+    "generated_at": "2026-10-12T05:38:45+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Intertropical Convergence Zone (ITCZ) affecting Southern Luzon, Visayas, Mindanao. Easterlies affecting the eastern sections of Northern and Central Luzon. Northeasterly Windflow affecting Extreme Northern Luzon.",
+    "outlook": "Intertropical Convergence Zone (ITCZ) affecting Southern Luzon, Visayas, and Mindanao. Easterlies affecting the eastern sections of Northern and Central Luzon. Northeasterly Windflow affecting Extreme Northern Luzon.",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [],
@@ -29,7 +29,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Intertropical Convergence Zone (ITCZ) affecting Southern Luzon, Visayas, Mindanao. Easterlies affecting the eastern sections of Northern and Central Luzon. Northeasterly Windflow affecting Extreme Northern Luzon.",
+    "advisory": "Intertropical Convergence Zone (ITCZ) affecting Southern Luzon, Visayas, and Mindanao. Easterlies affecting the eastern sections of Northern and Central Luzon. Northeasterly Windflow affecting Extreme Northern Luzon.",
     "areas": []
   },
   "gale_warning": {
@@ -43,37 +43,37 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Intertropical Convergence Zone (ITCZ) affecting Southern Luzon, Visayas, Mindanao. Easterlies affecting the eastern sections of Northern and Central Luzon. Northeasterly Windflow affecting Extreme Northern Luzon.",
+    "synopsis": "Intertropical Convergence Zone (ITCZ) affecting Southern Luzon, Visayas, and Mindanao. Easterlies affecting the eastern sections of Northern and Central Luzon. Northeasterly Windflow affecting Extreme Northern Luzon.",
     "regions": [
-      "Mindanao, Bicol Region, MIMAROPA, Western Visayas, Negros Island Region, Central Visayas, and Southern Leyte",
-      "Batanes",
-      "Metro Manila, CALABARZON, the rest of Cagayan Valley, Aurora, Nueva Ecija, Bulacan",
-      "The rest of Visayas",
+      "Bicol Region, MIMAROPA, Western Visayas, Negros Island Region, Central Visayas, Caraga, Northern Mindanao, Zamboanga Peninsula, Leyte, and Southern Leyte",
+      "Batanes and Babuyan Islands",
+      "Metro Manila, CALABARZON, Central Luzon, Isabela, Quirino, Nueva Vizcaya, Benguet, and Pangasinan",
+      "The rest of Visayas and Mindanao",
       "The rest of Luzon"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Mindanao, Bicol Region, MIMAROPA, Western Visayas, Negros Island Region, Central Visayas, and Southern Leyte",
+        "place": "Bicol Region, MIMAROPA, Western Visayas, Negros Island Region, Central Visayas, Caraga, Northern Mindanao, Zamboanga Peninsula, Leyte, and Southern Leyte",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "ITCZ",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Batanes",
+        "place": "Batanes and Babuyan Islands",
         "condition": "Cloudy skies with rains",
         "cause": "Northeasterly Windflow",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Metro Manila, CALABARZON, the rest of Cagayan Valley, Aurora, Nueva Ecija, Bulacan",
+        "place": "Metro Manila, CALABARZON, Central Luzon, Isabela, Quirino, Nueva Vizcaya, Benguet, and Pangasinan",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Easterlies",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "The rest of Visayas",
+        "place": "The rest of Visayas and Mindanao",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "ITCZ",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -88,18 +88,18 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
     "category": "Tropical Depression",
-    "location": "2,705 KM EAST NORTHEAST OF EXTREME NORTHERN LUZON",
-    "lat": 25.4,
-    "lon": 147.8,
-    "winds_kph": "175",
-    "gustiness_kph": "215"
+    "location": "3,030 KM EAST OF CENTRAL LUZON",
+    "lat": 16.6,
+    "lon": 150.5,
+    "winds_kph": "55",
+    "gustiness_kph": "70"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Intertropical Convergence Zone (ITCZ) affecting Southern Luzon, Visayas, Mindanao. Easterlies affecting the eastern sections of Northern and Central Luzon. Northeasterly Windflow affecting Extreme Northern Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Intertropical Convergence Zone (ITCZ) affecting Southern Luzon, Visayas, and Mindanao. Easterlies affecting the eastern sections of Northern and Central Luzon. Northeasterly Windflow affecting Extreme Northern Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -172,8 +172,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-10-12T01:55:57+08:00",
-        "entry": "Auto-check at 2026-10-12T01:55:57+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-10-12T05:38:45+08:00",
+        "entry": "Auto-check at 2026-10-12T05:38:45+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
