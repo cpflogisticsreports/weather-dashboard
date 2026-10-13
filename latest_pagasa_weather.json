@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-10-13T04:00:00+08:00",
+    "issued_at": "2026-10-13T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-10-13T11:29:12+08:00",
+    "generated_at": "2026-10-13T18:58:06+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Northeasterly Windflow affecting Extreme Northern Luzon. Easterlies affecting the rest of Luzon and the eastern section of Visayas.",
+    "outlook": "Northeasterly Windflow affecting Northern Luzon. Easterlies affecting the rest of Luzon and the eastern section of Visayas.",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [],
@@ -29,7 +29,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Northeasterly Windflow affecting Extreme Northern Luzon. Easterlies affecting the rest of Luzon and the eastern section of Visayas.",
+    "advisory": "Northeasterly Windflow affecting Northern Luzon. Easterlies affecting the rest of Luzon and the eastern section of Visayas.",
     "areas": []
   },
   "gale_warning": {
@@ -43,36 +43,36 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Northeasterly Windflow affecting Extreme Northern Luzon. Easterlies affecting the rest of Luzon and the eastern section of Visayas.",
+    "synopsis": "Northeasterly Windflow affecting Northern Luzon. Easterlies affecting the rest of Luzon and the eastern section of Visayas.",
     "regions": [
-      "Bicol Region, Western Visayas, Eastern Visayas, Aurora, Quezon, Oriental Mindoro, Occidental Mindoro, Marinduque, and Romblon",
-      "Batanes and Babuyan Islands",
-      "Metro Manila, Ilocos Region, Cordillera Administrative Region, the rest of Cagayan Valley, the rest of Central Luzon, and the rest of CALABARZON",
-      "The rest of of the country"
+      "Bicol Region, Western Visayas, Eastern Visayas, Quezon, Oriental Mindoro, Occidental Mindoro, Marinduque, and Romblon",
+      "Ilocos Region, Cordillera Administrative Region, Batanes, Cagayan, and Isabela",
+      "Metro Manila and the rest of Luzon and Visayas",
+      "Mindanao"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Bicol Region, Western Visayas, Eastern Visayas, Aurora, Quezon, Oriental Mindoro, Occidental Mindoro, Marinduque, and Romblon",
+        "place": "Bicol Region, Western Visayas, Eastern Visayas, Quezon, Oriental Mindoro, Occidental Mindoro, Marinduque, and Romblon",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Easterlies",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Batanes and Babuyan Islands",
+        "place": "Ilocos Region, Cordillera Administrative Region, Batanes, Cagayan, and Isabela",
         "condition": "Party cloudy to cloudy skies with isolated light rains",
         "cause": "Northeasterly Windflow",
         "impact": "No significant impact"
       },
       {
-        "place": "Metro Manila, Ilocos Region, Cordillera Administrative Region, the rest of Cagayan Valley, the rest of Central Luzon, and the rest of CALABARZON",
+        "place": "Metro Manila and the rest of Luzon and Visayas",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Easterlies",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
       },
       {
-        "place": "The rest of of the country",
+        "place": "Mindanao",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Localized Thunderstorms",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -81,18 +81,18 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
     "category": "Tropical Depression",
-    "location": "2,790 KM EAST OF NORTHERN LUZON",
-    "lat": 17.7,
-    "lon": 148.1,
-    "winds_kph": "55",
-    "gustiness_kph": "70"
+    "location": "2,590 KM EAST OF NORTHERN LUZON",
+    "lat": 18.9,
+    "lon": 146.2,
+    "winds_kph": "45",
+    "gustiness_kph": "55"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Northeasterly Windflow affecting Extreme Northern Luzon. Easterlies affecting the rest of Luzon and the eastern section of Visayas. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Northeasterly Windflow affecting Northern Luzon. Easterlies affecting the rest of Luzon and the eastern section of Visayas. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -165,8 +165,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-10-13T11:29:12+08:00",
-        "entry": "Auto-check at 2026-10-13T11:29:12+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-10-13T18:58:06+08:00",
+        "entry": "Auto-check at 2026-10-13T18:58:06+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
