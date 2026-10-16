@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-10-16T04:00:00+08:00",
+    "issued_at": "2026-10-16T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-10-16T14:12:12+08:00",
+    "generated_at": "2026-10-16T19:26:32+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -45,8 +45,8 @@
   "forecast": {
     "synopsis": "Intertropical Convergence Zone (ITCZ) affecting Palawan, Visayas, and Mindanao. Northeasterly Windflow affecting Extreme Northern Luzon. Easterlies affecting the eastern sections of Northern and Central Luzon.",
     "regions": [
-      "Visayas, Mindanao, Bicol Region, and MIMAROPA",
-      "Aurora and Quezon",
+      "Visayas, Mindanao, Bicol Region, MIMAROPA, and Quezon",
+      "Aurora",
       "Batanes and Babuyan Islands",
       "Metro Manila and the rest of Luzon"
     ],
@@ -54,13 +54,13 @@
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Visayas, Mindanao, Bicol Region, and MIMAROPA",
+        "place": "Visayas, Mindanao, Bicol Region, MIMAROPA, and Quezon",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "ITCZ",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Aurora and Quezon",
+        "place": "Aurora",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Easterlies",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
@@ -80,7 +80,14 @@
     ]
   },
   "tc_outside_par": {
-    "present": false
+    "present": true,
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
+    "category": "Severe Tropical Storm",
+    "location": "2,930 KM EAST OF EASTERN VISAYAS",
+    "lat": 11.3,
+    "lon": 152.6,
+    "winds_kph": "100",
+    "gustiness_kph": "125"
   },
   "cpf": {
     "operational_status": "",
@@ -158,8 +165,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-10-16T14:12:12+08:00",
-        "entry": "Auto-check at 2026-10-16T14:12:12+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-10-16T19:26:32+08:00",
+        "entry": "Auto-check at 2026-10-16T19:26:32+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
