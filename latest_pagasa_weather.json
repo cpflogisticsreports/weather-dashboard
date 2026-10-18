@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-10-18T04:00:00+08:00",
+    "issued_at": "2026-10-18T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-10-18T12:58:27+08:00",
+    "generated_at": "2026-10-18T17:25:13+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Intertropical Convergence Zone (ITCZ) affecting Palawan and the western section of Mindanao. Easterlies affecting the rest of the country.",
+    "outlook": "Intertropical Convergence Zone (ITCZ) affecting Palawan and the western section of Mindanao. Easterlies affecting Visayas and the rest of Luzon",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [],
@@ -29,7 +29,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Intertropical Convergence Zone (ITCZ) affecting Palawan and the western section of Mindanao. Easterlies affecting the rest of the country.",
+    "advisory": "Intertropical Convergence Zone (ITCZ) affecting Palawan and the western section of Mindanao. Easterlies affecting Visayas and the rest of Luzon",
     "areas": []
   },
   "gale_warning": {
@@ -43,56 +43,56 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Intertropical Convergence Zone (ITCZ) affecting Palawan and the western section of Mindanao. Easterlies affecting the rest of the country.",
+    "synopsis": "Intertropical Convergence Zone (ITCZ) affecting Palawan and the western section of Mindanao. Easterlies affecting Visayas and the rest of Luzon",
     "regions": [
-      "Zamboanga Peninsula, Basilan, Lanao del Sur, Lanao del Norte, Misamis Occidental, and Palawan",
-      "Quezon and Camarines Norte",
-      "SOCCSKSARGEN and the rest of BARMM",
-      "Metro Manila and the rest of the country"
+      "Zamboanga Peninsula, Basilan, Tawi-Tawi and Palawan",
+      "Quezon, Bicol Region, and Eastern Visayas",
+      "Metro Manila, the rest of Luzon, and the rest of Visayas",
+      "The rest of Mindanao"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Zamboanga Peninsula, Basilan, Lanao del Sur, Lanao del Norte, Misamis Occidental, and Palawan",
+        "place": "Zamboanga Peninsula, Basilan, Tawi-Tawi and Palawan",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "ITCZ",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Quezon and Camarines Norte",
+        "place": "Quezon, Bicol Region, and Eastern Visayas",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Easterlies",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "SOCCSKSARGEN and the rest of BARMM",
+        "place": "Metro Manila, the rest of Luzon, and the rest of Visayas",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
-        "cause": "ITCZ",
+        "cause": "Easterlies",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
       },
       {
-        "place": "Metro Manila and the rest of the country",
+        "place": "The rest of Mindanao",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
-        "cause": "Easterlies",
+        "cause": "Localized Thunderstorms",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
       }
     ]
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
     "category": "Super Typhoon",
-    "location": "2,260 KM EAST OF SOUTHERN LUZON",
+    "location": "2,000 KM EAST OF SOUTHEASTERN LUZON",
     "lat": 13.1,
-    "lon": 144.6,
+    "lon": 142.6,
     "winds_kph": "185",
     "gustiness_kph": "230"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Intertropical Convergence Zone (ITCZ) affecting Palawan and the western section of Mindanao. Easterlies affecting the rest of the country. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Intertropical Convergence Zone (ITCZ) affecting Palawan and the western section of Mindanao. Easterlies affecting Visayas and the rest of Luzon Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -165,8 +165,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-10-18T12:58:27+08:00",
-        "entry": "Auto-check at 2026-10-18T12:58:27+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-10-18T17:25:13+08:00",
+        "entry": "Auto-check at 2026-10-18T17:25:13+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
