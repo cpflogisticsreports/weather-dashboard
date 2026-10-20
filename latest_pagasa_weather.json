@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 1",
-    "issued_at": "2026-10-20T11:00:00+08:00",
-    "valid_until": "2026-10-20T17:00:00+08:00",
-    "next_update": "2026-10-20T17:00:00+08:00",
-    "generated_at": "2026-10-20T15:36:16+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 2",
+    "issued_at": "2026-10-20T17:00:00+08:00",
+    "valid_until": "2026-10-20T23:00:00+08:00",
+    "next_update": "2026-10-20T23:00:00+08:00",
+    "generated_at": "2026-10-20T21:01:17+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -20,62 +20,62 @@
   },
   "cyclone": {
     "center_text": "",
-    "lat": 16.1,
-    "lon": 135.1,
-    "max_sustained_winds_kph": 185,
-    "gustiness_kph": 230,
+    "lat": 16.6,
+    "lon": 134.0,
+    "max_sustained_winds_kph": 195,
+    "gustiness_kph": 240,
     "central_pressure_hpa": "",
     "movement": "West Northwestward at 25 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 16.1,
-        "lon": 135.1,
+        "lat": 16.6,
+        "lon": 134.0,
         "category": "Super Typhoon",
-        "winds_kph": 185
+        "winds_kph": 195
       },
       {
-        "label": "Oct 21 8PM",
-        "lat": 20.34,
-        "lon": 128.3,
+        "label": "Oct 21 2PM",
+        "lat": 18.21,
+        "lon": 129.22,
         "category": "Super Typhoon",
-        "winds_kph": 185
+        "winds_kph": 195
       },
       {
-        "label": "Oct 22 8AM",
-        "lat": 20.39,
-        "lon": 126.62,
+        "label": "Oct 22 2AM",
+        "lat": 20.37,
+        "lon": 127.34,
         "category": "Super Typhoon",
-        "winds_kph": 185
+        "winds_kph": 195
       },
       {
-        "label": "Oct 22 8PM",
-        "lat": 22.15,
-        "lon": 125.53,
+        "label": "Oct 22 2PM",
+        "lat": 20.4,
+        "lon": 126.05,
         "category": "Super Typhoon",
-        "winds_kph": 185
+        "winds_kph": 195
       },
       {
-        "label": "Oct 23 8AM",
-        "lat": 23.05,
-        "lon": 124.34,
+        "label": "Oct 23 2AM",
+        "lat": 22.04,
+        "lon": 125.21,
         "category": "Super Typhoon",
-        "winds_kph": 185
+        "winds_kph": 195
       },
       {
-        "label": "Oct 24 8AM",
-        "lat": 26.12,
-        "lon": 124.32,
+        "label": "Oct 23 2PM",
+        "lat": 23.24,
+        "lon": 124.55,
         "category": "Super Typhoon",
-        "winds_kph": 185
+        "winds_kph": 195
       },
       {
-        "label": "Oct 25 8AM",
-        "lat": 27.24,
-        "lon": 125.53,
+        "label": "Oct 24 2PM",
+        "lat": 26.82,
+        "lon": 124.66,
         "category": "Super Typhoon",
-        "winds_kph": 185
+        "winds_kph": 195
       }
     ]
   },
@@ -94,7 +94,7 @@
     }
   ],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook A weather advisory may be issued this afternoon in anticipation of the heavy rains due to TC ROSAL. Severe Winds",
+    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 1 issued at 05:00 PM today for the heavy rainfall outlook due to the TC ROSAL. Severe Winds",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [],
@@ -251,8 +251,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-10-20T15:36:16+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-10-20T15:36:16+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-10-20T21:01:17+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-10-20T21:01:17+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
