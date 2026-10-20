@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 2",
-    "issued_at": "2026-10-20T17:00:00+08:00",
-    "valid_until": "2026-10-20T23:00:00+08:00",
-    "next_update": "2026-10-20T23:00:00+08:00",
-    "generated_at": "2026-10-20T21:01:17+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 3",
+    "issued_at": "2026-10-20T23:00:00+08:00",
+    "valid_until": "2026-10-21T05:00:00+08:00",
+    "next_update": "2026-10-21T05:00:00+08:00",
+    "generated_at": "2026-10-21T01:55:30+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -20,62 +20,62 @@
   },
   "cyclone": {
     "center_text": "",
-    "lat": 16.6,
-    "lon": 134.0,
-    "max_sustained_winds_kph": 195,
-    "gustiness_kph": 240,
+    "lat": 17.0,
+    "lon": 132.5,
+    "max_sustained_winds_kph": 215,
+    "gustiness_kph": 265,
     "central_pressure_hpa": "",
     "movement": "West Northwestward at 25 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 16.6,
-        "lon": 134.0,
+        "lat": 17.0,
+        "lon": 132.5,
         "category": "Super Typhoon",
-        "winds_kph": 195
+        "winds_kph": 215
       },
       {
-        "label": "Oct 21 2PM",
-        "lat": 18.21,
-        "lon": 129.22,
+        "label": "Oct 21 8PM",
+        "lat": 19.13,
+        "lon": 128.33,
         "category": "Super Typhoon",
-        "winds_kph": 195
+        "winds_kph": 215
       },
       {
-        "label": "Oct 22 2AM",
-        "lat": 20.37,
-        "lon": 127.34,
+        "label": "Oct 22 8AM",
+        "lat": 20.39,
+        "lon": 126.62,
         "category": "Super Typhoon",
-        "winds_kph": 195
+        "winds_kph": 215
       },
       {
-        "label": "Oct 22 2PM",
-        "lat": 20.4,
-        "lon": 126.05,
+        "label": "Oct 22 8PM",
+        "lat": 22.09,
+        "lon": 125.35,
         "category": "Super Typhoon",
-        "winds_kph": 195
+        "winds_kph": 215
       },
       {
-        "label": "Oct 23 2AM",
-        "lat": 22.04,
-        "lon": 125.21,
+        "label": "Oct 23 8AM",
+        "lat": 23.02,
+        "lon": 124.3,
         "category": "Super Typhoon",
-        "winds_kph": 195
+        "winds_kph": 215
       },
       {
-        "label": "Oct 23 2PM",
-        "lat": 23.24,
-        "lon": 124.55,
+        "label": "Oct 23 8PM",
+        "lat": 24.51,
+        "lon": 123.55,
         "category": "Super Typhoon",
-        "winds_kph": 195
+        "winds_kph": 215
       },
       {
-        "label": "Oct 24 2PM",
-        "lat": 26.82,
-        "lon": 124.66,
+        "label": "Oct 24 8PM",
+        "lat": 25.39,
+        "lon": 124.62,
         "category": "Super Typhoon",
-        "winds_kph": 195
+        "winds_kph": 215
       }
     ]
   },
@@ -94,7 +94,7 @@
     }
   ],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 1 issued at 05:00 PM today for the heavy rainfall outlook due to the TC ROSAL. Severe Winds",
+    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 2 issued at 11:00 PM today for the heavy rainfall outlook due to the TC ROSAL. Severe Winds",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [],
@@ -128,12 +128,7 @@
       "Catanduanes",
       "Northern Samar",
       "Eastern Samar",
-      "most of Caraga",
-      "Camiguin",
-      "Misamis Oriental",
-      "Sarangani",
-      "Davao del Sur",
-      "Davao Occidental",
+      "Siargao-Bucas Grande Islands",
       "Ilocos Region",
       "Cordillera Administrative Region",
       "Cagayan Valley",
@@ -141,12 +136,17 @@
       "Romblon",
       "Eastern Visayas",
       "Iloilo",
-      "Guimaras"
+      "Guimaras",
+      "Negros Occidental",
+      "Siquijor",
+      "Bohol",
+      "Northern Mindanao",
+      "Caraga"
     ],
     "wind_outlook": [
       {
         "when": "Today",
-        "areas": "Batanes, Ilocos Norte, Cagayan, Isabela, Polillo Islands, Camarines Norte, Camarines Sur, Catanduanes, Northern Samar, Eastern Samar, most of Caraga, Camiguin, Misamis Oriental, Sarangani, Davao del Sur, and Davao Occidental"
+        "areas": "Batanes, Ilocos Norte, Cagayan, Isabela, Polillo Islands, Camarines Norte, Camarines Sur, Catanduanes, Northern Samar, Eastern Samar, and Siargao-Bucas Grande Islands"
       },
       {
         "when": "Tomorrow (21 October)",
@@ -154,7 +154,7 @@
       },
       {
         "when": "Thursday (22 October)",
-        "areas": "Most of the country"
+        "areas": "Most of Luzon and Visayas, Zamboanga del Norte, Northern Mindanao, Surigao del Norte, Dinagat Islands, Sarangani, Davao Occidental, and Davao Oriental"
       }
     ],
     "wind_hazard": "Strong winds",
@@ -251,8 +251,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-10-20T21:01:17+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-10-20T21:01:17+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-10-21T01:55:30+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-10-21T01:55:30+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
