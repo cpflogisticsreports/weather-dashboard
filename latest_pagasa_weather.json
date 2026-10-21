@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 6",
-    "issued_at": "2026-10-21T17:00:00+08:00",
-    "valid_until": "2026-10-21T23:00:00+08:00",
-    "next_update": "2026-10-21T23:00:00+08:00",
-    "generated_at": "2026-10-21T17:53:10+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 7",
+    "issued_at": "2026-10-21T23:00:00+08:00",
+    "valid_until": "2026-10-22T05:00:00+08:00",
+    "next_update": "2026-10-22T05:00:00+08:00",
+    "generated_at": "2026-10-21T22:55:51+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -20,60 +20,60 @@
   },
   "cyclone": {
     "center_text": "",
-    "lat": 18.9,
-    "lon": 128.5,
+    "lat": 19.5,
+    "lon": 127.6,
     "max_sustained_winds_kph": 205,
     "gustiness_kph": 250,
     "central_pressure_hpa": "",
-    "movement": "West Northwestward at 25 km/h",
+    "movement": "Northwestward at 20 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 18.9,
-        "lon": 128.5,
+        "lat": 19.5,
+        "lon": 127.6,
         "category": "Super Typhoon",
         "winds_kph": 205
       },
       {
-        "label": "Oct 22 2AM",
-        "lat": 20.38,
-        "lon": 126.96,
+        "label": "Oct 22 8AM",
+        "lat": 20.4,
+        "lon": 126.29,
         "category": "Super Typhoon",
         "winds_kph": 205
       },
       {
-        "label": "Oct 22 2PM",
-        "lat": 20.41,
-        "lon": 125.52,
+        "label": "Oct 22 8PM",
+        "lat": 21.91,
+        "lon": 124.85,
         "category": "Super Typhoon",
         "winds_kph": 205
       },
       {
-        "label": "Oct 23 2AM",
-        "lat": 21.76,
-        "lon": 124.44,
+        "label": "Oct 23 8AM",
+        "lat": 22.83,
+        "lon": 124.09,
         "category": "Super Typhoon",
         "winds_kph": 205
       },
       {
-        "label": "Oct 23 2PM",
-        "lat": 23.89,
-        "lon": 123.26,
+        "label": "Oct 23 8PM",
+        "lat": 24.63,
+        "lon": 123.61,
         "category": "Super Typhoon",
         "winds_kph": 205
       },
       {
-        "label": "Oct 24 2AM",
-        "lat": 25.55,
+        "label": "Oct 24 8AM",
+        "lat": 26.58,
         "lon": 121.85,
         "category": "Super Typhoon",
         "winds_kph": 205
       },
       {
-        "label": "Oct 24 2PM",
-        "lat": 27.88,
-        "lon": 121.85,
+        "label": "Oct 24 8PM",
+        "lat": 26.0,
+        "lon": 124.92,
         "category": "Super Typhoon",
         "winds_kph": 205
       }
@@ -96,13 +96,12 @@
         "Cagayan",
         "Isabela",
         "Ilocos Norte",
-        "Apayao",
-        "Catanduanes"
+        "Apayao"
       ]
     }
   ],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 5 issued at 5:00 PM today for the heavy rainfall outlook due to the TC ROSAL. Severe Winds",
+    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 6 issued at 11:00 PM today for the heavy rainfall outlook due to the TC ROSAL. Severe Winds",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [],
@@ -152,7 +151,7 @@
     "wind_outlook": [
       {
         "when": "Today (21 October)",
-        "areas": "Ilocos Region, Cordillera Administrative Region, Cagayan Valley, Bicol Region, Romblon, Eastern Visayas, Siquijor, Bohol, Northern Mindanao, Caraga, Davao Region, Aurora, Quezon and Sarangani"
+        "areas": "Ilocos Region, Cordillera Administrative Region, Cagayan Valley, Bicol Region, Romblon, Eastern Visayas, Siquijor, Bohol, Northern Mindanao, Caraga, Davao Region, Aurora, Quezon, and Sarangani"
       },
       {
         "when": "Tomorrow (22 October)",
@@ -257,8 +256,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-10-21T17:53:10+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-10-21T17:53:10+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-10-21T22:55:51+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-10-21T22:55:51+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
