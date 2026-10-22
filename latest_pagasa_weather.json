@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 9",
-    "issued_at": "2026-10-22T11:00:00+08:00",
-    "valid_until": "2026-10-22T17:00:00+08:00",
-    "next_update": "2026-10-22T17:00:00+08:00",
-    "generated_at": "2026-10-22T13:50:52+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 10",
+    "issued_at": "2026-10-22T17:00:00+08:00",
+    "valid_until": "2026-10-22T23:00:00+08:00",
+    "next_update": "2026-10-22T23:00:00+08:00",
+    "generated_at": "2026-10-22T19:23:42+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -14,61 +14,61 @@
     "has_active_tc": true,
     "storm_name_local": "ROSAL",
     "storm_name_intl": null,
-    "category": "Super Typhoon",
+    "category": "Typhoon",
     "severity": "",
     "headline_override": ""
   },
   "cyclone": {
     "center_text": "",
-    "lat": 20.4,
-    "lon": 125.8,
-    "max_sustained_winds_kph": 185,
-    "gustiness_kph": 230,
+    "lat": 20.9,
+    "lon": 125.2,
+    "max_sustained_winds_kph": 165,
+    "gustiness_kph": 205,
     "central_pressure_hpa": "",
-    "movement": "West Northwestward at 20 km/h",
+    "movement": "Northwestward at 15 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 20.4,
-        "lon": 125.8,
-        "category": "Super Typhoon",
-        "winds_kph": 185
+        "lat": 20.9,
+        "lon": 125.2,
+        "category": "Typhoon",
+        "winds_kph": 165
       },
       {
-        "label": "Oct 22 8PM",
-        "lat": 20.75,
-        "lon": 125.02,
-        "category": "Super Typhoon",
-        "winds_kph": 185
+        "label": "Oct 23 2AM",
+        "lat": 21.74,
+        "lon": 124.4,
+        "category": "Typhoon",
+        "winds_kph": 165
       },
       {
-        "label": "Oct 23 8AM",
-        "lat": 22.68,
-        "lon": 123.92,
-        "category": "Super Typhoon",
-        "winds_kph": 185
+        "label": "Oct 23 2PM",
+        "lat": 23.77,
+        "lon": 123.2,
+        "category": "Typhoon",
+        "winds_kph": 165
       },
       {
-        "label": "Oct 23 8PM",
-        "lat": 24.56,
+        "label": "Oct 24 2AM",
+        "lat": 24.92,
         "lon": 121.85,
-        "category": "Super Typhoon",
-        "winds_kph": 185
+        "category": "Typhoon",
+        "winds_kph": 165
       },
       {
-        "label": "Oct 24 8AM",
-        "lat": 26.13,
+        "label": "Oct 24 2PM",
+        "lat": 26.85,
         "lon": 121.85,
-        "category": "Super Typhoon",
-        "winds_kph": 185
+        "category": "Typhoon",
+        "winds_kph": 165
       },
       {
-        "label": "Oct 24 8PM",
-        "lat": 25.76,
-        "lon": 124.8,
-        "category": "Super Typhoon",
-        "winds_kph": 185
+        "label": "Oct 25 2AM",
+        "lat": 26.17,
+        "lon": 125.0,
+        "category": "Typhoon",
+        "winds_kph": 165
       }
     ]
   },
@@ -94,7 +94,7 @@
     }
   ],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 8 issued at 11:00 AM today for the heavy rainfall outlook due to the TC ROSAL. Severe Winds",
+    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 9 issued at 5:00 PM today for the heavy rainfall outlook due to the TC ROSAL. Severe Winds",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [],
@@ -123,12 +123,11 @@
       "Zamboanga Peninsula",
       "BARMM",
       "Northern Mindanao",
+      "Davao Region",
       "Agusan del Norte",
       "Surigao del Norte",
       "Dinagat Islands",
       "Sarangani",
-      "Davao Occidental",
-      "Davao Oriental",
       "Zamboanga del Norte",
       "Misamis Occidental",
       "Camiguin",
@@ -145,11 +144,11 @@
     "wind_outlook": [
       {
         "when": "Today (22 October)",
-        "areas": "Most of Luzon and Visayas, Zamboanga Peninsula, BARMM, Northern Mindanao, Agusan del Norte, Surigao del Norte, Dinagat Islands, Sarangani, Davao Occidental, and Davao Oriental"
+        "areas": "Most of Luzon and Visayas, Zamboanga Peninsula, BARMM, Northern Mindanao, Davao Region, Agusan del Norte, Surigao del Norte, Dinagat Islands, and Sarangani"
       },
       {
         "when": "Friday (23 October)",
-        "areas": "Most of Luzon and Visayas, Zamboanga del Norte, Misamis Occidental, Camiguin, Davao Occidental, and Davao Oriental"
+        "areas": "Most of Luzon and Visayas, Davao Region, Zamboanga del Norte, Misamis Occidental, and Camiguin"
       },
       {
         "when": "Saturday (24 October)",
@@ -162,7 +161,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Super Typhoon “ROSAL” is being tracked by PAGASA. Route validation required for: Cagayan Valley (Isabela).",
+    "executive_summary": "Typhoon “ROSAL” is being tracked by PAGASA. Route validation required for: Cagayan Valley (Isabela).",
     "priority_routes": [
       {
         "route": "Trips to Cagayan Valley (Isabela)",
@@ -250,8 +249,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-10-22T13:50:52+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-10-22T13:50:52+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-10-22T19:23:42+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-10-22T19:23:42+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
