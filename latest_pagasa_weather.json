@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 13",
-    "issued_at": "2026-10-23T11:00:00+08:00",
-    "valid_until": "2026-10-23T17:00:00+08:00",
-    "next_update": "2026-10-23T17:00:00+08:00",
-    "generated_at": "2026-10-23T14:31:01+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 14",
+    "issued_at": "2026-10-23T17:00:00+08:00",
+    "valid_until": "2026-10-23T23:00:00+08:00",
+    "next_update": "2026-10-23T23:00:00+08:00",
+    "generated_at": "2026-10-23T19:59:07+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -20,48 +20,41 @@
   },
   "cyclone": {
     "center_text": "",
-    "lat": 22.9,
-    "lon": 123.7,
-    "max_sustained_winds_kph": 150,
-    "gustiness_kph": 185,
+    "lat": 24.0,
+    "lon": 123.2,
+    "max_sustained_winds_kph": 155,
+    "gustiness_kph": 190,
     "central_pressure_hpa": "",
-    "movement": "North Northeastward at 15 km/h",
+    "movement": "North Northwestward at 20 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 22.9,
-        "lon": 123.7,
+        "lat": 24.0,
+        "lon": 123.2,
         "category": "Typhoon",
-        "winds_kph": 150
+        "winds_kph": 155
       },
       {
-        "label": "Oct 23 8PM",
-        "lat": 24.2,
+        "label": "Oct 24 2AM",
+        "lat": 24.51,
         "lon": 121.85,
         "category": "Typhoon",
-        "winds_kph": 150
+        "winds_kph": 155
       },
       {
-        "label": "Oct 24 8AM",
-        "lat": 25.23,
+        "label": "Oct 24 2PM",
+        "lat": 25.82,
         "lon": 121.85,
         "category": "Typhoon",
-        "winds_kph": 150
+        "winds_kph": 155
       },
       {
-        "label": "Oct 24 8PM",
-        "lat": 26.67,
+        "label": "Oct 25 2AM",
+        "lat": 27.26,
         "lon": 121.85,
         "category": "Typhoon",
-        "winds_kph": 150
-      },
-      {
-        "label": "Oct 25 8AM",
-        "lat": 26.02,
-        "lon": 121.5,
-        "category": "Typhoon",
-        "winds_kph": 150
+        "winds_kph": 155
       }
     ]
   },
@@ -86,7 +79,7 @@
     }
   ],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 12 issued at 11:00 AM today for the heavy rainfall outlook due to the TC ROSAL. Severe Winds",
+    "outlook": "heavy rainfall and severe winds may still be experienced in localities outside the landfall point and the forecast confidence cone. Refer to “Other Hazards affecting Land Areas” for more details. Furthermore, the",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [],
@@ -112,10 +105,10 @@
     "regions": [
       "Most of Luzon",
       "Visayas",
-      "Zamboanga del Norte",
+      "Zamboanga Peninsula",
       "Misamis Occidental",
-      "Lanao del Norte",
-      "Camiguin",
+      "Basilan",
+      "Tawi-Tawi",
       "Davao Occidental",
       "Davao Oriental",
       "Batanes",
@@ -128,17 +121,16 @@
       "Romblon",
       "Capiz",
       "Iloilo",
-      "Negros Occidental",
-      "Siquijor"
+      "Negros Occidental"
     ],
     "wind_outlook": [
       {
         "when": "Today (23 October)",
-        "areas": "Most of Luzon and Visayas, Zamboanga del Norte, Misamis Occidental, Lanao del Norte, Camiguin, Davao Occidental, and Davao Oriental"
+        "areas": "Most of Luzon and Visayas, Zamboanga Peninsula, Misamis Occidental, Basilan, Tawi-Tawi, Davao Occidental, and Davao Oriental"
       },
       {
         "when": "Tomorrow (24 October)",
-        "areas": "Batanes, Babuyan Islands, Ilocos Norte, Aurora, northern Quezon, Polillo Islands, Bicol Region, Romblon, Capiz, Iloilo, Negros Occidental, and Siquijor"
+        "areas": "Batanes, Babuyan Islands, Ilocos Norte, Aurora, northern Quezon, Polillo Islands, Bicol Region, Romblon, Capiz, Iloilo, and Negros Occidental"
       },
       {
         "when": "Sunday (25 October)",
@@ -224,8 +216,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-10-23T14:31:01+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-10-23T14:31:01+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-10-23T19:59:07+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-10-23T19:59:07+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
