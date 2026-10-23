@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 12",
-    "issued_at": "2026-10-23T05:00:00+08:00",
-    "valid_until": "2026-10-23T11:00:00+08:00",
-    "next_update": "2026-10-23T11:00:00+08:00",
-    "generated_at": "2026-10-23T09:32:18+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 13",
+    "issued_at": "2026-10-23T11:00:00+08:00",
+    "valid_until": "2026-10-23T17:00:00+08:00",
+    "next_update": "2026-10-23T17:00:00+08:00",
+    "generated_at": "2026-10-23T14:31:01+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -20,48 +20,48 @@
   },
   "cyclone": {
     "center_text": "",
-    "lat": 22.1,
-    "lon": 124.1,
-    "max_sustained_winds_kph": 155,
-    "gustiness_kph": 190,
+    "lat": 22.9,
+    "lon": 123.7,
+    "max_sustained_winds_kph": 150,
+    "gustiness_kph": 185,
     "central_pressure_hpa": "",
-    "movement": "Northwestward at 15 km/h",
+    "movement": "North Northeastward at 15 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 22.1,
-        "lon": 124.1,
+        "lat": 22.9,
+        "lon": 123.7,
         "category": "Typhoon",
-        "winds_kph": 155
+        "winds_kph": 150
       },
       {
-        "label": "Oct 23 2PM",
-        "lat": 23.72,
-        "lon": 123.18,
-        "category": "Typhoon",
-        "winds_kph": 155
-      },
-      {
-        "label": "Oct 24 2AM",
-        "lat": 24.74,
+        "label": "Oct 23 8PM",
+        "lat": 24.2,
         "lon": 121.85,
         "category": "Typhoon",
-        "winds_kph": 155
+        "winds_kph": 150
       },
       {
-        "label": "Oct 24 2PM",
-        "lat": 26.36,
+        "label": "Oct 24 8AM",
+        "lat": 25.23,
         "lon": 121.85,
         "category": "Typhoon",
-        "winds_kph": 155
+        "winds_kph": 150
       },
       {
-        "label": "Oct 25 2AM",
-        "lat": 25.84,
+        "label": "Oct 24 8PM",
+        "lat": 26.67,
+        "lon": 121.85,
+        "category": "Typhoon",
+        "winds_kph": 150
+      },
+      {
+        "label": "Oct 25 8AM",
+        "lat": 26.02,
         "lon": 121.5,
         "category": "Typhoon",
-        "winds_kph": 155
+        "winds_kph": 150
       }
     ]
   },
@@ -71,8 +71,7 @@
       "wind_range": "",
       "lead_time": "",
       "areas": [
-        "Batanes",
-        "Camiguin"
+        "Batanes"
       ]
     },
     {
@@ -81,14 +80,13 @@
       "lead_time": "",
       "areas": [
         "Cagayan",
-        "Isabela",
         "Ilocos Norte",
         "Apayao"
       ]
     }
   ],
   "rainfall": {
-    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 11 issued at 5:00 AM today for the heavy rainfall outlook due to the TC ROSAL. Severe Winds",
+    "outlook": "Heavy Rainfall Outlook Refer to Weather Advisory No. 12 issued at 11:00 AM today for the heavy rainfall outlook due to the TC ROSAL. Severe Winds",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [],
@@ -123,12 +121,15 @@
       "Batanes",
       "Babuyan Islands",
       "Ilocos Norte",
+      "Aurora",
+      "northern Quezon",
       "Polillo Islands",
       "Bicol Region",
       "Romblon",
       "Capiz",
       "Iloilo",
-      "Negros Occidental"
+      "Negros Occidental",
+      "Siquijor"
     ],
     "wind_outlook": [
       {
@@ -137,7 +138,7 @@
       },
       {
         "when": "Tomorrow (24 October)",
-        "areas": "Batanes, Babuyan Islands, Ilocos Norte, Polillo Islands, Bicol Region, Romblon, Capiz, Iloilo, and Negros Occidental"
+        "areas": "Batanes, Babuyan Islands, Ilocos Norte, Aurora, northern Quezon, Polillo Islands, Bicol Region, Romblon, Capiz, Iloilo, Negros Occidental, and Siquijor"
       },
       {
         "when": "Sunday (25 October)",
@@ -150,25 +151,10 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Typhoon “ROSAL” is being tracked by PAGASA. Route validation required for: Cagayan Valley (Isabela).",
-    "priority_routes": [
-      {
-        "route": "Trips to Cagayan Valley (Isabela)",
-        "risk": "High",
-        "note": "Auto-flagged from PAGASA affected areas"
-      }
-    ],
-    "risk_matrix": [
-      {
-        "area": "Cagayan Valley (Isabela)",
-        "hazard": "Wind Signal / heavy rain",
-        "likelihood": "High",
-        "impact": "Medium",
-        "level": "High",
-        "action": "Require route validation before dispatch"
-      }
-    ],
-    "contractor_advisory": "Validate route passability and receiving-site readiness before releasing trips to Cagayan Valley (Isabela). Report driver location and any road closures to Logistics Control immediately.",
+    "executive_summary": "Typhoon “ROSAL” is being tracked by PAGASA. No CPF hub currently under a wind signal; continue monitoring.",
+    "priority_routes": [],
+    "risk_matrix": [],
+    "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
     "affected_deliveries_note": "",
     "hubs": [
       {
@@ -185,7 +171,7 @@
         "type": "Feedmill",
         "lat": 17.1227406,
         "lon": 121.851358,
-        "status": "Route Validation"
+        "status": "Normal"
       },
       {
         "name": "Samal Feedmill",
@@ -238,8 +224,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-10-23T09:32:18+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-10-23T09:32:18+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-10-23T14:31:01+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-10-23T14:31:01+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
