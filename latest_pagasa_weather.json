@@ -1,60 +1,35 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 17",
-    "issued_at": "2026-10-24T11:00:00+08:00",
+    "bulletin_title": "PAGASA Daily Weather Forecast",
+    "issued_at": "2026-10-24T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-10-24T22:46:25+08:00",
-    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
+    "generated_at": "2026-10-25T01:38:53+08:00",
+    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "typhoon",
-    "has_active_tc": true,
-    "storm_name_local": "ROSAL",
-    "storm_name_intl": null,
-    "category": "Typhoon",
+    "mode": "advisory",
+    "has_active_tc": false,
+    "storm_name_local": "",
+    "storm_name_intl": "",
+    "category": "",
     "severity": "",
     "headline_override": ""
   },
-  "cyclone": {
-    "center_text": "525 km North Northeast of Itbayat, Batanes (OUTSIDE PAR).",
-    "lat": 25.3,
-    "lon": 123.4,
-    "max_sustained_winds_kph": 120,
-    "gustiness_kph": 150,
-    "central_pressure_hpa": "",
-    "movement": "East Northeastward at 20 km/h",
-    "wind_extent_km": "",
-    "forecast_track": [
-      {
-        "label": "Now",
-        "lat": 25.3,
-        "lon": 123.4,
-        "category": "Typhoon",
-        "winds_kph": 120
-      },
-      {
-        "label": "Oct 24 8PM",
-        "lat": 26.86,
-        "lon": 124.68,
-        "category": "Typhoon",
-        "winds_kph": 120
-      }
-    ]
-  },
+  "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "heavy rainfall and severe winds may still be experienced in localities outside the forecast confidence cone. Refer to “Other Hazards affecting Land Areas” for more details. Furthermore, the",
+    "outlook": "Intertropical Convergence Zone (ITCZ) affecting Palawan, Visayas and Mindanao. Trough of",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [],
     "areas": []
   },
   "thunderstorm": {
-    "active": false,
-    "advisory": "",
+    "active": true,
+    "advisory": "Intertropical Convergence Zone (ITCZ) affecting Palawan, Visayas and Mindanao. Trough of",
     "areas": []
   },
   "gale_warning": {
@@ -68,40 +43,45 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "",
+    "synopsis": "Intertropical Convergence Zone (ITCZ) affecting Palawan, Visayas and Mindanao. Trough of",
     "regions": [
-      "Batanes",
-      "Babuyan Islands",
-      "Ilocos Norte",
-      "Aurora",
-      "northern Quezon",
-      "Polillo Islands",
-      "Bicol Region",
-      "Romblon",
-      "Capiz",
-      "Iloilo",
-      "Negros Occidental"
+      "Batanes, Ilocos Norte, Apayao, and Babuyan Islands",
+      "Visayas, Mindanao, Sorsogon, Masbate, and Palawan",
+      "Metro Manila and the rest of the country"
     ],
-    "wind_outlook": [
+    "wind_outlook": [],
+    "wind_hazard": "",
+    "conditions": [
       {
-        "when": "Today (24 October)",
-        "areas": "Batanes, Babuyan Islands, Ilocos Norte, Aurora, northern Quezon, Polillo Islands, Bicol Region, Romblon, Capiz, Iloilo, and Negros Occidental"
+        "place": "Batanes, Ilocos Norte, Apayao, and Babuyan Islands",
+        "condition": "Cloudy skies with scattered rains and thunderstorms",
+        "cause": "Trough of TC CHAMPI (Formerly ROSAL)",
+        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "when": "Tomorrow (25 October)",
-        "areas": "Batanes, Babuyan Islands and Ilocos Norte"
+        "place": "Visayas, Mindanao, Sorsogon, Masbate, and Palawan",
+        "condition": "Cloudy skies with scattered rains and thunderstorms",
+        "cause": "ITCZ",
+        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
+      },
+      {
+        "place": "Metro Manila and the rest of the country",
+        "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
+        "cause": "Localized Thunderstorms",
+        "impact": "Possible flash floods or landslides during severe thunderstorms"
       }
-    ],
-    "wind_hazard": "Strong to gale-force gusts",
-    "conditions": []
+    ]
+  },
+  "tc_outside_par": {
+    "present": false
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Typhoon “ROSAL” is being tracked by PAGASA. Center: 525 km North Northeast of Itbayat, Batanes (OUTSIDE PAR).. No CPF hub currently under a wind signal; continue monitoring.",
+    "executive_summary": "Weather advisory in effect. Intertropical Convergence Zone (ITCZ) affecting Palawan, Visayas and Mindanao. Trough of Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
-    "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
+    "contractor_advisory": "",
     "affected_deliveries_note": "",
     "hubs": [
       {
@@ -171,8 +151,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-10-24T22:46:25+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-10-24T22:46:25+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-10-25T01:38:53+08:00",
+        "entry": "Auto-check at 2026-10-25T01:38:53+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
