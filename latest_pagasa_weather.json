@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 16",
-    "issued_at": "2026-10-24T05:00:00+08:00",
-    "valid_until": "2026-10-24T11:00:00+08:00",
-    "next_update": "2026-10-24T11:00:00+08:00",
-    "generated_at": "2026-10-24T09:35:53+08:00",
+    "bulletin_title": "Tropical Cyclone Bulletin No. 17",
+    "issued_at": "2026-10-24T11:00:00+08:00",
+    "valid_until": "",
+    "next_update": "",
+    "generated_at": "2026-10-24T14:29:41+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -19,50 +19,34 @@
     "headline_override": ""
   },
   "cyclone": {
-    "center_text": "420 km North of Itbayat, Batanes",
-    "lat": 24.5,
-    "lon": 122.6,
-    "max_sustained_winds_kph": 150,
-    "gustiness_kph": 185,
+    "center_text": "525 km North Northeast of Itbayat, Batanes (OUTSIDE PAR).",
+    "lat": 25.3,
+    "lon": 123.4,
+    "max_sustained_winds_kph": 120,
+    "gustiness_kph": 150,
     "central_pressure_hpa": "",
-    "movement": "Southwestward at 10 km/h",
+    "movement": "East Northeastward at 20 km/h",
     "wind_extent_km": "",
     "forecast_track": [
       {
         "label": "Now",
-        "lat": 24.5,
-        "lon": 122.6,
+        "lat": 25.3,
+        "lon": 123.4,
         "category": "Typhoon",
-        "winds_kph": 150
+        "winds_kph": 120
       },
       {
-        "label": "Oct 24 2PM",
-        "lat": 26.4,
-        "lon": 121.85,
+        "label": "Oct 24 8PM",
+        "lat": 26.86,
+        "lon": 124.68,
         "category": "Typhoon",
-        "winds_kph": 150
-      },
-      {
-        "label": "Oct 25 2AM",
-        "lat": 25.59,
-        "lon": 124.72,
-        "category": "Typhoon",
-        "winds_kph": 150
+        "winds_kph": 120
       }
     ]
   },
-  "tcws": [
-    {
-      "signal": 1,
-      "wind_range": "",
-      "lead_time": "",
-      "areas": [
-        "Batanes"
-      ]
-    }
-  ],
+  "tcws": [],
   "rainfall": {
-    "outlook": "heavy rainfall and severe winds may still be experienced in localities outside the landfall point and the forecast confidence cone. Refer to “Other Hazards affecting Land Areas” for more details. Furthermore, the",
+    "outlook": "heavy rainfall and severe winds may still be experienced in localities outside the forecast confidence cone. Refer to “Other Hazards affecting Land Areas” for more details. Furthermore, the",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [],
@@ -86,6 +70,7 @@
   "forecast": {
     "synopsis": "",
     "regions": [
+      "Batanes",
       "Babuyan Islands",
       "Ilocos Norte",
       "Aurora",
@@ -95,26 +80,25 @@
       "Romblon",
       "Capiz",
       "Iloilo",
-      "Negros Occidental",
-      "Batanes"
+      "Negros Occidental"
     ],
     "wind_outlook": [
       {
         "when": "Today (24 October)",
-        "areas": "Babuyan Islands, Ilocos Norte, Aurora, northern Quezon, Polillo Islands, Bicol Region, Romblon, Capiz, Iloilo, and Negros Occidental"
+        "areas": "Batanes, Babuyan Islands, Ilocos Norte, Aurora, northern Quezon, Polillo Islands, Bicol Region, Romblon, Capiz, Iloilo, and Negros Occidental"
       },
       {
         "when": "Tomorrow (25 October)",
-        "areas": "Batanes and Babuyan Islands"
+        "areas": "Batanes, Babuyan Islands and Ilocos Norte"
       }
     ],
-    "wind_hazard": "Strong winds",
+    "wind_hazard": "Strong to gale-force gusts",
     "conditions": []
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Typhoon “ROSAL” is being tracked by PAGASA. Center: 420 km North of Itbayat, Batanes. No CPF hub currently under a wind signal; continue monitoring.",
+    "executive_summary": "Typhoon “ROSAL” is being tracked by PAGASA. Center: 525 km North Northeast of Itbayat, Batanes (OUTSIDE PAR).. No CPF hub currently under a wind signal; continue monitoring.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
@@ -187,8 +171,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-10-24T09:35:53+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-10-24T09:35:53+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-10-24T14:29:41+08:00",
+        "entry": "Auto-updated from PAGASA bulletin at 2026-10-24T14:29:41+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
       }
     ]
   }
