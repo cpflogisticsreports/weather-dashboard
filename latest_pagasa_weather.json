@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-10-27T04:00:00+08:00",
+    "issued_at": "2026-10-27T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-10-27T14:24:05+08:00",
+    "generated_at": "2026-10-27T20:34:41+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,15 +21,17 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Northeasterly Windflow affecting Northern Luzon.",
-    "warning_level": "Moderate",
+    "outlook": "Northeast Monsoon affecting Northern Luzon.",
+    "warning_level": "Heavy",
     "warnings": [],
-    "habagat_affected": [],
+    "habagat_affected": [
+      "Southwest Monsoon areas"
+    ],
     "areas": []
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Northeasterly Windflow affecting Northern Luzon.",
+    "advisory": "Northeast Monsoon affecting Northern Luzon.",
     "areas": []
   },
   "gale_warning": {
@@ -43,26 +45,33 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Northeasterly Windflow affecting Northern Luzon.",
+    "synopsis": "Northeast Monsoon affecting Northern Luzon.",
     "regions": [
-      "Batanes, Cagayan, and Isabela",
-      "Ilocos Region, Cordillera Administrative Region, and the rest of Cagayan Valley",
+      "Batanes, Apayao, and Cagayan",
+      "Ilocos Region, the rest of Cordillera Administrative Region, the rest of Cagayan Valley, Zambales, Bataan, Tarlac, Pampanga, and Nueva Ecija",
+      "Isabela, Aurora, Quezon, Oriental Mindoro, Marinduque, Camarines Norte, Camarines Sur, and Catanduanes",
       "Metro Manila and the rest of the country"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Batanes, Cagayan, and Isabela",
+        "place": "Batanes, Apayao, and Cagayan",
         "condition": "Cloudy skies with light rains",
-        "cause": "Northeasterly Windflow",
+        "cause": "Northeast Monsoon",
         "impact": "No significant impact"
       },
       {
-        "place": "Ilocos Region, Cordillera Administrative Region, and the rest of Cagayan Valley",
+        "place": "Ilocos Region, the rest of Cordillera Administrative Region, the rest of Cagayan Valley, Zambales, Bataan, Tarlac, Pampanga, and Nueva Ecija",
         "condition": "Partly cloudy to cloudy skies with isolated light rains",
-        "cause": "Northeasterly Windflow",
+        "cause": "Northeast Monsoon",
         "impact": "No significant impact"
+      },
+      {
+        "place": "Isabela, Aurora, Quezon, Oriental Mindoro, Marinduque, Camarines Norte, Camarines Sur, and Catanduanes",
+        "condition": "Cloudy skies with scattered rains and isolated thunderstorms",
+        "cause": "Shear Line",
+        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
         "place": "Metro Manila and the rest of the country",
@@ -78,7 +87,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Northeasterly Windflow affecting Northern Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Northeast Monsoon affecting Northern Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -151,8 +160,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-10-27T14:24:05+08:00",
-        "entry": "Auto-check at 2026-10-27T14:24:05+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-10-27T20:34:41+08:00",
+        "entry": "Auto-check at 2026-10-27T20:34:41+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
