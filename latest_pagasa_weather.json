@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-10-30T16:00:00+08:00",
+    "issued_at": "2026-10-31T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-10-31T03:28:23+08:00",
+    "generated_at": "2026-10-31T07:07:42+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 475 km East of Borongan City, Eastern Samar (11.8°N, 129.8°E). Shear Line affecting the eastern sections of Northern and Central Luzon. Northeast Monsoon affecting the rest of Northern Luzon.",
+    "outlook": "At 3:00 AM today, the Low Pressure Area (LPA) was estimated based on all available data at 320 km East of Borongan City, Eastern Samar (11.7°N, 128.4°E). Shear Line affecting the eastern sections of Northern and Central Luzon. Northeast Monsoon affecting the rest of Northern Luzon.",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [
@@ -31,7 +31,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 475 km East of Borongan City, Eastern Samar (11.8°N, 129.8°E). Shear Line affecting the eastern sections of Northern and Central Luzon. Northeast Monsoon affecting the rest of Northern Luzon.",
+    "advisory": "At 3:00 AM today, the Low Pressure Area (LPA) was estimated based on all available data at 320 km East of Borongan City, Eastern Samar (11.7°N, 128.4°E). Shear Line affecting the eastern sections of Northern and Central Luzon. Northeast Monsoon affecting the rest of Northern Luzon.",
     "areas": []
   },
   "gale_warning": {
@@ -45,10 +45,10 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 475 km East of Borongan City, Eastern Samar (11.8°N, 129.8°E). Shear Line affecting the eastern sections of Northern and Central Luzon. Northeast Monsoon affecting the rest of Northern Luzon.",
+    "synopsis": "At 3:00 AM today, the Low Pressure Area (LPA) was estimated based on all available data at 320 km East of Borongan City, Eastern Samar (11.7°N, 128.4°E). Shear Line affecting the eastern sections of Northern and Central Luzon. Northeast Monsoon affecting the rest of Northern Luzon.",
     "regions": [
       "Cagayan, Isabela, Aurora, and Quezon",
-      "Visayas, Mindanao, and Palawan",
+      "Visayas, Mindanao, Bicol Region, and MIMAROPA",
       "Ilocos Region, Cordillera Administrative Region, and the rest of Cagayan Valley",
       "Metro Manila and the rest of Luzon"
     ],
@@ -62,7 +62,7 @@
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Visayas, Mindanao, and Palawan",
+        "place": "Visayas, Mindanao, Bicol Region, and MIMAROPA",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "LPA",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
@@ -83,18 +83,18 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
-    "category": "Super Typhoon",
-    "location": "2,560 KM EAST OF NORTHERN LUZON",
-    "lat": 18.9,
-    "lon": 145.9,
-    "winds_kph": "185",
-    "gustiness_kph": "230"
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
+    "category": "Typhoon",
+    "location": "2,245 KM EAST OF EXTREME NORTHERN LUZON",
+    "lat": 20.7,
+    "lon": 143.4,
+    "winds_kph": "165",
+    "gustiness_kph": "205"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. At 3:00 PM today, the Low Pressure Area (LPA) was estimated based on all available data at 475 km East of Borongan City, Eastern Samar (11.8°N, 129.8°E). Shear Line affecting the eastern sections of Northern and Central Luzon. Northeast Monsoon affecting the rest of Northern Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. At 3:00 AM today, the Low Pressure Area (LPA) was estimated based on all available data at 320 km East of Borongan City, Eastern Samar (11.7°N, 128.4°E). Shear Line affecting the eastern sections of Northern and Central Luzon. Northeast Monsoon affecting the rest of Northern Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -167,8 +167,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-10-31T03:28:23+08:00",
-        "entry": "Auto-check at 2026-10-31T03:28:23+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-10-31T07:07:42+08:00",
+        "entry": "Auto-check at 2026-10-31T07:07:42+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
