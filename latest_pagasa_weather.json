@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-11-01T04:00:00+08:00",
+    "issued_at": "2026-11-01T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-11-01T09:22:30+08:00",
+    "generated_at": "2026-11-01T15:55:52+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,8 +21,8 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Shear Line affecting the eastern section of Northern Luzon. Northeast Monsoon affecting the rest of Northern Luzon.",
-    "warning_level": "Heavy",
+    "outlook": "Northeast Monsoon affecting Extreme Northern Luzon. Easterlies affecting the rest of Luzon.",
+    "warning_level": "Moderate",
     "warnings": [],
     "habagat_affected": [
       "Southwest Monsoon areas"
@@ -31,7 +31,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Shear Line affecting the eastern section of Northern Luzon. Northeast Monsoon affecting the rest of Northern Luzon.",
+    "advisory": "Northeast Monsoon affecting Extreme Northern Luzon. Easterlies affecting the rest of Luzon.",
     "areas": []
   },
   "gale_warning": {
@@ -45,29 +45,29 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Shear Line affecting the eastern section of Northern Luzon. Northeast Monsoon affecting the rest of Northern Luzon.",
+    "synopsis": "Northeast Monsoon affecting Extreme Northern Luzon. Easterlies affecting the rest of Luzon.",
     "regions": [
-      "Mainland Cagayan, Apayao, Kalinga, and Isabela",
-      "Batanes, Babuyan Islands, Ilocos Norte, Abra, and Benguet",
-      "Metro Manila and the rest of the country"
+      "Batanes",
+      "Metro Manila and the rest of Luzon",
+      "Visayas and Mindanao"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Mainland Cagayan, Apayao, Kalinga, and Isabela",
-        "condition": "Cloudy skies with scattered rains and isolated thunderstorms",
-        "cause": "Shear Line",
-        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
-      },
-      {
-        "place": "Batanes, Babuyan Islands, Ilocos Norte, Abra, and Benguet",
+        "place": "Batanes",
         "condition": "Partly cloudy to cloudy skies with isolated light rains",
         "cause": "Northeast Monsoon",
         "impact": "No significant impact"
       },
       {
-        "place": "Metro Manila and the rest of the country",
+        "place": "Metro Manila and the rest of Luzon",
+        "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
+        "cause": "Easterlies",
+        "impact": "Possible flash floods or landslides during severe thunderstorms"
+      },
+      {
+        "place": "Visayas and Mindanao",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Localized Thunderstorms",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -76,18 +76,18 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
     "category": "Typhoon",
-    "location": "2,290 KM EAST OF EXTREME NORTHERN LUZON",
-    "lat": 23.0,
-    "lon": 143.9,
-    "winds_kph": "155",
-    "gustiness_kph": "190"
+    "location": "2,310 KM EAST OF EXTREME NORTHERN LUZON",
+    "lat": 22.2,
+    "lon": 144.1,
+    "winds_kph": "150",
+    "gustiness_kph": "185"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Shear Line affecting the eastern section of Northern Luzon. Northeast Monsoon affecting the rest of Northern Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Northeast Monsoon affecting Extreme Northern Luzon. Easterlies affecting the rest of Luzon. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -160,8 +160,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-11-01T09:22:30+08:00",
-        "entry": "Auto-check at 2026-11-01T09:22:30+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-11-01T15:55:52+08:00",
+        "entry": "Auto-check at 2026-11-01T15:55:52+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
