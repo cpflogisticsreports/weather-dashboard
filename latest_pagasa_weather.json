@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-11-06T16:00:00+08:00",
+    "issued_at": "2026-11-07T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-11-06T22:51:15+08:00",
+    "generated_at": "2026-11-07T04:43:55+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Northeast Monsoon affecting Northern Luzon. Easterlies affecting the rest of the country.",
+    "outlook": "Shear Line affecting the eastern section of Southern Luzon. Northeast Monsoon affecting Northern and Central Luzon. Easterlies affecting the rest of the country.",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [
@@ -31,7 +31,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Northeast Monsoon affecting Northern Luzon. Easterlies affecting the rest of the country.",
+    "advisory": "Shear Line affecting the eastern section of Southern Luzon. Northeast Monsoon affecting Northern and Central Luzon. Easterlies affecting the rest of the country.",
     "areas": []
   },
   "gale_warning": {
@@ -45,30 +45,37 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Northeast Monsoon affecting Northern Luzon. Easterlies affecting the rest of the country.",
+    "synopsis": "Shear Line affecting the eastern section of Southern Luzon. Northeast Monsoon affecting Northern and Central Luzon. Easterlies affecting the rest of the country.",
     "regions": [
-      "Bicol Region, Eastern Visayas, Caraga, Quezon, Marinduque, Oriental Mindoro, and Davao Oriental",
-      "Cagayan Valley, Apayao, Kalinga, Mountain Province, Ifugao, and Aurora",
-      "Ilocos Region and the rest of Cordillera Administrative Region",
+      "Aurora, Quezon, and Camarines Norte",
+      "Eastern Visayas, Central Visayas, Caraga, the rest of Bicol Region, Marinduque, Romblon, Misamis Oriental, Camiguin, and Davao Oriental",
+      "Cagayan Valley, Apayao, Kalinga, Mountain Province, and Ifugao",
+      "Ilocos Region, the rest of Central Luzon, and the rest of Cordillera Administrative Region",
       "Metro Manila and the rest of the country"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Bicol Region, Eastern Visayas, Caraga, Quezon, Marinduque, Oriental Mindoro, and Davao Oriental",
-        "condition": "Cloudy skies with scattered rains and thunderstorms",
+        "place": "Aurora, Quezon, and Camarines Norte",
+        "condition": "Cloudy skies with scattered to widespread rains and thunderstorm",
+        "cause": "Shear Line",
+        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
+      },
+      {
+        "place": "Eastern Visayas, Central Visayas, Caraga, the rest of Bicol Region, Marinduque, Romblon, Misamis Oriental, Camiguin, and Davao Oriental",
+        "condition": "Cloudy skies with scattered to widespread rains and thunderstorm",
         "cause": "Easterlies",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Cagayan Valley, Apayao, Kalinga, Mountain Province, Ifugao, and Aurora",
+        "place": "Cagayan Valley, Apayao, Kalinga, Mountain Province, and Ifugao",
         "condition": "Cloudy skies with light rains",
         "cause": "Northeast Monsoon",
         "impact": "No significant impact"
       },
       {
-        "place": "Ilocos Region and the rest of Cordillera Administrative Region",
+        "place": "Ilocos Region, the rest of Central Luzon, and the rest of Cordillera Administrative Region",
         "condition": "Partly cloudy to cloudy skies with isolated light rains",
         "cause": "Northeast Monsoon",
         "impact": "No significant impact"
@@ -83,18 +90,18 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
     "category": "Tropical Depression",
-    "location": "2, 865 KM EAST OF NORTHERN LUZON",
-    "lat": 18.0,
-    "lon": 148.8,
+    "location": "2,540 KM EAST OF NORTHERN LUZON",
+    "lat": 18.5,
+    "lon": 145.7,
     "winds_kph": "55",
     "gustiness_kph": "70"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Northeast Monsoon affecting Northern Luzon. Easterlies affecting the rest of the country. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Shear Line affecting the eastern section of Southern Luzon. Northeast Monsoon affecting Northern and Central Luzon. Easterlies affecting the rest of the country. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -167,8 +174,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-11-06T22:51:15+08:00",
-        "entry": "Auto-check at 2026-11-06T22:51:15+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-11-07T04:43:55+08:00",
+        "entry": "Auto-check at 2026-11-07T04:43:55+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
