@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-11-06T04:00:00+08:00",
+    "issued_at": "2026-11-06T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-11-06T14:49:37+08:00",
+    "generated_at": "2026-11-06T22:51:15+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -47,21 +47,28 @@
   "forecast": {
     "synopsis": "Northeast Monsoon affecting Northern Luzon. Easterlies affecting the rest of the country.",
     "regions": [
-      "Eastern Visayas, Caraga, and Davao Oriental",
-      "Ilocos Region, Cordillera Administrative Region, and Cagayan Valley",
+      "Bicol Region, Eastern Visayas, Caraga, Quezon, Marinduque, Oriental Mindoro, and Davao Oriental",
+      "Cagayan Valley, Apayao, Kalinga, Mountain Province, Ifugao, and Aurora",
+      "Ilocos Region and the rest of Cordillera Administrative Region",
       "Metro Manila and the rest of the country"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Eastern Visayas, Caraga, and Davao Oriental",
+        "place": "Bicol Region, Eastern Visayas, Caraga, Quezon, Marinduque, Oriental Mindoro, and Davao Oriental",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Easterlies",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Ilocos Region, Cordillera Administrative Region, and Cagayan Valley",
+        "place": "Cagayan Valley, Apayao, Kalinga, Mountain Province, Ifugao, and Aurora",
+        "condition": "Cloudy skies with light rains",
+        "cause": "Northeast Monsoon",
+        "impact": "No significant impact"
+      },
+      {
+        "place": "Ilocos Region and the rest of Cordillera Administrative Region",
         "condition": "Partly cloudy to cloudy skies with isolated light rains",
         "cause": "Northeast Monsoon",
         "impact": "No significant impact"
@@ -76,13 +83,13 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
     "category": "Tropical Depression",
-    "location": "3,145 KM EAST OF CENTRAL LUZON",
-    "lat": 16.4,
-    "lon": 151.6,
-    "winds_kph": "45",
-    "gustiness_kph": "55"
+    "location": "2, 865 KM EAST OF NORTHERN LUZON",
+    "lat": 18.0,
+    "lon": 148.8,
+    "winds_kph": "55",
+    "gustiness_kph": "70"
   },
   "cpf": {
     "operational_status": "",
@@ -160,8 +167,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-11-06T14:49:37+08:00",
-        "entry": "Auto-check at 2026-11-06T14:49:37+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-11-06T22:51:15+08:00",
+        "entry": "Auto-check at 2026-11-06T22:51:15+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
