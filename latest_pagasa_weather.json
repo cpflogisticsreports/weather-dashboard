@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-11-10T16:00:00+08:00",
+    "issued_at": "2026-11-11T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-11-11T02:07:56+08:00",
+    "generated_at": "2026-11-11T07:24:07+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -47,35 +47,28 @@
   "forecast": {
     "synopsis": "Northeast Monsoon affecting Luzon. Easterlies affecting the rest of the country.",
     "regions": [
-      "Eastern Visayas, Central Visayas, Caraga, Davao Region, and Northern Mindanao",
-      "Camarines Sur, Catanduanes, Albay, and Sorsogon",
-      "Cordillera Administrative Region, Cagayan, Isabela, Aurora, Quezon, and Camarines Norte",
-      "Palawan, Masbate, and the rest of Visayas and Mindanao",
+      "Mindanao, Eastern Visayas, and Central Visayas,",
+      "Cagayan, Isabela, Aurora, Quezon, and Camarines Norte",
+      "Palawan, Masbate, and the rest of Visayas",
       "Metro Manila and the rest of Luzon"
     ],
     "wind_outlook": [],
     "wind_hazard": "",
     "conditions": [
       {
-        "place": "Eastern Visayas, Central Visayas, Caraga, Davao Region, and Northern Mindanao",
+        "place": "Mindanao, Eastern Visayas, and Central Visayas,",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Easterlies",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Camarines Sur, Catanduanes, Albay, and Sorsogon",
-        "condition": "Cloudy skies with scattered rains and isolated rainshowers and thunderstorms",
-        "cause": "Shear Line",
-        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
-      },
-      {
-        "place": "Cordillera Administrative Region, Cagayan, Isabela, Aurora, Quezon, and Camarines Norte",
+        "place": "Cagayan, Isabela, Aurora, Quezon, and Camarines Norte",
         "condition": "Cloudy skies with rains",
         "cause": "Northeast Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Palawan, Masbate, and the rest of Visayas and Mindanao",
+        "place": "Palawan, Masbate, and the rest of Visayas",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "Easterlies",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -90,13 +83,13 @@
   },
   "tc_outside_par": {
     "present": true,
-    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 PM TODAY",
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
     "category": "Typhoon",
-    "location": "1,940 KM EAST NORTHEAST OF EXTREME NORTHERN LUZON",
-    "lat": 25.5,
-    "lon": 140.1,
-    "winds_kph": "150",
-    "gustiness_kph": "185"
+    "location": "2,440 KM EAST NORTHEAST OF EXTREME NORTHERN LUZON",
+    "lat": 26.9,
+    "lon": 144.9,
+    "winds_kph": "140",
+    "gustiness_kph": "170"
   },
   "cpf": {
     "operational_status": "",
@@ -174,8 +167,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-11-11T02:07:56+08:00",
-        "entry": "Auto-check at 2026-11-11T02:07:56+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-11-11T07:24:07+08:00",
+        "entry": "Auto-check at 2026-11-11T07:24:07+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
