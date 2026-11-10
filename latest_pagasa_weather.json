@@ -1,81 +1,37 @@
 {
   "meta": {
     "source": "PAGASA (auto-parsed)",
-    "bulletin_title": "Tropical Cyclone Bulletin No. 2",
-    "issued_at": "2026-11-09T17:00:00+08:00",
+    "bulletin_title": "PAGASA Daily Weather Forecast",
+    "issued_at": "2026-11-10T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-11-10T04:08:38+08:00",
-    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA bulletin",
+    "generated_at": "2026-11-10T10:44:45+08:00",
+    "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
   "situation": {
-    "mode": "typhoon",
-    "has_active_tc": true,
-    "storm_name_local": "SAMUEL",
-    "storm_name_intl": null,
-    "category": "Typhoon",
+    "mode": "advisory",
+    "has_active_tc": false,
+    "storm_name_local": "",
+    "storm_name_intl": "",
+    "category": "",
     "severity": "",
     "headline_override": ""
   },
-  "cyclone": {
-    "center_text": "",
-    "lat": 24.1,
-    "lon": 135.1,
-    "max_sustained_winds_kph": 130,
-    "gustiness_kph": 160,
-    "central_pressure_hpa": "",
-    "movement": "East Northeastward at 10 km/h",
-    "wind_extent_km": "",
-    "forecast_track": [
-      {
-        "label": "Now",
-        "lat": 24.1,
-        "lon": 135.1,
-        "category": "Typhoon",
-        "winds_kph": 130
-      },
-      {
-        "label": "Nov 10 2AM",
-        "lat": 23.33,
-        "lon": 135.35,
-        "category": "Typhoon",
-        "winds_kph": 130
-      },
-      {
-        "label": "Nov 10 2PM",
-        "lat": 24.18,
-        "lon": 138.4,
-        "category": "Typhoon",
-        "winds_kph": 130
-      },
-      {
-        "label": "Nov 11 2AM",
-        "lat": 25.16,
-        "lon": 142.26,
-        "category": "Typhoon",
-        "winds_kph": 130
-      },
-      {
-        "label": "Nov 11 2PM",
-        "lat": 26.14,
-        "lon": 146.72,
-        "category": "Typhoon",
-        "winds_kph": 130
-      }
-    ]
-  },
+  "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "heavy rainfall and severe winds may still be experienced in localities outside the landfall point and the forecast confidence cone. Refer to “Other Hazards affecting Land Areas” for more details. Furthermore, the",
+    "outlook": "Northeast Monsoon affecting Luzon. Easterlies affecting the rest of the country.",
     "warning_level": "Heavy",
     "warnings": [],
-    "habagat_affected": [],
+    "habagat_affected": [
+      "Southwest Monsoon areas"
+    ],
     "areas": []
   },
   "thunderstorm": {
-    "active": false,
-    "advisory": "",
+    "active": true,
+    "advisory": "Northeast Monsoon affecting Luzon. Easterlies affecting the rest of the country.",
     "areas": []
   },
   "gale_warning": {
@@ -89,36 +45,66 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "",
+    "synopsis": "Northeast Monsoon affecting Luzon. Easterlies affecting the rest of the country.",
     "regions": [
-      "Most of Luzon",
-      "Visayas",
-      "Dinagat Islands",
-      "Surigao del Norte",
-      "Misamis Oriental",
-      "Camiguin",
-      "Misamis Occidental",
-      "Zamboanga del Norte",
-      "Davao Oriental",
-      "Davao Occidental",
-      "Sarangani"
+      "Caraga, Davao Region, Eastern Samar, Southern Leyte, Bohol, Misamis Oriental, and Camiguin",
+      "Aurora, Quezon, and Camarines Norte",
+      "Cagayan Valley and Cordillera Administrative Region",
+      "Metro Manila and the rest of Luzon",
+      "The rest of the country"
     ],
-    "wind_outlook": [
+    "wind_outlook": [],
+    "wind_hazard": "",
+    "conditions": [
       {
-        "when": "Wednesday (11 November)",
-        "areas": "Most of Luzon and Visayas, Dinagat Islands, Surigao del Norte, Misamis Oriental, Camiguin, Misamis Occidental, Zamboanga del Norte, Davao Oriental, Davao Occidental, and Sarangani"
+        "place": "Caraga, Davao Region, Eastern Samar, Southern Leyte, Bohol, Misamis Oriental, and Camiguin",
+        "condition": "Cloudy skies with scattered rains and thunderstorms",
+        "cause": "Easterlies",
+        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
+      },
+      {
+        "place": "Aurora, Quezon, and Camarines Norte",
+        "condition": "Cloudy skies with rains",
+        "cause": "Northeast Monsoon",
+        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
+      },
+      {
+        "place": "Cagayan Valley and Cordillera Administrative Region",
+        "condition": "Cloudy skies with light rains",
+        "cause": "Northeast Monsoon",
+        "impact": "No significant impact"
+      },
+      {
+        "place": "Metro Manila and the rest of Luzon",
+        "condition": "Partly cloudy to cloudy skies with isolated light rains",
+        "cause": "Northeast Monsoon",
+        "impact": "No significant impact"
+      },
+      {
+        "place": "The rest of the country",
+        "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
+        "cause": "Easterlies",
+        "impact": "Possible flash floods or landslides during severe thunderstorms"
       }
-    ],
-    "wind_hazard": "Strong to gale-force gusts",
-    "conditions": []
+    ]
+  },
+  "tc_outside_par": {
+    "present": true,
+    "headline": "TROPICAL CYCLONE OUTSIDE PAR AS OF 3:00 AM TODAY",
+    "category": "Typhoon",
+    "location": "1,590 KM EAST NORTHEAST OF NORTHERN LUZON",
+    "lat": 24.8,
+    "lon": 136.7,
+    "winds_kph": "150",
+    "gustiness_kph": "185"
   },
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Typhoon “SAMUEL” is being tracked by PAGASA. No CPF hub currently under a wind signal; continue monitoring.",
+    "executive_summary": "Weather advisory in effect. Northeast Monsoon affecting Luzon. Easterlies affecting the rest of the country. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
-    "contractor_advisory": "Report driver location and any road closures to Logistics Control immediately.",
+    "contractor_advisory": "",
     "affected_deliveries_note": "",
     "hubs": [
       {
@@ -188,8 +174,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-11-10T04:08:38+08:00",
-        "entry": "Auto-updated from PAGASA bulletin at 2026-11-10T04:08:38+08:00. Machine-parsed — confirm against the official PAGASA bulletin before dispatch."
+        "time": "2026-11-10T10:44:45+08:00",
+        "entry": "Auto-check at 2026-11-10T10:44:45+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
