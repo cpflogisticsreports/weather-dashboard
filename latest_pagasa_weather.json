@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-11-15T16:00:00+08:00",
+    "issued_at": "2026-11-16T04:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-11-15T23:28:06+08:00",
+    "generated_at": "2026-11-16T04:30:16+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -46,6 +46,7 @@
     "synopsis": "Easterlies affecting the country.",
     "regions": [
       "Caraga and Davao Region",
+      "Batanes",
       "Metro Manila and the rest of the country"
     ],
     "wind_outlook": [],
@@ -55,6 +56,12 @@
         "place": "Caraga and Davao Region",
         "condition": "Cloudy skies with scattered rains and thunderstorms",
         "cause": "Easterlies",
+        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
+      },
+      {
+        "place": "Batanes",
+        "condition": "Cloudy skies with scattered rains and isolated thunderstorms",
+        "cause": "Shear Line",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
@@ -144,8 +151,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-11-15T23:28:06+08:00",
-        "entry": "Auto-check at 2026-11-15T23:28:06+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-11-16T04:30:16+08:00",
+        "entry": "Auto-check at 2026-11-16T04:30:16+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
