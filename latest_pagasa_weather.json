@@ -2,10 +2,10 @@
   "meta": {
     "source": "PAGASA (auto-parsed)",
     "bulletin_title": "PAGASA Daily Weather Forecast",
-    "issued_at": "2026-11-25T04:00:00+08:00",
+    "issued_at": "2026-11-25T16:00:00+08:00",
     "valid_until": "",
     "next_update": "",
-    "generated_at": "2026-11-25T11:33:06+08:00",
+    "generated_at": "2026-11-25T21:31:35+08:00",
     "prepared_by": "Automated (fetch_pagasa.py) — verify against official PAGASA daily forecast",
     "bulletin_url": "https://www.pagasa.dost.gov.ph/tropical-cyclone/severe-weather-bulletin"
   },
@@ -21,7 +21,7 @@
   "cyclone": {},
   "tcws": [],
   "rainfall": {
-    "outlook": "Shear Line affecting the eastern section of Northern Luzon. Northeast Monsoon affecting Extreme Northern Luzon. Intertropical Convergence Zone (ITCZ) affecting Palawan.",
+    "outlook": "Shear Line affecting the eastern section of Northern Luzon. Northeast Monsoon affecting Extreme Northern Luzon. Intertropical Convergence Zone (ITCZ) affecting Southern Mindanao and Palawan.",
     "warning_level": "Heavy",
     "warnings": [],
     "habagat_affected": [
@@ -31,7 +31,7 @@
   },
   "thunderstorm": {
     "active": true,
-    "advisory": "Shear Line affecting the eastern section of Northern Luzon. Northeast Monsoon affecting Extreme Northern Luzon. Intertropical Convergence Zone (ITCZ) affecting Palawan.",
+    "advisory": "Shear Line affecting the eastern section of Northern Luzon. Northeast Monsoon affecting Extreme Northern Luzon. Intertropical Convergence Zone (ITCZ) affecting Southern Mindanao and Palawan.",
     "areas": []
   },
   "gale_warning": {
@@ -45,11 +45,12 @@
     "risk_level": ""
   },
   "forecast": {
-    "synopsis": "Shear Line affecting the eastern section of Northern Luzon. Northeast Monsoon affecting Extreme Northern Luzon. Intertropical Convergence Zone (ITCZ) affecting Palawan.",
+    "synopsis": "Shear Line affecting the eastern section of Northern Luzon. Northeast Monsoon affecting Extreme Northern Luzon. Intertropical Convergence Zone (ITCZ) affecting Southern Mindanao and Palawan.",
     "regions": [
       "Cagayan and Isabela",
-      "Batanes",
       "Palawan",
+      "Batanes",
+      "SOCCSKSARGEN, Basilan, Sulu, and Tawi-Tawi",
       "Ilocos Norte",
       "Metro Manila and the rest of the country"
     ],
@@ -63,13 +64,19 @@
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
+        "place": "Palawan",
+        "condition": "Cloudy skies with scattered rains and thunderstorms",
+        "cause": "ITCZ",
+        "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
+      },
+      {
         "place": "Batanes",
         "condition": "Cloudy skies with rains",
         "cause": "Northeast Monsoon",
         "impact": "Possible flash floods or landslides due to moderate to at times heavy rains"
       },
       {
-        "place": "Palawan",
+        "place": "SOCCSKSARGEN, Basilan, Sulu, and Tawi-Tawi",
         "condition": "Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms",
         "cause": "ITCZ",
         "impact": "Possible flash floods or landslides during severe thunderstorms"
@@ -94,7 +101,7 @@
   "cpf": {
     "operational_status": "",
     "dispatch_action": "",
-    "executive_summary": "Weather advisory in effect. Shear Line affecting the eastern section of Northern Luzon. Northeast Monsoon affecting Extreme Northern Luzon. Intertropical Convergence Zone (ITCZ) affecting Palawan. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
+    "executive_summary": "Weather advisory in effect. Shear Line affecting the eastern section of Northern Luzon. Northeast Monsoon affecting Extreme Northern Luzon. Intertropical Convergence Zone (ITCZ) affecting Southern Mindanao and Palawan. Plan deliveries with normal caution; validate road conditions in rain-prone corridors before dispatch.",
     "priority_routes": [],
     "risk_matrix": [],
     "contractor_advisory": "",
@@ -167,8 +174,8 @@
     ],
     "change_log": [
       {
-        "time": "2026-11-25T11:33:06+08:00",
-        "entry": "Auto-check at 2026-11-25T11:33:06+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
+        "time": "2026-11-25T21:31:35+08:00",
+        "entry": "Auto-check at 2026-11-25T21:31:35+08:00: no active tropical cyclone. Daily forecast ingested (advisory). Verify against official PAGASA daily forecast."
       }
     ]
   }
